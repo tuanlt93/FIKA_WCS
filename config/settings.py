@@ -1,0 +1,7 @@
+class TIME:
+    PLC_SAMPLING_TIME = 0.1
+    MANAGER_AGV_SAMPLING_TIME = 5.0
+
+
+
+

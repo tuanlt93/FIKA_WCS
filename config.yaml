@@ -1,0 +1,164 @@
+CFG_REDIS:
+  host: 127.0.0.1
+  port: 6379
+  db  : 0
+  user: 
+  password: 
+  type: 
+
+CFG_MODBUS:
+  host: 192.168.31.3
+  # host: 127.0.0.1
+  port: 502
+  unit: 16
+
+CFG_SOCKET:
+  host: 192.168.31.210
+  port: 9100
+
+CFG_MONGODB:
+  username: root
+  password: jfhe434jc349fj
+  host: 4.145.80.147
+  port: 29002
+  url: mongodb://root:jfhe434jc349fj@4.145.80.147:29002/
+  # url: "mongodb://username:password@your_host:your_port/your_database_name"
+  
+
+CFG_RCS:
+  url: http://192.168.111.250:24249
+  bind: ContainerOperationMsg
+  unbind: ContainerOperationMsg
+  continue: InstanceOperationMsg
+  query: LocationListMsg
+  pause: InstanceOperationMsg
+  resume: InstanceOperationMsg
+  task: WorkflowStartMsg
+
+
+CFG_SERVER:
+  host: 0.0.0.0
+  port: 5000
+  threads: 10
+
+
+
+# KHU VỰC ROBOT 1
+MISSION_A1:
+  workflow_code           : 'F02'
+  workflow_type           : 'PALLET_INPUT'
+  locationCode_bindCell   : '00000100'
+  destination             : '00000031'
+  line_curtain_triger     : '00000025'
+  workflow_type_triger    : '00000095'
+  area                    : 'A'
+  shelf                   : '000102'
+  angle_shelf             : '90'
+
+
+MISSION_A2:
+  workflow_code           : 'F03'
+  workflow_type           : 'PALLET_INPUT'
+  locationCode_bindCell   : '00000100'
+  destination             : '00000001'
+  line_curtain_triger     : '00000004'
+  workflow_type_triger    : '00000095'
+  area                    : 'A'
+  shelf                   : '000103'
+  angle_shelf             : '90'
+
+
+MISSION_A3:
+  workflow_code           : 'F04'
+  workflow_type           : 'PALLET_OUTPUT'
+  locationCode_bindCell   : '00000010'
+  destination             : '00000118'
+  line_curtain_triger     : '00000007'
+  workflow_type_triger    : '00000115'
+  area                    : 'A'
+  shelf                   : '000104'
+  angle_shelf             : '90'
+
+
+
+# KHU VỰC ROBOT 2
+MISSION_O1:
+  workflow_code           : 'F05'
+  workflow_type           : 'PALLET_OUTPUT'
+  locationCode_bindCell   : '00000061'
+  destination             : '00000118'
+  line_curtain_triger     : '00000115'
+  workflow_type_triger    : '00000115'
+  area                    : 'O'
+  shelf                   : '000105'
+  angle_shelf             : '90'
+
+
+MISSION_O2:
+  workflow_code           : 'F06'
+  workflow_type           : 'PALLET_OUTPUT'
+  locationCode_bindCell   : '00000057'
+  destination             : '00000118'
+  line_curtain_triger     : '00000055'
+  workflow_type_triger    : '00000115'
+  area                    : 'O'
+  shelf                   : '000106'
+  angle_shelf             : '90'
+
+
+MISSION_O3:
+  workflow_code           : 'F07'
+  workflow_type           : 'PALLET_INPUT'
+  locationCode_bindCell   : '00000100'
+  destination             : '00000053'
+  line_curtain_triger     : '00000051'
+  workflow_type_triger    : '00000095'
+  area                    : 'O'
+  shelf                   : '000107'
+  angle_shelf             : '90'
+
+
+
+# KHU VỰC MANUAL
+MISSION_M1:
+  workflow_code           : 'F08'
+  workflow_type           : 'PALLET_OUTPUT'
+  locationCode_bindCell   : '00000047'
+  destination             : '00000118'
+  workflow_type_triger    : '00000115'
+  area                    : 'MANUAL'
+  shelf                   : '000108'
+  angle_shelf             : '0'
+
+
+MISSION_M2:
+  workflow_code           : 'F09'
+  workflow_type           : 'PALLET_OUTPUT'
+  locationCode_bindCell   : '00000037'
+  destination             : '00000118'
+  workflow_type_triger    : '00000115'
+  area                    : 'MANUAL'
+  shelf                   : '000109' 
+  angle_shelf             : '90 ????????????/' 
+
+
+MISSION_M3:
+  workflow_code           : 'F10'
+  workflow_type           : 'PALLET_OUTPUT'
+  locationCode_bindCell   : '00000015'
+  destination             : '00000118'
+  workflow_type_triger    : '00000115'
+  area                    : 'MANUAL'
+  shelf                   : '000110'
+  angle_shelf             : '0'
+
+
+MISSION_M4:
+  workflow_code           : 'F11'
+  workflow_type           : 'PALLET_INPUT'
+  locationCode_bindCell   : '00000100'
+  destination             : '00000039'
+  workflow_type_triger    : '00000095'
+  area                    : 'MANUAL'
+  shelf                   : '000111'
+  angle_shelf             : '90'
