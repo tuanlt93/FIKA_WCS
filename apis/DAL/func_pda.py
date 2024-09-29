@@ -124,7 +124,7 @@ class CallApiBackEnd():
             HandlePalletConfig.PALLET_INPUT_DATA   
         ))
         response = requests.post(self.__url + self._carton_pallet_create, json = datas, headers = headers)
-        # print(response.text)
+        print(response.text)
 
         if response.status_code == 201:
             response_data = response.json()
@@ -231,7 +231,8 @@ class CallApiBackEnd():
     # @exception_handler
     def startPalletCarton(self):
         """
-            Bắt đầu pallet carton mới (ko sủ dụng)
+            Bắt đầu pallet carton mới
+            --- > OKE
         """
         headers = self.__get_token_bearer
         url = self.__url + self._carton_pallet_start_pallet
@@ -340,7 +341,6 @@ class CallApiBackEnd():
         }
         url = self.__url + self._carton_state_code_info
         response = requests.get(url ,params = params, headers = headers)
-        print(response.text)
         return response
     
 

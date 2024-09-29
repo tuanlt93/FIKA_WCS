@@ -15,9 +15,11 @@ class DALServer(metaclass=Singleton):
         """
             Get token bearer from backend
         """
-        # self.__account      = self.__get_account()
-        # self.__token_value  = self.__get_token_bearer_backend(self.__account)
-        self.__token_value =  {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE3Mjc0MDI5NDMsImV4cCI6MTc1ODUwNjk0M30.SHngUPOqe7aJPhqwc0hx_ZEgSdFwZOOhikBxzVafR_E'}
+        self.__account      = self.__get_account()
+        self.__token_value  = self.__get_token_bearer_backend(self.__account)
+        # self.__token_value =  {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE3Mjc0MDI5NDMsImV4cCI6MTc1ODUwNjk0M30.SHngUPOqe7aJPhqwc0hx_ZEgSdFwZOOhikBxzVafR_E'}
+
+        # self.__token_value =  {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE3Mjc0NTgyNTcsImV4cCI6MTc1ODU2MjI1N30.52fTvYkMyB-rJxAbfawiKpgg2PhWquwBdGc4x2zxoWc'}
 
     def __get_token_bearer_backend(self, cfg: dict) -> dict:
         """

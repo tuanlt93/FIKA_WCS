@@ -38,16 +38,14 @@ class RedisCache(metaclass= Singleton):
 
 
     def set(self, key: str, value):
-        if value is None: value = "Null"
-        else: value = str(value)
+        if value is None: value = "null"
         return self.redis_conn.set(key, value)
     
     def get(self, key: str):
         return self.redis_conn.get(key)
     
     def hset(self, topic: str, key: str, value):
-        if value is None: value = "Null"
-        else: value = str(value)
+        if value is None: value = "null"
         return self.redis_conn.hset(topic, key, value)
 
     def hdel(self, topic: str, key: str):
@@ -60,7 +58,7 @@ class RedisCache(metaclass= Singleton):
         return self.redis_conn.hgetall(topic)
 
     def sadd(self,group: str, topic: str):
-        if topic is None: topic = "Null"
+        if topic is None: topic = "null"
         else: topic = str(topic)
         return self.redis_conn.sadd(group, topic)
     

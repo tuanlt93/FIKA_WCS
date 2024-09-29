@@ -2,7 +2,7 @@ class ConfigAPI:
     name = "admin"
     passwd = "123456"
     # url = "http://4.145.80.147:3100/"
-    url = "http://192.168.31.201:3100/"
+    url = "http://192.168.31.200:3100/"
 
     login = "auth/login"
     carton_state = "carton_state"

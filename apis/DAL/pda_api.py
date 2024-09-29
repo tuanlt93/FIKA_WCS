@@ -70,6 +70,7 @@ class PDA_Input(ApiBase):
     def post(self):
         args = ResponseFomat.API_PDA_INPUT
         datas = self.jsonParser(args, args)
+        print(datas)
         datas_json = json.dumps(datas)
         self.__redis_cache.hset(
             HandlePalletConfig.PALLET_DATA_MANAGEMENT,
@@ -162,7 +163,7 @@ class ConfirmQtyPalletCarton(ApiBase):
         }
 
 
-        ---> OKE
+        
     """
     urls = ("/pda/confirm_qty",)
 
@@ -235,7 +236,9 @@ class ConfirmQtyPalletCarton(ApiBase):
 
 class GetCartonStateInputError(ApiBase):
     """
-        màn hình inspection và correction -> OKE
+        màn hình inspection và correction 
+
+        --> OKE
     """
     urls = ("/pda/carton_error/info",)
 
@@ -249,7 +252,14 @@ class GetCartonStateInputError(ApiBase):
     def get(self):
         args = ResponseFomat.API_CARTON_STATE_INPUT_ERROR
         datas = self.jsonParser(args, args)
+
+        # Loại bỏ dấu ';' ở cuối 'carton_code' nếu tồn tại
+        if 'carton_code' in datas:
+            datas['carton_code'] = datas['carton_code'].rstrip(';')
+
+        print(datas)
         response = self.__get_input_insection_or_correction(datas)
+        print(response.text)
         if response.status_code != 200:
             response = response.json()
             return ApiBase.createResponseMessage({}, response['message'], response['statusCode'], response['statusCode'])
@@ -280,7 +290,7 @@ class CreateInspection(ApiBase):
         self.__pda_history = self.__api_backend.pdaHistory
 
         self.__redis_cache = redis_cache
-        self.manage_queue = Manage_Queue()
+        # self.manage_queue = Manage_Queue()
         self.__logger = Logger()
         return super().__init__()
 
@@ -288,6 +298,8 @@ class CreateInspection(ApiBase):
     def post(self):
         args = ResponseFomat.API_CREATE_INSPECTION
         datas = self.jsonParser(args, args)
+        print(datas)
+
         datas["type_error"] = BE_TypeCartonError.INSPECTION
 
         self.__input_insection_or_correction(datas)
@@ -501,10 +513,11 @@ class PdaPrint(ApiBase):
         self.__logger = Logger()
         return super().__init__()
 
-    @ApiBase.exception_error
+    # @ApiBase.exception_error
     def get(self):
         datas = self.jsonParser(["carton_code"], [])
         response = self.__get_carton_code(datas)
+        print(response.text)
         if response:
             if response.status_code != 200:
                 return ApiBase.createResponseMessage({}, response['message'], response['statusCode'], response['statusCode'])
@@ -516,7 +529,7 @@ class PdaPrint(ApiBase):
                 datas['material_id'] = datas['carton_pallet_id']['material_id']['_id']
                 datas['vendor_batch'] = datas['carton_pallet_id']['vendor_batch']
                 datas['sap_batch'] = datas['carton_pallet_id']['sap_batch']
-                datas['expiry_date'] = VnTimestamp.get_ddmmyyy_to_timestamp(datas['carton_pallet_id']['expiry_date'])
+                datas['expiry_date'] =(datas['carton_pallet_id']['expiry_date'])
                 datas['carton_pallet_id'] = datas['carton_pallet_id']['_id']
                 return ApiBase.createResponseMessage(datas, response['msg'])
         return ApiBase.createNotImplement() 
@@ -525,6 +538,7 @@ class PdaPrint(ApiBase):
     def post(self):
         args = ResponseFomat.API_PRINT
         datas = self.jsonParser(args, args)
+        print(datas)
         
 
 
@@ -595,6 +609,7 @@ class PdaQuarantined(ApiBase):
     def post(self):
         args = ResponseFomat.API_QUARANTINED
         datas = self.jsonParser(args, args)
+        print(datas)
         response = self.__create_quarantined(datas)
         if response.status_code != 201:
             response = response.json()

@@ -1,4 +1,4 @@
-from config.constants import HandlePalletConfig, HandleCartonConfig, MarkemConfig, STATUS_PALLET_CARTON
+from config.constants import HandlePalletConfig, HandleCartonConfig, MarkemConfig, STATUS_PALLET_CARTON, ERROR_DWS
 from apis.response_format import ResponseFomat
 from utils.vntime import VnTimestamp, VnDateTime
 from utils.pattern import Custom_Enum
@@ -20,7 +20,6 @@ class DWSHeartBeat(ApiBase):
 
     def __init__(self) -> None:
         self.__logger = Logger()
-        self.__call_backend = CallApiBackEnd()
         self.__PLC_controller = PLC_controller
         return super().__init__()
 
@@ -90,10 +89,10 @@ class DWSResult(ApiBase):
                 int(quantity_carton_DWS) + 1
             )
 
-            check_carton = check_range(
-                DWS_result["height"],
+            check_carton_print, check_carton_backend = check_range(
                 DWS_result["length"],
                 DWS_result["width"],
+                DWS_result["height"],
                 DWS_result["weight"] * 1000,
                 DWS_result["status"],
                 float(data_pallet_carton_input["standard_length"]),
@@ -112,7 +111,7 @@ class DWSResult(ApiBase):
                 "carton_id"     : (
                     data_pallet_carton_input["carton_pallet_code"] + "," +
                     str(int(quantity_carton_DWS) + 1) + "," +
-                    check_carton  +";"
+                    check_carton_print  +";"
                 )   
             }
             self.__redis_cache.append_to_list(MarkemConfig.DATA_CARTON_LABLE_PRINT, data_print_lable)
@@ -139,7 +138,7 @@ class DWSResult(ApiBase):
             data_creat_carton = {
                 "carton_code": data_print_lable["carton_id"],
                 "carton_pallet_id": data_pallet_carton_input["_id"],
-                "dws_result": DWS_result["status"],
+                "dws_result": check_carton_backend,
                 "actual_length": DWS_result["length"],
                 "actual_width": DWS_result["width"],
                 "actual_height": DWS_result["height"],
@@ -159,7 +158,7 @@ class DWSResult(ApiBase):
             # Kiểm tra điều kiện để kết thúc pallet
 
             if int(current_quantity_PLC) == 0 and (int(quantity_carton_DWS) + 1) >= int(data_pallet_carton_input["carton_pallet_qty"]):
-                print(current_quantity_PLC)
+                print("DONE PALLET")
                 self.__call_backend.UpdateSttPalletCarton(data_pallet_carton_input["_id"])
                     
 
@@ -173,7 +172,7 @@ class DWSResult(ApiBase):
 
 
 def check_range(height, length, width, weight, status, 
-                standard_height, standard_length, standard_width, standard_weight) -> str:
+                standard_height, standard_length, standard_width, standard_weight):
         
     lower_height = standard_height - 10.0
     upper_height = standard_height + 10.0
@@ -187,12 +186,27 @@ def check_range(height, length, width, weight, status,
     lower_weight = standard_weight - 10.0
     upper_weight = standard_weight + 10.0
 
+
+
     if (lower_height <= height <= upper_height and
         lower_length <= length <= upper_length and
         lower_width <= width <= upper_width and
-        lower_weight <= weight <= upper_weight and
         status == "OK"
         ):
-        return "0"
+            
+        if weight > upper_weight:
+            return "1", ERROR_DWS.OVER_WEIGHT
+        elif weight < lower_weight:
+            return "1", ERROR_DWS.UNDER_WEIGHT
+        else:
+            return "0", "OK"
+        
     else:
-        return "1"
+        if lower_weight <= weight <= upper_weight:
+            return "1", ERROR_DWS.WRONG_SIZE
+        elif weight > upper_weight:
+            return "1", ERROR_DWS.WRONG_SIZE_OVER_WEIGHT
+        elif weight < lower_weight:
+            return "1", ERROR_DWS.WRONG_SIZE_UNDER_WEIGHT
+
+        return "1", "NG"

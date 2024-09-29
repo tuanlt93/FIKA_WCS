@@ -8,8 +8,6 @@ from config import CFG_MODBUS
 from time import sleep
 import numpy as np
 import threading
-# from apis.DAL.func_pda import CallApiBackEnd
-
 
 class PLCController(metaclass= Singleton):
 
@@ -23,8 +21,6 @@ class PLCController(metaclass= Singleton):
             timeout: Timeout for Modbus operations (default: 1 second)
             unit: Modbus slave ID (default: 1)
         """
-        # self.__call_backend = CallApiBackEnd
-
         self.__map_plc = RegisterConfig.REGISTER_CONFIG
         self.__redis_cache = redis_cache
         self.__PLC_interface = PLCSInterface(**CFG_MODBUS)
@@ -45,32 +41,38 @@ class PLCController(metaclass= Singleton):
 
     def update_status(self, group, topic, value):
         self.__redis_cache.hset(group, topic, value)
+        
+        print(f'{topic}":" {value}')
+
         if value == DeviceConfig.DOCK_PROCESSING and topic == DeviceConfig.STATUS_DOCK_A1:
             data_pallet_A1 = self.__redis_cache.hget(
                 HandlePalletConfig.PALLET_DATA_MANAGEMENT, 
                 HandlePalletConfig.PALLET_INPUT_A1_DATA   
             )
-            self.__redis_cache.append_to_list(
-                HandlePalletConfig.LIST_PALLET_RUNNING, 
-                data_pallet_A1
-            )
-            # self.__redis_cache.hdel(
-            #     HandlePalletConfig.PALLET_DATA_MANAGEMENT, 
-            #     HandlePalletConfig.PALLET_INPUT_A1_DATA
-            # )
+            if data_pallet_A1:
+                self.__redis_cache.append_to_list(
+                    HandlePalletConfig.LIST_PALLET_RUNNING, 
+                    data_pallet_A1
+                )
+                
+                self.__redis_cache.hdel(
+                    HandlePalletConfig.PALLET_DATA_MANAGEMENT, 
+                    HandlePalletConfig.PALLET_INPUT_A1_DATA
+                )
         elif value == DeviceConfig.DOCK_PROCESSING and topic == DeviceConfig.STATUS_DOCK_A2:
             data_pallet_A2 = self.__redis_cache.hget(
                 HandlePalletConfig.PALLET_DATA_MANAGEMENT, 
                 HandlePalletConfig.PALLET_INPUT_A2_DATA   
             )
-            self.__redis_cache.append_to_list(
-                HandlePalletConfig.LIST_PALLET_RUNNING, 
-                data_pallet_A2
-            )
-            # self.__redis_cache.hdel(
-            #     HandlePalletConfig.PALLET_DATA_MANAGEMENT, 
-            #     HandlePalletConfig.PALLET_INPUT_A2_DATA
-            # )
+            if data_pallet_A2:
+                self.__redis_cache.append_to_list(
+                    HandlePalletConfig.LIST_PALLET_RUNNING, 
+                    data_pallet_A2
+                )
+                self.__redis_cache.hdel(
+                    HandlePalletConfig.PALLET_DATA_MANAGEMENT, 
+                    HandlePalletConfig.PALLET_INPUT_A2_DATA
+                )
 
     def process_positions(self, data, data_reg_now):
         positions = np.where(data)[0]

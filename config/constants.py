@@ -69,6 +69,15 @@ class HandleCartonConfig:
     OK_CHECK = "OK-CHECK"
 
 
+class ERROR_DWS:
+    UNDER_WEIGHT = "Lỗi thiếu cân"
+    OVER_WEIGHT = "Lỗi thừa cân"
+    
+    WRONG_SIZE = "Lỗi sai kích thước"
+    
+    WRONG_SIZE_UNDER_WEIGHT = "Lỗi sai kích thước – thiếu cân"
+    WRONG_SIZE_OVER_WEIGHT = "Lỗi sai kích thước – thừa cân"
+
 
 class SorterConfig:
     # Sortting location corection 
