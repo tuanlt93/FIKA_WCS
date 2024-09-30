@@ -4,6 +4,8 @@ class ConfigAPI:
     # url = "http://4.145.80.147:3100/"
     url = "http://192.168.31.200:3100/"
 
+
+    url_print_datamax = "http://192.168.31.205:9100/markem/print"
     login = "auth/login"
     carton_state = "carton_state"
     carton_qty = "carton_qty"

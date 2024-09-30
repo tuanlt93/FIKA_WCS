@@ -1,5 +1,6 @@
 import socket
 import time
+from PLC import PLC_controller
 
 class SocketTCP:
     def __init__(self, *args, **kwargs) -> None:
@@ -13,6 +14,7 @@ class SocketTCP:
         self.port = kwargs.get('port', 9100)
         self.timeout = kwargs.get('timeout', 3.0)
         self.socket_conn = None
+        self.__PLC_controller = PLC_controller
         self.connect()
 
     def connect(self):
@@ -32,6 +34,7 @@ class SocketTCP:
     def reconnect(self):
         """Attempts to reconnect in case of a connection failure."""
         print("Reconnecting...")
+        self.__PLC_controller.status_markem_disconnect()
         self.close()
         while not self.socket_conn:
             self.connect()

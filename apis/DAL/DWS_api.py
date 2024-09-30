@@ -1,4 +1,4 @@
-from config.constants import HandlePalletConfig, HandleCartonConfig, MarkemConfig, STATUS_PALLET_CARTON, ERROR_DWS
+from config.constants import HandlePalletConfig, HandleCartonConfig, MarkemConfig, STATUS_PALLET_CARTON, ERROR_DWS, SETTING_SYSTEM
 from apis.response_format import ResponseFomat
 from utils.vntime import VnTimestamp, VnDateTime
 from utils.pattern import Custom_Enum
@@ -9,7 +9,7 @@ from db_redis import redis_cache
 from PLC import PLC_controller
 from flask import request
 import json
-
+import random
 
 
 class DWSHeartBeat(ApiBase):
@@ -89,7 +89,7 @@ class DWSResult(ApiBase):
                 int(quantity_carton_DWS) + 1
             )
 
-            check_carton_print, check_carton_backend = check_range(
+            check_carton_print, check_carton_backend = self.__check_range(
                 DWS_result["length"],
                 DWS_result["width"],
                 DWS_result["height"],
@@ -98,7 +98,8 @@ class DWSResult(ApiBase):
                 float(data_pallet_carton_input["standard_length"]),
                 float(data_pallet_carton_input["standard_width"]),
                 float(data_pallet_carton_input["standard_height"]),
-                float(data_pallet_carton_input["standard_weight"])
+                float(data_pallet_carton_input["standard_weight"]) * 1000,
+                int(quantity_carton_DWS) + 1
             )
             
             # Tạo data cho máy in
@@ -169,44 +170,50 @@ class DWSResult(ApiBase):
 
 
 
-
-
-def check_range(height, length, width, weight, status, 
-                standard_height, standard_length, standard_width, standard_weight):
+    def __check_range(self, height, length, width, weight, status, 
+                    standard_height, standard_length, standard_width, standard_weight, number_carton):
         
-    lower_height = standard_height - 10.0
-    upper_height = standard_height + 10.0
-
-    lower_length = standard_length - 10.0
-    upper_length = standard_length + 10.0
-
-    lower_width = standard_width - 10.0
-    upper_width = standard_width + 10.0
-
-    lower_weight = standard_weight - 10.0
-    upper_weight = standard_weight + 10.0
-
-
-
-    if (lower_height <= height <= upper_height and
-        lower_length <= length <= upper_length and
-        lower_width <= width <= upper_width and
-        status == "OK"
-        ):
+        data_system_json = self.__redis_cache.get(SETTING_SYSTEM.TOPIC_SETTING_SYSTEM)
+        data_system = json.loads(data_system_json)
+        
             
-        if weight > upper_weight:
-            return "1", ERROR_DWS.OVER_WEIGHT
-        elif weight < lower_weight:
-            return "1", ERROR_DWS.UNDER_WEIGHT
-        else:
-            return "0", "OK"
-        
-    else:
-        if lower_weight <= weight <= upper_weight:
-            return "1", ERROR_DWS.WRONG_SIZE
-        elif weight > upper_weight:
-            return "1", ERROR_DWS.WRONG_SIZE_OVER_WEIGHT
-        elif weight < lower_weight:
-            return "1", ERROR_DWS.WRONG_SIZE_UNDER_WEIGHT
+        lower_height = standard_height - data_system[SETTING_SYSTEM.DWS_SIZE]
+        upper_height = standard_height + data_system[SETTING_SYSTEM.DWS_SIZE]
 
-        return "1", "NG"
+        lower_length = standard_length - data_system[SETTING_SYSTEM.DWS_SIZE]
+        upper_length = standard_length + data_system[SETTING_SYSTEM.DWS_SIZE]
+
+        lower_width = standard_width - data_system[SETTING_SYSTEM.DWS_SIZE]
+        upper_width = standard_width + data_system[SETTING_SYSTEM.DWS_SIZE]
+
+        lower_weight = standard_weight - data_system[SETTING_SYSTEM.DWS_WEIGHT]
+        upper_weight = standard_weight + data_system[SETTING_SYSTEM.DWS_WEIGHT]
+
+        print(type(data_system[SETTING_SYSTEM.INTERVAL]))
+        interval = data_system[SETTING_SYSTEM.INTERVAL]
+
+        if number_carton == 1 or random.uniform(0, 100) <= interval:
+            return "1", HandleCartonConfig.OK_CHECK
+        else:
+            if (lower_height <= height <= upper_height and
+                lower_length <= length <= upper_length and
+                lower_width <= width <= upper_width and
+                status == "OK"
+                ):
+                    
+                if weight > upper_weight:
+                    return "1", ERROR_DWS.OVER_WEIGHT
+                elif weight < lower_weight:
+                    return "1", ERROR_DWS.UNDER_WEIGHT
+                else:
+                    return "0", "OK"
+                
+            else:
+                if lower_weight <= weight <= upper_weight:
+                    return "1", ERROR_DWS.WRONG_SIZE
+                elif weight > upper_weight:
+                    return "1", ERROR_DWS.WRONG_SIZE_OVER_WEIGHT
+                elif weight < lower_weight:
+                    return "1", ERROR_DWS.WRONG_SIZE_UNDER_WEIGHT
+
+                return "1", "NG"

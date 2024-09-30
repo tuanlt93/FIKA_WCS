@@ -68,6 +68,11 @@ class HandleCartonConfig:
     OK = "OK"
     OK_CHECK = "OK-CHECK"
 
+class SETTING_SYSTEM:
+    TOPIC_SETTING_SYSTEM    = "TOPIC_SETTING_SYSTEM"
+    DWS_WEIGHT              = "DWS_WEIGHT"
+    DWS_SIZE                = "DWS_SIZE"
+    INTERVAL                = "Inspection Checking Rate"
 
 class ERROR_DWS:
     UNDER_WEIGHT = "Lỗi thiếu cân"

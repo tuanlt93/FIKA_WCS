@@ -2,7 +2,7 @@
 import requests
 from db_redis import redis_cache
 # from DAL.HARDWARE.config import *
-from config.constants import HandlePalletConfig, STATUS_PALLET_CARTON, HandleCartonConfig
+from config.constants import HandlePalletConfig, STATUS_PALLET_CARTON, HandleCartonConfig, SETTING_SYSTEM
 from config.config_apis import ConfigAPI
 # from DAL import redis_client, CFG_API
 from apis.DAL import dal_server
@@ -21,6 +21,7 @@ class CallApiBackEnd():
 
         
         self.__url = ConfigAPI.url
+        self.__url_datamax  = ConfigAPI.url_print_datamax
 
         # Pallet carton
         self._pallet_carton = ConfigAPI.pallet_carton
@@ -137,9 +138,19 @@ class CallApiBackEnd():
             datas["carton_pallet_code"] = response_data['metaData']["carton_pallet_code"]
             datas["_id"] = response_data['metaData']["_id"]
 
+            #TODO :  đưa lấy thông tin kích thước sang tạo mới pallet
+            carton_pallet_dws = self.getDwsPalletCarton(datas["_id"]).json()
+            data_system = self.map_system(carton_pallet_dws['data_system'])
+
+            self.__redis_cache.set(
+                    SETTING_SYSTEM.TOPIC_SETTING_SYSTEM, 
+                    json.dumps(data_system)
+                )
 
             # Lưu data pallet có được vào redis
             if mision_name == "MISSION_A1":
+                
+
                 print("Done send dimension to PLC")
                 self.__redis_cache.hset(
                     HandlePalletConfig.PALLET_DATA_MANAGEMENT, 
@@ -158,6 +169,12 @@ class CallApiBackEnd():
                 self.__PLC_controller.send_info_pallet_A2(response_data['metaData'])
             
         return response
+    
+    def map_system(self, datas):
+        out_data = {    }
+        for data in datas:
+            out_data[data['name']] = float(data['value'])
+        return out_data
 
 
     # @exception_handler
@@ -302,8 +319,6 @@ class CallApiBackEnd():
         except Exception as e:
             print("UpdateSttPalletCarton :", e)
             return None
-
-
 
 
     # @exception_handler
@@ -722,4 +737,15 @@ class CallApiBackEnd():
         }
         url = self.__url + self._pda_history
         response = requests.post(url , json=data_history, headers = headers)
+        return response
+    
+
+
+    def sendPrintDatamax(self, data: dict):
+        """
+            Gửi dữ liệu đến máy in datamax
+        """
+        headers = self.__get_token_bearer
+        url = self.__url_datamax
+        response = requests.post(url= url, json= data)
         return response

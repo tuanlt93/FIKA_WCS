@@ -42,7 +42,7 @@ class PLCController(metaclass= Singleton):
     def update_status(self, group, topic, value):
         self.__redis_cache.hset(group, topic, value)
         
-        print(f'{topic}":" {value}')
+        # print(f'{topic}":" {value}')
 
         if value == DeviceConfig.DOCK_PROCESSING and topic == DeviceConfig.STATUS_DOCK_A1:
             data_pallet_A1 = self.__redis_cache.hget(
@@ -77,6 +77,8 @@ class PLCController(metaclass= Singleton):
     def process_positions(self, data, data_reg_now):
         positions = np.where(data)[0]
         qrcode_plc_read = []
+        qrcode_changed = False  # Cờ theo dõi sự thay đổi QR code
+
         for register in positions:
             if register in self.__map_plc:
                 # Xử lý các giá trị trạng thái dựa trên dữ liệu trong map_plc
@@ -93,29 +95,31 @@ class PLCController(metaclass= Singleton):
                 self.update_status(HandlePalletConfig.NUMBER_CARTON_OF_PALLET, HandlePalletConfig.QUANTITY_FROM_PLC, int(data_reg_now[register]))
             if register == 36:
                 self.trigger_print(MarkemConfig.TOPIC_NOTIFY_SEND_DATA_PRINT, MarkemConfig.MESSAGE_NOTIFY_PRINT)
-            if register == 63:
-                print(register)
 
-            if 42 <= register <= 93:
-                #TODO: decode 16bit for 1 character
-                qrcode_plc_read.extend([chr(int(data_reg_now[i])) for i in range(42, 93)])
-                decoded_qrcode = ''.join(qrcode_plc_read)
-                if ';' in decoded_qrcode:
-                    decoded_qrcode = decoded_qrcode.split(';', 1)[0] + ';'
-                self.trigger_print(SorterConfig.TOPIC_STT_CARTON_AFTER_INSPECTION, decoded_qrcode)
-                break
+            if 42 <= register <= 91:
+                
+                qrcode_plc_read.extend([chr(int(data_reg_now[i])) for i in range(42, 92)])
+                qrcode_changed = True  
+
+        # Gọi trigger_print một lần nếu đã có sự thay đổi QR code
+        if qrcode_changed:
+            # TODO: decode 16bit for 1 character
+            decoded_qrcode = ''.join(qrcode_plc_read)
+            if ';' in decoded_qrcode:
+                decoded_qrcode = decoded_qrcode.split(';', 1)[0] + ';'
+            print(decoded_qrcode)
+            self.trigger_print(SorterConfig.TOPIC_STT_CARTON_AFTER_INSPECTION, decoded_qrcode)
 
 
-                #TODO: decode 16bit for 2 character
-                # for register in range(42, 93):
-                #     first_char = (data_reg_now[register] >> 8) & 0xFF
-                #     second_char = data_reg_now[register] & 0xFF
-                #     qrcode_plc_read.append(chr(first_char))
-                #     qrcode_plc_read.append(chr(second_char))
-        
-                # decoded_qrcode = ''.join(qrcode_plc_read)
-                # print(decoded_qrcode)
-                # break
+            #TODO: decode 16bit for 2 character
+            # for register in range(42, 93):
+            #     first_char = (data_reg_now[register] >> 8) & 0xFF
+            #     second_char = data_reg_now[register] & 0xFF
+            #     qrcode_plc_read.append(chr(first_char))
+            #     qrcode_plc_read.append(chr(second_char))
+    
+            # decoded_qrcode = ''.join(qrcode_plc_read)
+            # print(decoded_qrcode)
                 
 
     # @Worker.employ
@@ -135,6 +139,7 @@ class PLCController(metaclass= Singleton):
                         # data_reg_last = np.ones_like(data_reg_now)
                         # Khởi tạo giá trị thanh ghi 36 bằng với giá trị hiện tại
                         data_reg_last[36] = data_reg_now [36]
+                        data_reg_last[42:92] = data_reg_now[42:92]
                     else:
                         # Compare with the previous read and process any changes
                         changed_positions = data_reg_last != data_reg_now
@@ -144,6 +149,8 @@ class PLCController(metaclass= Singleton):
                 print(e)
 
             sleep(TIME.PLC_SAMPLING_TIME)
+
+
 
 
     def send_info_pallet_A1(self, response: dict):
@@ -171,7 +178,7 @@ class PLCController(metaclass= Singleton):
     
 
 
-
+    #LINE curtain
     def request_open_line_curtain(self, area: str):
         if area == "A":
             self.__PLC_interface.write_data(address= 10, value= [1])

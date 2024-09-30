@@ -509,14 +509,20 @@ class PdaPrint(ApiBase):
     def __init__(self) -> None:
         self.__api_backend = CallApiBackEnd()
         self.__get_carton_code = self.__api_backend.getCartonStateCode
+        self.__send_print_datamax =  self.__api_backend.sendPrintDatamax
         self.__redis_cache = redis_cache
         self.__logger = Logger()
         return super().__init__()
 
-    # @ApiBase.exception_error
+    @ApiBase.exception_error
     def get(self):
         datas = self.jsonParser(["carton_code"], [])
+        
+        # Loại bỏ dấu ';' ở cuối 'carton_code' nếu tồn tại
+        if 'carton_code' in datas:
+            datas['carton_code'] = datas['carton_code'].rstrip(';')
         response = self.__get_carton_code(datas)
+       
         print(response.text)
         if response:
             if response.status_code != 200:
@@ -538,21 +544,12 @@ class PdaPrint(ApiBase):
     def post(self):
         args = ResponseFomat.API_PRINT
         datas = self.jsonParser(args, args)
+        datas["carton_code"] = datas["carton_code"] + ";"
         print(datas)
-        
 
-
-
-
-        #TODO: Gửi thông báo và data đến máy in datamax ---> Đổi lại dùng requests POST
-        self.__redis_cache.publisher(TOPIC_WCS_PUBSUB.PRINTER_IN_PDA,  json.dumps(datas))
-
-
-
-
-
-
-        return ApiBase.createResponseMessage({}, "Success")
+        response_json = self.__send_print_datamax(datas)
+        response = response_json.json()
+        return ApiBase.createResponseMessage({}, response["status"])
 
 
 
