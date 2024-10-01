@@ -19,7 +19,7 @@ class MissionHandle(MissionBase):
         required_keys = [
             'name', 
             'workflow_code', 
-            'locationCode_bindCell', 
+            'bindShelf_locationCode', 
             'workflow_type',
             'destination',  
             'workflow_type_triger',
@@ -39,7 +39,7 @@ class MissionHandle(MissionBase):
         self.__line_curtain_triger = kwargs.get('line_curtain_triger', None)
         self.__workflow_type_triger = kwargs.get('workflow_type_triger')
         
-        self.__locationCode_bindCell = kwargs.get('locationCode_bindCell')
+        self.__bindShelf_locationCode = kwargs.get('bindShelf_locationCode')
         self.__shelf = kwargs.get('shelf')
         self.__angle_shelf = kwargs.get('angle_shelf')
         self.__area = kwargs.get('area')
@@ -135,7 +135,7 @@ class MissionHandle(MissionBase):
         
         self.performTask(
             self.unbindDestination, 
-            self.__locationCode_bindCell
+            self.__bindShelf_locationCode
         )
 
         # Unbind shelf có trên bản đồ
@@ -147,7 +147,7 @@ class MissionHandle(MissionBase):
         # Bind shelf lại vị trí có pallet cần đến lấy
         self.performTask(
             self.bindShelf, 
-            self.__locationCode_bindCell, 
+            self.__bindShelf_locationCode, 
             self.__shelf, self.__angle_shelf
         )
         

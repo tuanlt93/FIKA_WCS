@@ -10,7 +10,7 @@ class SocketTCP:
                 host (str): The IP address to connect to (default: "127.0.0.1").
                 port (int): The port to connect to (default: 9100).
         """
-        self.__host = kwargs.get('host', "127.0.0.1")
+        self.__host = kwargs.get('host', "192.168.31.210")
         self.__port = kwargs.get('port', 9100)
         self.__timeout = kwargs.get('timeout', 1.0)
         self.socket_conn = None

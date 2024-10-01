@@ -9,6 +9,8 @@ def convert_date(date_str: str) -> str:
     formatted_date = str(date_obj.strftime("%Y%m%d"))
     return formatted_date
 
+
+
 class VnCommonFormat:
 	FULL		= 'DD-MM-YYYY HH:mm:ss'
 	INV_FULL	= "HH:mm:ss DD-MM-YYYY"

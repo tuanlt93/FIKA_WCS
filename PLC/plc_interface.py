@@ -14,7 +14,7 @@ class PLCSInterface():
             unit: Modbus slave ID (default: 1)
         """
 
-        self.host = kwargs.get('host', "127.0.0.1")
+        self.host = kwargs.get('host', "192.168.31.3")
         self.port = kwargs.get('port', 502)
         self.timeout = kwargs.get('timeout', 1)
         self.slave_id = kwargs.get('unit', 1)

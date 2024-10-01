@@ -44,7 +44,7 @@ class ManagerMission(metaclass= Singleton):
                 "workflow_type": "PALLET_INPUT",
                 "line_curtain_triger": "10000015",
                 "area": "A",
-                "locationCode_bindCell": "10000017",
+                "bindShelf_locationCode": "10000017",
                 "shelf": "000102",
                 "angle": "0",
                 "name": "MISSION_A1",

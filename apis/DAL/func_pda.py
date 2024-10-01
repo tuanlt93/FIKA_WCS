@@ -1,14 +1,13 @@
 # from utils.decorator import exception_handler
 import requests
 from db_redis import redis_cache
-# from DAL.HARDWARE.config import *
 from config.constants import HandlePalletConfig, STATUS_PALLET_CARTON, HandleCartonConfig, SETTING_SYSTEM
 from config.config_apis import ConfigAPI
-# from DAL import redis_client, CFG_API
 from apis.DAL import dal_server
 from apis.response_format import ResponseFomat
 import json
 from PLC import PLC_controller
+from database import db_connection
 
 # class CallApiBackEnd(metaclass=Singleton):
 class CallApiBackEnd():
@@ -17,6 +16,7 @@ class CallApiBackEnd():
         self.__get_token_bearer = self.__dal_server.get_token_bearer()
         self.__redis_cache = redis_cache
         self.__PLC_controller = PLC_controller
+        self.__db_connection = db_connection
 
 
         
@@ -139,18 +139,18 @@ class CallApiBackEnd():
             datas["_id"] = response_data['metaData']["_id"]
 
 
-            #TODO :  đưa lấy thông tin kích thước sang tạo mới pallet
-            carton_pallet_dws = self.getDwsPalletCarton(datas["_id"]).json()
-            print(carton_pallet_dws)
-            data_system = self.map_system(carton_pallet_dws['data_system'])
+            # #TODO :  đưa lấy thông tin kích thước sang tạo mới pallet
+            # carton_pallet_dws = self.getDwsPalletCarton(datas["_id"]).json()
+            # print(carton_pallet_dws)
+            # data_system = self.map_system(carton_pallet_dws['data_system'])
             
-            print(data_system)
+            # print(data_system)
+            setting_systems = self.__db_connection.get_setting_systems()
 
-
-            if data_system:
+            if setting_systems:
                 self.__redis_cache.set(
                         SETTING_SYSTEM.TOPIC_SETTING_SYSTEM, 
-                        json.dumps(data_system)
+                        json.dumps(setting_systems)
                     )
 
             # Lưu data pallet có được vào redis

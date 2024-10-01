@@ -11,13 +11,14 @@ CFG_REDIS       = config_all['CFG_REDIS']
 CFG_SOCKET      = config_all['CFG_SOCKET']
 CFG_SERVER      = config_all['CFG_SERVER']
 
+CFG_MONGODB     = config_all['CFG_MONGODB']
+CFG_DATABASE_NAME = "fika"
+
+URL_GMS         = config_all['CFG_RCS']['url_gms']
+URL_RMS         = config_all['CFG_RCS']['url_rms']
 
 DOCK_CONFIGS = {
     dock: {**config_all[f'MISSION_{dock}'], 'name': f'MISSION_{dock}'}
     for dock in ["A1", "A2", "A3", "O1", "O2", "O3", "M1", "M2", "M3", "M4"]
     # for dock in ["M1", "M2", "M3", "M4"]
 }
-
-# url_agv = 'http://172.20.10.3:24249'
-url_gms = 'http://192.168.31.250:24249'
-url_rms = 'http://192.168.31.250:8895'

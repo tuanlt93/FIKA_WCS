@@ -1,54 +1,73 @@
-from utils.pattern import Custom_Enum
-from app.database import *
+from datetime import datetime
 
-class PRODUCT_TYPE(Custom_Enum):
-    HEAVY = "Heavy"
-    LIGHT = "Light"
+class SettingCallBoxModel:
+    def __init__(self, 
+                 task_code, 
+                 name, 
+                 pickup_location, 
+                 return_location,  
+                 created_at, 
+                 updated_at
+            ):
+        self.__task_code = task_code
+        self.__name = name  
+        self.__pickup_location = pickup_location
+        self.__return_location = return_location
+        self.__created_at = created_at
+        self.__updated_at = updated_at
 
-class TASK_MODE(Custom_Enum):
-    BUTTON  = "Button"
-    WEB     = "Web"
+    def to_dict(self):
+        return {
+            "task_code": self.__task_code,
+            "name": self.__name,
+            "pickup_location": self.__pickup_location,
+            "return_location": self.__return_location,
+            "createdAt": self.__created_at.isoformat() if isinstance(self.__created_at, datetime) else "",
+            "updatedAt": self.__updated_at.isoformat() if isinstance(self.__updated_at, datetime) else "",
+        }
 
-class DB_Setting(db.Model, DbBaseModel):
-    __tablename__ = 'setting'
-    id = Column(Integer, primary_key=True, nullable=False)
-    racks_number = Column(Integer, nullable=False)
-    tasks_in_mission = Column(Integer, nullable=False)
-    changed_at = Column(
-        DateTime(True),
-        default=func.now(),
-        onupdate=func.now())
 
-class DB_Callbox(db.Model, DbBaseModel):
-    __tablename__ = 'callbox'
-    id = Column(Integer, primary_key=True, nullable=False)
-    gateway_id = Column(String(255), nullable=False)
-    plc_id = Column(String(255), nullable=False)
-    button_id = Column(String(255), nullable=False)
-    name = Column(String(255), unique=True, nullable=False)
-    line_id = Column(String(255), unique=True, nullable=False)
-    line_name = Column(String(255), unique=True, nullable=False)
-    floor = Column(String(100), nullable=False)
-    connected = Column(Boolean, nullable=False, default=False)
-    rcs_id = Column(String(255), comment='position id on RCS', nullable=False)
-    product_type = Column(
-        String(100),
-        comment=f'{PRODUCT_TYPE.list()}',
-        nullable=False,
-        default=PRODUCT_TYPE.HEAVY.value)
-    update_at = Column(DateTime(True), default=func.now(), onupdate=func.now())
+
+class SettingCartonsModel:
+    def __init__(self, 
+                 task_code, 
+                 name, 
+                 description,
+                 created_at, 
+                 updated_at
+            ):
+        self.__task_code = task_code
+        self.__name = name  
+        self.__description = description
+        self.__created_at = created_at
+        self.__updated_at = updated_at
+
+    def to_dict(self):
+        return {
+            "task_code": self.__task_code,
+            "name": self.__name,
+            "description": self.__description,
+            "createdAt": self.__created_at.isoformat() if isinstance(self.__created_at, datetime) else "",
+            "updatedAt": self.__updated_at.isoformat() if isinstance(self.__updated_at, datetime) else "",
+        }
     
-    @classmethod
-    def updateConnectStatus(cls, gateway_id: str, gateway_stt: bool,
-                            plc_id: str = None, plc_stt: bool = True):
-        """
-        Update callboxes status by gateway (and plc) status
-        """
-        if plc_id != None:
-            callboxes = cls.find(gateway_id=gateway_id, plc_id=plc_id).all()
-        else:
-            callboxes = cls.find(gateway_id=gateway_id).all()
-        
-        for callbox in callboxes:
-            callbox.connected = gateway_stt and plc_stt
-            cls.addObject(callbox)
+
+class SettingSystemsModel:
+    def __init__(self,  
+                 name, 
+                 value,
+                 created_at, 
+                 updated_at
+            ):
+        self.__name = name  
+        self.__value = value
+        self.__created_at = created_at
+        self.__updated_at = updated_at
+
+    def to_dict(self):
+        return {
+            "name": self.__name,
+            "value": self.__value,
+            "createdAt": self.__created_at.isoformat() if isinstance(self.__created_at, datetime) else "",
+            "updatedAt": self.__updated_at.isoformat() if isinstance(self.__updated_at, datetime) else "",
+        }

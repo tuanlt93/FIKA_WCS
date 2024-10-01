@@ -3,12 +3,12 @@ import requests
 from utils.logger import Logger
 from config.constants import AGVConfig
 from time import sleep
-from config import url_gms, url_rms
+from config import URL_GMS, URL_RMS
 
 class MissionBase:
     def __init__(self) -> None:
-        self.__url_gms = url_gms
-        self.__url_rms = url_rms
+        self.__url_gms = URL_GMS
+        self.__url_rms = URL_RMS
         self.instance_ID = None
         self.robot_ID = None
         self.on_pause = False

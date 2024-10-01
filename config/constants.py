@@ -70,9 +70,9 @@ class HandleCartonConfig:
 
 class SETTING_SYSTEM:
     TOPIC_SETTING_SYSTEM    = "TOPIC_SETTING_SYSTEM"
-    DWS_WEIGHT              = "DWS_WEIGHT (g)"
-    DWS_SIZE                = "DWS_WEIGHT (g)"
-    INTERVAL                = "Inspection Checking Rate (%)"
+    DWS_WEIGHT              = "DWS_WEIGHT"
+    DWS_SIZE                = "DWS_SIZE"
+    INTERVAL                = "INTERVAL"
 
 class ERROR_DWS:
     UNDER_WEIGHT = "Lỗi thiếu cân"
