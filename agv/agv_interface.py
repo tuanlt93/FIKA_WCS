@@ -3,11 +3,12 @@ import requests
 from utils.logger import Logger
 from config.constants import AGVConfig
 from time import sleep
-from config import url_agv
+from config import url_gms, url_rms
 
 class MissionBase:
     def __init__(self) -> None:
-        self.__url = url_agv
+        self.__url_gms = url_gms
+        self.__url_rms = url_rms
         self.instance_ID = None
         self.robot_ID = None
         self.on_pause = False
@@ -55,7 +56,7 @@ class MissionBase:
             }
         }
         try:
-            res = requests.post(self.__url, json=request_body)
+            res = requests.post(self.__url_gms, json=request_body)
             response = res.json()
             #print(response)
             if response['header']['code'] == '0':
@@ -182,7 +183,7 @@ class MissionBase:
         }
 
         try:
-            res = requests.post(self.__url, json=request_body)
+            res = requests.post(self.__url_gms, json=request_body)
             response = res.json()
             # print(request_body)
             # print("----------------")
@@ -226,7 +227,7 @@ class MissionBase:
         }
 
         try:
-            res = requests.post(self.__url, json=request_body)
+            res = requests.post(self.__url_gms, json=request_body)
             response = res.json()
             if (
                 response['header']['code'] == '0' and
@@ -262,7 +263,7 @@ class MissionBase:
             }
         }     
         try:
-            res = requests.post(self.__url, json= request_body)
+            res = requests.post(self.__url_gms, json= request_body)
             response = res.json()
             #print(response)
             if response['header']['code'] == '0':
@@ -292,7 +293,7 @@ class MissionBase:
             }
         }
         try:
-            res = requests.post(self.__url, json= request_body)
+            res = requests.post(self.__url_gms, json= request_body)
             response = res.json()
             #print(response)
             if response['header']['code'] == '0':
@@ -326,7 +327,7 @@ class MissionBase:
             }
         }
         try:
-            res = requests.post(self.__url, json= request_body)
+            res = requests.post(self.__url_gms, json= request_body)
             response = res.json()
             #print(response)
             if response['header']['code'] == '0':
@@ -341,10 +342,10 @@ class MissionBase:
            sleep(1)
     
 
-    def bindShelf(self, location, cell_id, angle) -> bool:
+    def bindShelf(self, location, shelf_id, angle) -> bool:
         request_body = {
             "header": {
-                "requestId": f'{self.getRequestCode(api_name="bindCell" + str(self.instance_ID))}',
+                "requestId": f'{self.getRequestCode(api_name="bindShelf" + str(self.instance_ID))}',
                 "channelId": "client-01",
                 "clientCode": "geekplus",
                 "requestTime": ""
@@ -353,27 +354,27 @@ class MissionBase:
                 "msgType": "ContainerOperationMsg",
                 "instruction": "ADD_CONTAINER",
                 "locationCode": f"{location}",
-                "containerCode": f"{cell_id}",
+                "containerCode": f"{shelf_id}",
                 "containerCategory": "",
                 "containerAngle": f"{angle}"
             }
         }
         try:
-            res = requests.post(self.__url, json= request_body)
+            res = requests.post(self.__url_gms, json= request_body)
             response = res.json()
             # print(request_body)
             # print(response)
             if response['header']['code'] == '0':
                 return True
         except Exception as e:
-            print("CONTINUE ROBOT ERROR", str(e))
+            print("BIND SHELF ERROR", str(e))
         return False
     
     
-    def unbindSheft(self, cell_id) -> bool:
+    def unbindSheft(self, shelf_id) -> bool:
         request_body = {
             "header": {
-                "requestId": f'{self.getRequestCode(api_name="unbindCell" + str(self.instance_ID))}',
+                "requestId": f'{self.getRequestCode(api_name="unbindShelf" + str(self.instance_ID))}',
                 "channelId": "client-01",
                 "clientCode": "geekplus",
                 "requestTime": ""
@@ -382,11 +383,43 @@ class MissionBase:
                 "msgType": "ContainerOperationMsg",
                 "instruction": "REMOVE_CONTAINER",
                 "locationCode": "",
-                "containerCode": f"{cell_id}"
+                "containerCode": f"{shelf_id}"
             }
         }
         try:
-            res = requests.post(self.__url, json= request_body)
+            res = requests.post(self.__url_gms, json= request_body)
+            response = res.json()
+            print(response)
+            if response['header']['code'] == '0':
+                return True
+        except Exception as e:
+            print("CONTINUE ROBOT ERROR", str(e))
+        return False
+    
+
+    def undateSheft(self,location, shelf_id) -> bool:
+        request_body = {
+            "id": "postman_001",
+            "msgType": "ParameterInstructionRequestMsg",
+            "request": {
+                "header": {
+                    "requestId": f'{self.getRequestCode(api_name="updateShelf" + str(self.instance_ID))}',
+                    "clientCode": "geekCode",
+                    "warehouseCode": "geekWarehouseCode",
+                    "userId": "admin",
+                    "userKey": "111111",
+                    "version": "3.3.0",
+                    "language": "en_us"
+                },
+                "body": {
+                    "parameterType": "SHELF",
+                    "shelfCode": f'{shelf_id}',
+                    "locationCellCode": f'{location}'
+                }
+            }
+        }
+        try:
+            res = requests.post(self.__url_rms, json= request_body)
             response = res.json()
             print(response)
             if response['header']['code'] == '0':
@@ -399,7 +432,7 @@ class MissionBase:
     def unbindDestination(self, destination: str) -> bool:
         request_body = {
             "header": {
-                "requestId": f'{self.getRequestCode(api_name="unbindCell" + str(self.instance_ID))}',
+                "requestId": f'{self.getRequestCode(api_name="unbindShelf" + str(self.instance_ID))}',
                 "channelId": "client-01",
                 "clientCode": "geekplus",
                 "requestTime": ""
@@ -412,7 +445,7 @@ class MissionBase:
             }
         }
         try:
-            res = requests.post(self.__url, json= request_body)
+            res = requests.post(self.__url_gms, json= request_body)
             response = res.json()
             print(response)
             if (
@@ -444,7 +477,7 @@ class MissionBase:
             }
         }
         try:
-            res = requests.post(self.__url, json= request_body)
+            res = requests.post(self.__url_gms, json= request_body)
             response = res.json()
             #print(response)
             if response['header']['code'] == '0':
@@ -469,7 +502,7 @@ class MissionBase:
             }
         }
         try:
-            res = requests.post(self.__url, json= request_body)
+            res = requests.post(self.__url_gms, json= request_body)
             response = res.json()
             #print(response)
             if response['header']['code'] == '0':

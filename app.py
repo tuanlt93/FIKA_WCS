@@ -2,7 +2,7 @@
 
 import agv
 import PLC
-# import markem_printer
+import markem_printer
 # import sorter
 import time
 from apis import FlaskApp

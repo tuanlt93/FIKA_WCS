@@ -138,14 +138,20 @@ class CallApiBackEnd():
             datas["carton_pallet_code"] = response_data['metaData']["carton_pallet_code"]
             datas["_id"] = response_data['metaData']["_id"]
 
+
             #TODO :  đưa lấy thông tin kích thước sang tạo mới pallet
             carton_pallet_dws = self.getDwsPalletCarton(datas["_id"]).json()
+            print(carton_pallet_dws)
             data_system = self.map_system(carton_pallet_dws['data_system'])
+            
+            print(data_system)
 
-            self.__redis_cache.set(
-                    SETTING_SYSTEM.TOPIC_SETTING_SYSTEM, 
-                    json.dumps(data_system)
-                )
+
+            if data_system:
+                self.__redis_cache.set(
+                        SETTING_SYSTEM.TOPIC_SETTING_SYSTEM, 
+                        json.dumps(data_system)
+                    )
 
             # Lưu data pallet có được vào redis
             if mision_name == "MISSION_A1":
@@ -167,6 +173,11 @@ class CallApiBackEnd():
                     json.dumps(datas)
                 )
                 self.__PLC_controller.send_info_pallet_A2(response_data['metaData'])
+
+            self.__redis_cache.hdel(
+                HandlePalletConfig.PALLET_DATA_MANAGEMENT, 
+                HandlePalletConfig.PALLET_INPUT_DATA   
+            )
             
         return response
     

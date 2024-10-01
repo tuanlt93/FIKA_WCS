@@ -176,7 +176,8 @@ class PLCController(metaclass= Singleton):
                                             ])
     
     
-
+    def reset_error_two_carton(self):
+        self.__PLC_interface.write_data(address= 24, value= [0])
 
     #LINE curtain
     def request_open_line_curtain(self, area: str):

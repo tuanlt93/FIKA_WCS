@@ -42,6 +42,9 @@ class RedisCache(metaclass= Singleton):
         else: value = str(value)
         return self.redis_conn.set(key, value)
     
+    def delete(self, key):
+        return self.redis_conn.delete(key)
+    
     def get(self, key: str):
         return self.redis_conn.get(key)
     

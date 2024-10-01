@@ -70,9 +70,9 @@ class HandleCartonConfig:
 
 class SETTING_SYSTEM:
     TOPIC_SETTING_SYSTEM    = "TOPIC_SETTING_SYSTEM"
-    DWS_WEIGHT              = "DWS_WEIGHT"
-    DWS_SIZE                = "DWS_SIZE"
-    INTERVAL                = "Inspection Checking Rate"
+    DWS_WEIGHT              = "DWS_WEIGHT (g)"
+    DWS_SIZE                = "DWS_WEIGHT (g)"
+    INTERVAL                = "Inspection Checking Rate (%)"
 
 class ERROR_DWS:
     UNDER_WEIGHT = "Lỗi thiếu cân"
@@ -149,6 +149,10 @@ class DeviceConfig:
     ELEVATOR_LIFTING_BUSY           = "ELEVATOR_LIFTING_BUSY"
     ELEVATOR_LIFTING_READY          = "ELEVATOR_LIFTING_READY"
 
+    # Xác nhận đã lấy hàng cặp kè về vị trí gốc
+    STATUS_NOTIFY_RETURN_CARTONS    = "STATUS_NOTIFY_RETURN_CARTONS"
+    WAIT_ACCEPT = "WAIT_ACCEPT"
+    ACEPTED = "ACEPTED"
 
 
 
@@ -168,6 +172,8 @@ class RegisterConfig:
 
         20: [HandlePalletConfig.STATUS_PALLET_RUNNING, HandlePalletConfig.ENOUGH_CARTONS, HandlePalletConfig.MISSIING_CARTONS, HandlePalletConfig.EXCESS_CARTONS],
         23: [HandlePalletConfig.PALLET_PROCESSED, HandlePalletConfig.NULL_PALLET, HandlePalletConfig.PALLET_DOCK_A1, HandlePalletConfig.PALLET_DOCK_A2],
+
+        24: [DeviceConfig.STATUS_NOTIFY_RETURN_CARTONS, DeviceConfig.WAIT_ACCEPT, DeviceConfig.ACEPTED],
 
         26: [DeviceConfig.STATUS_DOCK_O1, DeviceConfig.DOCK_EMPTY, DeviceConfig.DOCK_PALLET, DeviceConfig.DOCK_FULL],
         27: [DeviceConfig.STATUS_DOCK_O2, DeviceConfig.DOCK_EMPTY, DeviceConfig.DOCK_PALLET, DeviceConfig.DOCK_FULL],

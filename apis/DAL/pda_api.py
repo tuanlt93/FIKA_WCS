@@ -7,7 +7,7 @@ from flask import request
 
 from utils.logger import Logger
 from utils.vntime import VnTimestamp, VnDateTime
-from config.constants import HandleCartonConfig, HandlePalletConfig, TOPIC_WCS_PUBSUB, DeviceConfig
+from config.constants import HandleCartonConfig, HandlePalletConfig, TOPIC_WCS_PUBSUB, DeviceConfig, SETTING_SYSTEM
 from apis.response_format import ResponseFomat, BE_TypeCartonError
 from db_redis import redis_cache
 
@@ -379,25 +379,6 @@ class CreateInspection(ApiBase):
             })
 
 
-        # lưu vào redis
-    #     datas["inspection_result"] = datas['result']
-    #     data_redis = self.convert_carton_state(carton_state)
-    #     # print("data_redis :", data_redis)
-    #     self.__redis_cache.set_dict(TOPIC_REDIS.CARTON_INFO + data_redis['carton_code'], data_redis)
-    #     self.manage_queue.AddSort_2(data_redis['carton_code'])
-            
-
-
-    # def convert_carton_state(self, datas):
-    #     carton_state_info = datas['metaData']
-    #     carton_state_info['material_code'] = carton_state_info['carton_pallet_id']['material_id']['material_code']
-    #     carton_state_info['material_name'] = carton_state_info['carton_pallet_id']['material_id']['material_name']
-    #     carton_state_info['material_id'] = carton_state_info['carton_pallet_id']['material_id']['_id']
-    #     carton_state_info['carton_pallet_id'] = carton_state_info['carton_pallet_id']['_id']
-    #     for carton_key in carton_state_info:
-    #         if carton_state_info[carton_key] == None:
-    #             carton_state_info[carton_key] = ""
-    #     return carton_state_info  
 
 
 
@@ -537,6 +518,7 @@ class PdaPrint(ApiBase):
                 datas['sap_batch'] = datas['carton_pallet_id']['sap_batch']
                 datas['expiry_date'] =(datas['carton_pallet_id']['expiry_date'])
                 datas['carton_pallet_id'] = datas['carton_pallet_id']['_id']
+
                 return ApiBase.createResponseMessage(datas, response['msg'])
         return ApiBase.createNotImplement() 
 
@@ -544,7 +526,7 @@ class PdaPrint(ApiBase):
     def post(self):
         args = ResponseFomat.API_PRINT
         datas = self.jsonParser(args, args)
-        datas["carton_code"] = datas["carton_code"] + ";"
+        datas["carton_code"] = str(datas["carton_code"]) + ";"
         print(datas)
 
         response_json = self.__send_print_datamax(datas)

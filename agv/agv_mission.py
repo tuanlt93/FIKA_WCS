@@ -105,171 +105,173 @@ class MissionHandle(MissionBase):
     # @Worker.employ
     def main(self):
         print(f"START TASK {self.__mission_name}")
-        self.__PLC_controller.set_status_light_button(self.__mission_name)
+        
 
         """
             Demo
         """
-        # Add __mission_name vào group những mision đang chạy
-        self.__redis.sadd(
-            group= AGVConfig.MISSIONS_RUNNING, 
-            topic= self.__mission_name
-        )
-
-        # Khi tạo mission AGV cho dock A1 hoặc A2 -> Tạo pallet pending
-        if (self.__mission_name == "MISSION_A1" or self.__mission_name == "MISSION_A2"):
-            self.__api_backend.createPallet(self.__mission_name)
-
-
-        """
-            Chương trình chạy chính
-        """
-        
-        # # Unbind shelf có trên vị trí đến và vị trí lấy shelf
-        # self.performTask(
-        #     self.unbindDestination, 
-        #     self.__destination
-        # )
-        
-        # self.performTask(
-        #     self.unbindDestination, 
-        #     self.__locationCode_bindCell
-        # )
-
-        # # Unbind shelf có trên bản đồ
-        # self.performTask(
-        #     self.unbindSheft, 
-        #     self.__shelf
-        # )
-
-        # # Bind shelf lại vị trí có pallet cần đến lấy
-        # self.performTask(
-        #     self.bindShelf, 
-        #     self.__locationCode_bindCell, 
-        #     self.__shelf, self.__angle_shelf
-        # )
-
-        # # Tạo task cho AGV
-        # self.performTask(
-        #     self.sendTask, 
-        #     self.__workflow_code
-        # )
-
         # # Add __mission_name vào group những mision đang chạy
         # self.__redis.sadd(
         #     group= AGVConfig.MISSIONS_RUNNING, 
         #     topic= self.__mission_name
         # )
 
-        # # Kiểm tra xem có phải dạng Pallet input mang hàng vào không, đặt triger vị trí lấy pallet
-        # if self.__workflow_type == "PALLET_INPUT":
-        #     # Chờ đến khi dừng tại vị trí lấy pallet đi vào
-        #     self.performTask(
-        #         self.queryTask, 
-        #         self.__workflow_type_triger, 
-        #         AGVConfig.WORKFLOW_OUTPUT, 
-        #         AGVConfig.AGV_DIRECTION_ENTER
-        #     )
+        # # Khi tạo mission AGV cho dock A1 hoặc A2 -> Tạo pallet pending
+        # if (self.__mission_name == "MISSION_A1" or self.__mission_name == "MISSION_A2"):
+        #     self.__api_backend.createPallet(self.__mission_name)
+
+
+        """
+            Chương trình chạy chính
+        """
+        
+        # Unbind shelf có trên vị trí đến và vị trí lấy shelf
+        self.performTask(
+            self.unbindDestination, 
+            self.__destination
+        )
+        
+        self.performTask(
+            self.unbindDestination, 
+            self.__locationCode_bindCell
+        )
+
+        # Unbind shelf có trên bản đồ
+        self.performTask(
+            self.unbindSheft, 
+            self.__shelf
+        )
+
+        # Bind shelf lại vị trí có pallet cần đến lấy
+        self.performTask(
+            self.bindShelf, 
+            self.__locationCode_bindCell, 
+            self.__shelf, self.__angle_shelf
+        )
+        
+        # Tạo task cho AGV
+        self.performTask(
+            self.sendTask, 
+            self.__workflow_code
+        )
+
+        self.__PLC_controller.set_status_light_button(self.__mission_name)
+        
+        # Add __mission_name vào group những mision đang chạy
+        self.__redis.sadd(
+            group= AGVConfig.MISSIONS_RUNNING, 
+            topic= self.__mission_name
+        )
+
+        # Kiểm tra xem có phải dạng Pallet input mang hàng vào không, đặt triger vị trí lấy pallet
+        if self.__workflow_type == "PALLET_INPUT":
+            # Chờ đến khi dừng tại vị trí lấy pallet đi vào
+            self.performTask(
+                self.queryTask, 
+                self.__workflow_type_triger, 
+                AGVConfig.WORKFLOW_OUTPUT, 
+                AGVConfig.AGV_DIRECTION_ENTER
+            )
            
-        #     # Thông báo đã vào trong dock thang máy đi lên
-        #     self.__PLC_controller.AGV_status_is_in_lifting_up()
+            # Thông báo đã vào trong dock thang máy đi lên
+            self.__PLC_controller.AGV_status_is_in_lifting_up()
 
-        #     self.performTask(
-        #         self.continueRobot
-        #     )
+            self.performTask(
+                self.continueRobot
+            )
 
-        #     # Khi tạo mission AGV cho dock A1 hoặc A2 -> Tạo pallet pending
-        #     if (self.__mission_name == "MISSION_A1" or self.__mission_name == "MISSION_A2"):
-        #         self.__api_backend.createPallet(self.__mission_name)
+            # Khi tạo mission AGV cho dock A1 hoặc A2 -> Tạo pallet pending
+            if (self.__mission_name == "MISSION_A1" or self.__mission_name == "MISSION_A2"):
+                self.__api_backend.createPallet(self.__mission_name)
 
 
-        #     # Chờ đến khi dừng tại vị trí lấy pallet đi ra
-        #     self.performTask(
-        #         self.queryTask, 
-        #         self.__workflow_type_triger, 
-        #         AGVConfig.WORKFLOW_OUTPUT, 
-        #         AGVConfig.AGV_DIRECTION_EGRESS
-        #     )
+            # Chờ đến khi dừng tại vị trí lấy pallet đi ra
+            self.performTask(
+                self.queryTask, 
+                self.__workflow_type_triger, 
+                AGVConfig.WORKFLOW_OUTPUT, 
+                AGVConfig.AGV_DIRECTION_EGRESS
+            )
           
-        #     # Thông báo đã đi ra dock thang máy đi lên
-        #     self.__PLC_controller.AGV_status_is_out_lifting_up()
+            # Thông báo đã đi ra dock thang máy đi lên
+            self.__PLC_controller.AGV_status_is_out_lifting_up()
 
-        #     self.performTask(
-        #         self.continueRobot
-        #     )
+            self.performTask(
+                self.continueRobot
+            )
 
-        # # Kiểm tra xem có phải task cần tắt line curtain không, nếu không thì là task bình thường
-        # if self.__line_curtain_triger:
+        # Kiểm tra xem có phải task cần tắt line curtain không, nếu không thì là task bình thường
+        if self.__line_curtain_triger:
 
-        #     # Query vị trí triger khi nào AGV đến và yêu cầu mở line curtain
-        #     self.performTask(
-        #         self.queryTask, 
-        #         self.__line_curtain_triger, 
-        #         self.__workflow_type, 
-        #         AGVConfig.AGV_DIRECTION_ENTER, 
-        #         requirement = DeviceConfig.LINE_CURTAIN_OPEN
-        #     )
+            # Query vị trí triger khi nào AGV đến và yêu cầu mở line curtain
+            self.performTask(
+                self.queryTask, 
+                self.__line_curtain_triger, 
+                self.__workflow_type, 
+                AGVConfig.AGV_DIRECTION_ENTER, 
+                requirement = DeviceConfig.LINE_CURTAIN_OPEN
+            )
 
-        #     # Đợi line curtain mở
-        #     self.waitForCondition(lambda: self.__continue_enter)
+            # Đợi line curtain mở
+            self.waitForCondition(lambda: self.__continue_enter)
 
-        #     # line curtain mở, continue AGV
-        #     self.performTask(
-        #         self.continueRobot, 
-        #         requirement = AGVConfig.AGV_INSIDE
-        #     )
+            # line curtain mở, continue AGV
+            self.performTask(
+                self.continueRobot, 
+                requirement = AGVConfig.AGV_INSIDE
+            )
 
-        #     # Query vị trí triger khi nào AGV ra và yêu cầu đóng line curtain
-        #     self.performTask(
-        #         self.queryTask, 
-        #         self.__line_curtain_triger, 
-        #         self.__workflow_type, 
-        #         AGVConfig.AGV_DIRECTION_EGRESS, 
-        #         requirement = DeviceConfig.LINE_CURTAIN_CLOSE
-        #     )
+            # Query vị trí triger khi nào AGV ra và yêu cầu đóng line curtain
+            self.performTask(
+                self.queryTask, 
+                self.__line_curtain_triger, 
+                self.__workflow_type, 
+                AGVConfig.AGV_DIRECTION_EGRESS, 
+                requirement = DeviceConfig.LINE_CURTAIN_CLOSE
+            )
            
-        #     # Đợi line curtain đóng
-        #     self.waitForCondition(lambda: self.__continue_egress)
+            # Đợi line curtain đóng
+            self.waitForCondition(lambda: self.__continue_egress)
            
-        #     # line curtain đóng, continue AGV
-        #     self.performTask(
-        #         self.continueRobot, 
-        #         requirement = DeviceConfig.LINE_CURTAIN_CLOSE
-        #     )
+            # line curtain đóng, continue AGV
+            self.performTask(
+                self.continueRobot, 
+                requirement = DeviceConfig.LINE_CURTAIN_CLOSE
+            )
 
-        # # Kiểm tra xem có phải dạng Pallet input mang hàng ra không, đặt triger vị trí trả pallet
-        # if self.__workflow_type == "PALLET_OUTPUT":
-        #     self.performTask(
-        #         self.queryTask, 
-        #         self.__workflow_type_triger, 
-        #         AGVConfig.WORKFLOW_INPUT,  
-        #         AGVConfig.AGV_DIRECTION_ENTER
-        #     )
+        # Kiểm tra xem có phải dạng Pallet input mang hàng ra không, đặt triger vị trí trả pallet
+        if self.__workflow_type == "PALLET_OUTPUT":
+            self.performTask(
+                self.queryTask, 
+                self.__workflow_type_triger, 
+                AGVConfig.WORKFLOW_INPUT,  
+                AGVConfig.AGV_DIRECTION_ENTER
+            )
 
-        #     # Thông báo đã đi vào dock thang máy đi xuống
-        #     self.__PLC_controller.AGV_status_is_in_lifting_down()
-        #     self.performTask(
-        #         self.continueRobot
-        #     )
+            # Thông báo đã đi vào dock thang máy đi xuống
+            self.__PLC_controller.AGV_status_is_in_lifting_down()
+            self.performTask(
+                self.continueRobot
+            )
 
-        #     self.performTask(
-        #         self.queryTask, 
-        #         self.__workflow_type_triger, 
-        #         AGVConfig.WORKFLOW_INPUT,  
-        #         AGVConfig.AGV_DIRECTION_EGRESS
-        #     )
+            self.performTask(
+                self.queryTask, 
+                self.__workflow_type_triger, 
+                AGVConfig.WORKFLOW_INPUT,  
+                AGVConfig.AGV_DIRECTION_EGRESS
+            )
 
-        #     # Thông báo đã đi ra dock thang máy đi xuống
-        #     self.__PLC_controller.AGV_status_is_out_lifting_down()
-        #     self.performTask(
-        #         self.continueRobot
-        #     )
+            # Thông báo đã đi ra dock thang máy đi xuống
+            self.__PLC_controller.AGV_status_is_out_lifting_down()
+            self.performTask(
+                self.continueRobot
+            )
 
-        # # Đợi AGV hoàn thành nhiệm vụ
-        # self.performTask(
-        #     self.queryDone, 
-        #     requirement = DeviceConfig.LINE_CURTAIN_CLOSE
-        # )
+        # Đợi AGV hoàn thành nhiệm vụ
+        self.performTask(
+            self.queryDone, 
+            requirement = DeviceConfig.LINE_CURTAIN_CLOSE
+        )
 
         """
             Hết

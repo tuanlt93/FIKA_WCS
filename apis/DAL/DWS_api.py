@@ -98,7 +98,7 @@ class DWSResult(ApiBase):
                 float(data_pallet_carton_input["standard_length"]),
                 float(data_pallet_carton_input["standard_width"]),
                 float(data_pallet_carton_input["standard_height"]),
-                float(data_pallet_carton_input["standard_weight"]) * 1000,
+                float(data_pallet_carton_input["standard_weight"]),
                 int(quantity_carton_DWS) + 1
             )
             
@@ -189,8 +189,8 @@ class DWSResult(ApiBase):
         lower_weight = standard_weight - data_system[SETTING_SYSTEM.DWS_WEIGHT]
         upper_weight = standard_weight + data_system[SETTING_SYSTEM.DWS_WEIGHT]
 
-        print(type(data_system[SETTING_SYSTEM.INTERVAL]))
         interval = data_system[SETTING_SYSTEM.INTERVAL]
+
 
         if number_carton == 1 or random.uniform(0, 100) <= interval:
             return "1", HandleCartonConfig.OK_CHECK

@@ -4,7 +4,7 @@ from agv.agv_interface import MissionBase
 from time import sleep
 from collections import deque
 import threading
-from config.constants import DeviceConfig, AGVConfig
+from config.constants import DeviceConfig, AGVConfig, HandlePalletConfig
 from db_redis import redis_cache
 from PLC import PLC_controller
 from config import DOCK_CONFIGS
@@ -56,6 +56,13 @@ class ManagerMission(metaclass= Singleton):
             """
             self.__status_all_devices = self.__redis_cache.hgetall(DeviceConfig.STATUS_ALL_DEVICES)
             self.__running_tasks = self.__redis_cache.smembers(AGVConfig.MISSIONS_RUNNING)
+            data_pallet_input = self.__redis_cache.hget(
+                HandlePalletConfig.PALLET_DATA_MANAGEMENT, 
+                HandlePalletConfig.PALLET_INPUT_DATA 
+            )
+
+            # print(data_pallet_input)
+            
             if self.__handle_emergency_stop():
                 print("EMERGENCY STOP")
                 sleep(TIME.MANAGER_AGV_SAMPLING_TIME)
@@ -63,7 +70,8 @@ class ManagerMission(metaclass= Singleton):
 
             self.__handle_door_requirements()
             self.__handle_pallet_output()
-            self.__handle_pallet_input()
+            if data_pallet_input:
+                self.__handle_pallet_input()
 
             sleep(TIME.MANAGER_AGV_SAMPLING_TIME)
 

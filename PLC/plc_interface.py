@@ -33,9 +33,10 @@ class PLCSInterface():
                 self.connected = True
                 print(f"Successfully connected to PLC at {self.host}:{self.port}")
             else:
-                print(f"Failed to connect to PLC at {self.host}:{self.port}")
+                # print(f"Failed to connect to PLC at {self.host}:{self.port}")
+                pass
         except Exception as e:
-            print(f"Error connecting to PLC: {e}")
+            # print(f"Error connecting to PLC: {e}")
             self.connect()
 
     def read_data(self, num_register: int) -> list:
