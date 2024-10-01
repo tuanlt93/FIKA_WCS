@@ -124,6 +124,8 @@ class MissionHandle(MissionBase):
         """
             Chương trình chạy chính
         """
+        # Set on light
+        self.__PLC_controller.set_status_light_button(self.__mission_name)
         
         # Unbind shelf có trên vị trí đến và vị trí lấy shelf
         self.performTask(
@@ -154,8 +156,6 @@ class MissionHandle(MissionBase):
             self.sendTask, 
             self.__workflow_code
         )
-
-        self.__PLC_controller.set_status_light_button(self.__mission_name)
         
         # Add __mission_name vào group những mision đang chạy
         self.__redis.sadd(

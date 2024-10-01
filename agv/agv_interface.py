@@ -44,7 +44,7 @@ class MissionBase:
             "body": {
                 "msgType": "WorkflowStartMsg",
                 "taskCode": "",
-                "workflowCode": f"{workflow_code}",
+                "workflowCode": f'{workflow_code}',
                 "startPoint": "",
                 "locationCode": "",
                 "containerCategory": "",
@@ -170,7 +170,7 @@ class MissionBase:
                 "msgType": "WorkflowInstanceListMsg",
                 "workflowName": "",
                 "workflowCode": "",
-                "instanceId": f"{self.instance_ID}",
+                "instanceId": f'{self.instance_ID}',
                 "taskCode": "",
                 "instancePriority": "",
                 "instanceStatus": "",
@@ -214,7 +214,7 @@ class MissionBase:
                 "msgType": "WorkflowInstanceListMsg",
                 "workflowName": "",
                 "workflowCode": "",
-                "instanceId": f"{self.instance_ID}",
+                "instanceId": f'{self.instance_ID}',
                 "taskCode": "",
                 "instancePriority": "",
                 "instanceStatus": "",
@@ -252,7 +252,7 @@ class MissionBase:
             "body": {
                 "msgType": "InstanceOperationMsg",
                 "instruction": "NEXT_STEP",
-                "instanceId": f"{self.instance_ID}",
+                "instanceId": f'{self.instance_ID}',
                 "containerCode": "",
                 "locationCode": "",
                 "taskCode": "",
@@ -265,7 +265,7 @@ class MissionBase:
         try:
             res = requests.post(self.__url_gms, json= request_body)
             response = res.json()
-            #print(response)
+            # print(response)
             if response['header']['code'] == '0':
                 return True
         except Exception as e:
@@ -284,7 +284,7 @@ class MissionBase:
             "body": {
                     "msgType": "InstanceOperationMsg",
                     "instruction": "STOP",
-                    "instanceId": f"{self.instance_ID}",
+                    "instanceId": f'{self.instance_ID}',
                     "containerCode": "",
                     "locationCode": "",
                     "taskCode": "",
@@ -318,7 +318,7 @@ class MissionBase:
             "body": {
                     "msgType": "InstanceOperationMsg",
                     "instruction": "ROBOT_RECOVER",
-                    "instanceId": f"{self.instance_ID}",
+                    "instanceId": f'{self.instance_ID}',
                     "containerCode": "",
                     "locationCode": "",
                     "taskCode": "",
@@ -353,17 +353,17 @@ class MissionBase:
             "body": {
                 "msgType": "ContainerOperationMsg",
                 "instruction": "ADD_CONTAINER",
-                "locationCode": f"{location}",
-                "containerCode": f"{shelf_id}",
+                "locationCode": f'{location}',
+                "containerCode": f'{shelf_id}',
                 "containerCategory": "",
-                "containerAngle": f"{angle}"
+                "containerAngle": f'{angle}'
             }
         }
         try:
             res = requests.post(self.__url_gms, json= request_body)
             response = res.json()
             # print(request_body)
-            # print(response)
+            print(response)
             if response['header']['code'] == '0':
                 return True
         except Exception as e:
@@ -383,13 +383,13 @@ class MissionBase:
                 "msgType": "ContainerOperationMsg",
                 "instruction": "REMOVE_CONTAINER",
                 "locationCode": "",
-                "containerCode": f"{shelf_id}"
+                "containerCode": f'{shelf_id}'
             }
         }
         try:
             res = requests.post(self.__url_gms, json= request_body)
             response = res.json()
-            print(response)
+            # print(response)
             if response['header']['code'] == '0':
                 return True
         except Exception as e:
@@ -421,7 +421,7 @@ class MissionBase:
         try:
             res = requests.post(self.__url_rms, json= request_body)
             response = res.json()
-            print(response)
+            # print(response)
             if response['header']['code'] == '0':
                 return True
         except Exception as e:
@@ -440,14 +440,14 @@ class MissionBase:
             "body": {
                 "msgType": "ContainerOperationMsg",
                 "instruction": "REMOVE_CONTAINER",
-                "locationCode": f"{destination}",
+                "locationCode": f'{destination}',
                 "containerCode": ""
             }
         }
         try:
             res = requests.post(self.__url_gms, json= request_body)
             response = res.json()
-            print(response)
+            # print(response)
             if (
                 response['header']['code'] == '0' or
                 response['header']['code'] == '4633'
@@ -466,7 +466,7 @@ class MissionBase:
             },
             "body": {
                 "msgType": "RobotInfoMsg",
-                "robot": f"{self.robot_ID}",
+                "robot": f'{self.robot_ID}',
                 "robots": [],
                 "robotProducts": [
                     "P800TLP"
