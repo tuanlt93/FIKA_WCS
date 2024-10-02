@@ -12,7 +12,6 @@ CFG_SOCKET      = config_all['CFG_SOCKET']
 CFG_SERVER      = config_all['CFG_SERVER']
 
 CFG_MONGODB     = config_all['CFG_MONGODB']
-CFG_DATABASE_NAME = "fika"
 
 URL_GMS         = config_all['CFG_RCS']['url_gms']
 URL_RMS         = config_all['CFG_RCS']['url_rms']

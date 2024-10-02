@@ -7,6 +7,7 @@ import time
 import json
 import threading
 from apis.DAL.func_pda import CallApiBackEnd
+from database import db_connection
 
 class MissionHandle(MissionBase):
     def __init__(self, *args, **kwargs) -> None:
@@ -62,6 +63,7 @@ class MissionHandle(MissionBase):
         self.__continue_egress_lifting = False
         self.__redis = redis_cache
         self.__PLC_controller = PLC_controller
+        self.__db_connection = db_connection
         self.__api_backend    = CallApiBackEnd()
         self.__kwargs = kwargs
         self.__number_fc_passed: int = 0
@@ -124,6 +126,9 @@ class MissionHandle(MissionBase):
         """
             Chương trình chạy chính
         """
+        # Lấy thông tin mission -> lưu vào database
+        mission_info = self.__db_connection.get_setting_callbox(self.__mission_name)
+        
         # Set on light
         self.__PLC_controller.set_status_light_button(self.__mission_name)
         

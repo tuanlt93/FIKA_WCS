@@ -10,7 +10,7 @@ from utils.vntime import VnTimestamp, VnDateTime
 from config.constants import HandleCartonConfig, HandlePalletConfig, TOPIC_WCS_PUBSUB, DeviceConfig, SETTING_SYSTEM
 from apis.response_format import ResponseFomat, BE_TypeCartonError
 from db_redis import redis_cache
-
+from database import db_connection
 
 
 
@@ -244,6 +244,7 @@ class GetCartonStateInputError(ApiBase):
 
     def __init__(self) -> None:
         self.__api_backend = CallApiBackEnd()
+        self.__db_connection = db_connection
         self.__get_input_insection_or_correction = self.__api_backend.getInputInsectionOrCorrection
         self.__logger = Logger()
         return super().__init__()
@@ -256,15 +257,21 @@ class GetCartonStateInputError(ApiBase):
         # Loại bỏ dấu ';' ở cuối 'carton_code' nếu tồn tại
         if 'carton_code' in datas:
             datas['carton_code'] = datas['carton_code'].rstrip(';')
-
-        print(datas)
+        
+        list_error = self.__db_connection.get_setting_error_cartons()
+        print("------------------")
+        # print(datas)
         response = self.__get_input_insection_or_correction(datas)
         print(response.text)
+        print("------------------")
+        
         if response.status_code != 200:
             response = response.json()
             return ApiBase.createResponseMessage({}, response['message'], response['statusCode'], response['statusCode'])
         else:
             response = response.json()
+            response["metaData"]["list_error"] = list_error
+            print(response)
             return ApiBase.createResponseMessage(response["metaData"], response['msg'])
         
 

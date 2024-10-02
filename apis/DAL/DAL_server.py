@@ -20,7 +20,8 @@ class DALServer(metaclass=Singleton):
             "pass"      : "123456"
         }
         self.__token_value = {}
-        self.__token_value =  {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE3Mjc0MDI5NDMsImV4cCI6MTc1ODUwNjk0M30.SHngUPOqe7aJPhqwc0hx_ZEgSdFwZOOhikBxzVafR_E'}
+        self.get_token_bearer_backend()
+        # self.__token_value =  {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE3Mjc0MDI5NDMsImV4cCI6MTc1ODUwNjk0M30.SHngUPOqe7aJPhqwc0hx_ZEgSdFwZOOhikBxzVafR_E'}
 
         # self.__token_value =  {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE3Mjc0NTgyNTcsImV4cCI6MTc1ODU2MjI1N30.52fTvYkMyB-rJxAbfawiKpgg2PhWquwBdGc4x2zxoWc'}
 
@@ -44,7 +45,7 @@ class DALServer(metaclass=Singleton):
             print("e :", e)
 
     def get_token_bearer(self):
-        # print(self.__token_value)
+        print(self.__token_value)
         return self.__token_value
     
 
