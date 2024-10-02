@@ -14,30 +14,31 @@ class PLCSInterface():
             unit: Modbus slave ID (default: 1)
         """
 
-        self.host = kwargs.get('host', "192.168.31.3")
-        self.port = kwargs.get('port', 502)
-        self.timeout = kwargs.get('timeout', 1)
-        self.slave_id = kwargs.get('unit', 1)
-        self.lock = threading.Lock()
-        self.connected = False
-        self.connect()
+        self.__host = kwargs.get('host', "192.168.31.3")
+        self.__port = kwargs.get('port', 502)
+        self.__timeout = kwargs.get('timeout', 1)
+        self.__slave_id = kwargs.get('unit', 1)
+        self.__lock = threading.Lock()
+        self.__connected = False
+        self.__client = None
+        self.__connect()
 
-    def connect(self):
+    def __connect(self):
         try:
-            self.client = ModbusTcpClient(
-                host=self.host,
-                port=self.port,
-                timeout=self.timeout
+            self.__client = ModbusTcpClient(
+                host=self.__host,
+                port=self.__port,
+                timeout=self.__timeout
             )
-            if self.client.connect():
-                self.connected = True
-                print(f"Successfully connected to PLC at {self.host}:{self.port}")
+            if self.__client.connect():
+                self.__connected = True
+                print(f"Successfully connected to PLC at {self.__host}:{self.__port}")
             else:
-                # print(f"Failed to connect to PLC at {self.host}:{self.port}")
+                # print(f"Failed to connect to PLC at {self.__host}:{self.__port}")
                 pass
         except Exception as e:
             # print(f"Error connecting to PLC: {e}")
-            self.connect()
+            self.__connect()
 
     def read_data(self, num_register: int) -> list:
         """
@@ -52,17 +53,17 @@ class PLCSInterface():
             0x84: Slave Device Failure
         """
         
-        if self.connected:
-            with self.lock:
+        if self.__connected:
+            with self.__lock:
                 try:
-                    data = self.client.read_holding_registers(0, num_register, unit=self.slave_id)
+                    data = self.__client.read_holding_registers(0, num_register, unit=self.__slave_id)
                     if hasattr(data, 'registers'):
                         return data.registers
                 except Exception as e:
-                    self.connected = False
+                    self.__connected = False
                     print(f"Error reading from PLC: {e}")
         else:
-            self.connect()
+            self.__connect()
         return [None]
 
     def write_data(self, address: int, value: list[int]) -> bool:
@@ -77,22 +78,22 @@ class PLCSInterface():
             0x83: Illegal Data Value
             0x84: Slave Device Failure
         """
-        if self.connected:
-            with self.lock:
+        if self.__connected:
+            with self.__lock:
                 try:
-                    res = self.client.write_registers(address, value, unit=self.slave_id)
+                    res = self.__client.write_registers(address, value, unit=self.__slave_id)
                     if res.function_code < 0x80:  # check if the result is not an error
                         return True
                 except Exception as e:
-                    self.connected = False
+                    self.__connected = False
                     print(f"Error sending to PLC: {e}")
         else:
-            self.connect()
+            self.__connect()
         return False
 
     def close(self):
-        self.client.close()
-        self.connected = False
+        self.__client.close()
+        self.__connected = False
 
 
 

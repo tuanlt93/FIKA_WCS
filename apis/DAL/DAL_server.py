@@ -45,7 +45,7 @@ class DALServer(metaclass=Singleton):
             print("e :", e)
 
     def get_token_bearer(self):
-        print(self.__token_value)
+        # print(self.__token_value)
         return self.__token_value
     
 

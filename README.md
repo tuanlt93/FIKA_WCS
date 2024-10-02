@@ -32,8 +32,8 @@ wcs_system/
 │   ├── db_connection.py      # Quản lý kết nối database
 │   ├── models/
 │   │   ├── __init__.py
-│   │   ├── user_model.py       # Model dữ liệu người dùng
-│   │   ├── order_model.py      # Model dữ liệu đơn hàng
+│   │   ├── mission_model.py       # Model dữ liệu người dùng
+│   │   ├── setting_model.py      # Model dữ liệu đơn hàng
 │   │   └── inventory_model.py  # Model dữ liệu tồn kho
 │   └── db_utils.py             # Các hàm tiện ích cho database
 │
@@ -64,7 +64,7 @@ wcs_system/
 │   └── DAL/
 │       ├── func_agv.py         # Giao tiếp mongodb tạo mission cho agv
 │       └── func_pda.py         # Các fuction lấy dữ liệu cho PDA từ backend
-
+│
 ├── tests/
 │   ├── __init__.py
 │   ├── test_agv.py

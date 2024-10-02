@@ -6,11 +6,11 @@ class MissionModel:
                  robot_code, 
                  pickup_location, 
                  return_location, 
-                 sector, 
                  object_call, 
                  mission_rcs, 
                  current_state, 
                  created_at,  
+                 sector="",
                  description="", 
                  updated_at=""
             ):
@@ -34,11 +34,11 @@ class MissionModel:
             "pickup_location": self.__pickup_location,
             "return_location": self.__return_location,
             "sector": self.__sector,
-            "object_call": self.__object_call.isoformat() if isinstance(self.__object_call, datetime) else "",
+            "object_call": self.__object_call,
             "mission_rcs": self.__mission_rcs,
             "description": self.__description,
             "current_state": self.__current_state,
-            "createdAt": self.__created_at.isoformat() if isinstance(self.__created_at, datetime) else "",
-            "updatedAt": self.__updated_at.isoformat() if isinstance(self.__updated_at, datetime) else "",
+            "createdAt": self.__created_at,
+            "updatedAt": self.__updated_at
         }
 

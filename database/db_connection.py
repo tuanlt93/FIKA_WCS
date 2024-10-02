@@ -27,7 +27,7 @@ class DatabaseConnection:
         self.client.close()
 
 
-    def insert_mission_history(self, mission_data: dict):
+    def insert_mission_history(self, mission_data: dict) -> ObjectId:
         collection = self.db.get_collection(Collection.MISSION_HISTORIES)
         result = collection.insert_one(mission_data)
         return result.inserted_id
@@ -60,12 +60,12 @@ class DatabaseConnection:
         # Lấy tất cả các giá trị của trường 'name'
         names = collection.find({}, {"_id": 0, "name": 1})
         # Trả về danh sách các giá trị 'name'
-        return [item["name"] for item in names if "name" in item]
+        return [item["name"] for item in names if "name" in item][::-1]
     
 
     def get_setting_callbox(self, mission_name: str) -> dict:
         collection = self.get_collection(Collection.SETTING_CALLBOXES)
 
-        info_mision  = collection.find_one({"name": mission_name})
+        info_mision  = collection.find_one({"task_code": mission_name})
         
         return info_mision

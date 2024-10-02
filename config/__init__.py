@@ -19,5 +19,5 @@ URL_RMS         = config_all['CFG_RCS']['url_rms']
 DOCK_CONFIGS = {
     dock: {**config_all[f'MISSION_{dock}'], 'name': f'MISSION_{dock}'}
     for dock in ["A1", "A2", "A3", "O1", "O2", "O3", "M1", "M2", "M3", "M4"]
-    # for dock in ["M1", "M2", "M3", "M4"]
+    # for dock in ["M4"]
 }

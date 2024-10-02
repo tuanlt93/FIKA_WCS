@@ -1,2 +1,2 @@
 from database.models.mission_model import MissionModel
-from database.models.setting import SettingCallBoxModel, SettingCartonsModel, SettingSystemsModel
+from database.models.setting_model import SettingCallBoxModel, SettingCartonsModel, SettingSystemsModel

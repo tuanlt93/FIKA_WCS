@@ -1,7 +1,6 @@
 from apis.api_base import ApiBase
 from apis.DAL.func_pda import CallApiBackEnd
 
-# from .handle import Manage_Queue
 import json
 from flask import request
 

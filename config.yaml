@@ -7,25 +7,26 @@ CFG_REDIS:
   type: 
 
 CFG_MODBUS:
-  # host: 192.168.31.3
-  host: 127.0.0.1
+  host: 192.168.31.3
+  # host: 127.0.0.1
   port: 502
   unit: 16
 
 CFG_SOCKET:
-  # host: 192.168.31.210
-  host: 127.0.0.1
+  host: 192.168.31.210
+  # host: 127.0.0.1
   port: 9100
 
 CFG_MONGODB:
   username      : 
   password      : 
-  host          : 127.0.0.1
+  # host          : 127.0.0.1
+  host          : 192.168.31.201
   port          : 27017
 
 CFG_RCS:
-  url_gms: http://192.168.111.250:24249
-  url_rms: http://192.168.111.250:8895
+  url_gms: http://192.168.31.250:24249
+  url_rms: http://192.168.31.250:8895
 
 
 CFG_SERVER:
@@ -38,6 +39,7 @@ CFG_SERVER:
 MISSION_A1:
   workflow_code           : 'F02'
   workflow_type           : 'PALLET_INPUT'
+  temp_location           : '2'
   bindShelf_locationCode  : '00000100'
   destination             : '00000031'
   line_curtain_triger     : '00000025'
@@ -50,6 +52,7 @@ MISSION_A1:
 MISSION_A2:
   workflow_code           : 'F03'
   workflow_type           : 'PALLET_INPUT'
+  temp_location           : '3'
   bindShelf_locationCode  : '00000100'
   destination             : '00000001'
   line_curtain_triger     : '00000004'
@@ -100,6 +103,7 @@ MISSION_O2:
 MISSION_O3:
   workflow_code           : 'F07'
   workflow_type           : 'PALLET_INPUT'
+  temp_location           : '7'
   bindShelf_locationCode  : '00000100'
   destination             : '00000053'
   line_curtain_triger     : '00000051'
@@ -147,9 +151,22 @@ MISSION_M3:
 MISSION_M4:
   workflow_code           : 'F11'
   workflow_type           : 'PALLET_INPUT'
+  temp_location           : '11'
   bindShelf_locationCode  : '00000100'
   destination             : '00000039'
   workflow_type_triger    : '00000095'
   area                    : 'MANUAL'
   shelf                   : '000111'
   angle_shelf             : '90'
+
+
+# MISSION_M4:
+#   workflow_code           : 'F12'
+#   workflow_type           : 'PALLET_INPUT'
+#   temp_location           : '11'
+#   bindShelf_locationCode  : '00000033'
+#   destination             : '00000040'
+#   workflow_type_triger    : '00000034'
+#   area                    : 'MANUAL'
+#   shelf                   : '000102'
+#   angle_shelf             : '90'

@@ -1,6 +1,6 @@
 from agv.agv_interface import MissionBase
 from utils.threadpool import Worker
-from config.constants import AGVConfig, DeviceConfig
+from config.constants import AGVConfig, DeviceConfig, MissionConfig
 from db_redis import redis_cache
 from PLC import PLC_controller
 import time
@@ -8,6 +8,9 @@ import json
 import threading
 from apis.DAL.func_pda import CallApiBackEnd
 from database import db_connection
+from database.models.mission_model import MissionModel
+from datetime import datetime
+
 
 class MissionHandle(MissionBase):
     def __init__(self, *args, **kwargs) -> None:
@@ -34,22 +37,24 @@ class MissionHandle(MissionBase):
                 print(f"Thiếu config {key}")
                 return 
 
-        self.__workflow_code = kwargs.get('workflow_code')
-        self.__workflow_type = kwargs.get('workflow_type')
+        self.__workflow_code        = kwargs.get('workflow_code')
+        self.__workflow_type        = kwargs.get('workflow_type')
 
-        self.__line_curtain_triger = kwargs.get('line_curtain_triger', None)
+        self.__line_curtain_triger  = kwargs.get('line_curtain_triger', None)
         self.__workflow_type_triger = kwargs.get('workflow_type_triger')
         
-        self.__bindShelf_locationCode = kwargs.get('bindShelf_locationCode')
-        self.__shelf = kwargs.get('shelf')
-        self.__angle_shelf = kwargs.get('angle_shelf')
-        self.__area = kwargs.get('area')
-        self.__destination  = kwargs.get('destination')
+        self.__bindShelf_locationCode   = kwargs.get('bindShelf_locationCode')
+        self.__temp_location            = kwargs.get('temp_location', None)
+        self.__shelf                    = kwargs.get('shelf')
+        self.__angle_shelf              = kwargs.get('angle_shelf')
+        self.__area                     = kwargs.get('area')
+        self.__destination              = kwargs.get('destination')
         
-        self.__mission_name = kwargs.get('name')
-        self.instance_ID = kwargs.get('instance_ID', None)
-        self.robot_ID = kwargs.get('robot_ID', None)
-        self.requirement = kwargs.get('requirement', None)
+        self.__mission_name         = kwargs.get('name')
+        self.instance_ID            = kwargs.get('instance_ID', None)
+        self.robot_ID               = kwargs.get('robot_ID', None)
+        self.requirement            = kwargs.get('requirement', None)
+        self.__id                   = kwargs.get('__id', None)
         
         
         self.key_number_function_passed = 'number_function_passed'
@@ -149,12 +154,30 @@ class MissionHandle(MissionBase):
             self.__shelf
         )
 
-        # Bind shelf lại vị trí có pallet cần đến lấy
-        self.performTask(
-            self.bindShelf, 
-            self.__bindShelf_locationCode, 
-            self.__shelf, self.__angle_shelf
-        )
+        if self.__workflow_type == "PALLET_INPUT":
+            # Bind shelf lại vị trí đệm
+            self.performTask(
+                self.bindShelf, 
+                self.__temp_location, 
+                self.__shelf, 
+                self.__angle_shelf
+            )
+
+            # update shelf vào vị trí pallet cần lấy
+            self.performTask(
+                self.undateSheft, 
+                self.__bindShelf_locationCode, 
+                self.__shelf, 
+                self.__angle_shelf
+            )
+        elif self.__workflow_type == "PALLET_OUTPUT":
+            # Bind shelf lại vị trí có pallet cần đến lấy
+            self.performTask(
+                self.bindShelf, 
+                self.__bindShelf_locationCode, 
+                self.__shelf, 
+                self.__angle_shelf
+            )
         
         # Tạo task cho AGV
         self.performTask(
@@ -167,6 +190,21 @@ class MissionHandle(MissionBase):
             group= AGVConfig.MISSIONS_RUNNING, 
             topic= self.__mission_name
         )
+
+        # Update misison vào database
+        data_insert_misison = MissionModel(
+            mission_code= self.__mission_name,
+            robot_code = "",
+            pickup_location = mission_info["pickup_location"],
+            return_location = mission_info["return_location"],
+            object_call = datetime.now(),
+            mission_rcs = self.instance_ID,
+            current_state = MissionConfig.PROCESSING,
+            created_at = datetime.now(),
+        ).to_dict()
+
+        self.__id = self.__db_connection.insert_mission_history(data_insert_misison)
+
 
         # Kiểm tra xem có phải dạng Pallet input mang hàng vào không, đặt triger vị trí lấy pallet
         if self.__workflow_type == "PALLET_INPUT":
@@ -250,7 +288,8 @@ class MissionHandle(MissionBase):
                 self.queryTask, 
                 self.__workflow_type_triger, 
                 AGVConfig.WORKFLOW_INPUT,  
-                AGVConfig.AGV_DIRECTION_ENTER
+                AGVConfig.AGV_DIRECTION_ENTER,
+                requirement = DeviceConfig.LINE_CURTAIN_CLOSE
             )
 
             # Thông báo đã đi vào dock thang máy đi xuống
@@ -263,13 +302,15 @@ class MissionHandle(MissionBase):
                 self.queryTask, 
                 self.__workflow_type_triger, 
                 AGVConfig.WORKFLOW_INPUT,  
-                AGVConfig.AGV_DIRECTION_EGRESS
+                AGVConfig.AGV_DIRECTION_EGRESS,
+                requirement = DeviceConfig.LINE_CURTAIN_CLOSE
             )
 
             # Thông báo đã đi ra dock thang máy đi xuống
             self.__PLC_controller.AGV_status_is_out_lifting_down()
             self.performTask(
-                self.continueRobot
+                self.continueRobot,
+                requirement = DeviceConfig.LINE_CURTAIN_CLOSE
             )
 
         # Đợi AGV hoàn thành nhiệm vụ
@@ -282,15 +323,26 @@ class MissionHandle(MissionBase):
             Hết
         """
 
-        time.sleep(10)
+
+        # time.sleep(10)
         # Xóa mision đang chạy trong group
         self.__redis.srem(
             group= AGVConfig.MISSIONS_RUNNING, 
             topic= self.__mission_name
         )
 
-        
+        # Update misison vào database
+        data_update_mision = {
+            "robot_code"    : self.robot_ID,
+            "current_state" : MissionConfig.COMPLETE,
+            "updatedAt"     : datetime.now(),
+        }
+        self.__db_connection.update_mission_history(
+            mission_id = self.__id,
+            update_data = data_update_mision
+        )
 
+        # reset trạng thái đèn
         self.__PLC_controller.reset_status_light_button(self.__mission_name)
         print("DONE TASK")
 
@@ -303,11 +355,12 @@ class MissionHandle(MissionBase):
         :param redis_hash_name: Tên của hash trong Redis
         :param data: Dữ liệu dict để lưu trữ
         """
-        self.__number_fc_passed += 1
-        data['number_fc_passed'] = self.__number_fc_passed
-        data['instance_ID'] = self.instance_ID
-        data['robot_ID'] = self.robot_ID
-        data['requirement'] = requirement
+        self.__number_fc_passed     += 1
+        data['number_fc_passed']    = self.__number_fc_passed
+        data['instance_ID']         = self.instance_ID
+        data['robot_ID']            = self.robot_ID
+        data['requirement']         = requirement
+        data['__id']                = self.__id
 
         for key, value in data.items():
             self.__redis.hset(

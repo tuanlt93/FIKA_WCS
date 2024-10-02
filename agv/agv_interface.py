@@ -397,7 +397,20 @@ class MissionBase:
         return False
     
 
-    def undateSheft(self,location, shelf_id) -> bool:
+    def undateSheft(self,location, shelf_id, angle) -> bool:
+        """
+            response = {
+                "id": "postman_001",
+                "msgType": "ParameterInstructionResponseMsg",
+                "response": {
+                    "header": {
+                        "responseId": "9basac8af64xmekwq",
+                        "code": 0,
+                        "msg": "Success"
+                    }
+                }
+            }
+        """
         request_body = {
             "id": "postman_001",
             "msgType": "ParameterInstructionRequestMsg",
@@ -414,15 +427,16 @@ class MissionBase:
                 "body": {
                     "parameterType": "SHELF",
                     "shelfCode": f'{shelf_id}',
-                    "locationCellCode": f'{location}'
+                    "locationCellCode": f'{location}',
+                    "shelfAngle": f'{angle}',
                 }
             }
         }
         try:
             res = requests.post(self.__url_rms, json= request_body)
             response = res.json()
-            # print(response)
-            if response['header']['code'] == '0':
+            print(response)
+            if response['response']['header']['msg'] == 'Success':
                 return True
         except Exception as e:
             print("CONTINUE ROBOT ERROR", str(e))

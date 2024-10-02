@@ -15,6 +15,9 @@ class AGVConfig:
     AGV_INSIDE              = "AGV_INSIDE"
     AGV_OUTSIDE             = "AGV_OUTSIDE"
 
+class MissionConfig:
+    COMPLETE    = "Complete"
+    PROCESSING  = "processing"
 
 class STATUS_PALLET_CARTON:
     PENDING = 'pending'
