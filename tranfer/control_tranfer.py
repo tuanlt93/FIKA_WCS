@@ -4,6 +4,7 @@ from db_redis import redis_cache
 from PLC import PLC_controller
 from database import db_connection
 from config.constants import HandleCartonConfig
+import time
 
 class TranferHandle():
     def __init__(self) -> None:
@@ -25,12 +26,14 @@ class TranferHandle():
     def __handle_tranfer(self, message):
         if message:
             result = self.__db_connection.get_final_result_carton(message)
-            # print(result)
+            print(result)
             if result == HandleCartonConfig.OK:
                 self.__PLC_controller.request_tranfer_ok()
             else:   
                 self.__PLC_controller.request_tranfer_ng()
-            # self.__PLC_controller.done_request_tranfer()
+
+            time.sleep(0.2)
+            self.__PLC_controller.done_request_tranfer()
             print("DONE SORTER")
             
 

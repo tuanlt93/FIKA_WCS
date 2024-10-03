@@ -49,7 +49,7 @@ class DWSResult(ApiBase):
 
         return super().__init__()
 
-    # @ApiBase.exception_error
+    @ApiBase.exception_error
     def post(self):
         """
         DWS_RESULT = [
@@ -64,19 +64,30 @@ class DWSResult(ApiBase):
             self.__PLC_controller.notify_error_two_cartons()
             print("HAI THUNG")
             return ApiBase.createNotImplement()
+        
+        
+        # Lấy số lượng từ đếm thùng từ PLC
+        current_quantity_PLC = self.__redis_cache.hget(
+            HandlePalletConfig.NUMBER_CARTON_OF_PALLET, 
+            HandlePalletConfig.QUANTITY_FROM_PLC
+        )
+
+        # Kiểm tra điều kiện để kết thúc pallet
+        if int(current_quantity_PLC) == 0 and (int(quantity_carton_DWS) + 1) >= int(data_pallet_carton_input["carton_pallet_qty"]):
+            print("DONE PALLET")
+            self.__call_backend.UpdateSttPalletCarton(data_pallet_carton_input["_id"])
 
 
+        # Bắt đầu pallet khacs
         data_pallet_carton_input = self.__redis_cache.get_first_element(HandlePalletConfig.LIST_PALLET_RUNNING)
         data_pallet_carton_input = json.loads(data_pallet_carton_input)
 
         if DWS_result:
-
             # update số lượng carton dws đếm được
             quantity_carton_DWS = self.__redis_cache.hget(
                 HandlePalletConfig.NUMBER_CARTON_OF_PALLET, 
                 HandlePalletConfig.QUANTITY_FROM_DWS
             )
-
 
             # Kiểm tra điều kiện để bắt đầu pallet
             if (int(quantity_carton_DWS) + 1) == 1:
@@ -150,17 +161,7 @@ class DWSResult(ApiBase):
             }
             response = self.__call_backend.createCarton(data_creat_carton)
             # print(response)
-            # Lấy số lượng từ đếm thùng từ PLC
-            current_quantity_PLC = self.__redis_cache.hget(
-                HandlePalletConfig.NUMBER_CARTON_OF_PALLET, 
-                HandlePalletConfig.QUANTITY_FROM_PLC
-            )
-
-            # Kiểm tra điều kiện để kết thúc pallet
-
-            if int(current_quantity_PLC) == 0 and (int(quantity_carton_DWS) + 1) >= int(data_pallet_carton_input["carton_pallet_qty"]):
-                print("DONE PALLET")
-                self.__call_backend.UpdateSttPalletCarton(data_pallet_carton_input["_id"])
+            
                     
 
             return ApiBase.createResponseMessage({}, "OKE")

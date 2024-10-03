@@ -22,7 +22,7 @@ class PLCSInterface():
         self.__connected = False
         self.__client = None
         self.__error_count = 0
-        self.__max_backoff = 60.0  # Giới hạn thời gian backoff tối đa là 60 giây
+        self.__max_backoff = 60  # Giới hạn thời gian backoff tối đa là 60 giây
         self.__min_backoff = 0.1  # Thời gian chờ tối thiểu là 0.1 giây
         self.__backoff_time = self.__min_backoff
         self.__connect()

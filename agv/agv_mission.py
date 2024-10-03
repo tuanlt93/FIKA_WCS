@@ -9,7 +9,7 @@ import threading
 from apis.DAL.func_pda import CallApiBackEnd
 from database import db_connection
 from database.models.mission_model import MissionModel
-from datetime import datetime
+import datetime
 
 
 class MissionHandle(MissionBase):
@@ -204,10 +204,10 @@ class MissionHandle(MissionBase):
             robot_code = "",
             pickup_location = mission_info["pickup_location"],
             return_location = mission_info["return_location"],
-            object_call = datetime.now(),
+            object_call = datetime.datetime.now(datetime.timezone.utc),
             mission_rcs = self.instance_ID,
             current_state = MissionConfig.PROCESSING,
-            created_at = datetime.now(),
+            created_at = datetime.datetime.now(datetime.timezone.utc),
         ).to_dict()
 
         self.__id = self.__db_connection.insert_mission_history(data_insert_misison)
@@ -371,7 +371,7 @@ class MissionHandle(MissionBase):
         data_update_mision = {
             "robot_code"    : self.robot_ID,
             "current_state" : MissionConfig.COMPLETE,
-            "updatedAt"     : datetime.now(),
+            "updatedAt"     : datetime.datetime.now(datetime.timezone.utc),
         }
         self.__db_connection.update_mission_history(
             mission_id = self.__id,

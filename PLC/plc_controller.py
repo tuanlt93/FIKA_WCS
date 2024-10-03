@@ -74,6 +74,13 @@ class PLCController(metaclass= Singleton):
                     HandlePalletConfig.PALLET_INPUT_A2_DATA
                 )
 
+        if topic == DeviceConfig.STATUS_NOTIFY_RETURN_CARTONS and value == DeviceConfig.ACEPTED:
+            print("Reset 2 thung")
+            self.__PLC_interface.write_data(address= 29, value= [0])
+            self.__PLC_interface.write_data(address= 24, value= [0])
+            self.__redis_cache.hset(group, DeviceConfig.STATUS_NOTIFY_RETURN_CARTONS, DeviceConfig.WAIT_ACCEPT)
+
+
     def process_positions(self, data, data_reg_now):
         positions = np.where(data)[0]
         qrcode_plc_read = []
@@ -221,13 +228,13 @@ class PLCController(metaclass= Singleton):
 
     # Tranfer
     def request_tranfer_ng(self):
-        self.__PLC_interface.write_data(address= 35, value= [1])
+        self.__PLC_interface.write_data(address= 35, value= [0])
     
     def request_tranfer_ok(self):
-        self.__PLC_interface.write_data(address= 35, value= [0])
+        self.__PLC_interface.write_data(address= 35, value= [1])
     
     def done_request_tranfer(self):
-        self.__PLC_interface.write_data(address= 35, value= [0])
+        self.__PLC_interface.write_data(address= 21, value= [1])
 
     # MARKEM
     def status_markem_disconnect(self):
