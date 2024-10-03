@@ -122,7 +122,7 @@ class CallApiBackEnd():
         headers = self.__get_token_bearer
         datas = json.loads(self.__redis_cache.hget(
             HandlePalletConfig.PALLET_DATA_MANAGEMENT, 
-            HandlePalletConfig.PALLET_INPUT_DATA   
+            HandlePalletConfig.INPUT_PALLET_DATA   
         ))
         response = requests.post(self.__url + self._carton_pallet_create, json = datas, headers = headers)
         print(response.text)
@@ -156,27 +156,28 @@ class CallApiBackEnd():
             # Lưu data pallet có được vào redis
             if mision_name == "MISSION_A1":
                 
-
-                print("Done send dimension to PLC")
                 self.__redis_cache.hset(
                     HandlePalletConfig.PALLET_DATA_MANAGEMENT, 
-                    HandlePalletConfig.PALLET_INPUT_A1_DATA, 
+                    HandlePalletConfig.INPUT_PALLET_A1_DATA, 
                     json.dumps(datas)
                 )
                 self.__PLC_controller.send_info_pallet_A1(response_data['metaData'])
+                print("Done send dimension to PLC")
+
 
             elif mision_name == "MISSION_A2":
-                print("Done send dimension to PLC")
+                
                 self.__redis_cache.hset(
                     HandlePalletConfig.PALLET_DATA_MANAGEMENT, 
-                    HandlePalletConfig.PALLET_INPUT_A2_DATA, 
+                    HandlePalletConfig.INPUT_PALLET_A2_DATA, 
                     json.dumps(datas)
                 )
                 self.__PLC_controller.send_info_pallet_A2(response_data['metaData'])
+                print("Done send dimension to PLC")
 
             self.__redis_cache.hdel(
                 HandlePalletConfig.PALLET_DATA_MANAGEMENT, 
-                HandlePalletConfig.PALLET_INPUT_DATA   
+                HandlePalletConfig.INPUT_PALLET_DATA   
             )
             
         return response
@@ -461,7 +462,7 @@ class CallApiBackEnd():
             if data_update.status_code == 200:
                 data_update = data_update.json()
                 data_carton_state = data_update['data']
-                self.__redis_cache.del_key(TOPIC_REDIS.CARTON_INFO + data_carton_state['carton_code'])
+                # self.__redis_cache.del_key(TOPIC_REDIS.CARTON_INFO + data_carton_state['carton_code'])
         except Exception as e:
             print( "finalCartonState :", e)
 

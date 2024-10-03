@@ -5,6 +5,9 @@ class ResponseFomat:
         "expiry_date" , "layer_pallet" , "carton_pallet_qty" , "standard_length" , 
         "standard_width" , "standard_height" , "standard_weight" , "standard_item_carton"
     ]
+    API_PDA_PALLET = [ 
+        "type"
+    ]
 
     API_CREATE_CARTON_STATE = [ 
         "dws_result", "actual_length", "actual_width", "actual_height", 

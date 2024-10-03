@@ -8,7 +8,6 @@ from apis.DAL.DWS_api import DWSHeartBeat, DWSResult
 from apis.DAL.pda_api import (
     PDA_Input,
     PDA_Pallet_Empty_Input,
-    StartPalletCarton,
     ConfirmQtyPalletCarton,
     GetCartonStateInputError,
     CreateInspection,
@@ -20,7 +19,6 @@ from apis.DAL.pda_api import (
 
 api.addClassResource(PDA_Input)
 api.addClassResource(PDA_Pallet_Empty_Input)
-api.addClassResource(StartPalletCarton)
 api.addClassResource(ConfirmQtyPalletCarton)
 api.addClassResource(GetCartonStateInputError)
 api.addClassResource(CreateInspection)

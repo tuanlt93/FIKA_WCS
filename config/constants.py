@@ -49,16 +49,19 @@ class HandlePalletConfig:
     PALLET_DATA_MANAGEMENT      = "PALLET_DATA_MANAGEMENT"
 
     # List dữ liệu pallet đầu vào 
-    PALLET_INPUT_DATA      = "PALLET_INPUT_DATA"
+    INPUT_PALLET_DATA      = "INPUT_PALLET_DATA"
 
     # List dữ liệu pallet đầu vào vị trí A1 
-    PALLET_INPUT_A1_DATA   = "PALLET_INPUT_A1_DATA"
+    INPUT_PALLET_A1_DATA   = "INPUT_PALLET_A1_DATA"
 
     # List dữ liệu pallet đầu vào vị trí A2 
-    PALLET_INPUT_A2_DATA   = "PALLET_INPUT_A2_DATA"
+    INPUT_PALLET_A2_DATA   = "INPUT_PALLET_A2_DATA"
 
     # List dữ liệu pallet đang chạy
     LIST_PALLET_RUNNING    = "LIST_PALLET_RUNNING"
+
+    # List dữ liệu pallet rỗng đầu vào 
+    EMPTY_INPUT_PALLET_DATA     = "EMPTY_INPUT_PALLET_DATA"
 
 
 

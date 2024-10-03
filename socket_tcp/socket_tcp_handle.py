@@ -25,4 +25,5 @@ class SocketTCPHandle(SocketTCP, metaclass= Singleton):
         except socket.error as e:
             print(f"Error sending message - {e}")
             self.reconnect()
+            self.send_tcp_string([])
             self.send_tcp_string(message)  # Retry sending the message after reconnecting

@@ -31,7 +31,7 @@ class PrintInterface():
             # # messages.append("!C")
             messages.append("!M\"CARTON0\"")
             messages.append(f'!W1\"{data_print["material_code"]}\"')
-            messages.append("!W2\"CIPROBAY IV INJ 200mg 140ml\"")
+            messages.append(f'!W1\"{data_print["material_name"]}\"')
             messages.append(f'!W3\"{data_print["vendor_batch"]}\"')
             messages.append(f'!W4\"{data_print["expire_date"]}\"')
             messages.append(f'!W5\"{data_print["quantity"]}\"')

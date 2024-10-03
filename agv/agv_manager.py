@@ -7,7 +7,7 @@ import threading
 from config.constants import DeviceConfig, AGVConfig, HandlePalletConfig
 from db_redis import redis_cache
 from PLC import PLC_controller
-from config import DOCK_CONFIGS
+from config import INPUT_PALLET_CONFIGS, INPUT_EMPTY_PALLET_CONFIGS, OUTPUT_PALLET_CONFIGS
 from utils.pattern import Singleton
 from config.settings import TIME
 
@@ -55,26 +55,36 @@ class ManagerMission(metaclass= Singleton):
                 "instance_ID": "313",
                 "robot_ID": "1010",
                 "requirement": "OPEN"
+                "_id": 
             }
             """
             self.__status_all_devices = self.__redis_cache.hgetall(DeviceConfig.STATUS_ALL_DEVICES)
             self.__running_tasks = self.__redis_cache.smembers(AGVConfig.MISSIONS_RUNNING)
-            data_pallet_input = self.__redis_cache.hget(
+
+            # Kiểm tra data pallet hàng và data pallet thành phẩm
+            input_pallet_data = self.__redis_cache.hget(
                 HandlePalletConfig.PALLET_DATA_MANAGEMENT, 
-                HandlePalletConfig.PALLET_INPUT_DATA 
+                HandlePalletConfig.INPUT_PALLET_DATA 
+            )
+            empty_input_pallet_data = self.__redis_cache.hget(
+                HandlePalletConfig.PALLET_DATA_MANAGEMENT, 
+                HandlePalletConfig.EMPTY_INPUT_PALLET_DATA 
             )
 
             # print(data_pallet_input)
-            
             if self.__handle_emergency_stop():
                 print("EMERGENCY STOP")
                 sleep(TIME.MANAGER_AGV_SAMPLING_TIME)
                 continue
 
             self.__handle_door_requirements()
-            self.__handle_pallet_output()
-            if data_pallet_input:
-                self.__handle_pallet_input()
+            self.__handle_output_pallet()
+            
+            if input_pallet_data:
+                self.__handle_input_pallet()
+            
+            elif empty_input_pallet_data:
+                self.__handle_input_empty_pallet()
 
             sleep(TIME.MANAGER_AGV_SAMPLING_TIME)
 
@@ -92,12 +102,11 @@ class ManagerMission(metaclass= Singleton):
 
    
 
-    def __handle_pallet_input(self):
-        for dock, config in DOCK_CONFIGS.items():
+    def __handle_input_pallet(self):
+        for dock, config in INPUT_PALLET_CONFIGS.items():
             if (
-                config['workflow_type'] == 'PALLET_INPUT' and 
                 f"MISSION_{dock}" not in self.__running_tasks and 
-                self.__status_all_devices.get(DeviceConfig.STATUS_ELEVATOR_LIFTING_UP) == DeviceConfig.ELEVATOR_LIFTING_READY and
+                self.__status_all_devices.get(DeviceConfig.STATUS_ELEVATOR_LIFTING_UP) == DeviceConfig.ELEVATOR_LIFTING_READY and 
                 len(self.__running_tasks) < AGVConfig.NUMBERS_AGV
             ):
 
@@ -111,10 +120,27 @@ class ManagerMission(metaclass= Singleton):
                     self.__update_device_status(DeviceConfig.STATUS_ELEVATOR_LIFTING_UP, DeviceConfig.ELEVATOR_LIFTING_BUSY)
                     break
 
-    def __handle_pallet_output(self):
-        for dock, config in DOCK_CONFIGS.items():
+    def __handle_input_empty_pallet(self):
+        for dock, config in INPUT_EMPTY_PALLET_CONFIGS.items():
             if (
-                config['workflow_type'] == 'PALLET_OUTPUT' and 
+                f"MISSION_{dock}" not in self.__running_tasks and 
+                self.__status_all_devices.get(DeviceConfig.STATUS_ELEVATOR_LIFTING_UP) == DeviceConfig.ELEVATOR_LIFTING_READY and 
+                len(self.__running_tasks) < AGVConfig.NUMBERS_AGV
+            ):
+
+                dock_status = self.__status_all_devices[getattr(DeviceConfig, f'STATUS_DOCK_{dock}')]
+
+                if (dock_status == DeviceConfig.DOCK_EMPTY):
+                    
+                    self.__rcs[f'MISSION_{dock}'] = MissionHandle(**config)
+
+                    self.__update_device_status(getattr(DeviceConfig, f'STATUS_DOCK_{dock}'), DeviceConfig.DOCK_FULL)
+                    self.__update_device_status(DeviceConfig.STATUS_ELEVATOR_LIFTING_UP, DeviceConfig.ELEVATOR_LIFTING_BUSY)
+                    break
+
+    def __handle_output_pallet(self):
+        for dock, config in OUTPUT_PALLET_CONFIGS.items():
+            if (
                 f"MISSION_{dock}" not in self.__running_tasks and 
                 self.__status_all_devices.get(DeviceConfig.STATUS_ELEVATOR_LIFTING_DOWN) == DeviceConfig.ELEVATOR_LIFTING_READY and
                 len(self.__running_tasks) < AGVConfig.NUMBERS_AGV

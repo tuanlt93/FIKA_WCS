@@ -7,8 +7,8 @@ CFG_REDIS:
   type: 
 
 CFG_MODBUS:
-  host: 192.168.31.3
-  # host: 127.0.0.1
+  # host: 192.168.31.3
+  host: 127.0.0.1
   port: 502
   unit: 16
 
@@ -20,8 +20,8 @@ CFG_SOCKET:
 CFG_MONGODB:
   username      : 
   password      : 
-  # host          : 127.0.0.1
-  host          : 192.168.31.201
+  host          : 127.0.0.1
+  # host          : 192.168.31.201
   port          : 27017
 
 CFG_RCS:

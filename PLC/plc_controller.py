@@ -47,7 +47,7 @@ class PLCController(metaclass= Singleton):
         if value == DeviceConfig.DOCK_PROCESSING and topic == DeviceConfig.STATUS_DOCK_A1:
             data_pallet_A1 = self.__redis_cache.hget(
                 HandlePalletConfig.PALLET_DATA_MANAGEMENT, 
-                HandlePalletConfig.PALLET_INPUT_A1_DATA   
+                HandlePalletConfig.INPUT_PALLET_A1_DATA   
             )
             if data_pallet_A1:
                 self.__redis_cache.append_to_list(
@@ -57,12 +57,12 @@ class PLCController(metaclass= Singleton):
                 
                 self.__redis_cache.hdel(
                     HandlePalletConfig.PALLET_DATA_MANAGEMENT, 
-                    HandlePalletConfig.PALLET_INPUT_A1_DATA
+                    HandlePalletConfig.INPUT_PALLET_A1_DATA
                 )
         elif value == DeviceConfig.DOCK_PROCESSING and topic == DeviceConfig.STATUS_DOCK_A2:
             data_pallet_A2 = self.__redis_cache.hget(
                 HandlePalletConfig.PALLET_DATA_MANAGEMENT, 
-                HandlePalletConfig.PALLET_INPUT_A2_DATA   
+                HandlePalletConfig.INPUT_PALLET_A2_DATA   
             )
             if data_pallet_A2:
                 self.__redis_cache.append_to_list(
@@ -71,14 +71,14 @@ class PLCController(metaclass= Singleton):
                 )
                 self.__redis_cache.hdel(
                     HandlePalletConfig.PALLET_DATA_MANAGEMENT, 
-                    HandlePalletConfig.PALLET_INPUT_A2_DATA
+                    HandlePalletConfig.INPUT_PALLET_A2_DATA
                 )
 
         if topic == DeviceConfig.STATUS_NOTIFY_RETURN_CARTONS and value == DeviceConfig.ACEPTED:
             print("Reset 2 thung")
             self.__PLC_interface.write_data(address= 29, value= [0])
             self.__PLC_interface.write_data(address= 24, value= [0])
-            self.__redis_cache.hset(group, DeviceConfig.STATUS_NOTIFY_RETURN_CARTONS, DeviceConfig.WAIT_ACCEPT)
+            # self.__redis_cache.hset(group, DeviceConfig.STATUS_NOTIFY_RETURN_CARTONS, DeviceConfig.WAIT_ACCEPT)
 
 
     def process_positions(self, data, data_reg_now):
@@ -136,6 +136,10 @@ class PLCController(metaclass= Singleton):
         data_reg_now = np.array([None])
         while True:
             data_reg_now = np.array(self.__PLC_interface.read_data(num_register=100))
+
+            # print(data_reg_now[24])
+            # print(data_reg_now[29])
+
             try:
                 if np.any(data_reg_now == None):
                     continue
@@ -156,8 +160,6 @@ class PLCController(metaclass= Singleton):
                 print(e)
 
             sleep(TIME.PLC_SAMPLING_TIME)
-
-
 
 
     def send_info_pallet_A1(self, response: dict):
@@ -191,8 +193,8 @@ class PLCController(metaclass= Singleton):
                                         int(response["carton_pallet_qty"])
                                         ])
         self.__PLC_interface.write_data(address= 40, value= [int(response["standard_length"]), 
-                                            int(response["standard_width"])
-                                            ])
+                                        int(response["standard_width"])
+                                        ])
     
     
     def reset_error_two_carton(self):

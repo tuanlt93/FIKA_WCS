@@ -90,7 +90,7 @@ class PDA_Input(ApiBase):
         datas_json = json.dumps(datas)
         self.__redis_cache.hset(
             HandlePalletConfig.PALLET_DATA_MANAGEMENT,
-            HandlePalletConfig.PALLET_INPUT_DATA,
+            HandlePalletConfig.INPUT_PALLET_DATA,
             datas_json
         )
         return ApiBase.createResponseMessage({}, "Creat pallet input successful")
@@ -112,15 +112,15 @@ class PDA_Pallet_Empty_Input(ApiBase):
     @ApiBase.exception_error
     def post(self):
         
-        args = ResponseFomat.API_PDA_INPUT
+        args = ResponseFomat.API_PDA_PALLET
         datas = self.jsonParser(args, args)
         print(datas)
-        # datas_json = json.dumps(datas)
-        # self.__redis_cache.hset(
-        #     HandlePalletConfig.PALLET_DATA_MANAGEMENT,
-        #     HandlePalletConfig.PALLET_INPUT_DATA,
-        #     datas_json
-        # )
+        datas_json = json.dumps(datas)
+        self.__redis_cache.hset(
+            HandlePalletConfig.PALLET_DATA_MANAGEMENT,
+            HandlePalletConfig.EMPTY_INPUT_PALLET_DATA,
+            datas_json
+        )
         return ApiBase.createResponseMessage({}, "Creat empty pallet successful")
     
 
@@ -141,7 +141,7 @@ class PDA_Pallet_Empty_Input(ApiBase):
 
 
     #             # Lưu data pallet có được vào redis
-    #             self.__redis_cache.append_to_list(topic= HandlePalletConfig.LIST_PALLET_INPUT_DATA, item= datas) 
+    #             self.__redis_cache.append_to_list(topic= HandlePalletConfig.LIST_INPUT_PALLET_DATA, item= datas) 
 
 
     #             return ApiBase.createResponseMessage({}, response['msg'])
@@ -636,6 +636,7 @@ class PdaQuarantined(ApiBase):
         datas = self.jsonParser(args, args)
         print(datas)
         response = self.__create_quarantined(datas)
+        print(response)
         if response.status_code != 201:
             response = response.json()
             return ApiBase.createResponseMessage({}, response['message'], response['statusCode'], response['statusCode'])
@@ -650,31 +651,31 @@ class PdaQuarantined(ApiBase):
 
 
 
-class StartPalletCarton(ApiBase):
-    """
-        Start pallet carton
-    """
-    urls = ("/pallet_carton/start",)
+# class StartPalletCarton(ApiBase):
+#     """
+#         Start pallet carton
+#     """
+#     urls = ("/pallet_carton/start",)
 
-    def __init__(self) -> None:
-        self.__api_backend = CallApiBackEnd()
+#     def __init__(self) -> None:
+#         self.__api_backend = CallApiBackEnd()
 
-        self.__carton_pallet_start_pallet = self.__api_backend.processEndPalletCarton
+#         self.__carton_pallet_start_pallet = self.__api_backend.processEndPalletCarton
 
-        self.__logger = Logger()
-        return super().__init__()
+#         self.__logger = Logger()
+#         return super().__init__()
 
-    @ApiBase.exception_error
-    def post(self):
-        # args = ResponseFomat.API_PDA_INPUT
-        # datas = self.jsonParser(args, args)
-        response = self.__carton_pallet_start_pallet()
-        if response.status_code != 201:
-            response = response.json()
-            return ApiBase.createResponseMessage({}, response['message'], response['statusCode'], response['statusCode'])
-        else:
-            response = response.json()
-            return ApiBase.createResponseMessage({}, response['msg'])
+#     @ApiBase.exception_error
+#     def post(self):
+#         args = ResponseFomat.API_PDA_INPUT
+#         datas = self.jsonParser(args, args)
+#         response = self.__carton_pallet_start_pallet()
+#         if response.status_code != 201:
+#             response = response.json()
+#             return ApiBase.createResponseMessage({}, response['message'], response['statusCode'], response['statusCode'])
+#         else:
+#             response = response.json()
+#             return ApiBase.createResponseMessage({}, response['msg'])
     
 
 

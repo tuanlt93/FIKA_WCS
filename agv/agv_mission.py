@@ -1,6 +1,6 @@
 from agv.agv_interface import MissionBase
 from utils.threadpool import Worker
-from config.constants import AGVConfig, DeviceConfig, MissionConfig
+from config.constants import AGVConfig, DeviceConfig, MissionConfig, HandlePalletConfig
 from db_redis import redis_cache
 from PLC import PLC_controller
 import time
@@ -10,7 +10,7 @@ from apis.DAL.func_pda import CallApiBackEnd
 from database import db_connection
 from database.models.mission_model import MissionModel
 import datetime
-
+from config import INPUT_PALLET_CONFIGS, INPUT_EMPTY_PALLET_CONFIGS, OUTPUT_PALLET_CONFIGS 
 
 class MissionHandle(MissionBase):
     def __init__(self, *args, **kwargs) -> None:
@@ -37,24 +37,24 @@ class MissionHandle(MissionBase):
                 print(f"Thiếu config {key}")
                 return 
 
-        self.__workflow_code        = kwargs.get('workflow_code')
-        self.__workflow_type        = kwargs.get('workflow_type')
+        self.__workflow_code: str        = kwargs.get('workflow_code')
+        self.__workflow_type: str        = kwargs.get('workflow_type')
 
-        self.__line_curtain_triger  = kwargs.get('line_curtain_triger', None)
-        self.__workflow_type_triger = kwargs.get('workflow_type_triger')
+        self.__line_curtain_triger: str  = kwargs.get('line_curtain_triger', None)
+        self.__workflow_type_triger: str = kwargs.get('workflow_type_triger')
         
-        self.__bindShelf_locationCode   = kwargs.get('bindShelf_locationCode')
-        self.__temp_location            = kwargs.get('temp_location', None)
-        self.__shelf                    = kwargs.get('shelf')
-        self.__angle_shelf              = kwargs.get('angle_shelf')
-        self.__area                     = kwargs.get('area')
-        self.__destination              = kwargs.get('destination')
+        self.__bindShelf_locationCode: str   = kwargs.get('bindShelf_locationCode')
+        self.__temp_location: str            = kwargs.get('temp_location', None)
+        self.__shelf: str                    = kwargs.get('shelf')
+        self.__angle_shelf: str              = kwargs.get('angle_shelf')
+        self.__area: str                     = kwargs.get('area')
+        self.__destination: str              = kwargs.get('destination')
         
-        self.__mission_name         = kwargs.get('name')
-        self.instance_ID            = kwargs.get('instance_ID', None)
-        self.robot_ID               = kwargs.get('robot_ID', None)
-        self.requirement            = kwargs.get('requirement', None)
-        self.__id                   = kwargs.get('__id', None)
+        self.__mission_name: str         = kwargs.get('name')
+        self.instance_ID: str            = kwargs.get('instance_ID', None)
+        self.robot_ID: str               = kwargs.get('robot_ID', None)
+        self.requirement: str            = kwargs.get('requirement', None)
+        self.__id: str                   = kwargs.get('__id', None)
         
         
         self.key_number_function_passed = 'number_function_passed'
@@ -246,9 +246,21 @@ class MissionHandle(MissionBase):
             )
 
             # Khi tạo mission AGV cho dock A1 hoặc A2 -> Tạo pallet pending
-            if (self.__mission_name == "MISSION_A1" or self.__mission_name == "MISSION_A2"):
-                self.__api_backend.createPallet(self.__mission_name)
+            # if (self.__mission_name == "MISSION_A1" or self.__mission_name == "MISSION_A2"):
+            #     self.__api_backend.createPallet(self.__mission_name)
+            # elif (self.__mission_name == "MISSION_A1" or self.__mission_name == "MISSION_A2"):
+            #     self.__redis.hdel(
+            #         HandlePalletConfig.PALLET_DATA_MANAGEMENT, 
+            #         HandlePalletConfig.EMPTY_INPUT_PALLET_DATA
+            #     )
 
+            if self.__mission_name.replace("MISSION_", "") in INPUT_PALLET_CONFIGS:
+                self.__api_backend.createPallet(self.__mission_name)
+            elif self.__mission_name.replace("MISSION_", "") in INPUT_EMPTY_PALLET_CONFIGS:
+                self.__redis.hdel(
+                    HandlePalletConfig.PALLET_DATA_MANAGEMENT, 
+                    HandlePalletConfig.EMPTY_INPUT_PALLET_DATA
+                )
 
             # Chờ đến khi dừng tại vị trí lấy pallet đi ra
             self.performTask(

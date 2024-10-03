@@ -16,8 +16,18 @@ CFG_MONGODB     = config_all['CFG_MONGODB']
 URL_GMS         = config_all['CFG_RCS']['url_gms']
 URL_RMS         = config_all['CFG_RCS']['url_rms']
 
-DOCK_CONFIGS = {
+
+INPUT_PALLET_CONFIGS = {
     dock: {**config_all[f'MISSION_{dock}'], 'name': f'MISSION_{dock}'}
-    for dock in ["A1", "A2", "A3", "O1", "O2", "O3", "M1", "M2", "M3", "M4"]
-    # for dock in ["M4"]
+    for dock in ["A1", "A2"]
+}
+
+INPUT_EMPTY_PALLET_CONFIGS = {
+    dock: {**config_all[f'MISSION_{dock}'], 'name': f'MISSION_{dock}'}
+    for dock in ["O3", "M4"]
+}
+
+OUTPUT_PALLET_CONFIGS = {
+    dock: {**config_all[f'MISSION_{dock}'], 'name': f'MISSION_{dock}'}
+    for dock in ["A3", "O1", "O2", "M1", "M2", "M3"]
 }

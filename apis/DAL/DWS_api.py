@@ -72,15 +72,15 @@ class DWSResult(ApiBase):
             HandlePalletConfig.QUANTITY_FROM_PLC
         )
 
+        # LẤY DỮ LIỆU PALLET ĐANG CHẠY
+        data_pallet_carton_input = self.__redis_cache.get_first_element(HandlePalletConfig.LIST_PALLET_RUNNING)
+        data_pallet_carton_input = json.loads(data_pallet_carton_input)
+
         # Kiểm tra điều kiện để kết thúc pallet
         if int(current_quantity_PLC) == 1 and (int(quantity_carton_DWS) + 1) >= int(data_pallet_carton_input["carton_pallet_qty"]):
             print("DONE PALLET")
             self.__call_backend.UpdateSttPalletCarton(data_pallet_carton_input["_id"])
 
-
-        # Bắt đầu pallet khacs
-        data_pallet_carton_input = self.__redis_cache.get_first_element(HandlePalletConfig.LIST_PALLET_RUNNING)
-        data_pallet_carton_input = json.loads(data_pallet_carton_input)
 
         if DWS_result:
             # update số lượng carton dws đếm được
@@ -116,6 +116,7 @@ class DWSResult(ApiBase):
             # Tạo data cho máy in
             data_print_lable = {
                 "material_code" : data_pallet_carton_input["material_code"],
+                "material_name" : data_pallet_carton_input["material_name"],
                 "vendor_batch"  : data_pallet_carton_input["vendor_batch"],
                 "sap_batch"     : data_pallet_carton_input["sap_batch"],
                 "expire_date"   : data_pallet_carton_input["expiry_date"],

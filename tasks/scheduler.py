@@ -11,7 +11,7 @@ class ScheduleThread():
 
     def __run_schedule(self):
         print("SCHEDUAL START")
-        schedule.every().monday.at("06:00").do(dal_server.get_token_bearer_backend)
+        schedule.every().tuesday.at("06:00").do(dal_server.get_token_bearer_backend)
         while True:
             schedule.run_pending()
             time.sleep(60.0) 

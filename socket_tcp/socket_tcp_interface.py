@@ -49,7 +49,7 @@ class SocketTCP:
         self.close()
         while not self.socket_conn:
             self.connect()
-            time.sleep(0.5)
+            time.sleep(1.0)
 
     def receive(self, buffer_size=1024):
         """Receive data from the socket with a buffer size."""
