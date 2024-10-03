@@ -75,7 +75,7 @@ class DatabaseConnection:
         collection = self.get_collection(Collection.CARTON_STATES)
 
         info_mision  = collection.find_one({"carton_code": carton_code})
-        print(f"Searching for carton_code: {carton_code}")
+        # print(f"Searching for carton_code: {carton_code}")
         # print(info_mision)
         if info_mision and 'final_result' in info_mision:
             return info_mision["final_result"]

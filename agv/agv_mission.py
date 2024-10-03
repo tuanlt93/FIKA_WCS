@@ -154,25 +154,32 @@ class MissionHandle(MissionBase):
             self.__shelf
         )
 
-        if self.__workflow_type == "PALLET_INPUT":
-            # Bind shelf lại vị trí đệm
-            self.performTask(
-                self.bindShelf, 
-                self.__temp_location, 
-                self.__shelf, 
-                self.__angle_shelf
-            )
+        # if self.__workflow_type == "PALLET_INPUT":
+        #     # Bind shelf lại vị trí đệm
+        #     self.performTask(
+        #         self.bindShelf, 
+        #         self.__temp_location, 
+        #         self.__shelf, 
+        #         self.__angle_shelf
+        #     )
 
-            # update shelf vào vị trí pallet cần lấy
-            self.performTask(
-                self.undateSheft, 
-                self.__bindShelf_locationCode, 
-                self.__shelf, 
-                self.__angle_shelf
-            )
-        elif self.__workflow_type == "PALLET_OUTPUT":
-            # Bind shelf lại vị trí có pallet cần đến lấy
-            self.performTask(
+        #     # update shelf vào vị trí pallet cần lấy
+        #     self.performTask(
+        #         self.undateSheft, 
+        #         self.__bindShelf_locationCode, 
+        #         self.__shelf, 
+        #         self.__angle_shelf
+        #     )
+        # elif self.__workflow_type == "PALLET_OUTPUT":
+        #     # Bind shelf lại vị trí có pallet cần đến lấy
+        #     self.performTask(
+        #         self.bindShelf, 
+        #         self.__bindShelf_locationCode, 
+        #         self.__shelf, 
+        #         self.__angle_shelf
+        #     )
+
+        self.performTask(
                 self.bindShelf, 
                 self.__bindShelf_locationCode, 
                 self.__shelf, 
@@ -219,14 +226,15 @@ class MissionHandle(MissionBase):
 
             # Kiểm tra trạng thái thang máy lên xem có phải đang auto hay không
             temp_elevator_up = False
-            while temp_elevator_up:
+            while not temp_elevator_up:
+                print("KIEM TRA MANUAL THANG DI LEN")
                 status_elevator_up = self.__redis.hget(DeviceConfig.STATUS_ALL_DEVICES, DeviceConfig.STATUS_ELEVATOR_AREA)
                 if (
                     (status_elevator_up == DeviceConfig.ALL_ELEVATOR_AREA_AUTO) or 
-                    (status_elevator_up == DeviceConfig.ELEVATOR_UP_AREA_MANUAL)
+                    (status_elevator_up == DeviceConfig.ELEVATOR_DOWN_AREA_MANUAL)
                 ):
                     temp_elevator_up = True
-                    time.sleep(5)
+                time.sleep(5)
 
 
 
@@ -309,14 +317,15 @@ class MissionHandle(MissionBase):
 
             # Kiểm tra trạng thái thang máy xuống xem có phải đang auto hay không
             temp_elevator_down = False
-            while temp_elevator_down:
+            while not temp_elevator_down:
+                print("KIEM TRA MANUAL THANG DI XUONG")
                 status_elevator_down = self.__redis.hget(DeviceConfig.STATUS_ALL_DEVICES, DeviceConfig.STATUS_ELEVATOR_AREA)
                 if (
                     (status_elevator_down == DeviceConfig.ALL_ELEVATOR_AREA_AUTO) or 
-                    (status_elevator_down == DeviceConfig.ELEVATOR_DOWN_AREA_MANUAL)
+                    (status_elevator_down == DeviceConfig.ELEVATOR_UP_AREA_MANUAL)
                 ):
                     temp_elevator_down = True
-                    time.sleep(5)
+                time.sleep(5)
 
 
             # Thông báo đã đi vào dock thang máy đi xuống

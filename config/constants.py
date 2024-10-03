@@ -187,10 +187,8 @@ class RegisterConfig:
         30: [DeviceConfig.STATUS_DOCK_M1, DeviceConfig.DOCK_EMPTY, DeviceConfig.DOCK_FULL],
         31: [DeviceConfig.STATUS_DOCK_M2, DeviceConfig.DOCK_EMPTY, DeviceConfig.DOCK_FULL],
         32: [DeviceConfig.STATUS_DOCK_M3, DeviceConfig.DOCK_EMPTY, DeviceConfig.DOCK_FULL],
-        33: [DeviceConfig.STATUS_DOCK_M4, DeviceConfig.DOCK_EMPTY, DeviceConfig.DOCK_FULL],
+        33: [DeviceConfig.STATUS_DOCK_M4, DeviceConfig.DOCK_FULL, DeviceConfig.DOCK_FULL],
 
-
-        
 
         92: [DeviceConfig.STATUS_ELEVATOR_AREA, DeviceConfig.ALL_ELEVATOR_AREA_AUTO ,DeviceConfig.ELEVATOR_UP_AREA_MANUAL, DeviceConfig.ELEVATOR_DOWN_AREA_MANUAL, DeviceConfig.ALL_ELEVATOR_AREA_MANUAL],
 

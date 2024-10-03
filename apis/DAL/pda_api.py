@@ -68,6 +68,22 @@ class PDA_Input(ApiBase):
     
     @ApiBase.exception_error
     def post(self):
+        """
+        datas = {
+                'material_code': '21242682', 
+                'material_name': "KABIVEN PERIPHERAL INJ 1440ML BAG 4'S", 
+                'vendor_batch': 'M1151B05', 
+                'sap_batch': 'F-M1151B05', 
+                'expiry_date': '06/09/2026', 
+                'layer_pallet': '3', 
+                'carton_pallet_qty': '27', 
+                'standard_length': '590', 
+                'standard_width': '376', 
+                'standard_height': '100', 
+                'standard_weight': '7436.67', 
+                'standard_item_carton': '1'
+            }
+        """
         args = ResponseFomat.API_PDA_INPUT
         datas = self.jsonParser(args, args)
         print(datas)
@@ -80,6 +96,33 @@ class PDA_Input(ApiBase):
         return ApiBase.createResponseMessage({}, "Creat pallet input successful")
 
 
+class PDA_Pallet_Empty_Input(ApiBase):
+    """
+        datas = {
+            "type": "dock_empty_pallet"
+        }
+    """
+    urls = ("/pda/pallet",)
+
+    def __init__(self) -> None:
+        self.__logger = Logger()
+        self.__redis_cache = redis_cache
+        return super().__init__()
+    
+    @ApiBase.exception_error
+    def post(self):
+        
+        args = ResponseFomat.API_PDA_INPUT
+        datas = self.jsonParser(args, args)
+        print(datas)
+        datas_json = json.dumps(datas)
+        self.__redis_cache.hset(
+            HandlePalletConfig.PALLET_DATA_MANAGEMENT,
+            HandlePalletConfig.PALLET_INPUT_DATA,
+            datas_json
+        )
+        return ApiBase.createResponseMessage({}, "Creat empty pallet successful")
+    
 
     # @ApiBase.exception_error
     # def post(self):

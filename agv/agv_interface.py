@@ -518,10 +518,10 @@ class MissionBase:
         try:
             res = requests.post(self.__url_gms, json= request_body)
             response = res.json()
-            #print(response)
+            # print(response)
             if response['header']['code'] == '0':
                 return True
-                        
+        
         except Exception as e:
             print("EMERGENCY INFO ROBOT ERROR", str(e))
         return False

@@ -49,7 +49,7 @@ class DWSResult(ApiBase):
 
         return super().__init__()
 
-    @ApiBase.exception_error
+    # @ApiBase.exception_error
     def post(self):
         """
         DWS_RESULT = [

@@ -148,25 +148,25 @@ MISSION_M3:
   angle_shelf             : '0'
 
 
-# MISSION_M4:
-#   workflow_code           : 'F11'
-#   workflow_type           : 'PALLET_INPUT'
-#   temp_location           : '11'
-#   bindShelf_locationCode  : '00000100'
-#   destination             : '00000039'
-#   workflow_type_triger    : '00000095'
-#   area                    : 'MANUAL'
-#   shelf                   : '000111'
-#   angle_shelf             : '90'
-
-
 MISSION_M4:
-  workflow_code           : 'F12'
+  workflow_code           : 'F11'
   workflow_type           : 'PALLET_INPUT'
   temp_location           : '11'
-  bindShelf_locationCode  : '00000033'
-  destination             : '00000040'
-  workflow_type_triger    : '00000034'
+  bindShelf_locationCode  : '00000100'
+  destination             : '00000039'
+  workflow_type_triger    : '00000095'
   area                    : 'MANUAL'
-  shelf                   : '000102'
+  shelf                   : '000111'
   angle_shelf             : '90'
+
+
+# MISSION_M4:
+#   workflow_code           : 'F12'
+#   workflow_type           : 'PALLET_INPUT'
+#   temp_location           : '11'
+#   bindShelf_locationCode  : '00000033'
+#   destination             : '00000040'
+#   workflow_type_triger    : '00000034'
+#   area                    : 'MANUAL'
+#   shelf                   : '000102'
+#   angle_shelf             : '90'
