@@ -143,8 +143,10 @@ class DeviceConfig:
 
     #Khu vực thang máy
     STATUS_ELEVATOR_AREA        = "STATUS_ELEVATOR_AREA"
-    ELEVATOR_AREA_REDRESSING    = "ELEVATOR_AREA_REDRESSING"
-    ELEVATOR_AREA_WORKING       = "ELEVATOR_AREA_WORKING"  
+    ALL_ELEVATOR_AREA_AUTO      = "ALL_ELEVATOR_AREA_AUTO"
+    ELEVATOR_UP_AREA_MANUAL     = "ELEVATOR_UP_AREA_MANUAL"
+    ELEVATOR_DOWN_AREA_MANUAL   = "ELEVATOR_DOWN_AREA_MANUAL"  
+    ALL_ELEVATOR_AREA_MANUAL    = "ALL_ELEVATOR_AREA_MANUAL"
 
     # Trạng thái 2 tele scope vị trí thang máy lên và xuống
     STATUS_ELEVATOR_LIFTING_UP      = "STATUS_ELEVATOR_LIFTING_UP"
@@ -185,14 +187,16 @@ class RegisterConfig:
         30: [DeviceConfig.STATUS_DOCK_M1, DeviceConfig.DOCK_EMPTY, DeviceConfig.DOCK_FULL],
         31: [DeviceConfig.STATUS_DOCK_M2, DeviceConfig.DOCK_EMPTY, DeviceConfig.DOCK_FULL],
         32: [DeviceConfig.STATUS_DOCK_M3, DeviceConfig.DOCK_EMPTY, DeviceConfig.DOCK_FULL],
+        33: [DeviceConfig.STATUS_DOCK_M4, DeviceConfig.DOCK_EMPTY, DeviceConfig.DOCK_FULL],
 
 
-        33: [DeviceConfig.STATUS_EMERGENCY_STOP, DeviceConfig.EMERGENCY_OFF, DeviceConfig.EMERGENCY_ON],
+        
 
-        92: [DeviceConfig.STATUS_ELEVATOR_AREA, DeviceConfig.ELEVATOR_AREA_WORKING, DeviceConfig.ELEVATOR_AREA_REDRESSING],
+        92: [DeviceConfig.STATUS_ELEVATOR_AREA, DeviceConfig.ALL_ELEVATOR_AREA_AUTO ,DeviceConfig.ELEVATOR_UP_AREA_MANUAL, DeviceConfig.ELEVATOR_DOWN_AREA_MANUAL, DeviceConfig.ALL_ELEVATOR_AREA_MANUAL],
 
         95: [DeviceConfig.STATUS_ELEVATOR_LIFTING_UP, DeviceConfig.ELEVATOR_LIFTING_BUSY, DeviceConfig.ELEVATOR_LIFTING_READY],
         96: [DeviceConfig.STATUS_ELEVATOR_LIFTING_DOWN, DeviceConfig.ELEVATOR_LIFTING_BUSY, DeviceConfig.ELEVATOR_LIFTING_READY],
+        97: [DeviceConfig.STATUS_EMERGENCY_STOP, DeviceConfig.EMERGENCY_OFF, DeviceConfig.EMERGENCY_ON],
 
     }
 

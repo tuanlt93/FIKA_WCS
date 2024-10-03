@@ -164,6 +164,18 @@ class PLCController(metaclass= Singleton):
                                             int(response["standard_width"])
                                             ])
 
+    def update_actual_carton_pallet(self, actual_carton_pallet: int):
+        pallet_processed = self.__redis_cache.hget(
+                DeviceConfig.STATUS_ALL_DEVICES, 
+                HandlePalletConfig.PALLET_PROCESSED   
+            )
+        print(pallet_processed)
+        if pallet_processed == HandlePalletConfig.PALLET_DOCK_A1:
+            self.__PLC_interface.write_data(address= 4, value= [int(actual_carton_pallet)])
+        elif pallet_processed == HandlePalletConfig.PALLET_DOCK_A2:
+            self.__PLC_interface.write_data(address= 9, value= [int(actual_carton_pallet)])
+                                        
+
     def send_info_pallet_A2(self, response: dict):
         self.__PLC_interface.write_data(address= 5, value= [int(response["layer_pallet"]), 
                                         int(response["standard_height"]),
@@ -206,13 +218,15 @@ class PLCController(metaclass= Singleton):
         elif area == "O":
             self.__PLC_interface.write_data(address= 14, value= [0])
 
-    def request_sort_ng(self):
+
+    # Tranfer
+    def request_tranfer_ng(self):
         self.__PLC_interface.write_data(address= 35, value= [1])
     
-    def request_sort_ok(self):
+    def request_tranfer_ok(self):
         self.__PLC_interface.write_data(address= 35, value= [0])
     
-    def done_request_sort(self):
+    def done_request_tranfer(self):
         self.__PLC_interface.write_data(address= 35, value= [0])
 
     # MARKEM

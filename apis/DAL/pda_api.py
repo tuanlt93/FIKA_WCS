@@ -10,6 +10,7 @@ from config.constants import HandleCartonConfig, HandlePalletConfig, TOPIC_WCS_P
 from apis.response_format import ResponseFomat, BE_TypeCartonError
 from db_redis import redis_cache
 from database import db_connection
+from PLC import PLC_controller
 
 
 
@@ -65,7 +66,7 @@ class PDA_Input(ApiBase):
         self.__redis_cache = redis_cache
         return super().__init__()
     
-    # @ApiBase.exception_error
+    @ApiBase.exception_error
     def post(self):
         args = ResponseFomat.API_PDA_INPUT
         datas = self.jsonParser(args, args)
@@ -170,12 +171,12 @@ class ConfirmQtyPalletCarton(ApiBase):
         self.__api_backend = CallApiBackEnd()
         self.__confirm_carton_state = self.__api_backend.confirmCartonState
         self.__get_carton_pallet = self.__api_backend.palletInfo
-
+        self.__PLC_controller = PLC_controller
         self.__redis_cache = redis_cache
         self.__logger = Logger()
         return super().__init__()
 
-    @ApiBase.exception_error
+    # @ApiBase.exception_error
     def get(self):
 
         status_pallet_running = self.__redis_cache.hget(DeviceConfig.STATUS_ALL_DEVICES, HandlePalletConfig.STATUS_PALLET_RUNNING)
@@ -212,24 +213,20 @@ class ConfirmQtyPalletCarton(ApiBase):
 
     @ApiBase.exception_error
     def post(self):
+        """
+            data = {
+                "carton_pallet_code" : datas['pallet_code'],
+                "carton_pallet_qty" : datas['actual_carton_pallet']
+            }
+        """
         args = ResponseFomat.API_PDA_CONFIRM_QTY
         datas = self.jsonParser(args, args)
-        data = {
-            "carton_pallet_code" : datas['pallet_code'],
-            "carton_pallet_qty" : datas['actual_carton_pallet']
-        }
-
-        print(data)
-
-        response = self.__confirm_carton_state(data)
-        if response.status_code != 201:
-            response = response.json()
-            return ApiBase.createResponseMessage({}, response['message'], response['statusCode'], response['statusCode'])
-        else:
-            response = response.json()
-            return ApiBase.createResponseMessage({}, response['msg'])
+        actual_carton_pallet = datas['actual_carton_pallet']
         
-
+        print(actual_carton_pallet)
+        self.__PLC_controller.update_actual_carton_pallet(actual_carton_pallet)
+        # response = self.__confirm_carton_state(data)
+        return ApiBase.createResponseMessage({}, 'Ok')
 
 
 

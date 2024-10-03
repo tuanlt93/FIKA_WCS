@@ -69,3 +69,15 @@ class DatabaseConnection:
         info_mision  = collection.find_one({"task_code": mission_name})
         
         return info_mision
+    
+    def get_final_result_carton(self, carton_code: str) -> str:
+        carton_code = carton_code.rstrip(';')
+        collection = self.get_collection(Collection.CARTON_STATES)
+
+        info_mision  = collection.find_one({"carton_code": carton_code})
+        print(f"Searching for carton_code: {carton_code}")
+        # print(info_mision)
+        if info_mision and 'final_result' in info_mision:
+            return info_mision["final_result"]
+        else:
+            return "NG"

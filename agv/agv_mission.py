@@ -215,7 +215,21 @@ class MissionHandle(MissionBase):
                 AGVConfig.WORKFLOW_OUTPUT, 
                 AGVConfig.AGV_DIRECTION_ENTER
             )
-           
+            
+
+            # Kiểm tra trạng thái thang máy lên xem có phải đang auto hay không
+            temp_elevator_up = False
+            while temp_elevator_up:
+                status_elevator_up = self.__redis.hget(DeviceConfig.STATUS_ALL_DEVICES, DeviceConfig.STATUS_ELEVATOR_AREA)
+                if (
+                    (status_elevator_up == DeviceConfig.ALL_ELEVATOR_AREA_AUTO) or 
+                    (status_elevator_up == DeviceConfig.ELEVATOR_UP_AREA_MANUAL)
+                ):
+                    temp_elevator_up = True
+                    time.sleep(5)
+
+
+
             # Thông báo đã vào trong dock thang máy đi lên
             self.__PLC_controller.AGV_status_is_in_lifting_up()
 
@@ -291,6 +305,19 @@ class MissionHandle(MissionBase):
                 AGVConfig.AGV_DIRECTION_ENTER,
                 requirement = DeviceConfig.LINE_CURTAIN_CLOSE
             )
+
+
+            # Kiểm tra trạng thái thang máy xuống xem có phải đang auto hay không
+            temp_elevator_down = False
+            while temp_elevator_down:
+                status_elevator_down = self.__redis.hget(DeviceConfig.STATUS_ALL_DEVICES, DeviceConfig.STATUS_ELEVATOR_AREA)
+                if (
+                    (status_elevator_down == DeviceConfig.ALL_ELEVATOR_AREA_AUTO) or 
+                    (status_elevator_down == DeviceConfig.ELEVATOR_DOWN_AREA_MANUAL)
+                ):
+                    temp_elevator_down = True
+                    time.sleep(5)
+
 
             # Thông báo đã đi vào dock thang máy đi xuống
             self.__PLC_controller.AGV_status_is_in_lifting_down()

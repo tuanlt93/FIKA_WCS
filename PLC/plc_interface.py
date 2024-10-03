@@ -17,10 +17,14 @@ class PLCSInterface():
         self.__host = kwargs.get('host', "192.168.31.3")
         self.__port = kwargs.get('port', 502)
         self.__timeout = kwargs.get('timeout', 1)
-        self.__slave_id = kwargs.get('unit', 1)
-        self.__lock = threading.Lock()
+        self.__slave_id = kwargs.get('unit', 16)
+        self.__lock     = threading.Lock()
         self.__connected = False
         self.__client = None
+        self.__error_count = 0
+        self.__max_backoff = 60.0  # Giới hạn thời gian backoff tối đa là 60 giây
+        self.__min_backoff = 0.1  # Thời gian chờ tối thiểu là 0.1 giây
+        self.__backoff_time = self.__min_backoff
         self.__connect()
 
     def __connect(self):
@@ -32,13 +36,25 @@ class PLCSInterface():
             )
             if self.__client.connect():
                 self.__connected = True
+                self.__error_count = 0  # Reset số lỗi
+                self.__backoff_time = self.__min_backoff  # Reset thời gian backoff
                 print(f"Successfully connected to PLC at {self.__host}:{self.__port}")
             else:
-                # print(f"Failed to connect to PLC at {self.__host}:{self.__port}")
-                pass
+                raise ConnectionError("Failed to connect to PLC")
         except Exception as e:
-            # print(f"Error connecting to PLC: {e}")
-            self.__connect()
+            self.__handle_connection_error(e)
+
+
+    def __handle_connection_error(self, error):
+        self.__connected = False
+        self.__error_count += 1
+        print(f"Error: {error}, Error count: {self.__error_count}")
+
+        # Tăng thời gian backoff theo cấp số nhân nhưng không vượt quá giới hạn
+        self.__backoff_time = min(self.__backoff_time * 2, self.__max_backoff)
+        print(f"Backing off for {self.__backoff_time} seconds before retrying.")
+        time.sleep(self.__backoff_time)
+
 
     def read_data(self, num_register: int) -> list:
         """

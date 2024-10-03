@@ -29,6 +29,9 @@ class ManagerMission(metaclass= Singleton):
         }
 
         self.__start_background_task()
+    
+    def test_single(self):
+        return self.__PLC_controller
 
     def __start_background_task(self):
         background_thread = threading.Thread(target=self.__task_robots)
