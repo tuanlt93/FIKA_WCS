@@ -24,13 +24,15 @@ class SocketTCP:
 
         # Bật TCP keep-aliv
         self.socket_conn.setsockopt(socket.SOL_SOCKET, socket.SO_KEEPALIVE, 1)
-
+        
         self.socket_conn.setsockopt(socket.IPPROTO_TCP, socket.TCP_KEEPIDLE, 30)    # Thời gian không hoạt động trước khi gửi gói keep-alive (giây)
         self.socket_conn.setsockopt(socket.IPPROTO_TCP, socket.TCP_KEEPINTVL, 1)    # Thời gian giữa các gói keep-alive (giây)
         self.socket_conn.setsockopt(socket.IPPROTO_TCP, socket.TCP_KEEPCNT, 5)      # Số gói keep-alive không nhận được phản hồi trước khi coi là mất kết nối
 
         try:
             self.socket_conn.connect((self.__host, self.__port))
+            self.__PLC_controller.status_markem_connect()
+
             print(f"Connected to {self.__host}:{self.__port}")
         except socket.timeout:
             print(f"Connection to {self.__host}:{self.__port} timed out after {self.__timeout} seconds.")

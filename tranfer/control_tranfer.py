@@ -26,8 +26,9 @@ class TranferHandle():
     def __handle_tranfer(self, message):
         if message:
             result = self.__db_connection.get_final_result_carton(message)
-            print(result)
+            
             if result == HandleCartonConfig.OK:
+                print(result)
                 self.__PLC_controller.request_tranfer_ok()
             else:   
                 self.__PLC_controller.request_tranfer_ng()

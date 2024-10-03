@@ -115,12 +115,12 @@ class PDA_Pallet_Empty_Input(ApiBase):
         args = ResponseFomat.API_PDA_INPUT
         datas = self.jsonParser(args, args)
         print(datas)
-        datas_json = json.dumps(datas)
-        self.__redis_cache.hset(
-            HandlePalletConfig.PALLET_DATA_MANAGEMENT,
-            HandlePalletConfig.PALLET_INPUT_DATA,
-            datas_json
-        )
+        # datas_json = json.dumps(datas)
+        # self.__redis_cache.hset(
+        #     HandlePalletConfig.PALLET_DATA_MANAGEMENT,
+        #     HandlePalletConfig.PALLET_INPUT_DATA,
+        #     datas_json
+        # )
         return ApiBase.createResponseMessage({}, "Creat empty pallet successful")
     
 

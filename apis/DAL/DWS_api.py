@@ -73,7 +73,7 @@ class DWSResult(ApiBase):
         )
 
         # Kiểm tra điều kiện để kết thúc pallet
-        if int(current_quantity_PLC) == 0 and (int(quantity_carton_DWS) + 1) >= int(data_pallet_carton_input["carton_pallet_qty"]):
+        if int(current_quantity_PLC) == 1 and (int(quantity_carton_DWS) + 1) >= int(data_pallet_carton_input["carton_pallet_qty"]):
             print("DONE PALLET")
             self.__call_backend.UpdateSttPalletCarton(data_pallet_carton_input["_id"])
 
