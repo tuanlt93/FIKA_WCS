@@ -63,6 +63,8 @@ class HandlePalletConfig:
     # List dữ liệu pallet rỗng đầu vào 
     EMPTY_INPUT_PALLET_DATA     = "EMPTY_INPUT_PALLET_DATA"
 
+    LIST_NUMBER_CARTON_START_NEW_PALLET = [0,1,2,3]
+
 
 
 class HandleCartonConfig:

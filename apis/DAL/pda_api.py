@@ -114,7 +114,14 @@ class PDA_Pallet_Empty_Input(ApiBase):
         
         args = ResponseFomat.API_PDA_PALLET
         datas = self.jsonParser(args, args)
-        print(datas)
+        # print(datas)
+        data_empty_input_pallet = self.__redis_cache.hget(
+            HandlePalletConfig.PALLET_DATA_MANAGEMENT,
+            HandlePalletConfig.EMPTY_INPUT_PALLET_DATA,
+        )
+        # print(data_empty_input_pallet)
+        if data_empty_input_pallet:
+            return ApiBase.createNotImplement()
         datas_json = json.dumps(datas)
         self.__redis_cache.hset(
             HandlePalletConfig.PALLET_DATA_MANAGEMENT,
@@ -122,8 +129,40 @@ class PDA_Pallet_Empty_Input(ApiBase):
             datas_json
         )
         return ApiBase.createResponseMessage({}, "Creat empty pallet successful")
-    
+        
 
+
+class PDA_Call_AGV(ApiBase):
+    """
+        datas = {
+            "location": "reject"
+        }
+    """
+    urls = ("/pda/call/agv",)
+
+    def __init__(self) -> None:
+        self.__logger = Logger()
+        self.__redis_cache = redis_cache
+        return super().__init__()
+    
+    @ApiBase.exception_error
+    def post(self):
+        
+        args = ResponseFomat.API_CALL_AGV
+        datas = self.jsonParser(args, args)
+        status_dock_reject = self.__redis_cache.hget(
+                DeviceConfig.STATUS_ALL_DEVICES,
+                DeviceConfig.STATUS_DOCK_M4,
+            )
+
+        if datas["location"] == "reject" and status_dock_reject == DeviceConfig.DOCK_FULL:
+            self.__redis_cache.hset(
+                DeviceConfig.STATUS_ALL_DEVICES,
+                DeviceConfig.STATUS_DOCK_M4,
+                DeviceConfig.DOCK_EMPTY,
+            )
+            return ApiBase.createResponseMessage({}, "Creat empty pallet successful")
+        return ApiBase.createNotImplement()
     # @ApiBase.exception_error
     # def post(self):
     #     args = ResponseFomat.API_PDA_INPUT
@@ -610,7 +649,7 @@ class PdaPrintPresent(ApiBase):
                 datas['material_id'] = datas['carton_pallet_id']['material_id']['_id']
                 datas['vendor_batch'] = datas['carton_pallet_id']['vendor_batch']
                 datas['sap_batch'] = datas['carton_pallet_id']['sap_batch']
-                datas['expiry_date'] = VnTimestamp.get_ddmmyyy_to_timestamp(datas['carton_pallet_id']['expiry_date'])
+                datas['expiry_date'] =(datas['carton_pallet_id']['expiry_date'])
                 datas['carton_pallet_id'] = datas['carton_pallet_id']['_id']
                 return ApiBase.createResponseMessage(datas, response['msg'])
         return ApiBase.createNotImplement() 
@@ -621,6 +660,24 @@ class PdaPrintPresent(ApiBase):
 class PdaQuarantined(ApiBase):
     """
         Màn hình print Quarantined
+        {
+            'carton_pallet_id': '6700642d5f516595b38ff7c8', 
+            'actual_item_carton': '20'
+        }
+        {
+            "msg":"Tạo mới thành công",
+            "metaData":
+                {"carton_code":"Quarantined,21242682,M1151B05,20241004,2,1",
+                "carton_pallet_id":"6700642d5f516595b38ff7c8",
+                "actual_item_carton":20,
+                "link":"",
+                "description":"",
+                "_id":"67006895b47a9a77a03e7cbc",
+                "time":"2024-10-04T22:13:41.562Z",
+                "createdAt":"2024-10-04T22:13:41.565Z",
+                "updatedAt":"2024-10-04T22:13:41.565Z",
+                "__v":0
+        }}
     """
     urls = ("/pda/quarantined",)
 
@@ -631,12 +688,14 @@ class PdaQuarantined(ApiBase):
         return super().__init__()
 
     @ApiBase.exception_error
+
     def post(self):
         args = ResponseFomat.API_QUARANTINED
         datas = self.jsonParser(args, args)
+        print("---------------")
         print(datas)
         response = self.__create_quarantined(datas)
-        print(response)
+        print(response.text)
         if response.status_code != 201:
             response = response.json()
             return ApiBase.createResponseMessage({}, response['message'], response['statusCode'], response['statusCode'])

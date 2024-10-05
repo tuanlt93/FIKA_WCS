@@ -60,113 +60,123 @@ class DWSResult(ApiBase):
         args = ResponseFomat.DWS_RESULT
         DWS_result = self.jsonParser(args, args)
         print(DWS_result)
+
+        # Thùng cặp kè
         if DWS_result["weight"] == -1:
             self.__PLC_controller.notify_error_two_cartons()
-            print("HAI THUNG")
             return ApiBase.createNotImplement()
         
         
-        # Lấy số lượng từ đếm thùng từ PLC
-        current_quantity_PLC = self.__redis_cache.hget(
+        # Lấy số lượng từ đếm thùng từ PLC và DWS chỉ một lần
+        current_quantity_PLC = int(self.__redis_cache.hget(
             HandlePalletConfig.NUMBER_CARTON_OF_PALLET, 
             HandlePalletConfig.QUANTITY_FROM_PLC
-        )
+        ))
+        quantity_carton_DWS = int(self.__redis_cache.hget(
+            HandlePalletConfig.NUMBER_CARTON_OF_PALLET, 
+            HandlePalletConfig.QUANTITY_FROM_DWS
+        ))
 
         # LẤY DỮ LIỆU PALLET ĐANG CHẠY
         data_pallet_carton_input = self.__redis_cache.get_first_element(HandlePalletConfig.LIST_PALLET_RUNNING)
         data_pallet_carton_input = json.loads(data_pallet_carton_input)
 
+
         # Kiểm tra điều kiện để kết thúc pallet
-        if int(current_quantity_PLC) == 1 and (int(quantity_carton_DWS) + 1) >= int(data_pallet_carton_input["carton_pallet_qty"]):
-            print("DONE PALLET")
+        if (
+            (current_quantity_PLC in HandlePalletConfig.LIST_NUMBER_CARTON_START_NEW_PALLET) and 
+            (quantity_carton_DWS + 1) >= data_pallet_carton_input["carton_pallet_qty"]
+        ):
+            
             self.__call_backend.UpdateSttPalletCarton(data_pallet_carton_input["_id"])
+            quantity_carton_DWS = 0
+            print("DONE PALLET")
 
 
-        if DWS_result:
-            # update số lượng carton dws đếm được
-            quantity_carton_DWS = self.__redis_cache.hget(
-                HandlePalletConfig.NUMBER_CARTON_OF_PALLET, 
-                HandlePalletConfig.QUANTITY_FROM_DWS
-            )
+        # # Lấy số lượng carton DWS đếm được
+        # quantity_carton_DWS = self.__redis_cache.hget(
+        #     HandlePalletConfig.NUMBER_CARTON_OF_PALLET, 
+        #     HandlePalletConfig.QUANTITY_FROM_DWS
+        # )
 
-            # Kiểm tra điều kiện để bắt đầu pallet
-            if (int(quantity_carton_DWS) + 1) == 1:
-                self.__call_backend.startPalletCarton()
+        # Kiểm tra điều kiện để bắt đầu pallet
+        if (quantity_carton_DWS + 1) == 1:
+            self.__call_backend.startPalletCarton()
+
+        check_carton_print, check_carton_backend = self.__check_range(
+            DWS_result["length"],
+            DWS_result["width"],
+            DWS_result["height"],
+            DWS_result["weight"] * 1000,
+            DWS_result["status"],
+            float(data_pallet_carton_input["standard_length"]),
+            float(data_pallet_carton_input["standard_width"]),
+            float(data_pallet_carton_input["standard_height"]),
+            float(data_pallet_carton_input["standard_weight"]),
+            (quantity_carton_DWS + 1)
+        )
+        
+        # Tạo data cho máy in
+        data_print_lable = {
+            "material_code" : data_pallet_carton_input["material_code"],
+            "material_name" : data_pallet_carton_input["material_name"],
+            "vendor_batch"  : data_pallet_carton_input["vendor_batch"],
+            "sap_batch"     : data_pallet_carton_input["sap_batch"],
+            "expire_date"   : data_pallet_carton_input["expiry_date"],
+            "quantity"      : data_pallet_carton_input["carton_pallet_qty"],
+            "carton_id"     : (
+                data_pallet_carton_input["carton_pallet_code"] + "," +
+                str(quantity_carton_DWS + 1) + "," +
+                check_carton_print  +";"
+            )   
+        }
+        self.__redis_cache.append_to_list(MarkemConfig.DATA_CARTON_LABLE_PRINT, data_print_lable)
 
 
-            self.__redis_cache.hset(
-                HandlePalletConfig.NUMBER_CARTON_OF_PALLET, 
-                HandlePalletConfig.QUANTITY_FROM_DWS,
-                int(quantity_carton_DWS) + 1
-            )
 
-            check_carton_print, check_carton_backend = self.__check_range(
-                DWS_result["length"],
-                DWS_result["width"],
-                DWS_result["height"],
-                DWS_result["weight"] * 1000,
-                DWS_result["status"],
-                float(data_pallet_carton_input["standard_length"]),
-                float(data_pallet_carton_input["standard_width"]),
-                float(data_pallet_carton_input["standard_height"]),
-                float(data_pallet_carton_input["standard_weight"]),
-                int(quantity_carton_DWS) + 1
-            )
-            
-            # Tạo data cho máy in
-            data_print_lable = {
-                "material_code" : data_pallet_carton_input["material_code"],
-                "material_name" : data_pallet_carton_input["material_name"],
-                "vendor_batch"  : data_pallet_carton_input["vendor_batch"],
-                "sap_batch"     : data_pallet_carton_input["sap_batch"],
-                "expire_date"   : data_pallet_carton_input["expiry_date"],
-                "quantity"      : data_pallet_carton_input["carton_pallet_qty"],
-                "carton_id"     : (
-                    data_pallet_carton_input["carton_pallet_code"] + "," +
-                    str(int(quantity_carton_DWS) + 1) + "," +
-                    check_carton_print  +";"
-                )   
+        """
+            Tao moi 1 luong chay qc carton
+            {
+                "carton_code": "string",
+                "carton_pallet_id": "string",
+                "dws_result": "string",
+                "actual_length": 0,
+                "actual_width": 0,
+                "actual_height": 0,
+                "actual_weight": 0,
+                "actual_item_carton": 0,
+                "link": "string",
+                "description": "string"
             }
-            self.__redis_cache.append_to_list(MarkemConfig.DATA_CARTON_LABLE_PRINT, data_print_lable)
+            ---> OKE
+        """
 
+        data_creat_carton = {
+            "carton_code": data_print_lable["carton_id"],
+            "carton_pallet_id": data_pallet_carton_input["_id"],
+            "dws_result": check_carton_backend,
+            "actual_length": DWS_result["length"],
+            "actual_width": DWS_result["width"],
+            "actual_height": DWS_result["height"],
+            "actual_weight": DWS_result["weight"] * 1000,
+            "actual_item_carton": data_pallet_carton_input["standard_item_carton"],
+            "link": DWS_result["link"],
+            "description": ""
+        }
+        response = self.__call_backend.createCarton(data_creat_carton)
+        # print(response)
 
+        # Update số lượng carton DWS đếm được
+        self.__redis_cache.hset(
+            HandlePalletConfig.NUMBER_CARTON_OF_PALLET, 
+            HandlePalletConfig.QUANTITY_FROM_DWS,
+            (quantity_carton_DWS + 1)
+        )
+        
+                
 
-            """
-                Tao moi 1 luong chay qc carton
-                {
-                    "carton_code": "string",
-                    "carton_pallet_id": "string",
-                    "dws_result": "string",
-                    "actual_length": 0,
-                    "actual_width": 0,
-                    "actual_height": 0,
-                    "actual_weight": 0,
-                    "actual_item_carton": 0,
-                    "link": "string",
-                    "description": "string"
-                }
-                ---> OKE
-            """
+        return ApiBase.createResponseMessage({}, "OKE")
 
-            data_creat_carton = {
-                "carton_code": data_print_lable["carton_id"],
-                "carton_pallet_id": data_pallet_carton_input["_id"],
-                "dws_result": check_carton_backend,
-                "actual_length": DWS_result["length"],
-                "actual_width": DWS_result["width"],
-                "actual_height": DWS_result["height"],
-                "actual_weight": DWS_result["weight"] * 1000,
-                "actual_item_carton": data_pallet_carton_input["standard_item_carton"],
-                "link": DWS_result["link"],
-                "description": ""
-            }
-            response = self.__call_backend.createCarton(data_creat_carton)
-            # print(response)
-            
-                    
-
-            return ApiBase.createResponseMessage({}, "OKE")
-        return ApiBase.createNotImplement()
     
 
 

@@ -7,8 +7,8 @@ CFG_REDIS:
   type: 
 
 CFG_MODBUS:
-  # host: 192.168.31.3
-  host: 127.0.0.1
+  host: 192.168.31.3
+  # host: 127.0.0.1
   port: 502
   unit: 16
 
@@ -20,8 +20,8 @@ CFG_SOCKET:
 CFG_MONGODB:
   username      : 
   password      : 
-  host          : 127.0.0.1
-  # host          : 192.168.31.201
+  # host          : 127.0.0.1
+  host          : 192.168.31.201
   port          : 27017
 
 CFG_RCS:
@@ -81,7 +81,7 @@ MISSION_O1:
   workflow_type           : 'PALLET_OUTPUT'
   bindShelf_locationCode  : '00000061'
   destination             : '00000118'
-  line_curtain_triger     : '00000112'
+  line_curtain_triger     : '00000058'
   workflow_type_triger    : '00000112'
   area                    : 'O'
   shelf                   : '000105'

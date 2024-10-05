@@ -41,6 +41,7 @@ class DALServer(metaclass=Singleton):
                 )
             }
             self.__token_value = token_request
+            print(self.__token_value)
         except Exception as e:
             print("e :", e)
 

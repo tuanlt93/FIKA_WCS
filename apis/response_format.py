@@ -9,6 +9,10 @@ class ResponseFomat:
         "type"
     ]
 
+    API_CALL_AGV = [ 
+        "location"
+    ]
+
     API_CREATE_CARTON_STATE = [ 
         "dws_result", "actual_length", "actual_width", "actual_height", 
         "actual_weight", "actual_item_carton", 

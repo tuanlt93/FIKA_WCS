@@ -14,7 +14,8 @@ from apis.DAL.pda_api import (
     CreateCorrection,
     PdaPrint,
     PdaPrintPresent,
-    PdaQuarantined
+    PdaQuarantined,
+    PDA_Call_AGV
 )
 
 api.addClassResource(PDA_Input)
@@ -26,7 +27,7 @@ api.addClassResource(CreateCorrection)
 api.addClassResource(PdaPrint) # -v
 api.addClassResource(PdaPrintPresent) # -v
 api.addClassResource(PdaQuarantined) # -v
-
+api.addClassResource(PDA_Call_AGV)
 
 
 api.addClassResource(DWSHeartBeat)

@@ -154,6 +154,10 @@ class MissionHandle(MissionBase):
             self.__shelf
         )
 
+
+        """
+            Chính cmt đợi fix
+        """
         # if self.__workflow_type == "PALLET_INPUT":
         #     # Bind shelf lại vị trí đệm
         #     self.performTask(
@@ -178,6 +182,11 @@ class MissionHandle(MissionBase):
         #         self.__shelf, 
         #         self.__angle_shelf
         #     )
+
+        """
+            Hết
+        """
+
 
         self.performTask(
                 self.bindShelf, 
