@@ -8,7 +8,7 @@ from config import CFG_MODBUS
 from time import sleep
 import numpy as np
 import threading
-
+from utils.logger import Logger
 class PLCController(metaclass= Singleton):
 
     def __init__(self):
@@ -46,7 +46,6 @@ class PLCController(metaclass= Singleton):
 
     def conmcection_status_markem(self, message):
         if message == DeviceConnectStatus.CONNECTED:
-            print("MARKEM đã kết nối")
             self.status_markem_connect()
         else:
             self.status_markem_disconnect()
@@ -59,8 +58,6 @@ class PLCController(metaclass= Singleton):
     def update_status(self, group, topic, value):
         self.__redis_cache.hset(group, topic, value)
         
-        # print(f'{topic}":" {value}')
-
         if value == DeviceConfig.DOCK_PROCESSING and topic == DeviceConfig.STATUS_DOCK_A1:
             data_pallet_A1 = self.__redis_cache.hget(
                 HandlePalletConfig.PALLET_DATA_MANAGEMENT, 
@@ -92,7 +89,7 @@ class PLCController(metaclass= Singleton):
                 )
 
         if topic == DeviceConfig.STATUS_NOTIFY_RETURN_CARTONS and value == DeviceConfig.ACEPTED:
-            print("Reset 2 thung")
+            Logger().info("Reset error DWS")
             self.__PLC_interface.write_data(address= 29, value= [0])
             self.__PLC_interface.write_data(address= 24, value= [0])
             self.__redis_cache.hset(group, DeviceConfig.STATUS_NOTIFY_RETURN_CARTONS, DeviceConfig.WAIT_ACCEPT)
@@ -111,7 +108,7 @@ class PLCController(metaclass= Singleton):
                     status = status_list[data_reg_now[register] + 1]  # Tìm trạng thái tương ứng
                     self.update_status(DeviceConfig.STATUS_ALL_DEVICES, self.__map_plc[register][0], status)
                 else:
-                    print(f"Invalid register value {data_reg_now[register]} for positions {register}")
+                    pass
 
 
             if register == 19:
@@ -131,7 +128,6 @@ class PLCController(metaclass= Singleton):
             decoded_qrcode = ''.join(qrcode_plc_read)
             if ';' in decoded_qrcode:
                 decoded_qrcode = decoded_qrcode.split(';', 1)[0] + ';'
-            print(decoded_qrcode)
             self.trigger_print(SorterConfig.TOPIC_STT_CARTON_AFTER_INSPECTION, decoded_qrcode)
 
 
@@ -148,7 +144,7 @@ class PLCController(metaclass= Singleton):
 
     # @Worker.employ
     def __check_trigger(self):
-        print("START CHECK PLC")
+        Logger().info("START CHECK PLC")
         data_reg_last = np.array([None])
         data_reg_now = np.array([None])
         while True:
@@ -174,7 +170,7 @@ class PLCController(metaclass= Singleton):
                         self.process_positions(changed_positions, data_reg_now)
                         data_reg_last = data_reg_now
             except Exception as e:
-                print(e)
+                Logger().error(f"Check trigger error: {e}")
 
             sleep(TIME.PLC_SAMPLING_TIME)
 
@@ -195,7 +191,7 @@ class PLCController(metaclass= Singleton):
                 DeviceConfig.STATUS_ALL_DEVICES, 
                 HandlePalletConfig.PALLET_PROCESSED   
             )
-        print(pallet_processed)
+
         if pallet_processed == HandlePalletConfig.PALLET_DOCK_A1:
             self.__PLC_interface.write_data(address= 4, value= [int(actual_carton_pallet)])
         elif pallet_processed == HandlePalletConfig.PALLET_DOCK_A2:

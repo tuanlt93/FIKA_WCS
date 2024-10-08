@@ -10,12 +10,11 @@ from PLC import PLC_controller
 from config import INPUT_PALLET_CONFIGS, INPUT_EMPTY_PALLET_CONFIGS, OUTPUT_PALLET_CONFIGS
 from utils.pattern import Singleton
 from config.settings import TIME
-
-
+from utils.logger import Logger
 
 class ManagerMission(metaclass= Singleton):
     def __init__(self) -> None:
-        print("START AGV")
+        Logger().info("START AGV")
         self.__task_handle_base                 = MissionBase()
         self.__rcs: dict[str,MissionBase]       = {}
         self.__queue_tasks                      = deque()
@@ -73,7 +72,7 @@ class ManagerMission(metaclass= Singleton):
 
             # print(data_pallet_input)
             if self.__handle_emergency_stop():
-                print("EMERGENCY STOP")
+                Logger().info("---EMERGENCY STOP---")
                 sleep(TIME.MANAGER_AGV_SAMPLING_TIME)
                 continue
 
@@ -97,7 +96,7 @@ class ManagerMission(metaclass= Singleton):
                 return True
             return False
         except Exception as e:
-            print(f"CHECK {e}")
+            Logger().error("ERROR EMERGENCY STOP:" + str(e))
             return False
 
    
@@ -232,7 +231,7 @@ class ManagerMission(metaclass= Singleton):
                 if mission_data and mission_name in self.__rcs and mission_data['requirement'] == requirement:
                     self.__rcs[mission_name].onContinueEnter()
         except Exception as e:
-            print(e)
+            Logger().error("ALLOW AGV ENTER LINE CURTAIN:" + str(e))
 
     def __allow_agvs_to_exit(self, requirement):
         try:
@@ -241,7 +240,7 @@ class ManagerMission(metaclass= Singleton):
                 if mission_data and mission_name in self.__rcs and mission_data['requirement'] == requirement:
                         self.__rcs[mission_name].onContinueEgress()
         except Exception as e:
-            print(e)
+            Logger().error("ALLOW AGV EXIT LINE CURTAIN:" + str(e))
 
     def __update_device_status(self, key, value):
         self.__redis_cache.hset(DeviceConfig.STATUS_ALL_DEVICES, key, value)

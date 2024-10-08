@@ -3,6 +3,7 @@ from .socket_tcp_interface import SocketTCP
 import socket
 from config import CFG_SOCKET
 from utils.pattern import Singleton
+from utils.logger import Logger
 
 class SocketTCPHandle(SocketTCP, metaclass= Singleton):
     def __init__(self):
@@ -20,10 +21,9 @@ class SocketTCPHandle(SocketTCP, metaclass= Singleton):
         message = "\r\n".join(message) + "\r\n"
         try:
             self.socket_conn.sendall(message.encode())
-            print("Message send to print successfully.")
             time.sleep(0.02)
         except socket.error as e:
-            print(f"Error sending message - {e}")
+            Logger().error("ERROR SEND DATA MARKEM" + str(e))
             self.connect()
             self.send_tcp_string([])
             self.send_tcp_string(message)  # Retry sending the message after reconnecting

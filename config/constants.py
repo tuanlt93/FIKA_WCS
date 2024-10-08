@@ -15,6 +15,10 @@ class AGVConfig:
     AGV_INSIDE              = "AGV_INSIDE"
     AGV_OUTSIDE             = "AGV_OUTSIDE"
 
+    ALL_AGV_DEVICE_USED     = "ALL_AGV_DEVICE_USED"
+    USED                    = "USED"
+    DONT_USE                = "DONT_USE"
+
 class MissionConfig:
     COMPLETE    = "Complete"
     PROCESSING  = "processing"

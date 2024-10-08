@@ -3,6 +3,7 @@ import time
 from db_redis import redis_cache
 from config.constants import DeviceConnectStatus
 from utils.threadpool import Worker
+from utils.logger import Logger
 
 class SocketTCP:
     def __init__(self, *args, **kwargs) -> None:
@@ -59,15 +60,15 @@ class SocketTCP:
                 self.connection_status_tcp = True
                 self.reconnect_attempts = 0  # Reset attempts on successful connection
                 self.reconnect_delay = 1  # Reset delay on success
-                print(f"Connected to {self.__host}:{self.__port}")
+                Logger().info(f"Connected to {self.__host}:{self.__port}")
                 break  # Break loop once connection is established
 
             except socket.timeout:
-                print(f"Connection to {self.__host}:{self.__port} timed out after {self.__timeout} seconds.")
+                Logger().info(f"Connection to {self.__host}:{self.__port} timed out after {self.__timeout} seconds.")
                 self.handle_reconnect()
 
             except socket.error as e:
-                print(f"Error connecting to {self.__host}:{self.__port} - {e}")
+                Logger().error(f"Error connecting to {self.__host}:{self.__port} - {e}")
                 self.handle_reconnect()
 
             time.sleep(self.reconnect_delay)  # Wait before attempting to reconnect
@@ -79,9 +80,9 @@ class SocketTCP:
         self.connection_status_tcp =False
 
         if self.reconnect_attempts <= self.max_reconnect_attempts:
-            print(f"Reconnecting... Attempt {self.reconnect_attempts}/{self.max_reconnect_attempts}")
+            Logger().info(f"Reconnecting... Attempt {self.reconnect_attempts}/{self.max_reconnect_attempts}")
         else:
-            print(f"Max reconnect attempts reached. Retrying in {self.reconnect_delay} seconds...")
+            Logger().info(f"Reconnecting... Attempt {self.reconnect_attempts}/{self.max_reconnect_attempts}")
 
         self.__redis_cache.publisher(
                 DeviceConnectStatus.TOPIC_CONNECTION_STATUS_MARKEM, 
@@ -102,8 +103,7 @@ class SocketTCP:
             self.socket_conn.close()
             self.connection_status_tcp =False
             self.socket_conn = None
-            print(f"Closed connection to {self.__host}:{self.__port}")
-
+            Logger().info(f"Closed connection to {self.__host}:{self.__port}")
 
 
     def send_tcp_string(self, message: list):
@@ -115,11 +115,10 @@ class SocketTCP:
         message = "\r\n".join(message) + "\r\n"
         try:
             self.socket_conn.sendall(message.encode())
-            print("Message send to print successfully.")
             time.sleep(0.02)
 
         except socket.error as e:
-            print(f"Error sending message - {e}")
+            Logger().error(f"Error sending message MARKEM: {e}")
             self.connection_status_tcp = False
 
             self.__redis_cache.publisher(

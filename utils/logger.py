@@ -1,6 +1,8 @@
 from utils.pattern import Singleton
 import logging
 import threading
+from datetime import datetime
+import os
 
 class Singleton(type):
     """
@@ -56,23 +58,34 @@ class Logger(logging.Logger, metaclass=Singleton):
     """
         
     def __init__(self, level: str = 'info', to_screen: bool = True,
-                 to_file: bool = False, file_name: str = None) -> None:
+                 to_file: bool = True, log_dir: str = 'Logs') -> None:
         """
         level: debug, info, warn, error, fatal
-        file_name: required if to_file is True
+        log_dir: directory to store log files, default is 'Logs'
         """
         super().__init__("")
         lvl_text = ["debug", "info", "warn", "error", "fatal"]
         lvl_int = [logging.DEBUG, logging.INFO, logging.WARN, logging.ERROR, logging.FATAL]
         lvl_val = lvl_int[lvl_text.index(level)]
 
+        # Log to console
         if to_screen:
             h = logging.StreamHandler()
             h.setLevel(lvl_val)
             h.setFormatter(ScreenFormatter())
             self.addHandler(h)
+
+        # Log to file
         if to_file:
-            h = logging.FileHandler(file_name)
+            # Ensure the Logs directory exists
+            if not os.path.exists(log_dir):
+                os.makedirs(log_dir)
+
+            # Generate log file name based on the current date
+            log_filename = os.path.join(log_dir, f"log_{datetime.now().strftime('%Y-%m-%d')}.log")
+
+            # Set up file handler
+            h = logging.FileHandler(log_filename)
             h.setLevel(lvl_val)
             h.setFormatter(FileFormatter())
             self.addHandler(h)

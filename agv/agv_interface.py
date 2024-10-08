@@ -64,7 +64,7 @@ class MissionBase:
                 self.instance_ID = response['body']['instanceId']        
                 return True
         except Exception as e:
-            Logger().error("SEND TASK ERROR")
+            Logger().error("SEND TASK ERROR"+ str(e))
         return False
         
 
@@ -202,7 +202,7 @@ class MissionBase:
                     if robot_status_list[0] == AGVConfig.AGV_ARRIVED and robot_direction == AGVConfig.AGV_DIRECTION_ENTER: return True
                     elif len(robot_status_list) > 1 and robot_status_list[1] == AGVConfig.AGV_SHELF_ARRIVED and robot_direction == AGVConfig.AGV_DIRECTION_EGRESS: return True
         except Exception as e:
-            Logger().error("QUERY TASK ERROR:", str(e))
+            Logger().error("QUERY TASK ERROR:"+ str(e))
         return False
     
     def queryRobot(self) -> bool:
@@ -238,7 +238,7 @@ class MissionBase:
                 return True
                 
         except Exception as e:
-            Logger().error("QUERY TASK ERROR:", str(e))
+            Logger().error("QUERY ROBOT ERROR:"+ str(e))
         return False
     
 
@@ -270,7 +270,7 @@ class MissionBase:
             if response['header']['code'] == '0':
                 return True
         except Exception as e:
-            print("CONTINUE ROBOT ERROR", str(e))
+            Logger().error("CONTINUE ROBOT ERROR:"+ str(e))
         return False
     
 
@@ -300,7 +300,7 @@ class MissionBase:
             if response['header']['code'] == '0':
                 return True
         except Exception as e:
-            print("PAUSE ROBOT ERROR", str(e))
+            Logger().error("PAUSE ERROR:"+ str(e))
         return False
     
     def onPause(self) -> bool:
@@ -334,7 +334,7 @@ class MissionBase:
             if response['header']['code'] == '0':
                 return True
         except Exception as e:
-            print("RESUME ROBOT ERROR", str(e))
+            Logger().error("RESUME ROBOT ERROR:"+ str(e))
         return False
     
     def onResume(self) -> bool:
@@ -368,7 +368,7 @@ class MissionBase:
             if response['header']['code'] == '0':
                 return True
         except Exception as e:
-            print("BIND SHELF ERROR", str(e))
+            Logger().error("BIND SHELF ERROR:"+ str(e))
         return False
     
     
@@ -394,7 +394,7 @@ class MissionBase:
             if response['header']['code'] == '0':
                 return True
         except Exception as e:
-            print("CONTINUE ROBOT ERROR", str(e))
+            Logger().error("UNBIND SHELF ERROR:"+ str(e))
         return False
     
 
@@ -440,7 +440,7 @@ class MissionBase:
             if response['response']['header']['msg'] == 'Success':
                 return True
         except Exception as e:
-            print("CONTINUE ROBOT ERROR", str(e))
+            Logger().error("UPDATE SHELF ERROR:"+ str(e))
         return False
     
 
@@ -469,7 +469,7 @@ class MissionBase:
             ):
                 return True
         except Exception as e:
-            print("UNBIND ROBOT ERROR", str(e))
+            Logger().error("UNBIND SHELF DESTINATION ERROR:"+ str(e))
         return False
 
     
@@ -501,7 +501,7 @@ class MissionBase:
                         return True
                         
         except Exception as e:
-            print("QUERY INFO ROBOT ERROR", str(e))
+            Logger().error("QUERY DONE ERROR:"+ str(e))
         return False
     
     def agv_emergency_stop(self):
@@ -524,7 +524,7 @@ class MissionBase:
                 return True
         
         except Exception as e:
-            print("EMERGENCY INFO ROBOT ERROR", str(e))
+            Logger().error("EMERGENCY AGV ERROR:"+ str(e))
         return False
 
     
@@ -547,7 +547,7 @@ class MissionBase:
                 return True
         
         except Exception as e:
-            print("GET TOKEN ERROR", str(e))
+            Logger().error("GET TOKEN ERROR:"+ str(e))
         return False, ''
     
 
@@ -581,7 +581,7 @@ class MissionBase:
                 return True
         
         except Exception as e:
-            print("GET TOKEN ERROR", str(e))
+            Logger().error("SYNCHRONIZE SHELF ERROR:"+ str(e))
         return False
 
 

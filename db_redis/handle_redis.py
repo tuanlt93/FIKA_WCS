@@ -3,6 +3,7 @@ import json
 import redis.client
 from config import CFG_REDIS
 from utils.pattern import Singleton
+from utils.logger import Logger
 
 class RedisCache(metaclass= Singleton):
     def __init__(self, *args, **CFG_REDIS) -> None:
@@ -26,12 +27,12 @@ class RedisCache(metaclass= Singleton):
             decode_responses=self.decode_responses
         )
         if not self.redis_conn:
-            print("Failed to connect to redis")
+            Logger().error("Failed to connect to redis")
         try:
             self.redis_conn.ping()  # Ping Redis server to check connection
-            print("Connect redis successful")
+            Logger().info("Connect redis successful")
         except redis.ConnectionError:
-            print("Failed to connect to redis")
+            Logger().error("Failed to connect to redis")
             
     def get_connection(self):
         return self.redis_conn

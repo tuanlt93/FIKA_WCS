@@ -3,6 +3,7 @@ import threading
 import time
 from config.constants import DeviceConnectStatus
 from db_redis import redis_cache
+from utils.logger import Logger
 
 class PLCSInterface():
     def __init__(self, *args, **kwargs) -> None:
@@ -51,9 +52,9 @@ class PLCSInterface():
                     DeviceConnectStatus.CONNECTED
                 )
 
-                print(f"Successfully connected to PLC at {self.__host}:{self.__port}")
+                Logger().info(f"Successfully connected to PLC at {self.__host}:{self.__port}")
             else:
-                raise ConnectionError("Failed to connect to PLC")
+                Logger().error("Failed to connect to PLC")
         except Exception as e:
             self.__handle_connection_error(e)
 
@@ -61,11 +62,11 @@ class PLCSInterface():
     def __handle_connection_error(self, error):
         self.connected = False
         self.__error_count += 1
-        print(f"Error: {error}, Error count: {self.__error_count}")
+        Logger().debug(f"Error: {error}, Error count: {self.__error_count}")
 
         # Tăng thời gian backoff theo cấp số nhân nhưng không vượt quá giới hạn
         self.__backoff_time = min(self.__backoff_time * 2, self.__max_backoff)
-        print(f"Backing off for {self.__backoff_time} seconds before retrying.")
+        Logger().debug(f"Backing off for {self.__backoff_time} seconds before retrying.")
         time.sleep(self.__backoff_time)
 
 
@@ -96,8 +97,8 @@ class PLCSInterface():
                         DeviceConnectStatus.CONNECTION_STATUS_PLC, 
                         DeviceConnectStatus.DISCONNECT
                     )
-
-                    print(f"Error reading from PLC: {e}")
+                    
+                    Logger().error(f"Error reading from PLC: {e}")
         else:
             self.__connect()
         return [None]
@@ -128,7 +129,7 @@ class PLCSInterface():
                         DeviceConnectStatus.CONNECTION_STATUS_PLC, 
                         DeviceConnectStatus.DISCONNECT
                     )
-                    print(f"Error sending to PLC: {e}")
+                    Logger().error(f"Error sending from PLC: {e}")
         else:
             self.__connect()
         return False

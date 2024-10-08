@@ -11,6 +11,7 @@ from database import db_connection
 from database.models.mission_model import MissionModel
 import datetime
 from config import INPUT_PALLET_CONFIGS, INPUT_EMPTY_PALLET_CONFIGS, OUTPUT_PALLET_CONFIGS 
+from utils.logger import Logger
 
 class MissionHandle(MissionBase):
     def __init__(self, *args, **kwargs) -> None:
@@ -32,11 +33,6 @@ class MissionHandle(MissionBase):
             'angle_shelf', 
         ]
 
-        for key in required_keys:
-            if key not in kwargs:
-                print(f"Thiếu config {key}")
-                return 
-
         self.__workflow_code: str        = kwargs.get('workflow_code')
         self.__workflow_type: str        = kwargs.get('workflow_type')
 
@@ -56,10 +52,11 @@ class MissionHandle(MissionBase):
         self.requirement: str            = kwargs.get('requirement', None)
         self.__id: str                   = kwargs.get('__id', None)
         
+        for key in required_keys:
+            if key not in kwargs:
+                Logger().error("MISSING CONFIG:" + self.__mission_name)
+                return 
         
-        self.key_number_function_passed = 'number_function_passed'
-        self.info_task = 'info_task'
-            
         self.__cancel = False
         self.__done = False
         self.__continue_enter = False
@@ -73,12 +70,11 @@ class MissionHandle(MissionBase):
         self.__kwargs = kwargs
         self.__number_fc_passed: int = 0
         
-        print("START CREATE TASK ROBOT RCS HANDLE")
-        
-        background_thread = threading.Thread(target=self.main, daemon= True)
-        background_thread.start()
 
-        # self.main()
+        # background_thread = threading.Thread(target=self.main, daemon= True)
+        # background_thread.start()
+
+        self.main()
 
     def waitForCondition(self, condition):
         """Chờ đợi cho đến khi điều kiện được đáp ứng."""
@@ -99,8 +95,9 @@ class MissionHandle(MissionBase):
     def performTask(self, task_func, *args, requirement= "Null"):
         """Thực hiện một công việc cho đến khi thành công hoặc bị tạm dừng."""
         while not task_func(*args):
-            print(f"Failed to perform {task_func.__name__}, retrying in 5 seconds...")
+            
             time.sleep(5)
+
         if self.instance_ID:
             self.saveHistory(
                 self.__mission_name, 
@@ -109,10 +106,9 @@ class MissionHandle(MissionBase):
             )
         time.sleep(1)
 
-    # @Worker.employ
+    @Worker.employ
     def main(self):
-        print(f"START TASK {self.__mission_name}")
-        
+        Logger().info("START TASK:"+ str(self.__mission_name))
 
         """
             Demo
@@ -231,19 +227,21 @@ class MissionHandle(MissionBase):
             # Kiểm tra trạng thái thang máy lên xem có phải đang auto hay không
             temp_elevator_up = False
             while not temp_elevator_up:
-                print("KIEM TRA MANUAL THANG DI LEN")
                 status_elevator_up = self.__redis.hget(DeviceConfig.STATUS_ALL_DEVICES, DeviceConfig.STATUS_ELEVATOR_AREA)
                 if (
                     (status_elevator_up == DeviceConfig.ALL_ELEVATOR_AREA_AUTO) or 
                     (status_elevator_up == DeviceConfig.ELEVATOR_DOWN_AREA_MANUAL)
                 ):
                     temp_elevator_up = True
+                    Logger().info("ELEVATOR UP READY TASK:"+ str(self.instance_ID))
                 time.sleep(5)
 
 
 
             # Thông báo đã vào trong dock thang máy đi lên
             self.__PLC_controller.AGV_status_is_in_lifting_up()
+            Logger().info("NOTIFY AGV IN ELEVATOR UP FOR PLC:"+ str(self.instance_ID))
+            
 
             self.performTask(
                 self.continueRobot
@@ -268,6 +266,7 @@ class MissionHandle(MissionBase):
           
             # Thông báo đã đi ra dock thang máy đi lên
             self.__PLC_controller.AGV_status_is_out_lifting_up()
+            Logger().info("NOTIFY AGV OUT ELEVATOR UP FOR PLC:"+ str(self.instance_ID))
 
             self.performTask(
                 self.continueRobot
@@ -326,18 +325,20 @@ class MissionHandle(MissionBase):
             # Kiểm tra trạng thái thang máy xuống xem có phải đang auto hay không
             temp_elevator_down = False
             while not temp_elevator_down:
-                print("KIEM TRA MANUAL THANG DI XUONG")
+
                 status_elevator_down = self.__redis.hget(DeviceConfig.STATUS_ALL_DEVICES, DeviceConfig.STATUS_ELEVATOR_AREA)
                 if (
                     (status_elevator_down == DeviceConfig.ALL_ELEVATOR_AREA_AUTO) or 
                     (status_elevator_down == DeviceConfig.ELEVATOR_UP_AREA_MANUAL)
                 ):
                     temp_elevator_down = True
+                    Logger().info("ELEVATOR DOWN READY:"+ str(self.instance_ID))
                 time.sleep(5)
 
 
             # Thông báo đã đi vào dock thang máy đi xuống
             self.__PLC_controller.AGV_status_is_in_lifting_down()
+            Logger().info("NOTIFY AGV IN ELEVATOR DOWN FOR PLC:"+ str(self.instance_ID))
             self.performTask(
                 self.continueRobot
             )
@@ -352,6 +353,7 @@ class MissionHandle(MissionBase):
 
             # Thông báo đã đi ra dock thang máy đi xuống
             self.__PLC_controller.AGV_status_is_out_lifting_down()
+            Logger().info("NOTIFY AGV OUT ELEVATOR DOWN FOR PLC:"+ str(self.instance_ID))
             self.performTask(
                 self.continueRobot,
                 requirement = DeviceConfig.LINE_CURTAIN_CLOSE
@@ -368,7 +370,7 @@ class MissionHandle(MissionBase):
         """
 
 
-        time.sleep(10)
+        # time.sleep(10)
         # Xóa mision đang chạy trong group
         self.__redis.srem(
             group= AGVConfig.MISSIONS_RUNNING, 
@@ -388,7 +390,7 @@ class MissionHandle(MissionBase):
 
         # reset trạng thái đèn
         self.__PLC_controller.reset_status_light_button(self.__mission_name)
-        print("DONE TASK")
+        Logger().info("DONE MISSION:"+ str(self.instance_ID))
 
     
     def saveHistory(self, redis_hash_name: str, data: dict, requirement) -> None:
@@ -416,12 +418,11 @@ class MissionHandle(MissionBase):
 
     def onContinueEnter(self):
         self.__continue_enter =  True
-        print(f"----------------onContinueEnter-{self.instance_ID} ---------------")
+        Logger().info("On continue agv enter:"+ str(self.instance_ID))
 
     def onContinueEgress(self):
         self.__continue_egress = True
-        print(f"----------------onContinueEgress-{self.instance_ID}---------------")
-
+        Logger().info("On continue agv egress:"+ str(self.instance_ID))
 
     def onContinueEnterLifting(self):
         self.__continue_enter_lifting =  True
