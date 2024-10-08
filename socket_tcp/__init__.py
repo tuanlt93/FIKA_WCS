@@ -1,3 +1,5 @@
-from socket_tcp.socket_tcp_handle import SocketTCPHandle
+from socket_tcp.socket_tcp_interface import SocketTCP
+from config import CFG_SOCKET
 
-socket_tcp = SocketTCPHandle()
+
+socket_tcp = SocketTCP(**CFG_SOCKET)

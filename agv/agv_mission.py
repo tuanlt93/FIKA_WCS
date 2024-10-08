@@ -154,47 +154,42 @@ class MissionHandle(MissionBase):
             self.__shelf
         )
 
+        if self.__workflow_type == "PALLET_INPUT":
+            # Bind shelf lại vị trí đệm
+            self.performTask(
+                self.bindShelf, 
+                self.__temp_location, 
+                self.__shelf, 
+                self.__angle_shelf
+            )
 
-        """
-            Chính cmt đợi fix
-        """
-        # if self.__workflow_type == "PALLET_INPUT":
-        #     # Bind shelf lại vị trí đệm
-        #     self.performTask(
-        #         self.bindShelf, 
-        #         self.__temp_location, 
-        #         self.__shelf, 
-        #         self.__angle_shelf
-        #     )
+            # update shelf vào vị trí pallet cần lấy
+            self.performTask(
+                self.undateSheft, 
+                self.__bindShelf_locationCode, 
+                self.__shelf, 
+                self.__angle_shelf
+            )
 
-        #     # update shelf vào vị trí pallet cần lấy
-        #     self.performTask(
-        #         self.undateSheft, 
-        #         self.__bindShelf_locationCode, 
-        #         self.__shelf, 
-        #         self.__angle_shelf
-        #     )
-        # elif self.__workflow_type == "PALLET_OUTPUT":
-        #     # Bind shelf lại vị trí có pallet cần đến lấy
-        #     self.performTask(
-        #         self.bindShelf, 
-        #         self.__bindShelf_locationCode, 
-        #         self.__shelf, 
-        #         self.__angle_shelf
-        #     )
+            # Lấy token đồng bộ data
+            self.performTask(
+                self.getToken, 
+            )
 
-        """
-            Hết
-        """
+            # Đồng bộ data -> đồng bộ shelf ảo
+            self.performTask(
+                self.synchronizeData, 
+            )
 
-
-        self.performTask(
+        elif self.__workflow_type == "PALLET_OUTPUT":
+            # Bind shelf lại vị trí có pallet cần đến lấy
+            self.performTask(
                 self.bindShelf, 
                 self.__bindShelf_locationCode, 
                 self.__shelf, 
                 self.__angle_shelf
             )
-        
+            
         # Tạo task cho AGV
         self.performTask(
             self.sendTask, 
@@ -255,14 +250,6 @@ class MissionHandle(MissionBase):
             )
 
             # Khi tạo mission AGV cho dock A1 hoặc A2 -> Tạo pallet pending
-            # if (self.__mission_name == "MISSION_A1" or self.__mission_name == "MISSION_A2"):
-            #     self.__api_backend.createPallet(self.__mission_name)
-            # elif (self.__mission_name == "MISSION_A1" or self.__mission_name == "MISSION_A2"):
-            #     self.__redis.hdel(
-            #         HandlePalletConfig.PALLET_DATA_MANAGEMENT, 
-            #         HandlePalletConfig.EMPTY_INPUT_PALLET_DATA
-            #     )
-
             if self.__mission_name.replace("MISSION_", "") in INPUT_PALLET_CONFIGS:
                 self.__api_backend.createPallet(self.__mission_name)
             elif self.__mission_name.replace("MISSION_", "") in INPUT_EMPTY_PALLET_CONFIGS:
@@ -381,7 +368,7 @@ class MissionHandle(MissionBase):
         """
 
 
-        # time.sleep(10)
+        time.sleep(10)
         # Xóa mision đang chạy trong group
         self.__redis.srem(
             group= AGVConfig.MISSIONS_RUNNING, 

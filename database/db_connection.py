@@ -5,7 +5,7 @@ from config import CFG_MONGODB
 from datetime import datetime
 from database.models import MissionModel
 from config.constants import SETTING_SYSTEM
-from database.config import Collection, DataBaseName
+from database.config_mongo import Collection, DataBaseName
 
 class DatabaseConnection:
     def __init__(self):

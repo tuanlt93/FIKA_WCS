@@ -12,6 +12,7 @@ class MissionBase:
         self.instance_ID = None
         self.robot_ID = None
         self.on_pause = False
+        self.tocken     = ""
         
     
     def sendTask(self, workflow_code: str) -> bool:
@@ -525,6 +526,64 @@ class MissionBase:
         except Exception as e:
             print("EMERGENCY INFO ROBOT ERROR", str(e))
         return False
+
+    
+    def getToken(self):
+        url=  "http://192.168.31.250/auth-manage/api/coreresource/auth/login/v1"
+
+        request_body = {
+            "curLanguage": "en_us",
+            "password": "111111",
+            "subsystemCode": "ALL",
+            "userName": "admin"
+        }
+        try:
+            res = requests.get(url, json= request_body)
+            response = res.json()
+            
+            if response['code'] == 0:
+                self.tocken = response['data']['sessionId']
+                print(self.tocken)
+                return True
+        
+        except Exception as e:
+            print("GET TOKEN ERROR", str(e))
+        return False, ''
+    
+
+    def synchronizeData(self):
+        """
+            response = {
+                "code": 0,
+                "msg" : null
+                "data": null,
+                "succ" :true,
+
+            }
+        """
+        url=  "http://192.168.31.250/ark-web/api/sync/rms/node"
+
+        headers = {
+            # "Cookie": "GEEKPLUSSESSIONID=gek-fca83ab9-5ade-4c08-bdff-a90cd40f54d8",
+            # "Host": "192.168.31.250",
+            # "Connection": "keep-alive",
+            # "Accept": "*/*",
+            # "Accept-Encoding": "gzip, deflate, br",
+            "gek-authorization": f"{self.tocken}", 
+            # "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko)"
+        }
+
+        try:
+            res = requests.get(url= url, headers= headers)
+            response = res.json()
+            print(response)
+            if response['code'] == 0:
+                return True
+        
+        except Exception as e:
+            print("GET TOKEN ERROR", str(e))
+        return False
+
 
 
 

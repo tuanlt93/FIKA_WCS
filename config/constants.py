@@ -103,7 +103,11 @@ class MarkemConfig:
     MESSAGE_NOTIFY_PRINT                = "MESSAGE_NOTIFY_PRINT"
     DATA_CARTON_LABLE_PRINT             = "DATA_CARTON_LABLE_PRINT"
 
+    TOPIC_MARKEM_PRINTER_RESULTS        = "TOPIC_MARKEM_PRINTER_RESULTS"
+    MESSAGE_PRINT_CORRECTLY             = "MESSAGE_PRINT_CORRECTLY"
+    MESSAGE_PRINTED_WRONG               = "MESSAGE_PRINTED_WRONG"
 
+    DATA_PRINT_SHOW = "DATA_PRINT_SHOW"
 
 class DeviceConfig:
     # ALL device for create mission
@@ -164,7 +168,10 @@ class DeviceConfig:
     WAIT_ACCEPT = "WAIT_ACCEPT"
     ACEPTED = "ACEPTED"
 
-
+    # Tín hiệu báo không in được tem, không đọc được qr code vị trí sorter
+    MARKEM_PRINTER_RESULTS  = "MARKEM_PRINTER_RESULTS"
+    PRINT_CORRECTLY         = "PRINT_CORRECTLY"
+    PRINTED_WRONG           = "PRINTED_WRONG"
 
 class RegisterConfig:
     # Chỉ đọc giá trị các thanh ghi và map với trạng thái tương ứng quy ước
@@ -194,6 +201,7 @@ class RegisterConfig:
         32: [DeviceConfig.STATUS_DOCK_M3, DeviceConfig.DOCK_EMPTY, DeviceConfig.DOCK_FULL],
         33: [DeviceConfig.STATUS_DOCK_M4, DeviceConfig.DOCK_FULL, DeviceConfig.DOCK_FULL],
 
+        34: [DeviceConfig.MARKEM_PRINTER_RESULTS, DeviceConfig.PRINT_CORRECTLY, DeviceConfig.PRINTED_WRONG],
 
         92: [DeviceConfig.STATUS_ELEVATOR_AREA, DeviceConfig.ALL_ELEVATOR_AREA_AUTO ,DeviceConfig.ELEVATOR_UP_AREA_MANUAL, DeviceConfig.ELEVATOR_DOWN_AREA_MANUAL, DeviceConfig.ALL_ELEVATOR_AREA_MANUAL],
 
@@ -208,6 +216,6 @@ class RegisterConfig:
 
 
 class TOPIC_WCS_PUBSUB:
-    PRINTER_IN_PDA = "PRINTER_IN_PDA"
+    TOPIC_MARKEM_PRINTER_RESULTS = "TOPIC_MARKEM_PRINTER_RESULTS"
 
 

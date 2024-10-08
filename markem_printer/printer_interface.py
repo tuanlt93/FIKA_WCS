@@ -1,11 +1,9 @@
 from socket_tcp import socket_tcp
-from PLC import PLC_controller
 
 
 class PrintInterface():
     def __init__(self) -> None:
-        self.__PLC_controller = PLC_controller
-        self.__PLC_controller.status_markem_connect()   
+        pass
   
     def send_data_print_lable(self, data_print: dict) -> bool:
         messages = []
@@ -31,7 +29,7 @@ class PrintInterface():
             # # messages.append("!C")
             messages.append("!M\"CARTON0\"")
             messages.append(f'!W1\"{data_print["material_code"]}\"')
-            messages.append(f'!W1\"{data_print["material_name"]}\"')
+            messages.append(f'!W2\"{data_print["material_name"]}\"')
             messages.append(f'!W3\"{data_print["vendor_batch"]}\"')
             messages.append(f'!W4\"{data_print["expire_date"]}\"')
             messages.append(f'!W5\"{data_print["quantity"]}\"')
@@ -41,6 +39,7 @@ class PrintInterface():
             messages.append("!p")
             # messages.append("!P")
 
+        print(messages)
         socket_tcp.send_tcp_string(messages)
         # response = socket_tcp.receive()
         # if response == b'\r\n':

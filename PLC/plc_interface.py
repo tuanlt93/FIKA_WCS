@@ -19,13 +19,14 @@ class PLCSInterface():
         self.__timeout = kwargs.get('timeout', 1)
         self.__slave_id = kwargs.get('unit', 16)
         self.__lock     = threading.Lock()
-        self.__connected = False
+        self.connected = False
         self.__client = None
         self.__error_count = 0
         self.__max_backoff = 60  # Giới hạn thời gian backoff tối đa là 60 giây
         self.__min_backoff = 0.1  # Thời gian chờ tối thiểu là 0.1 giây
         self.__backoff_time = self.__min_backoff
         self.__connect()
+    
 
     def __connect(self):
         try:
@@ -35,7 +36,7 @@ class PLCSInterface():
                 timeout=self.__timeout
             )
             if self.__client.connect():
-                self.__connected = True
+                self.connected = True
                 self.__error_count = 0  # Reset số lỗi
                 self.__backoff_time = self.__min_backoff  # Reset thời gian backoff
                 print(f"Successfully connected to PLC at {self.__host}:{self.__port}")
@@ -46,7 +47,7 @@ class PLCSInterface():
 
 
     def __handle_connection_error(self, error):
-        self.__connected = False
+        self.connected = False
         self.__error_count += 1
         print(f"Error: {error}, Error count: {self.__error_count}")
 
@@ -69,14 +70,14 @@ class PLCSInterface():
             0x84: Slave Device Failure
         """
         
-        if self.__connected:
+        if self.connected:
             with self.__lock:
                 try:
                     data = self.__client.read_holding_registers(0, num_register, unit=self.__slave_id)
                     if hasattr(data, 'registers'):
                         return data.registers
                 except Exception as e:
-                    self.__connected = False
+                    self.connected = False
                     print(f"Error reading from PLC: {e}")
         else:
             self.__connect()
@@ -94,14 +95,14 @@ class PLCSInterface():
             0x83: Illegal Data Value
             0x84: Slave Device Failure
         """
-        if self.__connected:
+        if self.connected:
             with self.__lock:
                 try:
                     res = self.__client.write_registers(address, value, unit=self.__slave_id)
                     if res.function_code < 0x80:  # check if the result is not an error
                         return True
                 except Exception as e:
-                    self.__connected = False
+                    self.connected = False
                     print(f"Error sending to PLC: {e}")
         else:
             self.__connect()
@@ -109,7 +110,7 @@ class PLCSInterface():
 
     def close(self):
         self.__client.close()
-        self.__connected = False
+        self.connected = False
 
 
 

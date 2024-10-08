@@ -10,6 +10,7 @@ from PLC import PLC_controller
 from flask import request
 import json
 import random
+import time
 
 
 class DWSHeartBeat(ApiBase):
@@ -19,16 +20,19 @@ class DWSHeartBeat(ApiBase):
     urls = ("/dws/heartbeat",)
 
     def __init__(self) -> None:
-        self.__logger = Logger()
         self.__PLC_controller = PLC_controller
-        return super().__init__()
+        super().__init__()
 
     @ApiBase.exception_error
     def post(self):
         datas = self.jsonParser([], [])
         if datas:
-            # print(datas)
-            self.__PLC_controller.status_DWS_connect()
+            self.__time_now = time.time()  # Thời gian hiện tại khi nhận dữ liệu
+               # Tính thời gian giữa 2 lần nhận dữ liệu
+            print(self.__time_now)
+            self.__PLC_controller.status_DWS_connect()  # Thực hiện hành động với PLC
+            self.__time_last = self.__time_now  # Cập nhật thời gian mới cho lần sau
+            
             return ApiBase.createResponseMessage({}, "OKE")
         return ApiBase.createNotImplement()
     
@@ -85,19 +89,18 @@ class DWSResult(ApiBase):
         # Kiểm tra điều kiện để kết thúc pallet
         if (
             (current_quantity_PLC in HandlePalletConfig.LIST_NUMBER_CARTON_START_NEW_PALLET) and 
-            (quantity_carton_DWS + 1) >= data_pallet_carton_input["carton_pallet_qty"]
+            (quantity_carton_DWS + 1) >= int(data_pallet_carton_input["carton_pallet_qty"])
         ):
-            
+            # Kết thúc Pallet 
             self.__call_backend.UpdateSttPalletCarton(data_pallet_carton_input["_id"])
+
+            # LẤY DỮ LIỆU PALLET MỚI
+            data_pallet_carton_input = self.__redis_cache.get_first_element(HandlePalletConfig.LIST_PALLET_RUNNING)
+            data_pallet_carton_input = json.loads(data_pallet_carton_input)
+
+            # Đưa giá trị đếm DWS về 0
             quantity_carton_DWS = 0
             print("DONE PALLET")
-
-
-        # # Lấy số lượng carton DWS đếm được
-        # quantity_carton_DWS = self.__redis_cache.hget(
-        #     HandlePalletConfig.NUMBER_CARTON_OF_PALLET, 
-        #     HandlePalletConfig.QUANTITY_FROM_DWS
-        # )
 
         # Kiểm tra điều kiện để bắt đầu pallet
         if (quantity_carton_DWS + 1) == 1:
@@ -116,23 +119,6 @@ class DWSResult(ApiBase):
             (quantity_carton_DWS + 1)
         )
         
-        # Tạo data cho máy in
-        data_print_lable = {
-            "material_code" : data_pallet_carton_input["material_code"],
-            "material_name" : data_pallet_carton_input["material_name"],
-            "vendor_batch"  : data_pallet_carton_input["vendor_batch"],
-            "sap_batch"     : data_pallet_carton_input["sap_batch"],
-            "expire_date"   : data_pallet_carton_input["expiry_date"],
-            "quantity"      : data_pallet_carton_input["carton_pallet_qty"],
-            "carton_id"     : (
-                data_pallet_carton_input["carton_pallet_code"] + "," +
-                str(quantity_carton_DWS + 1) + "," +
-                check_carton_print  +";"
-            )   
-        }
-        self.__redis_cache.append_to_list(MarkemConfig.DATA_CARTON_LABLE_PRINT, data_print_lable)
-
-
 
         """
             Tao moi 1 luong chay qc carton
@@ -152,7 +138,9 @@ class DWSResult(ApiBase):
         """
 
         data_creat_carton = {
-            "carton_code": data_print_lable["carton_id"],
+            "carton_code": data_pallet_carton_input["carton_pallet_code"] + "," +
+                str(quantity_carton_DWS + 1) + "," +
+                check_carton_print  +";",
             "carton_pallet_id": data_pallet_carton_input["_id"],
             "dws_result": check_carton_backend,
             "actual_length": DWS_result["length"],
@@ -164,7 +152,18 @@ class DWSResult(ApiBase):
             "description": ""
         }
         response = self.__call_backend.createCarton(data_creat_carton)
-        # print(response)
+
+        # Tạo data cho máy in
+        data_print_lable = {
+            "material_code" : data_pallet_carton_input["material_code"],
+            "material_name" : data_pallet_carton_input["material_name"],
+            "vendor_batch"  : data_pallet_carton_input["vendor_batch"],
+            "sap_batch"     : data_pallet_carton_input["sap_batch"],
+            "expire_date"   : data_pallet_carton_input["expiry_date"],
+            "quantity"      : data_pallet_carton_input["carton_pallet_qty"],
+            "carton_id"     : response['metaData']['carton_code'] + ";"
+        }
+        self.__redis_cache.append_to_list(MarkemConfig.DATA_CARTON_LABLE_PRINT, data_print_lable)
 
         # Update số lượng carton DWS đếm được
         self.__redis_cache.hset(
@@ -172,15 +171,10 @@ class DWSResult(ApiBase):
             HandlePalletConfig.QUANTITY_FROM_DWS,
             (quantity_carton_DWS + 1)
         )
-        
-                
 
         return ApiBase.createResponseMessage({}, "OKE")
 
     
-
-
-
 
     def __check_range(self, height, length, width, weight, status, 
                     standard_height, standard_length, standard_width, standard_weight, number_carton):

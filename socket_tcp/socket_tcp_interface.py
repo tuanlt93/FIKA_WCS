@@ -12,62 +12,103 @@ class SocketTCP:
         """
         self.__host = kwargs.get('host', "192.168.31.210")
         self.__port = kwargs.get('port', 9100)
-        self.__timeout = kwargs.get('timeout', 1.0)
+        self.__timeout = kwargs.get('timeout', 1)
         self.socket_conn = None
         self.__PLC_controller = PLC_controller
+        self.max_reconnect_attempts = kwargs.get('max_reconnect_attempts', 5)
+        self.reconnect_attempts = 0
+        self.reconnect_delay = 1  # Initial reconnect delay (in seconds)
         self.connect()
 
     def connect(self):
         """Establishes a connection to the specified host and port."""
         self.socket_conn = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        # self.socket_conn.settimeout(self.__timeout)
 
-        # Bật TCP keep-aliv
+        print("Enable TCP keep-alive") 
+        print(self.__PLC_controller)
+        print("Enable TCP keep-alive") 
         self.socket_conn.setsockopt(socket.SOL_SOCKET, socket.SO_KEEPALIVE, 1)
         
-        self.socket_conn.setsockopt(socket.IPPROTO_TCP, socket.TCP_KEEPIDLE, 30)    # Thời gian không hoạt động trước khi gửi gói keep-alive (giây)
-        self.socket_conn.setsockopt(socket.IPPROTO_TCP, socket.TCP_KEEPINTVL, 1)    # Thời gian giữa các gói keep-alive (giây)
-        self.socket_conn.setsockopt(socket.IPPROTO_TCP, socket.TCP_KEEPCNT, 5)      # Số gói keep-alive không nhận được phản hồi trước khi coi là mất kết nối
+        self.socket_conn.setsockopt(socket.IPPROTO_TCP, socket.TCP_KEEPIDLE, 30)    # Idle time before keep-alive (seconds)
+        self.socket_conn.setsockopt(socket.IPPROTO_TCP, socket.TCP_KEEPINTVL, 1)    # Interval between keep-alive packets (seconds)
+        self.socket_conn.setsockopt(socket.IPPROTO_TCP, socket.TCP_KEEPCNT, 5)      # Max number of failed keep-alive probes before disconnect
 
+        while self.__PLC_controller.get_status_connect():
+            print(self.__PLC_controller.get_status_connect())
+            try:
+                self.socket_conn.connect((self.__host, self.__port))
+                self.__PLC_controller.status_markem_connect()
+                self.reconnect_attempts = 0  # Reset attempts on successful connection
+                self.reconnect_delay = 1  # Reset delay on success
+                print(f"Connected to {self.__host}:{self.__port}")
+                break  # Break loop once connection is established
+            except socket.timeout:
+                print(f"Connection to {self.__host}:{self.__port} timed out after {self.__timeout} seconds.")
+                self.handle_reconnect()
+            except socket.error as e:
+                print(f"Error connecting to {self.__host}:{self.__port} - {e}")
+                self.handle_reconnect()
+
+            time.sleep(self.reconnect_delay)  # Wait before attempting to reconnect
+
+    def handle_reconnect(self):
+        """Handles reconnection logic with delay and exponential backoff."""
+        self.reconnect_attempts += 1
+
+        if self.reconnect_attempts <= self.max_reconnect_attempts:
+            print(f"Reconnecting... Attempt {self.reconnect_attempts}/{self.max_reconnect_attempts}")
+        else:
+            print(f"Max reconnect attempts reached. Retrying in {self.reconnect_delay} seconds...")
+
+        # Attempt to update the PLC status, with error handling if PLC is unavailable
         try:
-            self.socket_conn.connect((self.__host, self.__port))
-            self.__PLC_controller.status_markem_connect()
+            self.__PLC_controller.status_markem_disconnect()
+        except Exception as e:
+            print(f"Failed to update PLC status during disconnect: {e}")
 
-            print(f"Connected to {self.__host}:{self.__port}")
-        except socket.timeout:
-            print(f"Connection to {self.__host}:{self.__port} timed out after {self.__timeout} seconds.")
-            self.reconnect()
-        except socket.error as e:
-            print(f"Error connecting to {self.__host}:{self.__port} - {e}")
-            self.reconnect()
+        
 
-
-    def reconnect(self):
-        """Attempts to reconnect in case of a connection failure."""
-        print("Reconnecting...")
-        self.__PLC_controller.status_markem_disconnect()
-        self.close()
-        while not self.socket_conn:
-            self.connect()
-            time.sleep(1.0)
-
-    def receive(self, buffer_size=1024):
-        """Receive data from the socket with a buffer size."""
-        try:
-            response = self.socket_conn.recv(buffer_size)  # Receive data from the server
-            if response:
-                pass
-            else:
-                print("No response received.")
-            return response
-        except socket.error as e:
-            print(f"Error receiving data: {e}")
-            self.reconnect()  
-            return None 
+        if self.reconnect_attempts > self.max_reconnect_attempts:
+            # After exceeding max attempts, use an exponential backoff strategy
+            self.reconnect_delay = min(self.reconnect_delay * 2, 300)  # Cap delay at 900 seconds (15 minutes)
 
     def close(self):
-        """Closes the current socket connection."""
+        """Closes the socket connection."""
         if self.socket_conn:
             self.socket_conn.close()
             self.socket_conn = None
-            print("Connection closed.")
+            print(f"Closed connection to {self.__host}:{self.__port}")
+
+
+    def send_tcp_string(self, message: list):
+        """
+            Sends a TCP string message to the connected host.
+            Args:
+                message (str): The message to send.
+        """
+        message = "\r\n".join(message) + "\r\n"
+        try:
+            self.socket_conn.sendall(message.encode())
+            print("Message send to print successfully.")
+            time.sleep(0.02)
+        except socket.error as e:
+            print(f"Error sending message - {e}")
+            self.connect()
+            # self.send_tcp_string([])
+            self.send_tcp_string(message)  # Retry sending the message after reconnecting
+
+
+
+    def receive(self, buffer_size=1024):
+            """Receive data from the socket with a buffer size."""
+            try:
+                response = self.socket_conn.recv(buffer_size)  # Receive data from the server
+                if response:
+                    pass
+                else:
+                    print("No response received.")
+                return response
+            except socket.error as e:
+                print(f"Error receiving data: {e}")
+                self.connect()  
+                return None 

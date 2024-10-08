@@ -34,6 +34,9 @@ class PLCController(metaclass= Singleton):
         background_thread = threading.Thread(target=self.__check_trigger)
         background_thread.daemon = True
         background_thread.start()
+
+    def get_status_connect(self) -> bool:
+        return self.__PLC_interface.connected
     
 
     def trigger_print(self, topic: str, message: str):
@@ -78,7 +81,7 @@ class PLCController(metaclass= Singleton):
             print("Reset 2 thung")
             self.__PLC_interface.write_data(address= 29, value= [0])
             self.__PLC_interface.write_data(address= 24, value= [0])
-            # self.__redis_cache.hset(group, DeviceConfig.STATUS_NOTIFY_RETURN_CARTONS, DeviceConfig.WAIT_ACCEPT)
+            self.__redis_cache.hset(group, DeviceConfig.STATUS_NOTIFY_RETURN_CARTONS, DeviceConfig.WAIT_ACCEPT)
 
 
     def process_positions(self, data, data_reg_now):
@@ -173,7 +176,7 @@ class PLCController(metaclass= Singleton):
                                             int(response["standard_width"])
                                             ])
 
-    def update_actual_carton_pallet(self, actual_carton_pallet: int):
+    def update_actual_carton_pallet(self, actual_carton_pallet: str):
         pallet_processed = self.__redis_cache.hget(
                 DeviceConfig.STATUS_ALL_DEVICES, 
                 HandlePalletConfig.PALLET_PROCESSED   

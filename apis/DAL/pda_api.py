@@ -306,6 +306,9 @@ class ConfirmQtyPalletCarton(ApiBase):
         actual_carton_pallet = datas['actual_carton_pallet']
         
         print(actual_carton_pallet)
+
+        self.__redis_cache.update_element_queue(HandlePalletConfig.LIST_PALLET_RUNNING, 0, "carton_pallet_qty" , actual_carton_pallet)
+
         self.__PLC_controller.update_actual_carton_pallet(actual_carton_pallet)
         # response = self.__confirm_carton_state(data)
         return ApiBase.createResponseMessage({}, 'Ok')
@@ -569,6 +572,15 @@ class CreateCorrection(ApiBase):
 class PdaPrint(ApiBase):
     """
         Màn hình print
+        data_print = {
+            'material_code': '21242682', 
+            'material_name': "KABIVEN PERIPHERAL INJ 1440ML BAG 4'S", 
+            'vendor_batch': 'M1151B05', 
+            'sap_batch': 'F-M1151B05', 
+            'expiry_date': '06/09/2026', 
+            'carton_code': '21242682,M1151B05,20241005,1,20,6,1;', 
+            'items_carton': 1
+        }
     """
     urls = ("/pda/print",)
 
@@ -587,9 +599,12 @@ class PdaPrint(ApiBase):
         # Loại bỏ dấu ';' ở cuối 'carton_code' nếu tồn tại
         if 'carton_code' in datas:
             datas['carton_code'] = datas['carton_code'].rstrip(';')
+
+        # print(datas)
+
         response = self.__get_carton_code(datas)
        
-        print(response.text)
+        # print(response.text)
         if response:
             if response.status_code != 200:
                 return ApiBase.createResponseMessage({}, response['message'], response['statusCode'], response['statusCode'])
@@ -612,12 +627,97 @@ class PdaPrint(ApiBase):
         args = ResponseFomat.API_PRINT
         datas = self.jsonParser(args, args)
         datas["carton_code"] = str(datas["carton_code"]) + ";"
+        print("--------------data print------------")
         print(datas)
-
+        print("--------------data print------------")
         response_json = self.__send_print_datamax(datas)
         response = response_json.json()
+        
         return ApiBase.createResponseMessage({}, response["status"])
 
+
+
+
+
+
+class PdaQuarantined(ApiBase):
+    """
+        Màn hình print Quarantined
+        {
+            'carton_pallet_id': '6700642d5f516595b38ff7c8', 
+            'actual_item_carton': '20'
+        }
+
+        {
+            "msg":"Tạo mới thành công",
+            "metaData":
+                {"carton_code":"Quarantined,21242682,M1151B05,20241004,2,1",
+                "carton_pallet_id":"6700642d5f516595b38ff7c8",
+                "actual_item_carton":20,
+                "link":"",
+                "description":"",
+                "_id":"67006895b47a9a77a03e7cbc",
+                "time":"2024-10-04T22:13:41.562Z",
+                "createdAt":"2024-10-04T22:13:41.565Z",
+                "updatedAt":"2024-10-04T22:13:41.565Z",
+                "__v":0
+        }}
+
+        data_print ={
+            'material_code': '21192as128', 
+            'material_name': 'Thuốc đau đầu', 
+            'vendor_batch': 'SHJKDLD', 
+            'sap_batch': 'F-SHJKLD', 
+            'expiry_date': '30/08/2025', 
+            'carton_code': '21192as128,SHJKDLD,20240927,1,25,1,0', 
+            'items_carton': 100
+        }
+    """
+    urls = ("/pda/quarantined",)
+
+    def __init__(self) -> None:
+        self.__api_backend = CallApiBackEnd()
+        self.__create_quarantined = self.__api_backend.createQuarantined
+        self.__get_dws_pallet_carton = self.__api_backend.getDwsPalletCarton
+        self.__send_print_datamax =  self.__api_backend.sendPrintDatamax
+        self.__logger = Logger()
+        return super().__init__()
+
+    @ApiBase.exception_error
+    def post(self):
+        args = ResponseFomat.API_QUARANTINED
+        datas = self.jsonParser(args, args)
+
+        data_print = {}
+        response_info_pallet = self.__get_dws_pallet_carton(datas["carton_pallet_id"])
+
+        if response_info_pallet.status_code != 200:
+            return ApiBase.createResponseMessage({}, response_info_pallet.json().get('msg', 'Unknown error'))
+        
+        # Convert response to JSON
+        response_json = response_info_pallet.json()
+
+        # Access data from the JSON object
+        data_print["material_code"]   = response_json['data_carton']['material_id']['material_code']
+        data_print["material_name"]   = response_json['data_carton']['material_id']['material_name']
+        data_print["vendor_batch"]    = response_json['data_carton']['vendor_batch']
+        data_print["sap_batch"]       = response_json['data_carton']['sap_batch']
+        data_print["expiry_date"]     = response_json['data_carton']['expiry_date']
+        data_print["items_carton"]    = datas["actual_item_carton"]
+
+        response = self.__create_quarantined(datas)
+        if response.status_code != 201:
+            response = response.json()
+            return ApiBase.createResponseMessage({}, response['message'], response['statusCode'], response['statusCode'])
+        
+        response = response.json()
+        data_print["carton_code"] = response["metaData"]["carton_code"]
+
+        response_datamax = self.__send_print_datamax(data_print)
+        if response_datamax.status_code != 200:
+            return ApiBase.createNotImplement() 
+
+        return ApiBase.createResponseMessage({}, "success")
 
 
 
@@ -654,58 +754,6 @@ class PdaPrintPresent(ApiBase):
                 return ApiBase.createResponseMessage(datas, response['msg'])
         return ApiBase.createNotImplement() 
     
-
-
-
-class PdaQuarantined(ApiBase):
-    """
-        Màn hình print Quarantined
-        {
-            'carton_pallet_id': '6700642d5f516595b38ff7c8', 
-            'actual_item_carton': '20'
-        }
-        {
-            "msg":"Tạo mới thành công",
-            "metaData":
-                {"carton_code":"Quarantined,21242682,M1151B05,20241004,2,1",
-                "carton_pallet_id":"6700642d5f516595b38ff7c8",
-                "actual_item_carton":20,
-                "link":"",
-                "description":"",
-                "_id":"67006895b47a9a77a03e7cbc",
-                "time":"2024-10-04T22:13:41.562Z",
-                "createdAt":"2024-10-04T22:13:41.565Z",
-                "updatedAt":"2024-10-04T22:13:41.565Z",
-                "__v":0
-        }}
-    """
-    urls = ("/pda/quarantined",)
-
-    def __init__(self) -> None:
-        self.__api_backend = CallApiBackEnd()
-        self.__create_quarantined = self.__api_backend.createQuarantined
-        self.__logger = Logger()
-        return super().__init__()
-
-    @ApiBase.exception_error
-
-    def post(self):
-        args = ResponseFomat.API_QUARANTINED
-        datas = self.jsonParser(args, args)
-        print("---------------")
-        print(datas)
-        response = self.__create_quarantined(datas)
-        print(response.text)
-        if response.status_code != 201:
-            response = response.json()
-            return ApiBase.createResponseMessage({}, response['message'], response['statusCode'], response['statusCode'])
-        else:
-            response = response.json()
-            return ApiBase.createResponseMessage({}, response['msg'])
-
-
-
-
 
 
 
