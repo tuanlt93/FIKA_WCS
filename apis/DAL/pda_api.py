@@ -6,7 +6,7 @@ from flask import request
 
 from utils.logger import Logger
 from utils.vntime import VnTimestamp, VnDateTime
-from config.constants import HandleCartonConfig, HandlePalletConfig, TOPIC_WCS_PUBSUB, DeviceConfig, SETTING_SYSTEM
+from config.constants import HandleCartonConfig, HandlePalletConfig, DeviceConfig, SETTING_SYSTEM
 from apis.response_format import ResponseFomat, BE_TypeCartonError
 from db_redis import redis_cache
 from database import db_connection

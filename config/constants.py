@@ -212,10 +212,6 @@ class RegisterConfig:
     }
 
 
-
-
-
-class TOPIC_WCS_PUBSUB:
-    TOPIC_MARKEM_PRINTER_RESULTS = "TOPIC_MARKEM_PRINTER_RESULTS"
-
-
+# class DeviceConnectStatus:
+#     CONNEC
+#     connection status of all devices
