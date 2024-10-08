@@ -3,7 +3,7 @@
 import agv
 import PLC
 import markem_printer
-import datamax_printer
+# import datamax_printer
 import tranfer
 import tasks
 import time

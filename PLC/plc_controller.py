@@ -1,4 +1,4 @@
-from config.constants import RegisterConfig, MarkemConfig, SorterConfig, HandlePalletConfig, DeviceConfig
+from config.constants import RegisterConfig, MarkemConfig, SorterConfig, HandlePalletConfig, DeviceConfig, DeviceConnectStatus
 from PLC.plc_interface import PLCSInterface
 from utils.pattern import Singleton
 from utils.threadpool import Worker
@@ -24,20 +24,34 @@ class PLCController(metaclass= Singleton):
         self.__map_plc = RegisterConfig.REGISTER_CONFIG
         self.__redis_cache = redis_cache
         self.__PLC_interface = PLCSInterface(**CFG_MODBUS)
-        # Map trạng thái với các vị trí tương ứng. Mỗi giá trị là một danh sách các trạng thái.
-        self.area_mapping = {
-            "A": {"open": 10, "close": 11},
-            "O": {"open": 13, "close": 14}
-        }
-        
+
+
 
         background_thread = threading.Thread(target=self.__check_trigger)
         background_thread.daemon = True
         background_thread.start()
 
-    def get_status_connect(self) -> bool:
-        return self.__PLC_interface.connected
+
+        self.__redis_pubsub = redis_cache.get_connection().pubsub()
+        self.__redis_pubsub.subscribe(DeviceConnectStatus.TOPIC_CONNECTION_STATUS_MARKEM)
+        self.get_conmcection_status_markem()
+
+    @Worker.employ
+    def get_conmcection_status_markem(self) -> bool:
+        while True:
+            for message in self.__redis_pubsub.listen():
+                if message['type'] == 'message':
+                    self.conmcection_status_markem(message["data"])
+
+
+    def conmcection_status_markem(self, message):
+        if message == DeviceConnectStatus.CONNECTED:
+            print("MARKEM đã kết nối")
+            self.status_markem_connect()
+        else:
+            self.status_markem_disconnect()
     
+
 
     def trigger_print(self, topic: str, message: str):
         self.__redis_cache.publisher(topic=topic, message=message)      

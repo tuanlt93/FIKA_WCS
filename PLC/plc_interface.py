@@ -1,8 +1,8 @@
 from pymodbus.client.sync import ModbusTcpClient
 import threading
 import time
-from db_redis import redis_cache
 from config.constants import DeviceConnectStatus
+from db_redis import redis_cache
 
 class PLCSInterface():
     def __init__(self, *args, **kwargs) -> None:
@@ -45,7 +45,7 @@ class PLCSInterface():
                 self.__error_count = 0  # Reset số lỗi
                 self.__backoff_time = self.__min_backoff  # Reset thời gian backoff
 
-                redis_cache.hset(
+                self.__redis_cache.hset(
                     DeviceConnectStatus.CONNECTION_STATUS_ALL_DEVICE, 
                     DeviceConnectStatus.CONNECTION_STATUS_PLC, 
                     DeviceConnectStatus.CONNECTED
@@ -91,7 +91,7 @@ class PLCSInterface():
                 except Exception as e:
                     self.connected = False
 
-                    redis_cache.hset(
+                    self.__redis_cache.hset(
                         DeviceConnectStatus.CONNECTION_STATUS_ALL_DEVICE, 
                         DeviceConnectStatus.CONNECTION_STATUS_PLC, 
                         DeviceConnectStatus.DISCONNECT

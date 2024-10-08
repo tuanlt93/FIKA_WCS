@@ -1,8 +1,8 @@
 import socket
 import time
-from PLC import PLC_controller
 from db_redis import redis_cache
 from config.constants import DeviceConnectStatus
+from utils.threadpool import Worker
 
 class SocketTCP:
     def __init__(self, *args, **kwargs) -> None:
@@ -17,7 +17,6 @@ class SocketTCP:
         self.__timeout = kwargs.get('timeout', 1)
         self.socket_conn = None
 
-        self.__PLC_controller = PLC_controller
         self.__redis_cache = redis_cache
 
         self.max_reconnect_attempts = kwargs.get('max_reconnect_attempts', 5)
@@ -28,16 +27,13 @@ class SocketTCP:
         self.connection_status_tcp = False
         
         self.connect()
+        # self.receive()
 
     def connect(self):
         """Establishes a connection to the specified host and port."""
         self.socket_conn = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-        print("Enable TCP keep-alive") 
-        print(self.__PLC_controller)
-        print("Enable TCP keep-alive") 
         self.socket_conn.setsockopt(socket.SOL_SOCKET, socket.SO_KEEPALIVE, 1)
-        
         self.socket_conn.setsockopt(socket.IPPROTO_TCP, socket.TCP_KEEPIDLE, 30)    # Idle time before keep-alive (seconds)
         self.socket_conn.setsockopt(socket.IPPROTO_TCP, socket.TCP_KEEPINTVL, 1)    # Interval between keep-alive packets (seconds)
         self.socket_conn.setsockopt(socket.IPPROTO_TCP, socket.TCP_KEEPCNT, 5)      # Max number of failed keep-alive probes before disconnect
@@ -54,7 +50,11 @@ class SocketTCP:
         while not self.connection_status_tcp:
             try:
                 self.socket_conn.connect((self.__host, self.__port))
-                self.__PLC_controller.status_markem_connect()
+                
+                self.__redis_cache.publisher(
+                    DeviceConnectStatus.TOPIC_CONNECTION_STATUS_MARKEM, 
+                    DeviceConnectStatus.CONNECTED
+                )
 
                 self.connection_status_tcp = True
                 self.reconnect_attempts = 0  # Reset attempts on successful connection
@@ -83,11 +83,11 @@ class SocketTCP:
         else:
             print(f"Max reconnect attempts reached. Retrying in {self.reconnect_delay} seconds...")
 
-        # Attempt to update the PLC status, with error handling if PLC is unavailable
-        try:
-            self.__PLC_controller.status_markem_disconnect()
-        except Exception as e:
-            print(f"Failed to update PLC status during disconnect: {e}")
+        self.__redis_cache.publisher(
+                DeviceConnectStatus.TOPIC_CONNECTION_STATUS_MARKEM, 
+                DeviceConnectStatus.DISCONNECT
+            )
+
 
         
 
@@ -121,21 +121,25 @@ class SocketTCP:
         except socket.error as e:
             print(f"Error sending message - {e}")
             self.connection_status_tcp = False
+
+            self.__redis_cache.publisher(
+                DeviceConnectStatus.TOPIC_CONNECTION_STATUS_MARKEM, 
+                DeviceConnectStatus.DISCONNECT
+            )
             self.connect()
             # self.send_tcp_string([])
             self.send_tcp_string(message)  # Retry sending the message after reconnecting
 
 
-
+    @Worker.employ
     def receive(self, buffer_size=1024):
             """Receive data from the socket with a buffer size."""
             try:
                 response = self.socket_conn.recv(buffer_size)  # Receive data from the server
                 if response:
-                    pass
+                    print(f"response received: {response}")
                 else:
                     print("No response received.")
-                return response
             except socket.error as e:
                 print(f"Error receiving data: {e}")
                 self.connect()  
