@@ -212,6 +212,11 @@ class RegisterConfig:
     }
 
 
-# class DeviceConnectStatus:
-#     CONNEC
-#     connection status of all devices
+
+
+class DeviceConnectStatus:
+    CONNECTION_STATUS_ALL_DEVICE    = "CONNECTION_STATUS_ALL_DEVICE"
+    CONNECTION_STATUS_MARKEM        = "CONNECTION_STATUS_MARKEM"
+    CONNECTION_STATUS_PLC           = "CONNECTION_STATUS_PLC"
+    CONNECTED                       = "CONNECTED"
+    DISCONNECT                      = "DISCONNECT"

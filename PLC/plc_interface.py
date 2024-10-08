@@ -1,6 +1,8 @@
 from pymodbus.client.sync import ModbusTcpClient
 import threading
 import time
+from db_redis import redis_cache
+from config.constants import DeviceConnectStatus
 
 class PLCSInterface():
     def __init__(self, *args, **kwargs) -> None:
@@ -18,7 +20,10 @@ class PLCSInterface():
         self.__port = kwargs.get('port', 502)
         self.__timeout = kwargs.get('timeout', 1)
         self.__slave_id = kwargs.get('unit', 16)
+
         self.__lock     = threading.Lock()
+        self.__redis_cache = redis_cache
+
         self.connected = False
         self.__client = None
         self.__error_count = 0
@@ -39,6 +44,13 @@ class PLCSInterface():
                 self.connected = True
                 self.__error_count = 0  # Reset số lỗi
                 self.__backoff_time = self.__min_backoff  # Reset thời gian backoff
+
+                redis_cache.hset(
+                    DeviceConnectStatus.CONNECTION_STATUS_ALL_DEVICE, 
+                    DeviceConnectStatus.CONNECTION_STATUS_PLC, 
+                    DeviceConnectStatus.CONNECTED
+                )
+
                 print(f"Successfully connected to PLC at {self.__host}:{self.__port}")
             else:
                 raise ConnectionError("Failed to connect to PLC")
@@ -78,6 +90,13 @@ class PLCSInterface():
                         return data.registers
                 except Exception as e:
                     self.connected = False
+
+                    redis_cache.hset(
+                        DeviceConnectStatus.CONNECTION_STATUS_ALL_DEVICE, 
+                        DeviceConnectStatus.CONNECTION_STATUS_PLC, 
+                        DeviceConnectStatus.DISCONNECT
+                    )
+
                     print(f"Error reading from PLC: {e}")
         else:
             self.__connect()
@@ -103,6 +122,12 @@ class PLCSInterface():
                         return True
                 except Exception as e:
                     self.connected = False
+                    
+                    redis_cache.hset(
+                        DeviceConnectStatus.CONNECTION_STATUS_ALL_DEVICE, 
+                        DeviceConnectStatus.CONNECTION_STATUS_PLC, 
+                        DeviceConnectStatus.DISCONNECT
+                    )
                     print(f"Error sending to PLC: {e}")
         else:
             self.__connect()

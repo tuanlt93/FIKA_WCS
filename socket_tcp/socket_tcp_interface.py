@@ -1,6 +1,8 @@
 import socket
 import time
 from PLC import PLC_controller
+from db_redis import redis_cache
+from config.constants import DeviceConnectStatus
 
 class SocketTCP:
     def __init__(self, *args, **kwargs) -> None:
@@ -14,10 +16,17 @@ class SocketTCP:
         self.__port = kwargs.get('port', 9100)
         self.__timeout = kwargs.get('timeout', 1)
         self.socket_conn = None
+
         self.__PLC_controller = PLC_controller
+        self.__redis_cache = redis_cache
+
         self.max_reconnect_attempts = kwargs.get('max_reconnect_attempts', 5)
         self.reconnect_attempts = 0
         self.reconnect_delay = 1  # Initial reconnect delay (in seconds)
+        
+        self.connection_status_plc = DeviceConnectStatus.DISCONNECT
+        self.connection_status_tcp = False
+        
         self.connect()
 
     def connect(self):
@@ -33,27 +42,41 @@ class SocketTCP:
         self.socket_conn.setsockopt(socket.IPPROTO_TCP, socket.TCP_KEEPINTVL, 1)    # Interval between keep-alive packets (seconds)
         self.socket_conn.setsockopt(socket.IPPROTO_TCP, socket.TCP_KEEPCNT, 5)      # Max number of failed keep-alive probes before disconnect
 
-        while self.__PLC_controller.get_status_connect():
-            print(self.__PLC_controller.get_status_connect())
+        while True:
+            self.connection_status_plc = self.__redis_cache.hget(
+                DeviceConnectStatus.CONNECTION_STATUS_ALL_DEVICE, 
+                DeviceConnectStatus.CONNECTION_STATUS_PLC
+            )
+            if self.connection_status_plc == DeviceConnectStatus.CONNECTED:
+                break
+            time.sleep(5)
+        
+        while not self.connection_status_tcp:
             try:
                 self.socket_conn.connect((self.__host, self.__port))
                 self.__PLC_controller.status_markem_connect()
+
+                self.connection_status_tcp = True
                 self.reconnect_attempts = 0  # Reset attempts on successful connection
                 self.reconnect_delay = 1  # Reset delay on success
                 print(f"Connected to {self.__host}:{self.__port}")
                 break  # Break loop once connection is established
+
             except socket.timeout:
                 print(f"Connection to {self.__host}:{self.__port} timed out after {self.__timeout} seconds.")
                 self.handle_reconnect()
+
             except socket.error as e:
                 print(f"Error connecting to {self.__host}:{self.__port} - {e}")
                 self.handle_reconnect()
 
             time.sleep(self.reconnect_delay)  # Wait before attempting to reconnect
 
+
     def handle_reconnect(self):
         """Handles reconnection logic with delay and exponential backoff."""
         self.reconnect_attempts += 1
+        self.connection_status_tcp =False
 
         if self.reconnect_attempts <= self.max_reconnect_attempts:
             print(f"Reconnecting... Attempt {self.reconnect_attempts}/{self.max_reconnect_attempts}")
@@ -72,12 +95,15 @@ class SocketTCP:
             # After exceeding max attempts, use an exponential backoff strategy
             self.reconnect_delay = min(self.reconnect_delay * 2, 300)  # Cap delay at 900 seconds (15 minutes)
 
+
     def close(self):
         """Closes the socket connection."""
         if self.socket_conn:
             self.socket_conn.close()
+            self.connection_status_tcp =False
             self.socket_conn = None
             print(f"Closed connection to {self.__host}:{self.__port}")
+
 
 
     def send_tcp_string(self, message: list):
@@ -91,8 +117,10 @@ class SocketTCP:
             self.socket_conn.sendall(message.encode())
             print("Message send to print successfully.")
             time.sleep(0.02)
+
         except socket.error as e:
             print(f"Error sending message - {e}")
+            self.connection_status_tcp = False
             self.connect()
             # self.send_tcp_string([])
             self.send_tcp_string(message)  # Retry sending the message after reconnecting
