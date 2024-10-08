@@ -91,9 +91,18 @@ class RedisCache(metaclass= Singleton):
         """
         first_element = self.redis_conn.lindex(key, 0)
         if first_element:
-            return json.loads(first_element)
+            return first_element
         return None
     
+    def append_to_list(self, key, item: json):
+        """
+        Thêm một phần tử mới vào cuối danh sách trong Redis.
+
+        Return:
+            rpush(key, item)
+        """
+        self.redis_conn.rpush(key, item)
+
 
     def update_element_queue(self, topic: str, index: int, key: str, value):
         """  
@@ -118,15 +127,6 @@ class RedisCache(metaclass= Singleton):
         Xóa danh sách trong Redis.
         """
         self.redis_conn.delete(key)
-
-    def append_to_list(self, key, item):
-        """
-        Thêm một phần tử mới vào cuối danh sách trong Redis.
-
-        Return:
-            rpush(key, json.dumps(item))
-        """
-        self.redis_conn.rpush(key, json.dumps(item))
 
     def get_all_elements(self, key):
         """

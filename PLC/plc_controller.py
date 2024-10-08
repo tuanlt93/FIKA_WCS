@@ -58,7 +58,7 @@ class PLCController(metaclass= Singleton):
     def update_status(self, group, topic, value):
         self.__redis_cache.hset(group, topic, value)
         
-        if value == DeviceConfig.DOCK_PROCESSING and topic == DeviceConfig.STATUS_DOCK_A1:
+        if topic == DeviceConfig.STATUS_DOCK_A1 and value == DeviceConfig.DOCK_PROCESSING :
             data_pallet_A1 = self.__redis_cache.hget(
                 HandlePalletConfig.PALLET_DATA_MANAGEMENT, 
                 HandlePalletConfig.INPUT_PALLET_A1_DATA   
@@ -73,7 +73,7 @@ class PLCController(metaclass= Singleton):
                     HandlePalletConfig.PALLET_DATA_MANAGEMENT, 
                     HandlePalletConfig.INPUT_PALLET_A1_DATA
                 )
-        elif value == DeviceConfig.DOCK_PROCESSING and topic == DeviceConfig.STATUS_DOCK_A2:
+        elif topic == DeviceConfig.STATUS_DOCK_A2 and value == DeviceConfig.DOCK_PROCESSING  :
             data_pallet_A2 = self.__redis_cache.hget(
                 HandlePalletConfig.PALLET_DATA_MANAGEMENT, 
                 HandlePalletConfig.INPUT_PALLET_A2_DATA   
@@ -89,10 +89,15 @@ class PLCController(metaclass= Singleton):
                 )
 
         if topic == DeviceConfig.STATUS_NOTIFY_RETURN_CARTONS and value == DeviceConfig.ACEPTED:
-            Logger().info("Reset error DWS")
+            
             self.__PLC_interface.write_data(address= 29, value= [0])
             self.__PLC_interface.write_data(address= 24, value= [0])
             self.__redis_cache.hset(group, DeviceConfig.STATUS_NOTIFY_RETURN_CARTONS, DeviceConfig.WAIT_ACCEPT)
+            Logger().info("Reset error DWS")
+        
+        if topic == DeviceConfig.MARKEM_PRINTER_RESULTS and value == DeviceConfig.PRINTED_WRONG:
+            self.__redis_cache.publisher(MarkemConfig.TOPIC_MARKEM_PRINTER_RESULTS, MarkemConfig.MESSAGE_PRINTED_WRONG)
+            Logger().info("Reset error DWS")
 
 
     def process_positions(self, data, data_reg_now):

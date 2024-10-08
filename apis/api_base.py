@@ -13,7 +13,7 @@ from flask_babel import _
 from flask_jwt_extended import  jwt_required, get_jwt, get_jwt_identity
 from flask_jwt_extended.exceptions import RevokedTokenError
 from typing import Callable
-
+import traceback
 
 class ApiBase(Resource):
     urls = ()
@@ -182,6 +182,40 @@ class ApiBase(Resource):
         """
         return ApiBase.createResponseMessage(None, msg, 500, 2024)
 
+    # @classmethod
+    # def exception_error(cls, func):
+    #     """
+    #         DECORATOR FOR TRY AND EXCEPTION ERROR
+    #     """
+    #     def inner(cls):
+    #         msg = _("An error occurred")
+    #         code = 2019
+    #         res_code = 503
+    #         try:
+    #             return func(cls)
+    #         except AssertionError as e:
+    #             code, msg, res_code = eval(str(e))
+    #         except IntegrityError as e:
+    #             code, msg = e.orig.args
+    #         except DataError as e:
+    #             code, msg = e.orig.args
+    #         except InvalidRequestError as e:
+    #             msg = str(e)
+    #         except RevokedTokenError as e:
+    #             msg = str(e)
+    #         except Exception as e:
+    #             msg += f": {e}"
+            
+    #         # Logger().error(msg)
+    #         # Ghi lại toàn bộ thông tin lỗi bao gồm traceback
+    #         full_error_msg = f"{msg}\nTraceback:\n{traceback.format_exc()}"
+    #         Logger().error(full_error_msg)  # Ghi lại thông điệp lỗi đầy đủ
+            
+    #         return ApiBase.createResponseMessage({}, msg, res_code, code)
+            
+    #     return inner
+    
+
     @classmethod
     def exception_error(cls, func):
         """
@@ -204,11 +238,12 @@ class ApiBase(Resource):
             except RevokedTokenError as e:
                 msg = str(e)
             except Exception as e:
-                msg += f": {e}"
-            
-            Logger().error(msg)
-            return ApiBase.createResponseMessage({}, msg, res_code, code)
-            
+                # Ghi lại thông báo lỗi và traceback
+                msg = f"{msg}: {str(e)}"
+                full_error_msg = f"{msg}\n{traceback.format_exc()}"
+                Logger().error(full_error_msg)  # Ghi lại thông điệp lỗi đầy đủ
+                return ApiBase.createResponseMessage({}, msg, res_code, code)
+
         return inner
 
 class ApiCommon(ApiBase):

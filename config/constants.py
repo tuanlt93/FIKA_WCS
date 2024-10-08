@@ -107,8 +107,8 @@ class MarkemConfig:
     MESSAGE_NOTIFY_PRINT                = "MESSAGE_NOTIFY_PRINT"
     DATA_CARTON_LABLE_PRINT             = "DATA_CARTON_LABLE_PRINT"
 
+    # Topic pubsub redis thông báo barcode không đọc được tem in ra
     TOPIC_MARKEM_PRINTER_RESULTS        = "TOPIC_MARKEM_PRINTER_RESULTS"
-    MESSAGE_PRINT_CORRECTLY             = "MESSAGE_PRINT_CORRECTLY"
     MESSAGE_PRINTED_WRONG               = "MESSAGE_PRINTED_WRONG"
 
     DATA_PRINT_SHOW = "DATA_PRINT_SHOW"

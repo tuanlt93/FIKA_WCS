@@ -4,6 +4,8 @@ from db_redis import redis_cache
 from utils.threadpool import Worker
 import json
 import requests
+from utils.logger import Logger
+
 
 class PrintDatamax():
     def __init__(self) -> None:
@@ -16,7 +18,7 @@ class PrintDatamax():
     
     @Worker.employ
     def __sub_print_request(self):
-        print("START PRINT MARKEM")
+        Logger().info("START REPRINT")
         while True:
             for message in self.__redis_pubsub.listen():
                 if message['type'] == 'message':
@@ -25,8 +27,11 @@ class PrintDatamax():
     def print(self, message):
         if message == MarkemConfig.MESSAGE_PRINTED_WRONG:
             data_print_json = self.__redis_cache.get(MarkemConfig.DATA_PRINT_SHOW)
-            data_print = json.loads(data_print_json)
-            requests.post(url= self.__url, json= data_print)
+
+            print(data_print_json)
+            print(type(data_print_json))
+            
+            response = requests.post(url=self.__url, data=data_print_json, headers={"Content-Type": "application/json"})
             
             
 

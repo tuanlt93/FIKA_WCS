@@ -4,6 +4,7 @@ from utils.pattern import Singleton
 from queue import Queue
 from threading import Thread
 from typing import Callable, Dict, Tuple
+import traceback
 
 class Worker(Thread):
     """Thread executing tasks from a given tasks queue"""
@@ -21,8 +22,10 @@ class Worker(Thread):
                 func(*args, **kwargs)
             except Exception as e:
                 if self.__logger:
+                    # Log the detailed traceback to capture the original error location
                     self.__logger.error(f"[{func}({args}, {kwargs})] "
-                                        f"Process died (Message: {e})")
+                                        f"Process died (Message: {e})\n"
+                                        f"Traceback: {traceback.format_exc()}")
             self.__tasks.task_done()
             func, args, kwargs = (None, None, None)
 
@@ -33,6 +36,42 @@ class Worker(Thread):
             task_queue.put((func, args, kwargs))
             Worker(task_queue)
         return inner
+
+
+
+
+
+
+
+
+# class Worker(Thread):
+#     """Thread executing tasks from a given tasks queue"""
+#     def __init__(self, tasks: Queue):
+#         self.__logger = Logger()
+#         Thread.__init__(self)
+#         self.__tasks = tasks
+#         self.daemon = True
+#         self.start()
+    
+#     def run(self):
+#         while True:
+#             func, args, kwargs = self.__tasks.get()
+#             try:
+#                 func(*args, **kwargs)
+#             except Exception as e:
+#                 if self.__logger:
+#                     self.__logger.error(f"[{func}({args}, {kwargs})] "
+#                                         f"Process died (Message: {e})")
+#             self.__tasks.task_done()
+#             func, args, kwargs = (None, None, None)
+
+#     @staticmethod
+#     def employ(func: Callable):
+#         def inner(*args, **kwargs):
+#             task_queue = Queue(1)
+#             task_queue.put((func, args, kwargs))
+#             Worker(task_queue)
+#         return inner
 
 class ThreadPool(metaclass=Singleton):
     """Pool of threads consuming tasks from a queue"""

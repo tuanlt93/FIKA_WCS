@@ -20,6 +20,22 @@ class ManagerMission(metaclass= Singleton):
         self.__queue_tasks                      = deque()
         self.__redis_cache                      = redis_cache
         self.__PLC_controller                   = PLC_controller
+
+        self.__status_all_devices_agv_used = self.__redis_cache.hgetall(AGVConfig.ALL_AGV_DEVICE_USED)
+        if not self.__status_all_devices_agv_used:
+
+            redis_cache.hset(AGVConfig.ALL_AGV_DEVICE_USED, DeviceConfig.STATUS_ELEVATOR_LIFTING_DOWN, AGVConfig.DONT_USE)
+            redis_cache.hset(AGVConfig.ALL_AGV_DEVICE_USED, DeviceConfig.STATUS_ELEVATOR_LIFTING_UP, AGVConfig.DONT_USE)
+
+            for dock, config in INPUT_PALLET_CONFIGS.items():
+                redis_cache.hset(AGVConfig.ALL_AGV_DEVICE_USED, getattr(DeviceConfig, f'STATUS_DOCK_{dock}'), AGVConfig.DONT_USE)
+
+            for dock, config in INPUT_EMPTY_PALLET_CONFIGS.items():
+                redis_cache.hset(AGVConfig.ALL_AGV_DEVICE_USED, getattr(DeviceConfig, f'STATUS_DOCK_{dock}'), AGVConfig.DONT_USE)
+
+            for dock, config in OUTPUT_PALLET_CONFIGS.items():
+                redis_cache.hset(AGVConfig.ALL_AGV_DEVICE_USED, getattr(DeviceConfig, f'STATUS_DOCK_{dock}'), AGVConfig.DONT_USE)
+
         
         # Khôi phục giá trị của self.__door_close_reset từ Redis
         self.__door_close_reset = {
@@ -58,6 +74,9 @@ class ManagerMission(metaclass= Singleton):
             }
             """
             self.__status_all_devices = self.__redis_cache.hgetall(DeviceConfig.STATUS_ALL_DEVICES)
+
+            self.__status_all_devices_agv_used = self.__redis_cache.hgetall(AGVConfig.ALL_AGV_DEVICE_USED)
+            
             self.__running_tasks = self.__redis_cache.smembers(AGVConfig.MISSIONS_RUNNING)
 
             # Kiểm tra data pallet hàng và data pallet thành phẩm
@@ -102,56 +121,73 @@ class ManagerMission(metaclass= Singleton):
    
 
     def __handle_input_pallet(self):
-        for dock, config in INPUT_PALLET_CONFIGS.items():
-            if (
-                f"MISSION_{dock}" not in self.__running_tasks and 
-                self.__status_all_devices.get(DeviceConfig.STATUS_ELEVATOR_LIFTING_UP) == DeviceConfig.ELEVATOR_LIFTING_READY and 
-                len(self.__running_tasks) < AGVConfig.NUMBERS_AGV
-            ):
-
-                dock_status = self.__status_all_devices[getattr(DeviceConfig, f'STATUS_DOCK_{dock}')]
-
-                if (dock_status == DeviceConfig.DOCK_EMPTY):
+        try:
+            for dock, config in INPUT_PALLET_CONFIGS.items():
+                if (
+                    f"MISSION_{dock}" not in self.__running_tasks and 
+                    self.__status_all_devices.get(DeviceConfig.STATUS_ELEVATOR_LIFTING_UP) == DeviceConfig.ELEVATOR_LIFTING_READY and 
+                    self.__status_all_devices[getattr(DeviceConfig, f'STATUS_DOCK_{dock}')] == DeviceConfig.DOCK_EMPTY and
+                    len(self.__running_tasks) < AGVConfig.NUMBERS_AGV
+                ):
                     
-                    self.__rcs[f'MISSION_{dock}'] = MissionHandle(**config)
-
-                    self.__update_device_status(getattr(DeviceConfig, f'STATUS_DOCK_{dock}'), DeviceConfig.DOCK_FULL)
-                    self.__update_device_status(DeviceConfig.STATUS_ELEVATOR_LIFTING_UP, DeviceConfig.ELEVATOR_LIFTING_BUSY)
-                    break
-
+                    if (
+                        self.__status_all_devices_agv_used.get(DeviceConfig.STATUS_ELEVATOR_LIFTING_UP) == AGVConfig.DONT_USE and
+                        self.__status_all_devices_agv_used[getattr(DeviceConfig, f'STATUS_DOCK_{dock}')] == AGVConfig.DONT_USE
+                    ):
+                    
+                        self.__rcs[f'MISSION_{dock}'] = MissionHandle(**config)
+                        
+                        self.__update_status_device_agv_used(DeviceConfig.STATUS_ELEVATOR_LIFTING_UP, AGVConfig.USED)
+                        self.__update_status_device_agv_used(getattr(DeviceConfig, f'STATUS_DOCK_{dock}'), AGVConfig.USED)
+                        
+                        break
+        except Exception as e:
+            Logger().error("HANDLE INPUT PALLET ERROR:" + str(e))
+        
     def __handle_input_empty_pallet(self):
-        for dock, config in INPUT_EMPTY_PALLET_CONFIGS.items():
-            if (
-                f"MISSION_{dock}" not in self.__running_tasks and 
-                self.__status_all_devices.get(DeviceConfig.STATUS_ELEVATOR_LIFTING_UP) == DeviceConfig.ELEVATOR_LIFTING_READY and 
-                len(self.__running_tasks) < AGVConfig.NUMBERS_AGV
-            ):
+        try:
+            for dock, config in INPUT_EMPTY_PALLET_CONFIGS.items():
+                if (
+                    f"MISSION_{dock}" not in self.__running_tasks and 
+                    self.__status_all_devices.get(DeviceConfig.STATUS_ELEVATOR_LIFTING_UP) == DeviceConfig.ELEVATOR_LIFTING_READY and 
+                    self.__status_all_devices[getattr(DeviceConfig, f'STATUS_DOCK_{dock}')] == DeviceConfig.DOCK_EMPTY and 
+                    len(self.__running_tasks) < AGVConfig.NUMBERS_AGV
+                ):
 
-                dock_status = self.__status_all_devices[getattr(DeviceConfig, f'STATUS_DOCK_{dock}')]
+                    if (
+                        self.__status_all_devices_agv_used.get(DeviceConfig.STATUS_ELEVATOR_LIFTING_UP) == AGVConfig.DONT_USE and
+                        self.__status_all_devices_agv_used[getattr(DeviceConfig, f'STATUS_DOCK_{dock}')] == AGVConfig.DONT_USE
+                    ):
+                        
+                        self.__rcs[f'MISSION_{dock}'] = MissionHandle(**config)
 
-                if (dock_status == DeviceConfig.DOCK_EMPTY):
-                    
-                    self.__rcs[f'MISSION_{dock}'] = MissionHandle(**config)
-
-                    self.__update_device_status(getattr(DeviceConfig, f'STATUS_DOCK_{dock}'), DeviceConfig.DOCK_FULL)
-                    self.__update_device_status(DeviceConfig.STATUS_ELEVATOR_LIFTING_UP, DeviceConfig.ELEVATOR_LIFTING_BUSY)
-                    break
-
+                        self.__update_status_device_agv_used(DeviceConfig.STATUS_ELEVATOR_LIFTING_UP, AGVConfig.USED)
+                        self.__update_status_device_agv_used(getattr(DeviceConfig, f'STATUS_DOCK_{dock}'), AGVConfig.USED)
+                        break
+        except Exception as e:
+            Logger().error("HANDLE INPUT EMPTY PALLET ERROR:" + str(e))
+        
     def __handle_output_pallet(self):
-        for dock, config in OUTPUT_PALLET_CONFIGS.items():
-            if (
-                f"MISSION_{dock}" not in self.__running_tasks and 
-                self.__status_all_devices.get(DeviceConfig.STATUS_ELEVATOR_LIFTING_DOWN) == DeviceConfig.ELEVATOR_LIFTING_READY and
-                len(self.__running_tasks) < AGVConfig.NUMBERS_AGV
-            ):
-
-                dock_status = self.__status_all_devices[getattr(DeviceConfig, f'STATUS_DOCK_{dock}')]
-                if dock_status == DeviceConfig.DOCK_FULL:
-                    self.__rcs[f'MISSION_{dock}'] = MissionHandle(**config)
-
-                    self.__update_device_status(getattr(DeviceConfig, f'STATUS_DOCK_{dock}'), DeviceConfig.DOCK_EMPTY)
-                    self.__update_device_status(DeviceConfig.STATUS_ELEVATOR_LIFTING_DOWN, DeviceConfig.ELEVATOR_LIFTING_BUSY)
-                    break       
+        try: 
+            for dock, config in OUTPUT_PALLET_CONFIGS.items():
+                if (
+                    f"MISSION_{dock}" not in self.__running_tasks and 
+                    self.__status_all_devices.get(DeviceConfig.STATUS_ELEVATOR_LIFTING_DOWN) == DeviceConfig.ELEVATOR_LIFTING_READY and
+                    self.__status_all_devices[getattr(DeviceConfig, f'STATUS_DOCK_{dock}')] == DeviceConfig.DOCK_FULL and
+                    len(self.__running_tasks) < AGVConfig.NUMBERS_AGV
+                ):     
+                               
+                    if (
+                        self.__status_all_devices_agv_used.get(DeviceConfig.STATUS_ELEVATOR_LIFTING_DOWN) == AGVConfig.DONT_USE and
+                        self.__status_all_devices_agv_used[getattr(DeviceConfig, f'STATUS_DOCK_{dock}')] == AGVConfig.DONT_USE
+                    ):
+                        self.__rcs[f'MISSION_{dock}'] = MissionHandle(**config)
+                        
+                        self.__update_status_device_agv_used(DeviceConfig.STATUS_ELEVATOR_LIFTING_DOWN, AGVConfig.USED)
+                        self.__update_status_device_agv_used(getattr(DeviceConfig, f'STATUS_DOCK_{dock}'), AGVConfig.USED)
+                        break       
+        except Exception as e:
+            Logger().error("HANDLE OUTPUT PALLET ERROR:" + str(e))
 
     def __handle_door_requirements(self):
         requirements = {
@@ -242,6 +278,9 @@ class ManagerMission(metaclass= Singleton):
         except Exception as e:
             Logger().error("ALLOW AGV EXIT LINE CURTAIN:" + str(e))
 
-    def __update_device_status(self, key, value):
-        self.__redis_cache.hset(DeviceConfig.STATUS_ALL_DEVICES, key, value)
+    def __update_status_device_agv_used(self, key, value):
+        """ 
+            TOPIC: AGVConfig.ALL_AGV_DEVICE_USED
+        """
+        self.__redis_cache.hset(AGVConfig.ALL_AGV_DEVICE_USED, key, value)
 

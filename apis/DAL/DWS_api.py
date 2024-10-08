@@ -13,6 +13,7 @@ import random
 import time
 
 
+time_last = time.time() 
 class DWSHeartBeat(ApiBase):
     """
         Start pallet carton
@@ -25,18 +26,18 @@ class DWSHeartBeat(ApiBase):
 
     @ApiBase.exception_error
     def post(self):
+        global time_last 
         datas = self.jsonParser([], [])
         if datas:
-            self.__time_now = time.time()  # Thời gian hiện tại khi nhận dữ liệu
-               # Tính thời gian giữa 2 lần nhận dữ liệu
-            print(self.__time_now)
-            self.__PLC_controller.status_DWS_connect()  # Thực hiện hành động với PLC
-            self.__time_last = self.__time_now  # Cập nhật thời gian mới cho lần sau
-            
+            self.__PLC_controller.status_DWS_connect()  
+            time_now = time.time()  
+            time_difference = time_now - time_last
+            print(time_difference)
+            if time_difference > 10:
+                Logger().error(f"DWS error connect: Time since last heartbeat is {time_difference:.2f} seconds")   
+            time_last = time_now  
             return ApiBase.createResponseMessage({}, "OKE")
         return ApiBase.createNotImplement()
-    
-
 
 
 class DWSResult(ApiBase):
@@ -47,7 +48,6 @@ class DWSResult(ApiBase):
 
     def __init__(self) -> None:
         self.__call_backend = CallApiBackEnd()
-        self.__logger = Logger()
         self.__PLC_controller = PLC_controller
         self.__redis_cache = redis_cache
 
@@ -63,7 +63,7 @@ class DWSResult(ApiBase):
         """
         args = ResponseFomat.DWS_RESULT
         DWS_result = self.jsonParser(args, args)
-        print(DWS_result)
+        # print(DWS_result)
 
         # Thùng cặp kè
         if DWS_result["weight"] == -1:
@@ -100,7 +100,10 @@ class DWSResult(ApiBase):
 
             # Đưa giá trị đếm DWS về 0
             quantity_carton_DWS = 0
-            print("DONE PALLET")
+
+            # Xóa data in pallet cũ
+            self.__redis_cache.delete(MarkemConfig.DATA_CARTON_LABLE_PRINT)
+            Logger().info("Done Pallet")
 
         # Kiểm tra điều kiện để bắt đầu pallet
         if (quantity_carton_DWS + 1) == 1:

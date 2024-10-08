@@ -2,7 +2,7 @@ from flask import Flask
 from flask_jwt_extended import JWTManager
 from flask_babel import Babel
 from flask_cors import CORS
-
+from utils.logger import Logger
 from apis.api_base import api
 from database.models.user import DB_RevokedToken
 from waitress import serve
@@ -27,23 +27,6 @@ class FlaskApp:
         self.app.config["LANGUAGES"] = ["en", "vi", "ko", "ja"]
         self.babel = Babel(self.app)
 
-        # # print(config)
-        # self.app.config['REDIS_HOST'] = config["CFG_REDIS"]["host"]
-        # self.app.config['REDIS_PORT'] = config["CFG_REDIS"]["port"]
-        # self.app.config['REDIS_DB'] = 0
-        # self.app.config['REDIS_PASSWORD'] = config["CFG_REDIS"]["password"]
-        # redis_handler.init_app(self.app)  
-
-        # config monogodb:
-        # self.app.config["MONGO_URI"] = "mongodb://localhost:27017/yourDatabaseName"
-        # mongo = PyMongo(self.app) 
-
-
-        
-        # api.addClassResource(DWSHeartBeat)
-        # api.addClassResource(DWSResult)
-
-
         # INIT REST API
         self._count_api = 0
         api.init_app(self.app)
@@ -53,11 +36,11 @@ class FlaskApp:
     def start(self):
         """ RUN FLASK
         """
-        print("RestAPI ready")
+        Logger().info("RestAPI READY")
         self._count_api = self._count_api + 1
         # print("count ", self._count_api)
         if self._count_api > 2:
-            print("Server API not right")
+            Logger().error("Server API not right")
             exit(code=-1)
         # flask_cfg['debug'] = True
         # serve(self.app, **flask_cfg)

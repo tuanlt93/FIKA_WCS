@@ -89,13 +89,22 @@ class SocketTCP:
                 DeviceConnectStatus.DISCONNECT
             )
 
-
-        
-
         if self.reconnect_attempts > self.max_reconnect_attempts:
             # After exceeding max attempts, use an exponential backoff strategy
             self.reconnect_delay = min(self.reconnect_delay * 2, 300)  # Cap delay at 900 seconds (15 minutes)
 
+    @Worker.employ
+    def reset_connect(self):
+        while True:
+            self.connection_status_plc = self.__redis_cache.hget(
+                DeviceConnectStatus.CONNECTION_STATUS_ALL_DEVICE, 
+                DeviceConnectStatus.CONNECTION_STATUS_PLC
+            )
+            if (self.connection_status_plc == DeviceConnectStatus.DISCONNECT and
+                self.reconnect_attempts == 0
+            ):
+                self.connect()
+            time.sleep(5)
 
     def close(self):
         """Closes the socket connection."""
@@ -128,6 +137,7 @@ class SocketTCP:
             self.connect()
             # self.send_tcp_string([])
             self.send_tcp_string(message)  # Retry sending the message after reconnecting
+
 
 
     @Worker.employ
