@@ -14,7 +14,7 @@ class DALServer(metaclass=Singleton):
         """
         self.__account = {
             "name"      : "admin",
-            "pass"      : "123456"
+            "pass"      : "Fika@2024"
         }
         self.__token_value = {}
         self.handle_get_tocken()

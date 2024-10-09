@@ -190,7 +190,7 @@ class MissionBase:
             # print("----------------")
             # print(response)
             robot_status_list = [item['robotStatus'] for item in response['body'] if item['locationTo'] == location_triger and item['robotStatus'] is not None]
-            print(robot_status_list)
+            # print(robot_status_list)
             if (response['header']['code'] == '0' and 
                 robot_status_list):
                 
@@ -364,7 +364,7 @@ class MissionBase:
             res = requests.post(self.__url_gms, json= request_body)
             response = res.json()
             # print(request_body)
-            print(response)
+            # print(response)
             if response['header']['code'] == '0':
                 return True
         except Exception as e:
@@ -436,7 +436,7 @@ class MissionBase:
         try:
             res = requests.post(self.__url_rms, json= request_body)
             response = res.json()
-            print(response)
+            # print(response)
             if response['response']['header']['msg'] == 'Success':
                 return True
         except Exception as e:
@@ -543,7 +543,7 @@ class MissionBase:
             
             if response['code'] == 0:
                 self.tocken = response['data']['sessionId']
-                print(self.tocken)
+                # print(self.tocken)
                 return True
         
         except Exception as e:
@@ -576,7 +576,7 @@ class MissionBase:
         try:
             res = requests.get(url= url, headers= headers)
             response = res.json()
-            print(response)
+            # print(response)
             if response['code'] == 0:
                 return True
         

@@ -129,6 +129,7 @@ class DeviceConfig:
     STATUS_DOCK_M2          = "STATUS_DOCK_M2"
     STATUS_DOCK_M3          = "STATUS_DOCK_M3"
     STATUS_DOCK_M4          = "STATUS_DOCK_M4"
+    STATUS_DOCK_REJECT      = "STATUS_DOCK_REJECT"
 
     DOCK_EMPTY              = "EMPTY"
     DOCK_PALLET             = "DOCK_PALLET"

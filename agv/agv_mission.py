@@ -336,6 +336,17 @@ class MissionHandle(MissionBase):
                     (status_elevator_down == DeviceConfig.ELEVATOR_UP_AREA_MANUAL)
                 ):
                     temp_elevator_down = True
+                time.sleep(5)
+
+
+            temp_elevator_down_ready = False
+            while not temp_elevator_down_ready:
+
+                status_elevator_down_ready = self.__redis.hget(DeviceConfig.STATUS_ALL_DEVICES, DeviceConfig.STATUS_ELEVATOR_LIFTING_DOWN)
+                if (
+                    status_elevator_down_ready == DeviceConfig.ELEVATOR_LIFTING_READY
+                ):
+                    temp_elevator_down_ready = True
                     Logger().info("ELEVATOR DOWN READY:"+ str(self.instance_ID))
                 time.sleep(5)
 
@@ -399,6 +410,9 @@ class MissionHandle(MissionBase):
         # reset trạng thái giữ dock của agv
         self.update_status_device_agv_used(getattr(DeviceConfig, f'STATUS_DOCK_{self.__dock_name}'), AGVConfig.DONT_USE)
 
+        if self.__dock_name == "M4":
+            self.__redis.hset(DeviceConfig.STATUS_ALL_DEVICES, DeviceConfig.STATUS_DOCK_REJECT, DeviceConfig.DOCK_EMPTY)
+            
         # reset trạng thái đèn
         self.__PLC_controller.reset_status_light_button(self.__mission_name)
         Logger().info("DONE MISSION:"+ str(self.instance_ID))

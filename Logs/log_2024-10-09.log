@@ -1,6 +1,136 @@
-[2024-10-09 13:17:54,277 (/home/ubuntu/FIKA_WCS/db_redis/handle_redis.py:33 - __init__())] INFO -> Connect redis successful
-[2024-10-09 13:17:54,344 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:55 - __connect())] INFO -> Successfully connected to PLC at 192.168.31.3:502
-[2024-10-09 13:17:54,344 (/home/ubuntu/FIKA_WCS/PLC/plc_controller.py:152 - __check_trigger())] INFO -> START CHECK PLC
-[2024-10-09 13:17:54,726 (/home/ubuntu/FIKA_WCS/apis/DAL/DAL_server.py:42 - get_token_bearer_backend())] INFO -> Get token seccessful message.
-[2024-10-09 13:17:54,749 (/home/ubuntu/FIKA_WCS/agv/agv_manager.py:17 - __init__())] INFO -> START AGV
-[2024-10-09 13:17:54,754 (/home/ubuntu/FIKA_WCS/socket_tcp/socket_tcp_interface.py:48 - connect())] INFO -> Connected to 192.168.31.210:9100
+[2024-10-09 13:46:32,839 (/home/ubuntu/FIKA_WCS/db_redis/handle_redis.py:33 - __init__())] INFO -> Connect redis successful
+[2024-10-09 13:46:32,908 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:55 - __connect())] INFO -> Successfully connected to PLC at 192.168.31.3:502
+[2024-10-09 13:46:32,908 (/home/ubuntu/FIKA_WCS/PLC/plc_controller.py:152 - __check_trigger())] INFO -> START CHECK PLC
+[2024-10-09 13:46:33,288 (/home/ubuntu/FIKA_WCS/apis/DAL/DAL_server.py:42 - get_token_bearer_backend())] INFO -> Get token seccessful message.
+[2024-10-09 13:46:33,311 (/home/ubuntu/FIKA_WCS/agv/agv_manager.py:17 - __init__())] INFO -> START AGV
+[2024-10-09 13:46:33,314 (/home/ubuntu/FIKA_WCS/markem_printer/printer_manager.py:24 - __sub_print_request())] INFO -> START PRINT MARKEM
+[2024-10-09 13:46:33,316 (/home/ubuntu/FIKA_WCS/datamax_printer/printer_manager.py:21 - __sub_print_request())] INFO -> START REPRINT
+[2024-10-09 13:46:33,317 (/home/ubuntu/FIKA_WCS/socket_tcp/socket_tcp_interface.py:65 - connect())] INFO -> Connected to 192.168.31.210:9100
+[2024-10-09 13:46:33,317 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:19 - __init__())] INFO -> TRANFER READY
+[2024-10-09 13:46:33,319 (/home/ubuntu/FIKA_WCS/tasks/scheduler.py:13 - __run_schedule())] INFO -> SCHEDUAL START
+[2024-10-09 13:46:33,327 (/home/ubuntu/FIKA_WCS/apis/__init__.py:39 - start())] INFO -> RestAPI READY
+[2024-10-09 13:48:44,298 (/home/ubuntu/FIKA_WCS/db_redis/handle_redis.py:33 - __init__())] INFO -> Connect redis successful
+[2024-10-09 13:48:44,364 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:55 - __connect())] INFO -> Successfully connected to PLC at 192.168.31.3:502
+[2024-10-09 13:48:44,365 (/home/ubuntu/FIKA_WCS/PLC/plc_controller.py:152 - __check_trigger())] INFO -> START CHECK PLC
+[2024-10-09 13:48:44,755 (/home/ubuntu/FIKA_WCS/apis/DAL/DAL_server.py:42 - get_token_bearer_backend())] INFO -> Get token seccessful message.
+[2024-10-09 13:48:44,779 (/home/ubuntu/FIKA_WCS/agv/agv_manager.py:17 - __init__())] INFO -> START AGV
+[2024-10-09 13:48:44,782 (/home/ubuntu/FIKA_WCS/markem_printer/printer_manager.py:24 - __sub_print_request())] INFO -> START PRINT MARKEM
+[2024-10-09 13:48:44,784 (/home/ubuntu/FIKA_WCS/datamax_printer/printer_manager.py:21 - __sub_print_request())] INFO -> START REPRINT
+[2024-10-09 13:48:44,785 (/home/ubuntu/FIKA_WCS/socket_tcp/socket_tcp_interface.py:65 - connect())] INFO -> Connected to 192.168.31.210:9100
+[2024-10-09 13:48:44,786 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:19 - __init__())] INFO -> TRANFER READY
+[2024-10-09 13:48:44,787 (/home/ubuntu/FIKA_WCS/tasks/scheduler.py:13 - __run_schedule())] INFO -> SCHEDUAL START
+[2024-10-09 13:48:44,794 (/home/ubuntu/FIKA_WCS/apis/__init__.py:39 - start())] INFO -> RestAPI READY
+[2024-10-09 13:59:10,578 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:111 - main())] INFO -> START TASK:MISSION_A1
+[2024-10-09 14:00:08,837 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:237 - main())] INFO -> ELEVATOR UP READY TASK:240
+[2024-10-09 14:00:13,846 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:244 - main())] INFO -> NOTIFY AGV IN ELEVATOR UP FOR PLC:240
+[2024-10-09 14:00:47,102 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:270 - main())] INFO -> NOTIFY AGV OUT ELEVATOR UP FOR PLC:240
+[2024-10-09 14:01:50,803 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:438 - onContinueEnter())] INFO -> On continue agv enter:240
+[2024-10-09 14:02:25,864 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:442 - onContinueEgress())] INFO -> On continue agv egress:240
+[2024-10-09 14:02:28,390 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:404 - main())] INFO -> DONE MISSION:240
+[2024-10-09 14:05:32,781 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:35 - __handle_tranfer())] INFO -> Qrcode: 21242682,M1151B05,20241008,1,24,7,0;, Result tranfer: OK
+[2024-10-09 14:05:58,868 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:35 - __handle_tranfer())] INFO -> Qrcode: 21242682,M1151B05,20241009,1,16,1,1;, Result tranfer: OK
+[2024-10-09 14:07:10,983 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:38 - __handle_tranfer())] INFO -> Qrcode: 21242682,M1151B05,20241009,1,16,14,1;, Result tranfer: NG
+[2024-10-09 14:07:28,098 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:35 - __handle_tranfer())] INFO -> Qrcode: 21242682,M1151B05,20241009,1,16,15,0;, Result tranfer: OK
+[2024-10-09 14:18:07,061 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:111 - main())] INFO -> START TASK:MISSION_O1
+[2024-10-09 14:23:32,836 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:438 - onContinueEnter())] INFO -> On continue agv enter:241
+[2024-10-09 14:36:28,884 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:442 - onContinueEgress())] INFO -> On continue agv egress:241
+[2024-10-09 14:39:45,215 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:339 - main())] INFO -> ELEVATOR DOWN READY:241
+[2024-10-09 14:39:50,225 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:345 - main())] INFO -> NOTIFY AGV IN ELEVATOR DOWN FOR PLC:241
+[2024-10-09 14:47:47,233 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:360 - main())] INFO -> NOTIFY AGV OUT ELEVATOR DOWN FOR PLC:241
+[2024-10-09 14:47:49,566 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:404 - main())] INFO -> DONE MISSION:241
+[2024-10-09 14:49:07,224 (/home/ubuntu/FIKA_WCS/db_redis/handle_redis.py:33 - __init__())] INFO -> Connect redis successful
+[2024-10-09 14:49:07,291 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:55 - __connect())] INFO -> Successfully connected to PLC at 192.168.31.3:502
+[2024-10-09 14:49:07,292 (/home/ubuntu/FIKA_WCS/PLC/plc_controller.py:152 - __check_trigger())] INFO -> START CHECK PLC
+[2024-10-09 14:49:07,688 (/home/ubuntu/FIKA_WCS/apis/DAL/DAL_server.py:42 - get_token_bearer_backend())] INFO -> Get token seccessful message.
+[2024-10-09 14:49:07,711 (/home/ubuntu/FIKA_WCS/agv/agv_manager.py:17 - __init__())] INFO -> START AGV
+[2024-10-09 14:49:07,716 (/home/ubuntu/FIKA_WCS/markem_printer/printer_manager.py:24 - __sub_print_request())] INFO -> START PRINT MARKEM
+[2024-10-09 14:49:07,717 (/home/ubuntu/FIKA_WCS/socket_tcp/socket_tcp_interface.py:46 - connect())] INFO -> Connected to 192.168.31.210:9100
+[2024-10-09 14:49:07,718 (/home/ubuntu/FIKA_WCS/datamax_printer/printer_manager.py:21 - __sub_print_request())] INFO -> START REPRINT
+[2024-10-09 14:49:07,719 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:19 - __init__())] INFO -> TRANFER READY
+[2024-10-09 14:49:07,720 (/home/ubuntu/FIKA_WCS/tasks/scheduler.py:13 - __run_schedule())] INFO -> SCHEDUAL START
+[2024-10-09 14:49:07,728 (/home/ubuntu/FIKA_WCS/apis/__init__.py:39 - start())] INFO -> RestAPI READY
+[2024-10-09 14:49:15,461 (/home/ubuntu/FIKA_WCS/db_redis/handle_redis.py:33 - __init__())] INFO -> Connect redis successful
+[2024-10-09 14:49:15,528 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:55 - __connect())] INFO -> Successfully connected to PLC at 192.168.31.3:502
+[2024-10-09 14:49:15,529 (/home/ubuntu/FIKA_WCS/PLC/plc_controller.py:152 - __check_trigger())] INFO -> START CHECK PLC
+[2024-10-09 14:49:15,904 (/home/ubuntu/FIKA_WCS/apis/DAL/DAL_server.py:42 - get_token_bearer_backend())] INFO -> Get token seccessful message.
+[2024-10-09 14:49:15,928 (/home/ubuntu/FIKA_WCS/agv/agv_manager.py:17 - __init__())] INFO -> START AGV
+[2024-10-09 14:49:15,932 (/home/ubuntu/FIKA_WCS/markem_printer/printer_manager.py:24 - __sub_print_request())] INFO -> START PRINT MARKEM
+[2024-10-09 14:49:15,933 (/home/ubuntu/FIKA_WCS/socket_tcp/socket_tcp_interface.py:46 - connect())] INFO -> Connected to 192.168.31.210:9100
+[2024-10-09 14:49:15,934 (/home/ubuntu/FIKA_WCS/datamax_printer/printer_manager.py:21 - __sub_print_request())] INFO -> START REPRINT
+[2024-10-09 14:49:15,935 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:19 - __init__())] INFO -> TRANFER READY
+[2024-10-09 14:49:15,937 (/home/ubuntu/FIKA_WCS/tasks/scheduler.py:13 - __run_schedule())] INFO -> SCHEDUAL START
+[2024-10-09 14:49:15,944 (/home/ubuntu/FIKA_WCS/apis/__init__.py:39 - start())] INFO -> RestAPI READY
+[2024-10-09 14:55:31,408 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:111 - main())] INFO -> START TASK:MISSION_A1
+[2024-10-09 14:56:28,784 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:237 - main())] INFO -> ELEVATOR UP READY TASK:242
+[2024-10-09 14:56:33,792 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:244 - main())] INFO -> NOTIFY AGV IN ELEVATOR UP FOR PLC:242
+[2024-10-09 14:57:01,656 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:270 - main())] INFO -> NOTIFY AGV OUT ELEVATOR UP FOR PLC:242
+[2024-10-09 14:58:06,616 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:449 - onContinueEnter())] INFO -> On continue agv enter:242
+[2024-10-09 14:58:41,663 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:453 - onContinueEgress())] INFO -> On continue agv egress:242
+[2024-10-09 14:58:44,113 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:415 - main())] INFO -> DONE MISSION:242
+[2024-10-09 14:59:39,154 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:105 - post())] INFO -> Done Pallet
+[2024-10-09 15:02:08,906 (/home/ubuntu/FIKA_WCS/apis/api_base.py:244 - inner())] ERROR -> An error occurred: the JSON object must be str, bytes or bytearray, not NoneType
+Traceback (most recent call last):
+  File "/home/ubuntu/FIKA_WCS/apis/api_base.py", line 229, in inner
+    return func(cls)
+  File "/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py", line 98, in post
+    data_pallet_carton_input = json.loads(data_pallet_carton_input)
+  File "/usr/lib/python3.10/json/__init__.py", line 339, in loads
+    raise TypeError(f'the JSON object must be str, bytes or bytearray, '
+TypeError: the JSON object must be str, bytes or bytearray, not NoneType
+
+[2024-10-09 15:02:10,456 (/home/ubuntu/FIKA_WCS/markem_printer/printer_interface.py:27 - send_data_print_lable())] INFO -> NO DATA PRINT
+[2024-10-09 15:02:13,606 (/home/ubuntu/FIKA_WCS/PLC/plc_controller.py:100 - update_status())] INFO -> Reset error DWS
+[2024-10-09 15:19:13,274 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:111 - main())] INFO -> START TASK:MISSION_O1
+[2024-10-09 15:19:58,336 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:449 - onContinueEnter())] INFO -> On continue agv enter:243
+[2024-10-09 15:20:43,401 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:453 - onContinueEgress())] INFO -> On continue agv egress:243
+[2024-10-09 15:23:08,416 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:350 - main())] INFO -> ELEVATOR DOWN READY:243
+[2024-10-09 15:23:13,434 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:356 - main())] INFO -> NOTIFY AGV IN ELEVATOR DOWN FOR PLC:243
+[2024-10-09 15:24:17,051 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:371 - main())] INFO -> NOTIFY AGV OUT ELEVATOR DOWN FOR PLC:243
+[2024-10-09 15:24:19,454 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:415 - main())] INFO -> DONE MISSION:243
+[2024-10-09 15:35:33,223 (/home/ubuntu/FIKA_WCS/PLC/plc_controller.py:96 - update_status())] INFO -> Reset error DWS
+[2024-10-09 15:35:39,211 (/home/ubuntu/FIKA_WCS/apis/api_base.py:244 - inner())] ERROR -> An error occurred: the JSON object must be str, bytes or bytearray, not NoneType
+Traceback (most recent call last):
+  File "/home/ubuntu/FIKA_WCS/apis/api_base.py", line 229, in inner
+    return func(cls)
+  File "/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py", line 85, in post
+    data_pallet_carton_input = json.loads(data_pallet_carton_input)
+  File "/usr/lib/python3.10/json/__init__.py", line 339, in loads
+    raise TypeError(f'the JSON object must be str, bytes or bytearray, '
+TypeError: the JSON object must be str, bytes or bytearray, not NoneType
+
+[2024-10-09 15:35:41,504 (/home/ubuntu/FIKA_WCS/markem_printer/printer_interface.py:27 - send_data_print_lable())] INFO -> NO DATA PRINT
+[2024-10-09 15:35:54,263 (/home/ubuntu/FIKA_WCS/apis/api_base.py:244 - inner())] ERROR -> An error occurred: the JSON object must be str, bytes or bytearray, not NoneType
+Traceback (most recent call last):
+  File "/home/ubuntu/FIKA_WCS/apis/api_base.py", line 229, in inner
+    return func(cls)
+  File "/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py", line 85, in post
+    data_pallet_carton_input = json.loads(data_pallet_carton_input)
+  File "/usr/lib/python3.10/json/__init__.py", line 339, in loads
+    raise TypeError(f'the JSON object must be str, bytes or bytearray, '
+TypeError: the JSON object must be str, bytes or bytearray, not NoneType
+
+[2024-10-09 15:35:57,549 (/home/ubuntu/FIKA_WCS/markem_printer/printer_interface.py:27 - send_data_print_lable())] INFO -> NO DATA PRINT
+[2024-10-09 15:35:58,007 (/home/ubuntu/FIKA_WCS/apis/api_base.py:244 - inner())] ERROR -> An error occurred: the JSON object must be str, bytes or bytearray, not NoneType
+Traceback (most recent call last):
+  File "/home/ubuntu/FIKA_WCS/apis/api_base.py", line 229, in inner
+    return func(cls)
+  File "/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py", line 85, in post
+    data_pallet_carton_input = json.loads(data_pallet_carton_input)
+  File "/usr/lib/python3.10/json/__init__.py", line 339, in loads
+    raise TypeError(f'the JSON object must be str, bytes or bytearray, '
+TypeError: the JSON object must be str, bytes or bytearray, not NoneType
+
+[2024-10-09 15:36:00,601 (/home/ubuntu/FIKA_WCS/markem_printer/printer_interface.py:27 - send_data_print_lable())] INFO -> NO DATA PRINT
+[2024-10-09 15:55:11,766 (/home/ubuntu/FIKA_WCS/db_redis/handle_redis.py:33 - __init__())] INFO -> Connect redis successful
+[2024-10-09 15:55:11,833 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:55 - __connect())] INFO -> Successfully connected to PLC at 192.168.31.3:502
+[2024-10-09 15:55:11,836 (/home/ubuntu/FIKA_WCS/PLC/plc_controller.py:152 - __check_trigger())] INFO -> START CHECK PLC
+[2024-10-09 15:55:11,968 (/home/ubuntu/FIKA_WCS/PLC/plc_controller.py:96 - update_status())] INFO -> Reset error DWS
+[2024-10-09 15:55:11,973 (/home/ubuntu/FIKA_WCS/PLC/plc_controller.py:100 - update_status())] INFO -> Reset error DWS
+[2024-10-09 15:55:12,232 (/home/ubuntu/FIKA_WCS/apis/DAL/DAL_server.py:42 - get_token_bearer_backend())] INFO -> Get token seccessful message.
+[2024-10-09 15:55:12,261 (/home/ubuntu/FIKA_WCS/agv/agv_manager.py:17 - __init__())] INFO -> START AGV
+[2024-10-09 15:55:12,265 (/home/ubuntu/FIKA_WCS/markem_printer/printer_manager.py:24 - __sub_print_request())] INFO -> START PRINT MARKEM
+[2024-10-09 15:55:12,267 (/home/ubuntu/FIKA_WCS/socket_tcp/socket_tcp_interface.py:46 - connect())] INFO -> Connected to 192.168.31.210:9100
+[2024-10-09 15:55:12,267 (/home/ubuntu/FIKA_WCS/datamax_printer/printer_manager.py:21 - __sub_print_request())] INFO -> START REPRINT
+[2024-10-09 15:55:12,268 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:19 - __init__())] INFO -> TRANFER READY
+[2024-10-09 15:55:12,270 (/home/ubuntu/FIKA_WCS/tasks/scheduler.py:13 - __run_schedule())] INFO -> SCHEDUAL START
+[2024-10-09 15:55:12,277 (/home/ubuntu/FIKA_WCS/apis/__init__.py:39 - start())] INFO -> RestAPI READY

@@ -20,9 +20,9 @@ class SocketTCP:
 
         self.__redis_cache = redis_cache
         self.max_reconnect_attempts = kwargs.get('max_reconnect_attempts', 5)
-        self.reconnect_delay = 1  # Initial reconnect delay (in seconds)
-        
+
         self.connection_status_tcp = False
+        self.reconnect_delay = 1  # Initial reconnect delay (in seconds)
         self.reconnect_attempts = 0
 
         self.reset_connect()
@@ -38,13 +38,11 @@ class SocketTCP:
 
             self.socket_conn.connect((self.__host, self.__port))
             self.__redis_cache.publisher(DeviceConnectStatus.TOPIC_CONNECTION_STATUS_MARKEM, DeviceConnectStatus.CONNECTED)
-            
 
-            # reset biến kết nối
             self.connection_status_tcp = True
-            self.reconnect_delay = 1
+            self.reconnect_delay = 1 
             self.reconnect_attempts = 0
-            
+
             Logger().info(f"Connected to {self.__host}:{self.__port}")
 
         except (socket.timeout, socket.error) as e:
@@ -58,14 +56,13 @@ class SocketTCP:
 
         # Increase the reconnect delay if maximum attempts have not been reached
         if self.reconnect_attempts < self.max_reconnect_attempts:
+            Logger().info(f"Attempting to reconnect in {self.reconnect_delay} seconds...")
             time.sleep(self.reconnect_delay)
-
-            # Delay cấp số nhân, tối đa 1.5p
-            self.reconnect_delay = min(self.reconnect_delay * 2, 90)
+            self.reconnect_delay = min(self.reconnect_delay * 2, 300)  # Cap delay at 300 seconds
         else:
-            pass
+            Logger().warning("Maximum reconnect attempts exceeded. Will not attempt further reconnects.")
 
-
+    @Worker.employ
     def reset_connect(self):
         """Continuously checks the PLC connection and manages socket connection accordingly."""
         while True:
@@ -79,9 +76,10 @@ class SocketTCP:
                     self.connect()
             else:
                 if self.connection_status_tcp:
+                    Logger().info("PLC disconnected, closing socket connection...")
                     self.close()
 
-            time.sleep(5)
+            time.sleep(10)
 
     def close(self):
         """Closes the socket connection."""
@@ -90,6 +88,7 @@ class SocketTCP:
             self.connection_status_tcp = False
             self.socket_conn = None
             Logger().info(f"Closed connection to {self.__host}:{self.__port}")
+
 
 
     def send_tcp_string(self, message: list):

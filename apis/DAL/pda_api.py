@@ -152,14 +152,14 @@ class PDA_Call_AGV(ApiBase):
         datas = self.jsonParser(args, args)
         status_dock_reject = self.__redis_cache.hget(
                 DeviceConfig.STATUS_ALL_DEVICES,
-                DeviceConfig.STATUS_DOCK_M4,
+                DeviceConfig.STATUS_DOCK_REJECT,
             )
 
-        if datas["location"] == "reject" and status_dock_reject == DeviceConfig.DOCK_FULL:
+        if datas["location"] == "reject" and status_dock_reject == DeviceConfig.DOCK_EMPTY:
             self.__redis_cache.hset(
                 DeviceConfig.STATUS_ALL_DEVICES,
-                DeviceConfig.STATUS_DOCK_M4,
-                DeviceConfig.DOCK_EMPTY,
+                DeviceConfig.STATUS_DOCK_REJECT,
+                DeviceConfig.DOCK_FULL,
             )
             return ApiBase.createResponseMessage({}, "Creat empty pallet successful")
         return ApiBase.createNotImplement()
@@ -258,7 +258,7 @@ class ConfirmQtyPalletCarton(ApiBase):
         self.__logger = Logger()
         return super().__init__()
 
-    # @ApiBase.exception_error
+    @ApiBase.exception_error
     def get(self):
 
         status_pallet_running = self.__redis_cache.hget(DeviceConfig.STATUS_ALL_DEVICES, HandlePalletConfig.STATUS_PALLET_RUNNING)
@@ -344,8 +344,9 @@ class GetCartonStateInputError(ApiBase):
         response = self.__get_input_insection_or_correction(datas)
 
         if response.status_code != 200:
-            response = response.json()
-            return ApiBase.createResponseMessage({}, response['message'], response['statusCode'], response['statusCode'])
+            # response = response.json()
+            # return ApiBase.createResponseMessage({}, response['message'], response['statusCode'], response['statusCode'])
+            return ApiBase.createNotImplement() 
         else:
             response = response.json()
             response["metaData"]["list_error"] = list_error
@@ -378,7 +379,7 @@ class CreateInspection(ApiBase):
         self.__logger = Logger()
         return super().__init__()
 
-    # @ApiBase.exception_error
+    @ApiBase.exception_error
     def post(self):
         args = ResponseFomat.API_CREATE_INSPECTION
         datas = self.jsonParser(args, args)
@@ -391,6 +392,7 @@ class CreateInspection(ApiBase):
             return ApiBase.createResponseMessage({}, "Token is required", 401, 401)
         
         response = self.__pda_history( datas, request.headers.get('Authorization'))
+        
 
         if response.status_code != 201:
             response = response.json()
@@ -400,8 +402,7 @@ class CreateInspection(ApiBase):
             carton_state = self.__info_carton_state(datas['carton_state_id'])
             carton_state_data = carton_state.json()
             if carton_state.status_code != 200:
-                return ApiBase.createResponseMessage({}, carton_state_data['message'])
-            
+                return ApiBase.createResponseMessage({}, carton_state_data['message'])           
 
             self.__update_carton_state(datas['carton_state_id'], {
                 "actual_item_carton" : datas['actual_item_carton']
