@@ -1,5 +1,6 @@
 from socket_tcp import socket_tcp
 import json
+from utils.logger import Logger
 
 class PrintInterface():
     def __init__(self) -> None:
@@ -7,8 +8,8 @@ class PrintInterface():
   
     def send_data_print_lable(self, data_print_json: json) -> bool:
         messages = []
-        data_print = json.loads(data_print_json)
-        if not data_print or data_print is None: 
+        
+        if not data_print_json or data_print_json is None: 
             # messages.append("!R")
             # messages.append("!C")
             messages.append("!M\"CARTON0\"")
@@ -22,9 +23,11 @@ class PrintInterface():
             messages.append("!0D")
             messages.append("!p")
             # messages.append("!P")
-            print("NO DATA PRINT")
+
+            Logger().info("NO DATA PRINT")
             
         else:
+            data_print = json.loads(data_print_json)
         
             # messages.append("!R")
             # # messages.append("!C")

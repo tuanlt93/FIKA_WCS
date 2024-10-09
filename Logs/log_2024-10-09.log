@@ -1,0 +1,6 @@
+[2024-10-09 13:17:54,277 (/home/ubuntu/FIKA_WCS/db_redis/handle_redis.py:33 - __init__())] INFO -> Connect redis successful
+[2024-10-09 13:17:54,344 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:55 - __connect())] INFO -> Successfully connected to PLC at 192.168.31.3:502
+[2024-10-09 13:17:54,344 (/home/ubuntu/FIKA_WCS/PLC/plc_controller.py:152 - __check_trigger())] INFO -> START CHECK PLC
+[2024-10-09 13:17:54,726 (/home/ubuntu/FIKA_WCS/apis/DAL/DAL_server.py:42 - get_token_bearer_backend())] INFO -> Get token seccessful message.
+[2024-10-09 13:17:54,749 (/home/ubuntu/FIKA_WCS/agv/agv_manager.py:17 - __init__())] INFO -> START AGV
+[2024-10-09 13:17:54,754 (/home/ubuntu/FIKA_WCS/socket_tcp/socket_tcp_interface.py:48 - connect())] INFO -> Connected to 192.168.31.210:9100
