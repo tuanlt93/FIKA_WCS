@@ -1,4 +1,4 @@
-
+import requests
 
 
 
@@ -64,7 +64,7 @@ class CallBackendAGV():
                     "return_location": list_point[1],
                     "sector": callbox_data['metaData']['sector'],
                     "object_call": request_pda["callboxes_code"],
-                    "current_state": MissionStatus.SIGN
+                    # "current_state": MissionStatus.SIGN
                 }
                 mission_db = self.create_mission(mission_info_data)
                 print("mission_db :", mission_db.text)

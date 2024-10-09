@@ -12,10 +12,10 @@ class DatabaseConnection:
 
         # self.__url = 'mongodb://root:jfhe434jc349fj@4.145.80.147:29002/'
 
-        if CFG_MONGODB['username'] and CFG_MONGODB['password']:
-            self.__url = f'mongodb://{CFG_MONGODB['username']}:{CFG_MONGODB['password']}@{CFG_MONGODB['host']}:{CFG_MONGODB['port']}'
+        if CFG_MONGODB["username"] and CFG_MONGODB["password"]:
+            self.__url = f'mongodb://{CFG_MONGODB["username"]}:{CFG_MONGODB["password"]}@{CFG_MONGODB["host"]}:{CFG_MONGODB["port"]}'
         else:
-            self.__url = f'mongodb://{CFG_MONGODB['host']}:{CFG_MONGODB['port']}'
+            self.__url = f'mongodb://{CFG_MONGODB["host"]}:{CFG_MONGODB["port"]}'
 
         self.client = MongoClient(self.__url)
         self.db = self.client[DataBaseName.DATABASE_FIKA]
