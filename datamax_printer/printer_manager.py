@@ -25,13 +25,16 @@ class PrintDatamax():
                     self.print(message["data"])
 
     def print(self, message):
-        if message == MarkemConfig.MESSAGE_PRINTED_WRONG:
-            data_print_json = self.__redis_cache.get(MarkemConfig.DATA_PRINT_SHOW)
+        try:
+            if message == MarkemConfig.MESSAGE_PRINTED_WRONG:
+                data_print_json = self.__redis_cache.get(MarkemConfig.DATA_PRINT_SHOW)
+                if data_print_json:
 
-            print(data_print_json)
-            print(type(data_print_json))
-            
-            response = requests.post(url=self.__url, data=data_print_json, headers={"Content-Type": "application/json"})
+                    response = requests.post(url=self.__url, data=data_print_json, headers={"Content-Type": "application/json"})
+                else:
+                    pass
+        except Exception as e:
+            Logger().error(f"REPRINT function for datamax error: {e}")
             
             
 

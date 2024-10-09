@@ -86,8 +86,8 @@ class RedisCache(metaclass= Singleton):
 
     def get_first_element(self, key):
         """
-        Lấy phần tử đầu tiên từ danh sách trong Redis.
-        đã chuyển đổi sang dict
+            Lấy phần tử đầu tiên từ danh sách trong Redis.
+            Đang ở Json
         """
         first_element = self.redis_conn.lindex(key, 0)
         if first_element:

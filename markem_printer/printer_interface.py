@@ -1,12 +1,13 @@
 from socket_tcp import socket_tcp
-
+import json
 
 class PrintInterface():
     def __init__(self) -> None:
         pass
   
-    def send_data_print_lable(self, data_print: dict) -> bool:
+    def send_data_print_lable(self, data_print_json: json) -> bool:
         messages = []
+        data_print = json.loads(data_print_json)
         if not data_print or data_print is None: 
             # messages.append("!R")
             # messages.append("!C")
@@ -39,7 +40,6 @@ class PrintInterface():
             messages.append("!p")
             # messages.append("!P")
 
-        print(messages)
         socket_tcp.send_tcp_string(messages)
         # response = socket_tcp.receive()
         # if response == b'\r\n':

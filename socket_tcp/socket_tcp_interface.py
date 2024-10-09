@@ -26,8 +26,10 @@ class SocketTCP:
         
         self.connection_status_plc = DeviceConnectStatus.DISCONNECT
         self.connection_status_tcp = False
+
+        self.reset_connect()
+        # self.connect()
         
-        self.connect()
         # self.receive()
 
     def connect(self):
@@ -95,11 +97,13 @@ class SocketTCP:
 
     @Worker.employ
     def reset_connect(self):
+        self.connect()
         while True:
             self.connection_status_plc = self.__redis_cache.hget(
                 DeviceConnectStatus.CONNECTION_STATUS_ALL_DEVICE, 
                 DeviceConnectStatus.CONNECTION_STATUS_PLC
             )
+
             if (self.connection_status_plc == DeviceConnectStatus.DISCONNECT and
                 self.reconnect_attempts == 0
             ):

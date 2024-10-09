@@ -58,7 +58,7 @@ class Logger(logging.Logger, metaclass=Singleton):
     """
         
     def __init__(self, level: str = 'info', to_screen: bool = True,
-                 to_file: bool = False, log_dir: str = 'Logs') -> None:
+                 to_file: bool = True, log_dir: str = 'Logs') -> None:
         """
         level: debug, info, warn, error, fatal
         log_dir: directory to store log files, default is 'Logs'

@@ -8,6 +8,7 @@ from apis.response_format import ResponseFomat
 import json
 from PLC import PLC_controller
 from database import db_connection
+from utils.logger import Logger
 
 # class CallApiBackEnd(metaclass=Singleton):
 class CallApiBackEnd():
@@ -125,12 +126,12 @@ class CallApiBackEnd():
             HandlePalletConfig.INPUT_PALLET_DATA   
         ))
         response = requests.post(self.__url + self._carton_pallet_create, json = datas, headers = headers)
-        print(response.text)
+        # print(response.text)
 
         if response.status_code == 201:
             response_data = response.json()
-            print(response_data)
-            print(type(response_data))
+            # print(response_data)
+
             material_id = response_data['metaData']['material_id']["_id"]
             self.createCartonQty(material_id)
 
@@ -162,7 +163,6 @@ class CallApiBackEnd():
                     json.dumps(datas)
                 )
                 self.__PLC_controller.send_info_pallet_A1(response_data['metaData'])
-                print("Done send dimension to PLC")
 
 
             elif mision_name == "MISSION_A2":
@@ -173,7 +173,6 @@ class CallApiBackEnd():
                     json.dumps(datas)
                 )
                 self.__PLC_controller.send_info_pallet_A2(response_data['metaData'])
-                print("Done send dimension to PLC")
 
             self.__redis_cache.hdel(
                 HandlePalletConfig.PALLET_DATA_MANAGEMENT, 
@@ -329,7 +328,7 @@ class CallApiBackEnd():
             self.__redis_cache.hset(HandlePalletConfig.NUMBER_CARTON_OF_PALLET, HandlePalletConfig.QUANTITY_FROM_DWS, 0)
             return response
         except Exception as e:
-            print("UpdateSttPalletCarton :", e)
+            Logger().error(f"UpdateSttPalletCarton : {e}")
             return None
 
 
@@ -464,7 +463,7 @@ class CallApiBackEnd():
                 data_carton_state = data_update['data']
                 # self.__redis_cache.del_key(TOPIC_REDIS.CARTON_INFO + data_carton_state['carton_code'])
         except Exception as e:
-            print( "finalCartonState :", e)
+            Logger().error(f"finalCartonState : {e}")
 
 
     
@@ -490,7 +489,7 @@ class CallApiBackEnd():
             # for data in datas:
             #     out_data[data] = int(datas[data]) + int(meta_data[data])
             url_update = self.__url + self._carton_qty_update + meta_data['_id']
-            print("updateCartonQty :", meta_data['_id'], datas)
+            # print("updateCartonQty :", meta_data['_id'], datas)
             response = requests.patch(url_update ,json= datas, headers = headers)
             return response
         return None
@@ -534,7 +533,7 @@ class CallApiBackEnd():
         headers = self.__get_token_bearer
         url = self.__url + self._carton_pallet_update_visa + id
         response = requests.patch(url ,json= datas, headers = headers)
-        print(response.text)
+        # print(response.text)
         return response
 
 

@@ -55,11 +55,13 @@ class PLCSInterface():
                 Logger().info(f"Successfully connected to PLC at {self.__host}:{self.__port}")
             else:
                 Logger().error("Failed to connect to PLC")
+                self.__handle_connection_error()
         except Exception as e:
+            Logger().error("Failed to connect to PLC")
             self.__handle_connection_error(e)
 
 
-    def __handle_connection_error(self, error):
+    def __handle_connection_error(self, error= "Error modbus"):
         self.connected = False
         self.__error_count += 1
         Logger().debug(f"Error: {error}, Error count: {self.__error_count}")

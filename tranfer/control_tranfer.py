@@ -26,20 +26,23 @@ class TranferHandle():
                     self.__handle_tranfer(message["data"])
 
     def __handle_tranfer(self, message: str):
-        if message.endswith(';'):
-            result = self.__db_connection.get_final_result_carton(message)
-            
-            if result == HandleCartonConfig.OK:
-                self.__PLC_controller.request_tranfer_ok()
-                Logger().info(f"Qrcode: {message}, Result tranfer: {result}")
-            else:   
-                self.__PLC_controller.request_tranfer_ng()
-                Logger().info(f"Qrcode: {message}, Result tranfer: {result}")
+        try:
+            if message.endswith(';'):
+                result = self.__db_connection.get_final_result_carton(message)
+                
+                if result == HandleCartonConfig.OK:
+                    self.__PLC_controller.request_tranfer_ok()
+                    Logger().info(f"Qrcode: {message}, Result tranfer: {result}")
+                else:   
+                    self.__PLC_controller.request_tranfer_ng()
+                    Logger().info(f"Qrcode: {message}, Result tranfer: {result}")
 
-            time.sleep(TIME.TRANFER_SAMPLING_TIME_RESET)
-            self.__PLC_controller.done_request_tranfer()
-        else:
-            Logger().error(f"QrCode incorect: {message}")
+                time.sleep(TIME.TRANFER_SAMPLING_TIME_RESET)
+                self.__PLC_controller.done_request_tranfer()
+            else:
+                Logger().error(f"QrCode incorect: {message}")
+        except Exception as e:
+            Logger().error(f"ERROR function handle tranfer: {e}")
             
 
             

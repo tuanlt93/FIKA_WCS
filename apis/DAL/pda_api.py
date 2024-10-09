@@ -86,7 +86,7 @@ class PDA_Input(ApiBase):
         """
         args = ResponseFomat.API_PDA_INPUT
         datas = self.jsonParser(args, args)
-        print(datas)
+        # print(datas)
         datas_json = json.dumps(datas)
         self.__redis_cache.hset(
             HandlePalletConfig.PALLET_DATA_MANAGEMENT,
@@ -275,10 +275,10 @@ class ConfirmQtyPalletCarton(ApiBase):
             if not _id:
                 return ApiBase.createNotImplement() 
             response = self.__get_carton_pallet(_id)
-            print(response.text)
+            # print(response.text)
 
             if response:
-                print("------------", response.status_code)
+                # print("------------", response.status_code)
                 if response.status_code != 200:
                     return ApiBase.createResponseMessage({}, response['message'], response['statusCode'], response['statusCode'])
                 else:
@@ -305,7 +305,7 @@ class ConfirmQtyPalletCarton(ApiBase):
         datas = self.jsonParser(args, args)
         actual_carton_pallet = datas['actual_carton_pallet']
         
-        print(actual_carton_pallet)
+        # print(actual_carton_pallet)
 
         self.__redis_cache.update_element_queue(HandlePalletConfig.LIST_PALLET_RUNNING, 0, "carton_pallet_qty" , actual_carton_pallet)
 
@@ -340,19 +340,15 @@ class GetCartonStateInputError(ApiBase):
             datas['carton_code'] = datas['carton_code'].rstrip(';')
         
         list_error = self.__db_connection.get_setting_error_cartons()
-        print("------------------")
-        # print(datas)
+
         response = self.__get_input_insection_or_correction(datas)
-        print(response.text)
-        print("------------------")
-        
+
         if response.status_code != 200:
             response = response.json()
             return ApiBase.createResponseMessage({}, response['message'], response['statusCode'], response['statusCode'])
         else:
             response = response.json()
             response["metaData"]["list_error"] = list_error
-            print(response)
             return ApiBase.createResponseMessage(response["metaData"], response['msg'])
         
 
@@ -386,7 +382,6 @@ class CreateInspection(ApiBase):
     def post(self):
         args = ResponseFomat.API_CREATE_INSPECTION
         datas = self.jsonParser(args, args)
-        print(datas)
 
         datas["type_error"] = BE_TypeCartonError.INSPECTION
 
@@ -549,7 +544,7 @@ class CreateCorrection(ApiBase):
                 self.updateDataBackend(data_qty, data_status, carton_state_id)
             return None
         except Exception as e:
-            print(e)
+            Logger().error(f"Create correction error : {e}")
         
 
     def updateDataBackend(self, data_qty, data_status, carton_state_id):
@@ -627,9 +622,6 @@ class PdaPrint(ApiBase):
         args = ResponseFomat.API_PRINT
         datas = self.jsonParser(args, args)
         datas["carton_code"] = str(datas["carton_code"]) + ";"
-        print("--------------data print------------")
-        print(datas)
-        print("--------------data print------------")
         response_json = self.__send_print_datamax(datas)
         response = response_json.json()
         

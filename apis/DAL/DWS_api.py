@@ -32,7 +32,6 @@ class DWSHeartBeat(ApiBase):
             self.__PLC_controller.status_DWS_connect()  
             time_now = time.time()  
             time_difference = time_now - time_last
-            print(time_difference)
             if time_difference > 10:
                 Logger().error(f"DWS error connect: Time since last heartbeat is {time_difference:.2f} seconds")   
             time_last = time_now  
@@ -166,7 +165,7 @@ class DWSResult(ApiBase):
             "quantity"      : data_pallet_carton_input["carton_pallet_qty"],
             "carton_id"     : response['metaData']['carton_code'] + ";"
         }
-        self.__redis_cache.append_to_list(MarkemConfig.DATA_CARTON_LABLE_PRINT, data_print_lable)
+        self.__redis_cache.append_to_list(MarkemConfig.DATA_CARTON_LABLE_PRINT, json.dumps(data_print_lable))
 
         # Update số lượng carton DWS đếm được
         self.__redis_cache.hset(
