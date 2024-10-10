@@ -2,6 +2,7 @@
 
 import agv
 import PLC
+import DWS
 import markem_printer
 import datamax_printer
 import tranfer

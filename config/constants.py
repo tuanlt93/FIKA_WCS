@@ -96,6 +96,13 @@ class ERROR_DWS:
     WRONG_SIZE_OVER_WEIGHT = "Lỗi sai kích thước – thừa cân"
 
 
+class DWSConfig:
+    TOPIC_TOPIC_ERROR_NO_WEIGHT     = "TOPIC_TOPIC_ERROR_NO_WEIGHT"
+
+    CARTON_NO_WEIGHT                = "CARTON_NO_WEIGHT"
+    
+
+
 class SorterConfig:
     # Sortting location corection 
     TOPIC_STT_CARTON_AFTER_INSPECTION   = "TOPIC_STT_CARTON_AFTER_INSPECTION"

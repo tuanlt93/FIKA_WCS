@@ -1,4 +1,4 @@
-from config.constants import RegisterConfig, MarkemConfig, SorterConfig, HandlePalletConfig, DeviceConfig, DeviceConnectStatus
+from config.constants import RegisterConfig, MarkemConfig, SorterConfig, HandlePalletConfig, DeviceConfig, DeviceConnectStatus, DWSConfig
 from PLC.plc_interface import PLCSInterface
 from utils.pattern import Singleton
 from utils.threadpool import Worker
@@ -88,13 +88,6 @@ class PLCController(metaclass= Singleton):
                     HandlePalletConfig.INPUT_PALLET_A2_DATA
                 )
 
-        if topic == DeviceConfig.STATUS_NOTIFY_RETURN_CARTONS and value == DeviceConfig.ACEPTED:
-            
-            self.__PLC_interface.write_data(address= 29, value= [0])
-            self.__PLC_interface.write_data(address= 24, value= [0])
-            self.__redis_cache.hset(group, DeviceConfig.STATUS_NOTIFY_RETURN_CARTONS, DeviceConfig.WAIT_ACCEPT)
-            Logger().info("Reset error DWS")
-        
         if topic == DeviceConfig.MARKEM_PRINTER_RESULTS and value == DeviceConfig.PRINTED_WRONG:
             self.__redis_cache.publisher(MarkemConfig.TOPIC_MARKEM_PRINTER_RESULTS, MarkemConfig.MESSAGE_PRINTED_WRONG)
             Logger().info("Reset error DWS")
@@ -119,9 +112,13 @@ class PLCController(metaclass= Singleton):
             if register == 19:
                 # data_reg_now[register] is <class 'numpy.int64'> so convert to int
                 self.update_status(HandlePalletConfig.NUMBER_CARTON_OF_PALLET, HandlePalletConfig.QUANTITY_FROM_PLC, int(data_reg_now[register]))
+            
+            if register == 24:
+                self.trigger_print(DWSConfig.TOPIC_TOPIC_ERROR_NO_WEIGHT, DWSConfig.CARTON_NO_WEIGHT)
+            
             if register == 36:
                 self.trigger_print(MarkemConfig.TOPIC_NOTIFY_SEND_DATA_PRINT, MarkemConfig.MESSAGE_NOTIFY_PRINT)
-
+            
             if 42 <= register <= 91:
                 
                 qrcode_plc_read.extend([chr(int(data_reg_now[i])) for i in range(42, 92)])
@@ -214,9 +211,6 @@ class PLCController(metaclass= Singleton):
                                         int(response["standard_width"])
                                         ])
     
-    
-    def reset_error_two_carton(self):
-        self.__PLC_interface.write_data(address= 24, value= [0])
 
     #LINE curtain
     def request_open_line_curtain(self, area: str):
@@ -268,9 +262,12 @@ class PLCController(metaclass= Singleton):
     def status_DWS_connect(self):
         self.__PLC_interface.write_data(address= 22, value= [1])
 
-    def notify_error_two_cartons(self):
+    def notify_error_no_weight(self):
         self.__PLC_interface.write_data(address= 29, value= [1])
         
+    def reset_error_no_weight(self):
+        self.__PLC_interface.write_data(address= 29, value= [0])
+        self.__PLC_interface.write_data(address= 24, value= [0])
 
 
     # AGV

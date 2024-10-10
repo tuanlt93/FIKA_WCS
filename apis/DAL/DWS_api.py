@@ -66,7 +66,7 @@ class DWSResult(ApiBase):
 
         # Thùng cặp kè
         if DWS_result["weight"] == -1:
-            self.__PLC_controller.notify_error_two_cartons()
+            self.__PLC_controller.notify_error_no_weight()
             return ApiBase.createNotImplement()
         
         
