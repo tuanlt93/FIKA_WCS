@@ -5,7 +5,6 @@ class ConfigAPI:
     # url = "http://192.168.31.200:3100/"
     url = "http://127.0.0.1:3100/"
 
-
     url_print_datamax = "http://192.168.31.205:9100/markem/print"
     url_show_data_temp_print = "http://192.168.31.205:9100/markem/print/show"
     

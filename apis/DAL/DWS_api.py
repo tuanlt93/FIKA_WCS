@@ -162,7 +162,7 @@ class DWSResult(ApiBase):
             "vendor_batch"  : data_pallet_carton_input["vendor_batch"],
             "sap_batch"     : data_pallet_carton_input["sap_batch"],
             "expire_date"   : data_pallet_carton_input["expiry_date"],
-            "quantity"      : data_pallet_carton_input["carton_pallet_qty"],
+            "quantity"      : data_pallet_carton_input["standard_item_carton"],
             "carton_id"     : response['metaData']['carton_code'] + ";"
         }
         self.__redis_cache.append_to_list(MarkemConfig.DATA_CARTON_LABLE_PRINT, json.dumps(data_print_lable))

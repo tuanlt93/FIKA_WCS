@@ -57,7 +57,7 @@ class Logger(logging.Logger, metaclass=Singleton):
     Create logger object for the first time to use
     """
         
-    def __init__(self, level: str = 'info', to_screen: bool = True,
+    def __init__(self, level: str = 'info', to_screen: bool = False,
                  to_file: bool = True, log_dir: str = 'Logs') -> None:
         """
         level: debug, info, warn, error, fatal

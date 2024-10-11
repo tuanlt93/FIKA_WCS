@@ -389,7 +389,7 @@ class MissionHandle(MissionBase):
         """
 
 
-        time.sleep(10)
+        time.sleep(15)
 
         # Update misison vào database
         data_update_mision = {
