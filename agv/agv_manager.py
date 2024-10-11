@@ -181,8 +181,11 @@ class ManagerMission(metaclass= Singleton):
                         self.__status_all_devices_agv_used.get(DeviceConfig.STATUS_ELEVATOR_LIFTING_DOWN) == AGVConfig.DONT_USE and
                         self.__status_all_devices_agv_used[getattr(DeviceConfig, f'STATUS_DOCK_{dock}')] == AGVConfig.DONT_USE
                     ):
-                        self.__rcs[f'MISSION_{dock}'] = MissionHandle(**config)
-                        
+                        if dock == "M4" and self.__status_all_devices[DeviceConfig.STATUS_DOCK_REJECT] == DeviceConfig.DOCK_FULL:
+                            self.__rcs[f'MISSION_{dock}'] = MissionHandle(**config)
+                        else:
+                            self.__rcs[f'MISSION_{dock}'] = MissionHandle(**config)
+                            
                         self.__update_status_device_agv_used(DeviceConfig.STATUS_ELEVATOR_LIFTING_DOWN, AGVConfig.USED)
                         self.__update_status_device_agv_used(getattr(DeviceConfig, f'STATUS_DOCK_{dock}'), AGVConfig.USED)
                         break       
@@ -240,13 +243,13 @@ class ManagerMission(metaclass= Singleton):
                 self.__door_close_reset[area] = False
                 self.__redis_cache.set(f'door_close_reset_{area}', self.__door_close_reset[area])
 
-        # No requirements left, reset close bit
-        elif (not requirements and 
-              self.__status_all_devices[status_line_curtain] == DeviceConfig.LINE_CURTAIN_OPEN):
+        # # No requirements left, reset close bit
+        # elif (not requirements and 
+        #       self.__status_all_devices[status_line_curtain] == DeviceConfig.LINE_CURTAIN_OPEN):
 
-            self.__PLC_controller.request_close_line_curtain(area)  # Close the door
-            self.__door_close_reset[area] = True
-            self.__redis_cache.set(f'door_close_reset_{area}', self.__door_close_reset[area])
+        #     self.__PLC_controller.request_close_line_curtain(area)  # Close the door
+        #     self.__door_close_reset[area] = True
+        #     self.__redis_cache.set(f'door_close_reset_{area}', self.__door_close_reset[area])
 
         # Reset the door close request once the door is closed and no requirements exist
         elif (self.__status_all_devices[status_line_curtain] == DeviceConfig.LINE_CURTAIN_CLOSE and 

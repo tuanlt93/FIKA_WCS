@@ -8,8 +8,8 @@ redis_cache.hset(DeviceConnectStatus.CONNECTION_STATUS_ALL_DEVICE, DeviceConnect
 temp_number_carton_dws = redis_cache.hget(HandlePalletConfig.NUMBER_CARTON_OF_PALLET, HandlePalletConfig.QUANTITY_FROM_DWS)
 redis_cache.hset(
     DeviceConfig.STATUS_ALL_DEVICES,
-    DeviceConfig.STATUS_DOCK_M4,
-    DeviceConfig.DOCK_FULL,
+    DeviceConfig.STATUS_DOCK_REJECT,
+    DeviceConfig.DOCK_EMPTY,
 )
 
 if  temp_number_carton_dws is None:

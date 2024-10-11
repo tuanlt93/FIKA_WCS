@@ -24,10 +24,10 @@ INPUT_PALLET_CONFIGS = {
 
 INPUT_EMPTY_PALLET_CONFIGS = {
     dock: {**config_all[f'MISSION_{dock}'], 'name': f'MISSION_{dock}'}
-    for dock in ["O3", "M4"]
+    for dock in ["O3", "M1"]
 }
 
 OUTPUT_PALLET_CONFIGS = {
     dock: {**config_all[f'MISSION_{dock}'], 'name': f'MISSION_{dock}'}
-    for dock in ["A3", "O1", "O2", "M1", "M2", "M3"]
+    for dock in ["A3", "O1", "O2", "M2", "M3","M4"]
 }

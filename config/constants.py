@@ -100,7 +100,7 @@ class DWSConfig:
     TOPIC_TOPIC_ERROR_NO_WEIGHT     = "TOPIC_TOPIC_ERROR_NO_WEIGHT"
 
     CARTON_NO_WEIGHT                = "CARTON_NO_WEIGHT"
-    
+
 
 
 class SorterConfig:
@@ -136,6 +136,7 @@ class DeviceConfig:
     STATUS_DOCK_M2          = "STATUS_DOCK_M2"
     STATUS_DOCK_M3          = "STATUS_DOCK_M3"
     STATUS_DOCK_M4          = "STATUS_DOCK_M4"
+    STATUS_DOCK_REJECT      = "STATUS_DOCK_REJECT"
 
     DOCK_EMPTY              = "EMPTY"
     DOCK_PALLET             = "DOCK_PALLET"
@@ -210,7 +211,7 @@ class RegisterConfig:
         30: [DeviceConfig.STATUS_DOCK_M1, DeviceConfig.DOCK_EMPTY, DeviceConfig.DOCK_FULL],
         31: [DeviceConfig.STATUS_DOCK_M2, DeviceConfig.DOCK_EMPTY, DeviceConfig.DOCK_FULL],
         32: [DeviceConfig.STATUS_DOCK_M3, DeviceConfig.DOCK_EMPTY, DeviceConfig.DOCK_FULL],
-        33: [DeviceConfig.STATUS_DOCK_M4, DeviceConfig.DOCK_FULL, DeviceConfig.DOCK_FULL],
+        33: [DeviceConfig.STATUS_DOCK_M4, DeviceConfig.DOCK_EMPTY, DeviceConfig.DOCK_FULL],
 
         34: [DeviceConfig.MARKEM_PRINTER_RESULTS, DeviceConfig.PRINT_CORRECTLY, DeviceConfig.PRINTED_WRONG],
 
