@@ -29,6 +29,7 @@ class PrintHandle():
                     self.print(message["data"])
 
     def print(self, message):
+        # print(message)
         if message == MarkemConfig.MESSAGE_NOTIFY_PRINT:
             data_print = self.__redis_cache.get_first_element(key= MarkemConfig.DATA_CARTON_LABLE_PRINT)
 
@@ -37,6 +38,5 @@ class PrintHandle():
             self.__redis_cache.delete_first_element(key= MarkemConfig.DATA_CARTON_LABLE_PRINT)
             
                
-
 
 

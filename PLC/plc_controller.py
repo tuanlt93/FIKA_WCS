@@ -117,8 +117,9 @@ class PLCController(metaclass= Singleton):
                 self.trigger_print(DWSConfig.TOPIC_TOPIC_ERROR_NO_WEIGHT, DWSConfig.CARTON_NO_WEIGHT)
             
             if register == 36:
+                # print(36)
                 self.trigger_print(MarkemConfig.TOPIC_NOTIFY_SEND_DATA_PRINT, MarkemConfig.MESSAGE_NOTIFY_PRINT)
-            
+           
             if 42 <= register <= 91:
                 
                 qrcode_plc_read.extend([chr(int(data_reg_now[i])) for i in range(42, 92)])

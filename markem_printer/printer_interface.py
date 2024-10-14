@@ -1,5 +1,6 @@
 from socket_tcp import socket_tcp
 import json
+from utils.logger import Logger
 
 class PrintInterface():
     def __init__(self) -> None:
@@ -7,11 +8,11 @@ class PrintInterface():
   
     def send_data_print_lable(self, data_print_json: json) -> bool:
         messages = []
-        data_print = json.loads(data_print_json)
-        if not data_print or data_print is None: 
+        
+        if not data_print_json or data_print_json is None: 
             # messages.append("!R")
             # messages.append("!C")
-            messages.append("!M\"CARTON0\"")
+            messages.append("!M\"CARTON1\"")
             messages.append("!W1\"\"")
             messages.append("!W2\"\"")
             messages.append("!W3\"\"")
@@ -22,13 +23,14 @@ class PrintInterface():
             messages.append("!0D")
             messages.append("!p")
             # messages.append("!P")
-            print("NO DATA PRINT")
-            
+            # print("NO DATA PRINT")
+            Logger().info("NO DATA PRINT")
         else:
+            data_print = json.loads(data_print_json)
         
             # messages.append("!R")
             # # messages.append("!C")
-            messages.append("!M\"CARTON0\"")
+            messages.append("!M\"CARTON1\"")
             messages.append(f'!W1\"{data_print["material_code"]}\"')
             messages.append(f'!W2\"{data_print["material_name"]}\"')
             messages.append(f'!W3\"{data_print["vendor_batch"]}\"')
@@ -39,6 +41,7 @@ class PrintInterface():
             messages.append("!0D")
             messages.append("!p")
             # messages.append("!P")
+            
 
         socket_tcp.send_tcp_string(messages)
         # response = socket_tcp.receive()
@@ -48,6 +51,13 @@ class PrintInterface():
         #     print("Message send to print NOT FEEDBACK")
         #     self.__PLC_controller.status_markem_disconnect()
         #     return False
+    
+    def reset_markem(self):
+        messages = []
+        messages.append("!R")
+        socket_tcp.send_tcp_string(messages)
+
+
 
 
 

@@ -152,17 +152,19 @@ class PDA_Call_AGV(ApiBase):
         datas = self.jsonParser(args, args)
         status_dock_reject = self.__redis_cache.hget(
                 DeviceConfig.STATUS_ALL_DEVICES,
-                DeviceConfig.STATUS_DOCK_M4,
+                DeviceConfig.STATUS_DOCK_REJECT,
             )
 
         if datas["location"] == "reject" and status_dock_reject == DeviceConfig.DOCK_FULL:
+            return ApiBase.createNotImplement()
+        else:
             self.__redis_cache.hset(
                 DeviceConfig.STATUS_ALL_DEVICES,
-                DeviceConfig.STATUS_DOCK_M4,
-                DeviceConfig.DOCK_EMPTY,
+                DeviceConfig.STATUS_DOCK_REJECT,
+                DeviceConfig.DOCK_FULL,
             )
             return ApiBase.createResponseMessage({}, "Creat empty pallet successful")
-        return ApiBase.createNotImplement()
+        
     # @ApiBase.exception_error
     # def post(self):
     #     args = ResponseFomat.API_PDA_INPUT

@@ -113,7 +113,7 @@ class SocketTCP:
             )
             self.connect()
             # self.send_tcp_string([])
-            self.send_tcp_string(message)  # Retry sending the message after reconnecting
+            # self.send_tcp_string(message)  # Retry sending the message after reconnecting
 
 
 

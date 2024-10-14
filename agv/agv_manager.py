@@ -183,7 +183,7 @@ class ManagerMission(metaclass= Singleton):
                     ):
                         if dock == "M4" and self.__status_all_devices[DeviceConfig.STATUS_DOCK_REJECT] == DeviceConfig.DOCK_FULL:
                             self.__rcs[f'MISSION_{dock}'] = MissionHandle(**config)
-                        else:
+                        elif dock != "M4":
                             self.__rcs[f'MISSION_{dock}'] = MissionHandle(**config)
                             
                         self.__update_status_device_agv_used(DeviceConfig.STATUS_ELEVATOR_LIFTING_DOWN, AGVConfig.USED)
@@ -211,7 +211,7 @@ class ManagerMission(metaclass= Singleton):
     def __handle_door(self, area, requirements, status_line_curtain):
         requirement_door_open = DeviceConfig.LINE_CURTAIN_OPEN in requirements
         requirement_door_close = DeviceConfig.LINE_CURTAIN_CLOSE in requirements
-        all_requirement_door_close = all(req == DeviceConfig.LINE_CURTAIN_CLOSE for req in requirements)
+        all_requirement_door_close = len(requirements) > 0 and all(req == DeviceConfig.LINE_CURTAIN_CLOSE for req in requirements)
         # Open door request
         if requirement_door_open:
             if self.__status_all_devices[status_line_curtain] == DeviceConfig.LINE_CURTAIN_OPEN:

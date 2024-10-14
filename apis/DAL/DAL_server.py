@@ -38,7 +38,6 @@ class DALServer(metaclass=Singleton):
                 )
             }
             self.__token_value = token_request
-            print(self.__token_value)
             Logger().info("Get token seccessful message.")
         except Exception as e:
             Logger().error(f"Get token error: {e}")
