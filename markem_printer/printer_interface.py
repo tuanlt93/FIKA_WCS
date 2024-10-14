@@ -7,8 +7,8 @@ class PrintInterface():
   
     def send_data_print_lable(self, data_print_json: json) -> bool:
         messages = []
-        data_print = json.loads(data_print_json)
-        if not data_print or data_print is None: 
+        
+        if not data_print_json or data_print_json is None: 
             # messages.append("!R")
             # messages.append("!C")
             messages.append("!M\"CARTON0\"")
@@ -25,7 +25,7 @@ class PrintInterface():
             print("NO DATA PRINT")
             
         else:
-        
+            data_print = json.loads(data_print_json)
             # messages.append("!R")
             # # messages.append("!C")
             messages.append("!M\"CARTON0\"")
@@ -49,5 +49,9 @@ class PrintInterface():
         #     self.__PLC_controller.status_markem_disconnect()
         #     return False
 
+    def reset_markem(self):
+        messages = []
+        messages.append("!R")
+        socket_tcp.send_tcp_string(messages)
 
 

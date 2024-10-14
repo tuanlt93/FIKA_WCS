@@ -120,6 +120,9 @@ class MarkemConfig:
 
     DATA_PRINT_SHOW = "DATA_PRINT_SHOW"
 
+    # Thông báo đã in tem dừng máy in
+    MESSAGE_NOTIFY_PAUSE_PRINT  = "MESSAGE_NOTIFY_PAUSE_PRINT"
+
 class DeviceConfig:
     # ALL device for create mission
     STATUS_ALL_DEVICES      = "STATUS_ALL_DEVICES"

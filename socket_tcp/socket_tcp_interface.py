@@ -99,6 +99,7 @@ class SocketTCP:
                 message (str): The message to send.
         """
         message = "\r\n".join(message) + "\r\n"
+        print(message)
         try:
             self.socket_conn.sendall(message.encode())
             time.sleep(0.02)
@@ -113,6 +114,7 @@ class SocketTCP:
             )
             self.connect()
             # self.send_tcp_string([])
+            print(message)
             self.send_tcp_string(message)  # Retry sending the message after reconnecting
 
 

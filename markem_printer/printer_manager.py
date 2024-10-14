@@ -35,8 +35,7 @@ class PrintHandle():
             self.__redis_cache.set(MarkemConfig.DATA_PRINT_SHOW, data_print)
             self.__print_interface.send_data_print_lable(data_print)
             self.__redis_cache.delete_first_element(key= MarkemConfig.DATA_CARTON_LABLE_PRINT)
-            
-               
-
+        
+    
 
 

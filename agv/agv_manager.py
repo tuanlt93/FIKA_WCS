@@ -203,7 +203,7 @@ class ManagerMission(metaclass= Singleton):
             if area in requirements:
                 requirement = self.__redis_cache.hget(topic=mission, key='requirement')
                 requirements[area].append(requirement)
-        # print(requirements)
+
         self.__handle_door('A', requirements['A'], DeviceConfig.STATUS_LINE_CURTAIN_A)
         self.__handle_door('O', requirements['O'], DeviceConfig.STATUS_LINE_CURTAIN_O)
 
@@ -211,7 +211,8 @@ class ManagerMission(metaclass= Singleton):
     def __handle_door(self, area, requirements, status_line_curtain):
         requirement_door_open = DeviceConfig.LINE_CURTAIN_OPEN in requirements
         requirement_door_close = DeviceConfig.LINE_CURTAIN_CLOSE in requirements
-        all_requirement_door_close = all(req == DeviceConfig.LINE_CURTAIN_CLOSE for req in requirements)
+        all_requirement_door_close = len(requirements) > 0 and all(req == DeviceConfig.LINE_CURTAIN_CLOSE for req in requirements)
+
         # Open door request
         if requirement_door_open:
             if self.__status_all_devices[status_line_curtain] == DeviceConfig.LINE_CURTAIN_OPEN:
@@ -259,8 +260,6 @@ class ManagerMission(metaclass= Singleton):
             self.__PLC_controller.reset_request_close_line_curtain(area)  # Reset close request
             self.__door_close_reset[area] = False
             self.__redis_cache.set(f'door_close_reset_{area}', self.__door_close_reset[area])
-
-
 
 
     def __allow_agvs_to_enter(self, requirement):

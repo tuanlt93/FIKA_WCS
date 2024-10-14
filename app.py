@@ -1,6 +1,6 @@
 # app
 
-import agv
+# import agv
 import PLC
 import DWS
 import markem_printer
