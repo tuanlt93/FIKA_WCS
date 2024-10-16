@@ -183,11 +183,14 @@ class ManagerMission(metaclass= Singleton):
                     ):
                         if dock == "M4" and self.__status_all_devices[DeviceConfig.STATUS_DOCK_REJECT] == DeviceConfig.DOCK_FULL:
                             self.__rcs[f'MISSION_{dock}'] = MissionHandle(**config)
+
+                            self.__update_status_device_agv_used(DeviceConfig.STATUS_ELEVATOR_LIFTING_DOWN, AGVConfig.USED)
+                            self.__update_status_device_agv_used(getattr(DeviceConfig, f'STATUS_DOCK_{dock}'), AGVConfig.USED)
+
                         elif dock != "M4":
                             self.__rcs[f'MISSION_{dock}'] = MissionHandle(**config)
-                            
-                        self.__update_status_device_agv_used(DeviceConfig.STATUS_ELEVATOR_LIFTING_DOWN, AGVConfig.USED)
-                        self.__update_status_device_agv_used(getattr(DeviceConfig, f'STATUS_DOCK_{dock}'), AGVConfig.USED)
+                            self.__update_status_device_agv_used(DeviceConfig.STATUS_ELEVATOR_LIFTING_DOWN, AGVConfig.USED)
+                            self.__update_status_device_agv_used(getattr(DeviceConfig, f'STATUS_DOCK_{dock}'), AGVConfig.USED)
                         break       
         except Exception as e:
             Logger().error("HANDLE OUTPUT PALLET ERROR:" + str(e))

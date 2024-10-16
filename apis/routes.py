@@ -3,7 +3,7 @@ TODO: Import active url resources here
 """
 from apis.api_base import api
 from apis.DAL.DWS_api import DWSHeartBeat, DWSResult
-
+from apis.DAL.monitor_agv_api import MonitorMission
 
 from apis.DAL.pda_api import (
     PDA_Input,
@@ -32,3 +32,4 @@ api.addClassResource(PDA_Call_AGV)
 
 api.addClassResource(DWSHeartBeat)
 api.addClassResource(DWSResult)
+api.addClassResource(MonitorMission)

@@ -1,0 +1,773 @@
+[2024-10-15 09:19:20,255 (/home/ubuntu/FIKA_WCS/db_redis/handle_redis.py:33 - __init__())] INFO -> Connect redis successful
+[2024-10-15 09:19:20,323 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:55 - __connect())] INFO -> Successfully connected to PLC at 192.168.31.3:502
+[2024-10-15 09:19:20,323 (/home/ubuntu/FIKA_WCS/PLC/plc_controller.py:150 - __check_trigger())] INFO -> START CHECK PLC
+[2024-10-15 09:19:20,699 (/home/ubuntu/FIKA_WCS/apis/DAL/DAL_server.py:41 - get_token_bearer_backend())] INFO -> Get token seccessful message.
+[2024-10-15 09:19:20,723 (/home/ubuntu/FIKA_WCS/agv/agv_manager.py:17 - __init__())] INFO -> START AGV
+[2024-10-15 09:19:20,726 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:19 - __sub_request())] INFO -> START CHECK DWS
+[2024-10-15 09:19:20,728 (/home/ubuntu/FIKA_WCS/markem_printer/printer_manager.py:24 - __sub_print_request())] INFO -> START PRINT MARKEM
+[2024-10-15 09:19:20,729 (/home/ubuntu/FIKA_WCS/socket_tcp/socket_tcp_interface.py:47 - connect())] INFO -> Connected to 192.168.31.210:9100
+[2024-10-15 09:19:20,730 (/home/ubuntu/FIKA_WCS/datamax_printer/printer_manager.py:21 - __sub_print_request())] INFO -> START REPRINT
+[2024-10-15 09:19:20,732 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:19 - __init__())] INFO -> TRANFER READY
+[2024-10-15 09:19:20,733 (/home/ubuntu/FIKA_WCS/tasks/scheduler.py:13 - __run_schedule())] INFO -> SCHEDUAL START
+[2024-10-15 09:19:20,741 (/home/ubuntu/FIKA_WCS/apis/__init__.py:39 - start())] INFO -> RestAPI READY
+[2024-10-15 09:21:50,940 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:111 - main())] INFO -> START TASK:MISSION_A1
+[2024-10-15 09:22:48,420 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:237 - main())] INFO -> ELEVATOR UP READY TASK:271
+[2024-10-15 09:22:53,429 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:244 - main())] INFO -> NOTIFY AGV IN ELEVATOR UP FOR PLC:271
+[2024-10-15 09:23:21,303 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:270 - main())] INFO -> NOTIFY AGV OUT ELEVATOR UP FOR PLC:271
+[2024-10-15 09:24:26,163 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:458 - onContinueEnter())] INFO -> On continue agv enter:271
+[2024-10-15 09:25:01,214 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:462 - onContinueEgress())] INFO -> On continue agv egress:271
+[2024-10-15 09:25:23,607 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:421 - main())] INFO -> DONE MISSION:271
+[2024-10-15 09:58:26,864 (/home/ubuntu/FIKA_WCS/markem_printer/printer_interface.py:27 - send_data_print_lable())] INFO -> NO DATA PRINT
+[2024-10-15 10:11:54,745 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:111 - main())] INFO -> START TASK:MISSION_A1
+[2024-10-15 10:12:51,978 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:237 - main())] INFO -> ELEVATOR UP READY TASK:272
+[2024-10-15 10:12:56,985 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:244 - main())] INFO -> NOTIFY AGV IN ELEVATOR UP FOR PLC:272
+[2024-10-15 10:13:24,915 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:270 - main())] INFO -> NOTIFY AGV OUT ELEVATOR UP FOR PLC:272
+[2024-10-15 10:14:29,952 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:458 - onContinueEnter())] INFO -> On continue agv enter:272
+[2024-10-15 10:15:05,006 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:462 - onContinueEgress())] INFO -> On continue agv egress:272
+[2024-10-15 10:15:27,379 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:421 - main())] INFO -> DONE MISSION:272
+[2024-10-15 10:18:51,247 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:35 - __handle_tranfer())] INFO -> Qrcode: 21234433,Y007,20241015,1,30,18,1;, Result tranfer: OK
+[2024-10-15 10:19:26,882 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:35 - __handle_tranfer())] INFO -> Qrcode: 21234433,Y007,20241015,1,30,9,1;, Result tranfer: OK
+[2024-10-15 10:19:50,230 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:35 - __handle_tranfer())] INFO -> Qrcode: 21234433,Y007,20241015,1,30,16,1;, Result tranfer: OK
+[2024-10-15 10:20:01,996 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:105 - post())] INFO -> Done Pallet
+[2024-10-15 10:20:26,437 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:35 - __handle_tranfer())] INFO -> Qrcode: 21234433,Y007,20241015,1,30,14,1;, Result tranfer: OK
+[2024-10-15 10:28:41,043 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:111 - main())] INFO -> START TASK:MISSION_O1
+[2024-10-15 10:29:21,100 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:458 - onContinueEnter())] INFO -> On continue agv enter:273
+[2024-10-15 10:29:55,740 (/home/ubuntu/FIKA_WCS/apis/api_base.py:244 - inner())] ERROR -> An error occurred: the JSON object must be str, bytes or bytearray, not NoneType
+Traceback (most recent call last):
+  File "/home/ubuntu/FIKA_WCS/apis/api_base.py", line 229, in inner
+    return func(cls)
+  File "/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py", line 98, in post
+    data_pallet_carton_input = json.loads(data_pallet_carton_input)
+  File "/usr/lib/python3.10/json/__init__.py", line 339, in loads
+    raise TypeError(f'the JSON object must be str, bytes or bytearray, '
+TypeError: the JSON object must be str, bytes or bytearray, not NoneType
+
+[2024-10-15 10:29:57,370 (/home/ubuntu/FIKA_WCS/markem_printer/printer_interface.py:27 - send_data_print_lable())] INFO -> NO DATA PRINT
+[2024-10-15 10:30:06,165 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:462 - onContinueEgress())] INFO -> On continue agv egress:273
+[2024-10-15 10:32:31,255 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:350 - main())] INFO -> ELEVATOR DOWN READY:273
+[2024-10-15 10:32:36,269 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:356 - main())] INFO -> NOTIFY AGV IN ELEVATOR DOWN FOR PLC:273
+[2024-10-15 10:33:39,823 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:371 - main())] INFO -> NOTIFY AGV OUT ELEVATOR DOWN FOR PLC:273
+[2024-10-15 10:34:02,198 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:421 - main())] INFO -> DONE MISSION:273
+[2024-10-15 11:02:38,658 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:111 - main())] INFO -> START TASK:MISSION_A1
+[2024-10-15 11:03:35,832 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:237 - main())] INFO -> ELEVATOR UP READY TASK:274
+[2024-10-15 11:03:40,850 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:244 - main())] INFO -> NOTIFY AGV IN ELEVATOR UP FOR PLC:274
+[2024-10-15 11:04:08,719 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:270 - main())] INFO -> NOTIFY AGV OUT ELEVATOR UP FOR PLC:274
+[2024-10-15 11:05:08,857 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:458 - onContinueEnter())] INFO -> On continue agv enter:274
+[2024-10-15 11:05:43,907 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:462 - onContinueEgress())] INFO -> On continue agv egress:274
+[2024-10-15 11:06:06,357 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:421 - main())] INFO -> DONE MISSION:274
+[2024-10-15 11:08:52,437 (/home/ubuntu/FIKA_WCS/PLC/plc_controller.py:93 - update_status())] INFO -> Reset error DWS
+[2024-10-15 11:11:21,803 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:35 - __handle_tranfer())] INFO -> Qrcode: 21234433,Y007,20241015,3,20,2,1;, Result tranfer: OK
+[2024-10-15 11:12:11,669 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:38 - __handle_tranfer())] INFO -> Qrcode: 21234433,Y007,20241015,3,20,9,1;, Result tranfer: NG
+[2024-10-15 11:12:58,899 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:35 - __handle_tranfer())] INFO -> Qrcode: 21234433,Y007,20241015,3,20,1,1;, Result tranfer: OK
+[2024-10-15 11:25:35,406 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:111 - main())] INFO -> START TASK:MISSION_A1
+[2024-10-15 11:27:03,103 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:237 - main())] INFO -> ELEVATOR UP READY TASK:275
+[2024-10-15 11:27:08,112 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:244 - main())] INFO -> NOTIFY AGV IN ELEVATOR UP FOR PLC:275
+[2024-10-15 11:27:35,978 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:270 - main())] INFO -> NOTIFY AGV OUT ELEVATOR UP FOR PLC:275
+[2024-10-15 11:28:40,668 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:458 - onContinueEnter())] INFO -> On continue agv enter:275
+[2024-10-15 11:29:15,722 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:462 - onContinueEgress())] INFO -> On continue agv egress:275
+[2024-10-15 11:29:43,170 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:421 - main())] INFO -> DONE MISSION:275
+[2024-10-15 11:30:25,210 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:105 - post())] INFO -> Done Pallet
+[2024-10-15 11:33:16,036 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:111 - main())] INFO -> START TASK:MISSION_A3
+[2024-10-15 11:34:31,147 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:458 - onContinueEnter())] INFO -> On continue agv enter:276
+[2024-10-15 11:35:06,201 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:462 - onContinueEgress())] INFO -> On continue agv egress:276
+[2024-10-15 11:37:46,639 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:350 - main())] INFO -> ELEVATOR DOWN READY:276
+[2024-10-15 11:37:51,644 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:356 - main())] INFO -> NOTIFY AGV IN ELEVATOR DOWN FOR PLC:276
+[2024-10-15 11:38:55,296 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:371 - main())] INFO -> NOTIFY AGV OUT ELEVATOR DOWN FOR PLC:276
+[2024-10-15 11:39:17,660 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:421 - main())] INFO -> DONE MISSION:276
+[2024-10-15 11:50:23,209 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:35 - __handle_tranfer())] INFO -> Qrcode: 21234433,Y007,20241015,3,20,15,0;, Result tranfer: OK
+[2024-10-15 12:06:39,016 (/home/ubuntu/FIKA_WCS/db_redis/handle_redis.py:33 - __init__())] INFO -> Connect redis successful
+[2024-10-15 12:06:39,084 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:55 - __connect())] INFO -> Successfully connected to PLC at 192.168.31.3:502
+[2024-10-15 12:06:39,084 (/home/ubuntu/FIKA_WCS/PLC/plc_controller.py:150 - __check_trigger())] INFO -> START CHECK PLC
+[2024-10-15 12:06:39,457 (/home/ubuntu/FIKA_WCS/apis/DAL/DAL_server.py:41 - get_token_bearer_backend())] INFO -> Get token seccessful message.
+[2024-10-15 12:06:39,482 (/home/ubuntu/FIKA_WCS/agv/agv_manager.py:17 - __init__())] INFO -> START AGV
+[2024-10-15 12:06:39,485 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:19 - __sub_request())] INFO -> START CHECK DWS
+[2024-10-15 12:06:39,487 (/home/ubuntu/FIKA_WCS/markem_printer/printer_manager.py:24 - __sub_print_request())] INFO -> START PRINT MARKEM
+[2024-10-15 12:06:39,489 (/home/ubuntu/FIKA_WCS/datamax_printer/printer_manager.py:21 - __sub_print_request())] INFO -> START REPRINT
+[2024-10-15 12:06:39,489 (/home/ubuntu/FIKA_WCS/socket_tcp/socket_tcp_interface.py:47 - connect())] INFO -> Connected to 192.168.31.210:9100
+[2024-10-15 12:06:39,490 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:19 - __init__())] INFO -> TRANFER READY
+[2024-10-15 12:06:39,492 (/home/ubuntu/FIKA_WCS/tasks/scheduler.py:13 - __run_schedule())] INFO -> SCHEDUAL START
+[2024-10-15 12:06:39,499 (/home/ubuntu/FIKA_WCS/apis/__init__.py:39 - start())] INFO -> RestAPI READY
+[2024-10-15 12:14:50,268 (/home/ubuntu/FIKA_WCS/db_redis/handle_redis.py:33 - __init__())] INFO -> Connect redis successful
+[2024-10-15 12:14:50,335 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:55 - __connect())] INFO -> Successfully connected to PLC at 192.168.31.3:502
+[2024-10-15 12:14:50,337 (/home/ubuntu/FIKA_WCS/PLC/plc_controller.py:150 - __check_trigger())] INFO -> START CHECK PLC
+[2024-10-15 12:14:50,713 (/home/ubuntu/FIKA_WCS/apis/DAL/DAL_server.py:41 - get_token_bearer_backend())] INFO -> Get token seccessful message.
+[2024-10-15 12:14:50,737 (/home/ubuntu/FIKA_WCS/agv/agv_manager.py:17 - __init__())] INFO -> START AGV
+[2024-10-15 12:14:50,740 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:19 - __sub_request())] INFO -> START CHECK DWS
+[2024-10-15 12:14:50,743 (/home/ubuntu/FIKA_WCS/markem_printer/printer_manager.py:24 - __sub_print_request())] INFO -> START PRINT MARKEM
+[2024-10-15 12:14:50,744 (/home/ubuntu/FIKA_WCS/datamax_printer/printer_manager.py:21 - __sub_print_request())] INFO -> START REPRINT
+[2024-10-15 12:14:50,745 (/home/ubuntu/FIKA_WCS/socket_tcp/socket_tcp_interface.py:47 - connect())] INFO -> Connected to 192.168.31.210:9100
+[2024-10-15 12:14:50,746 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:19 - __init__())] INFO -> TRANFER READY
+[2024-10-15 12:14:50,747 (/home/ubuntu/FIKA_WCS/tasks/scheduler.py:13 - __run_schedule())] INFO -> SCHEDUAL START
+[2024-10-15 12:14:50,755 (/home/ubuntu/FIKA_WCS/apis/__init__.py:39 - start())] INFO -> RestAPI READY
+[2024-10-15 13:26:45,480 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:103 - read_data())] ERROR -> Error reading from PLC: Modbus Error: [Connection] Failed to connect[ModbusTcpClient(192.168.31.3:502)]
+[2024-10-15 13:26:46,482 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:26:47,684 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:26:49,087 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:26:49,445 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:26:50,190 (/home/ubuntu/FIKA_WCS/socket_tcp/socket_tcp_interface.py:80 - reset_connect())] INFO -> PLC disconnected, closing socket connection...
+[2024-10-15 13:26:50,190 (/home/ubuntu/FIKA_WCS/socket_tcp/socket_tcp_interface.py:91 - close())] INFO -> Closed connection to 192.168.31.210:9100
+[2024-10-15 13:26:50,890 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:26:55,094 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:26:55,731 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:27:01,954 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:27:02,503 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:27:08,232 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:27:08,543 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:36 - post())] ERROR -> DWS error connect: Time since last heartbeat is 17.50 seconds
+[2024-10-15 13:27:14,527 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:27:20,759 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:27:26,994 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:27:27,580 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:36 - post())] ERROR -> DWS error connect: Time since last heartbeat is 19.04 seconds
+[2024-10-15 13:27:33,263 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:27:39,534 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:27:45,826 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:27:52,087 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:27:54,141 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:27:58,365 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:28:04,633 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:28:10,913 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:28:17,173 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:28:23,448 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:28:29,742 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:28:35,963 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:28:42,254 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:28:48,520 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:28:50,633 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:36 - post())] ERROR -> DWS error connect: Time since last heartbeat is 83.05 seconds
+[2024-10-15 13:28:54,781 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:29:01,045 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:29:07,284 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:29:13,529 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:29:14,551 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:36 - post())] ERROR -> DWS error connect: Time since last heartbeat is 23.92 seconds
+[2024-10-15 13:29:19,786 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:29:26,050 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:29:32,311 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:29:38,548 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:29:44,784 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:29:51,019 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:29:55,242 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:29:57,262 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:30:03,503 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:30:09,723 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:30:15,952 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:30:22,220 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:30:28,462 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:30:34,693 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:30:40,924 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:30:47,161 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:30:53,402 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:30:59,639 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:31:05,875 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:31:12,110 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:31:18,340 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:31:24,571 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:31:30,839 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:31:37,083 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:31:43,326 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:31:49,556 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:31:55,795 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:31:56,310 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:32:02,026 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:32:08,265 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:32:14,514 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:32:20,762 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:32:26,592 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:32:32,249 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 13:32:38,499 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:55 - __connect())] INFO -> Successfully connected to PLC at 192.168.31.3:502
+[2024-10-15 13:32:40,543 (/home/ubuntu/FIKA_WCS/socket_tcp/socket_tcp_interface.py:47 - connect())] INFO -> Connected to 192.168.31.210:9100
+[2024-10-15 13:33:56,324 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:43 - __handle_tranfer())] ERROR -> QrCode incorect:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+[2024-10-15 13:33:56,325 (/home/ubuntu/FIKA_WCS/markem_printer/printer_interface.py:27 - send_data_print_lable())] INFO -> NO DATA PRINT
+[2024-10-15 14:37:11,627 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:111 - main())] INFO -> START TASK:MISSION_A1
+[2024-10-15 14:38:14,009 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:237 - main())] INFO -> ELEVATOR UP READY TASK:277
+[2024-10-15 14:38:19,018 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:244 - main())] INFO -> NOTIFY AGV IN ELEVATOR UP FOR PLC:277
+[2024-10-15 14:38:46,968 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:270 - main())] INFO -> NOTIFY AGV OUT ELEVATOR UP FOR PLC:277
+[2024-10-15 14:39:51,851 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:458 - onContinueEnter())] INFO -> On continue agv enter:277
+[2024-10-15 14:40:26,900 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:462 - onContinueEgress())] INFO -> On continue agv egress:277
+[2024-10-15 14:40:49,303 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:421 - main())] INFO -> DONE MISSION:277
+[2024-10-15 14:50:33,314 (/home/ubuntu/FIKA_WCS/markem_printer/printer_interface.py:27 - send_data_print_lable())] INFO -> NO DATA PRINT
+[2024-10-15 14:50:35,511 (/home/ubuntu/FIKA_WCS/PLC/plc_controller.py:93 - update_status())] INFO -> Reset error DWS
+[2024-10-15 14:51:08,836 (/home/ubuntu/FIKA_WCS/markem_printer/printer_interface.py:27 - send_data_print_lable())] INFO -> NO DATA PRINT
+[2024-10-15 14:51:16,095 (/home/ubuntu/FIKA_WCS/markem_printer/printer_interface.py:27 - send_data_print_lable())] INFO -> NO DATA PRINT
+[2024-10-15 14:58:31,679 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:27 - handle())] INFO -> Reset error no weight DWS
+[2024-10-15 14:58:41,714 (/home/ubuntu/FIKA_WCS/markem_printer/printer_interface.py:27 - send_data_print_lable())] INFO -> NO DATA PRINT
+[2024-10-15 14:58:41,723 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:27 - handle())] INFO -> Reset error no weight DWS
+[2024-10-15 15:00:11,615 (/home/ubuntu/FIKA_WCS/markem_printer/printer_interface.py:27 - send_data_print_lable())] INFO -> NO DATA PRINT
+[2024-10-15 15:00:26,694 (/home/ubuntu/FIKA_WCS/markem_printer/printer_interface.py:27 - send_data_print_lable())] INFO -> NO DATA PRINT
+[2024-10-15 15:03:31,122 (/home/ubuntu/FIKA_WCS/db_redis/handle_redis.py:33 - __init__())] INFO -> Connect redis successful
+[2024-10-15 15:03:31,189 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:55 - __connect())] INFO -> Successfully connected to PLC at 192.168.31.3:502
+[2024-10-15 15:03:31,189 (/home/ubuntu/FIKA_WCS/PLC/plc_controller.py:150 - __check_trigger())] INFO -> START CHECK PLC
+[2024-10-15 15:03:31,315 (/home/ubuntu/FIKA_WCS/PLC/plc_controller.py:93 - update_status())] INFO -> Reset error DWS
+[2024-10-15 15:03:31,564 (/home/ubuntu/FIKA_WCS/apis/DAL/DAL_server.py:41 - get_token_bearer_backend())] INFO -> Get token seccessful message.
+[2024-10-15 15:03:31,588 (/home/ubuntu/FIKA_WCS/agv/agv_manager.py:17 - __init__())] INFO -> START AGV
+[2024-10-15 15:03:31,591 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:19 - __sub_request())] INFO -> START CHECK DWS
+[2024-10-15 15:03:31,594 (/home/ubuntu/FIKA_WCS/markem_printer/printer_manager.py:24 - __sub_print_request())] INFO -> START PRINT MARKEM
+[2024-10-15 15:03:31,595 (/home/ubuntu/FIKA_WCS/datamax_printer/printer_manager.py:21 - __sub_print_request())] INFO -> START REPRINT
+[2024-10-15 15:03:31,595 (/home/ubuntu/FIKA_WCS/socket_tcp/socket_tcp_interface.py:47 - connect())] INFO -> Connected to 192.168.31.210:9100
+[2024-10-15 15:03:31,596 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:19 - __init__())] INFO -> TRANFER READY
+[2024-10-15 15:03:31,597 (/home/ubuntu/FIKA_WCS/tasks/scheduler.py:13 - __run_schedule())] INFO -> SCHEDUAL START
+[2024-10-15 15:03:31,604 (/home/ubuntu/FIKA_WCS/apis/__init__.py:39 - start())] INFO -> RestAPI READY
+[2024-10-15 15:04:47,290 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:27 - handle())] INFO -> Reset error no weight DWS
+[2024-10-15 15:04:49,700 (/home/ubuntu/FIKA_WCS/markem_printer/printer_interface.py:27 - send_data_print_lable())] INFO -> NO DATA PRINT
+[2024-10-15 15:04:57,345 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:27 - handle())] INFO -> Reset error no weight DWS
+[2024-10-15 15:07:31,384 (/home/ubuntu/FIKA_WCS/markem_printer/printer_interface.py:27 - send_data_print_lable())] INFO -> NO DATA PRINT
+[2024-10-15 15:09:42,660 (/home/ubuntu/FIKA_WCS/db_redis/handle_redis.py:33 - __init__())] INFO -> Connect redis successful
+[2024-10-15 15:09:42,728 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:55 - __connect())] INFO -> Successfully connected to PLC at 192.168.31.3:502
+[2024-10-15 15:09:42,729 (/home/ubuntu/FIKA_WCS/PLC/plc_controller.py:150 - __check_trigger())] INFO -> START CHECK PLC
+[2024-10-15 15:09:42,857 (/home/ubuntu/FIKA_WCS/PLC/plc_controller.py:93 - update_status())] INFO -> Reset error DWS
+[2024-10-15 15:09:43,106 (/home/ubuntu/FIKA_WCS/apis/DAL/DAL_server.py:41 - get_token_bearer_backend())] INFO -> Get token seccessful message.
+[2024-10-15 15:09:43,130 (/home/ubuntu/FIKA_WCS/agv/agv_manager.py:17 - __init__())] INFO -> START AGV
+[2024-10-15 15:09:43,133 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:19 - __sub_request())] INFO -> START CHECK DWS
+[2024-10-15 15:09:43,136 (/home/ubuntu/FIKA_WCS/markem_printer/printer_manager.py:24 - __sub_print_request())] INFO -> START PRINT MARKEM
+[2024-10-15 15:09:43,137 (/home/ubuntu/FIKA_WCS/datamax_printer/printer_manager.py:21 - __sub_print_request())] INFO -> START REPRINT
+[2024-10-15 15:09:43,137 (/home/ubuntu/FIKA_WCS/socket_tcp/socket_tcp_interface.py:47 - connect())] INFO -> Connected to 192.168.31.210:9100
+[2024-10-15 15:09:43,138 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:19 - __init__())] INFO -> TRANFER READY
+[2024-10-15 15:09:43,140 (/home/ubuntu/FIKA_WCS/tasks/scheduler.py:13 - __run_schedule())] INFO -> SCHEDUAL START
+[2024-10-15 15:09:43,147 (/home/ubuntu/FIKA_WCS/apis/__init__.py:39 - start())] INFO -> RestAPI READY
+[2024-10-15 15:11:12,007 (/home/ubuntu/FIKA_WCS/db_redis/handle_redis.py:33 - __init__())] INFO -> Connect redis successful
+[2024-10-15 15:11:12,076 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:55 - __connect())] INFO -> Successfully connected to PLC at 192.168.31.3:502
+[2024-10-15 15:11:12,077 (/home/ubuntu/FIKA_WCS/PLC/plc_controller.py:150 - __check_trigger())] INFO -> START CHECK PLC
+[2024-10-15 15:11:12,207 (/home/ubuntu/FIKA_WCS/PLC/plc_controller.py:93 - update_status())] INFO -> Reset error DWS
+[2024-10-15 15:11:12,459 (/home/ubuntu/FIKA_WCS/apis/DAL/DAL_server.py:41 - get_token_bearer_backend())] INFO -> Get token seccessful message.
+[2024-10-15 15:11:12,482 (/home/ubuntu/FIKA_WCS/agv/agv_manager.py:17 - __init__())] INFO -> START AGV
+[2024-10-15 15:11:12,485 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:19 - __sub_request())] INFO -> START CHECK DWS
+[2024-10-15 15:11:12,487 (/home/ubuntu/FIKA_WCS/markem_printer/printer_manager.py:24 - __sub_print_request())] INFO -> START PRINT MARKEM
+[2024-10-15 15:11:12,489 (/home/ubuntu/FIKA_WCS/datamax_printer/printer_manager.py:21 - __sub_print_request())] INFO -> START REPRINT
+[2024-10-15 15:11:12,489 (/home/ubuntu/FIKA_WCS/socket_tcp/socket_tcp_interface.py:47 - connect())] INFO -> Connected to 192.168.31.210:9100
+[2024-10-15 15:11:12,490 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:19 - __init__())] INFO -> TRANFER READY
+[2024-10-15 15:11:12,492 (/home/ubuntu/FIKA_WCS/tasks/scheduler.py:13 - __run_schedule())] INFO -> SCHEDUAL START
+[2024-10-15 15:11:12,499 (/home/ubuntu/FIKA_WCS/apis/__init__.py:39 - start())] INFO -> RestAPI READY
+[2024-10-15 15:14:29,838 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:37 - post())] ERROR -> DWS error connect: Time since last heartbeat is 43.84 seconds
+[2024-10-15 15:14:59,116 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:108 - post())] INFO -> Done Pallet
+[2024-10-15 15:24:57,264 (/home/ubuntu/FIKA_WCS/db_redis/handle_redis.py:33 - __init__())] INFO -> Connect redis successful
+[2024-10-15 15:24:57,331 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:55 - __connect())] INFO -> Successfully connected to PLC at 192.168.31.3:502
+[2024-10-15 15:24:57,331 (/home/ubuntu/FIKA_WCS/PLC/plc_controller.py:150 - __check_trigger())] INFO -> START CHECK PLC
+[2024-10-15 15:24:57,452 (/home/ubuntu/FIKA_WCS/PLC/plc_controller.py:93 - update_status())] INFO -> Reset error DWS
+[2024-10-15 15:24:57,714 (/home/ubuntu/FIKA_WCS/apis/DAL/DAL_server.py:41 - get_token_bearer_backend())] INFO -> Get token seccessful message.
+[2024-10-15 15:24:57,739 (/home/ubuntu/FIKA_WCS/agv/agv_manager.py:17 - __init__())] INFO -> START AGV
+[2024-10-15 15:24:57,742 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:19 - __sub_request())] INFO -> START CHECK DWS
+[2024-10-15 15:24:57,745 (/home/ubuntu/FIKA_WCS/markem_printer/printer_manager.py:24 - __sub_print_request())] INFO -> START PRINT MARKEM
+[2024-10-15 15:24:57,746 (/home/ubuntu/FIKA_WCS/datamax_printer/printer_manager.py:21 - __sub_print_request())] INFO -> START REPRINT
+[2024-10-15 15:24:57,747 (/home/ubuntu/FIKA_WCS/socket_tcp/socket_tcp_interface.py:47 - connect())] INFO -> Connected to 192.168.31.210:9100
+[2024-10-15 15:24:57,748 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:19 - __init__())] INFO -> TRANFER READY
+[2024-10-15 15:24:57,750 (/home/ubuntu/FIKA_WCS/tasks/scheduler.py:13 - __run_schedule())] INFO -> SCHEDUAL START
+[2024-10-15 15:24:57,757 (/home/ubuntu/FIKA_WCS/apis/__init__.py:39 - start())] INFO -> RestAPI READY
+[2024-10-15 15:25:36,436 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:27 - handle())] INFO -> Reset error no weight DWS
+[2024-10-15 15:25:41,459 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:27 - handle())] INFO -> Reset error no weight DWS
+[2024-10-15 15:46:14,821 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:35 - __handle_tranfer())] INFO -> Qrcode: 21234433,Y007,20241015,5,30,11,1;, Result tranfer: OK
+[2024-10-15 15:46:50,743 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:38 - __handle_tranfer())] INFO -> Qrcode: 21234433,Y007,20241015,5,30,10,1;, Result tranfer: Lỗi sai kích thước
+[2024-10-15 15:47:14,122 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:35 - __handle_tranfer())] INFO -> Qrcode: 21234433,Y007,20241015,5,30,7,1;, Result tranfer: OK
+[2024-10-15 15:47:39,184 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:35 - __handle_tranfer())] INFO -> Qrcode: 21234433,Y007,20241015,5,30,1,1;, Result tranfer: OK
+[2024-10-15 15:49:08,562 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:27 - handle())] INFO -> Reset error no weight DWS
+[2024-10-15 15:49:18,625 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:27 - handle())] INFO -> Reset error no weight DWS
+[2024-10-15 15:56:13,752 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:38 - __handle_tranfer())] INFO -> Qrcode: 21234433,Y007,20241015,5,30,7,1;, Result tranfer: NG
+[2024-10-15 16:38:04,494 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:27 - handle())] INFO -> Reset error no weight DWS
+[2024-10-15 16:38:14,543 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:27 - handle())] INFO -> Reset error no weight DWS
+[2024-10-15 16:38:28,245 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:111 - main())] INFO -> START TASK:MISSION_A1
+[2024-10-15 16:39:35,619 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:237 - main())] INFO -> ELEVATOR UP READY TASK:278
+[2024-10-15 16:39:40,631 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:244 - main())] INFO -> NOTIFY AGV IN ELEVATOR UP FOR PLC:278
+[2024-10-15 16:40:08,532 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:270 - main())] INFO -> NOTIFY AGV OUT ELEVATOR UP FOR PLC:278
+[2024-10-15 16:41:13,474 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:458 - onContinueEnter())] INFO -> On continue agv enter:278
+[2024-10-15 16:41:48,529 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:462 - onContinueEgress())] INFO -> On continue agv egress:278
+[2024-10-15 16:42:10,887 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:421 - main())] INFO -> DONE MISSION:278
+[2024-10-15 16:42:52,082 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:108 - post())] INFO -> Done Pallet
+[2024-10-15 16:43:28,509 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:35 - __handle_tranfer())] INFO -> Qrcode: 21234433,Y007,20241015,6,30,1,1;, Result tranfer: OK
+[2024-10-15 16:43:50,017 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:35 - __handle_tranfer())] INFO -> Qrcode: 21234433,Y007,20241015,6,30,6,1;, Result tranfer: OK
+[2024-10-15 17:00:34,961 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:111 - main())] INFO -> START TASK:MISSION_O1
+[2024-10-15 17:01:15,016 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:458 - onContinueEnter())] INFO -> On continue agv enter:279
+[2024-10-15 17:02:00,074 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:462 - onContinueEgress())] INFO -> On continue agv egress:279
+[2024-10-15 17:10:22,067 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:350 - main())] INFO -> ELEVATOR DOWN READY:279
+[2024-10-15 17:10:27,075 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:356 - main())] INFO -> NOTIFY AGV IN ELEVATOR DOWN FOR PLC:279
+[2024-10-15 17:11:30,664 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:371 - main())] INFO -> NOTIFY AGV OUT ELEVATOR DOWN FOR PLC:279
+[2024-10-15 17:11:53,038 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:421 - main())] INFO -> DONE MISSION:279
+[2024-10-15 17:15:35,791 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:134 - write_data())] ERROR -> Error sending from PLC: Modbus Error: [Connection] Failed to connect[ModbusTcpClient(192.168.31.3:502)]
+[2024-10-15 17:15:36,795 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:103 - read_data())] ERROR -> Error reading from PLC: Modbus Error: [Connection] Failed to connect[ModbusTcpClient(192.168.31.3:502)]
+[2024-10-15 17:15:37,797 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 17:15:38,999 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 17:15:39,496 (/home/ubuntu/FIKA_WCS/socket_tcp/socket_tcp_interface.py:80 - reset_connect())] INFO -> PLC disconnected, closing socket connection...
+[2024-10-15 17:15:39,496 (/home/ubuntu/FIKA_WCS/socket_tcp/socket_tcp_interface.py:91 - close())] INFO -> Closed connection to 192.168.31.210:9100
+[2024-10-15 17:15:40,402 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 17:15:41,076 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 17:15:42,205 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 17:15:46,410 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 17:15:47,292 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 17:15:53,531 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 17:15:53,819 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 17:15:59,754 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 17:16:00,106 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:37 - post())] ERROR -> DWS error connect: Time since last heartbeat is 17.43 seconds
+[2024-10-15 17:16:05,981 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 17:16:12,201 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 17:16:18,436 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 17:16:19,132 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:37 - post())] ERROR -> DWS error connect: Time since last heartbeat is 19.03 seconds
+[2024-10-15 17:16:24,669 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 17:16:30,173 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 17:16:46,073 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 17:17:42,155 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:37 - post())] ERROR -> DWS error connect: Time since last heartbeat is 83.02 seconds
+[2024-10-15 17:18:06,010 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:37 - post())] ERROR -> DWS error connect: Time since last heartbeat is 23.85 seconds
+[2024-10-15 17:18:32,692 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:55 - __connect())] INFO -> Successfully connected to PLC at 192.168.31.3:502
+[2024-10-15 17:18:34,673 (/home/ubuntu/FIKA_WCS/socket_tcp/socket_tcp_interface.py:47 - connect())] INFO -> Connected to 192.168.31.210:9100
+[2024-10-15 17:18:46,109 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:43 - __handle_tranfer())] ERROR -> QrCode incorect:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+[2024-10-15 17:18:46,110 (/home/ubuntu/FIKA_WCS/markem_printer/printer_interface.py:27 - send_data_print_lable())] INFO -> NO DATA PRINT
+[2024-10-15 17:29:49,379 (/home/ubuntu/FIKA_WCS/db_redis/handle_redis.py:33 - __init__())] INFO -> Connect redis successful
+[2024-10-15 17:29:49,445 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:55 - __connect())] INFO -> Successfully connected to PLC at 192.168.31.3:502
+[2024-10-15 17:29:49,446 (/home/ubuntu/FIKA_WCS/PLC/plc_controller.py:150 - __check_trigger())] INFO -> START CHECK PLC
+[2024-10-15 17:29:49,826 (/home/ubuntu/FIKA_WCS/apis/DAL/DAL_server.py:41 - get_token_bearer_backend())] INFO -> Get token seccessful message.
+[2024-10-15 17:29:49,849 (/home/ubuntu/FIKA_WCS/agv/agv_manager.py:17 - __init__())] INFO -> START AGV
+[2024-10-15 17:29:49,852 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:19 - __sub_request())] INFO -> START CHECK DWS
+[2024-10-15 17:29:49,855 (/home/ubuntu/FIKA_WCS/markem_printer/printer_manager.py:24 - __sub_print_request())] INFO -> START PRINT MARKEM
+[2024-10-15 17:29:49,856 (/home/ubuntu/FIKA_WCS/datamax_printer/printer_manager.py:21 - __sub_print_request())] INFO -> START REPRINT
+[2024-10-15 17:29:49,857 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:19 - __init__())] INFO -> TRANFER READY
+[2024-10-15 17:29:49,858 (/home/ubuntu/FIKA_WCS/socket_tcp/socket_tcp_interface.py:47 - connect())] INFO -> Connected to 192.168.31.210:9100
+[2024-10-15 17:29:49,859 (/home/ubuntu/FIKA_WCS/tasks/scheduler.py:13 - __run_schedule())] INFO -> SCHEDUAL START
+[2024-10-15 17:29:49,866 (/home/ubuntu/FIKA_WCS/apis/__init__.py:39 - start())] INFO -> RestAPI READY
+[2024-10-15 17:39:20,574 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:111 - main())] INFO -> START TASK:MISSION_A1
+[2024-10-15 17:40:48,438 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:237 - main())] INFO -> ELEVATOR UP READY TASK:280
+[2024-10-15 17:40:53,447 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:244 - main())] INFO -> NOTIFY AGV IN ELEVATOR UP FOR PLC:280
+[2024-10-15 17:41:26,405 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:270 - main())] INFO -> NOTIFY AGV OUT ELEVATOR UP FOR PLC:280
+[2024-10-15 17:42:30,842 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:458 - onContinueEnter())] INFO -> On continue agv enter:280
+[2024-10-15 17:43:05,898 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:462 - onContinueEgress())] INFO -> On continue agv egress:280
+[2024-10-15 17:43:48,573 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:421 - main())] INFO -> DONE MISSION:280
+[2024-10-15 17:44:05,085 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:108 - post())] INFO -> Done Pallet
+[2024-10-15 17:47:41,354 (/home/ubuntu/FIKA_WCS/agv/agv_manager.py:94 - __task_robots())] INFO -> ---EMERGENCY STOP---
+[2024-10-15 17:47:46,464 (/home/ubuntu/FIKA_WCS/agv/agv_manager.py:94 - __task_robots())] INFO -> ---EMERGENCY STOP---
+[2024-10-15 17:47:51,575 (/home/ubuntu/FIKA_WCS/agv/agv_manager.py:94 - __task_robots())] INFO -> ---EMERGENCY STOP---
+[2024-10-15 17:47:56,692 (/home/ubuntu/FIKA_WCS/agv/agv_manager.py:94 - __task_robots())] INFO -> ---EMERGENCY STOP---
+[2024-10-15 17:48:01,820 (/home/ubuntu/FIKA_WCS/agv/agv_manager.py:94 - __task_robots())] INFO -> ---EMERGENCY STOP---
+[2024-10-15 17:48:06,929 (/home/ubuntu/FIKA_WCS/agv/agv_manager.py:94 - __task_robots())] INFO -> ---EMERGENCY STOP---
+[2024-10-15 17:48:12,037 (/home/ubuntu/FIKA_WCS/agv/agv_manager.py:94 - __task_robots())] INFO -> ---EMERGENCY STOP---
+[2024-10-15 17:48:17,143 (/home/ubuntu/FIKA_WCS/agv/agv_manager.py:94 - __task_robots())] INFO -> ---EMERGENCY STOP---
+[2024-10-15 17:49:52,267 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:111 - main())] INFO -> START TASK:MISSION_O1
+[2024-10-15 17:49:57,276 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:111 - main())] INFO -> START TASK:MISSION_A1
+[2024-10-15 17:55:52,786 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:111 - main())] INFO -> START TASK:MISSION_A2
+[2024-10-15 17:58:23,010 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:111 - main())] INFO -> START TASK:MISSION_O1
+[2024-10-15 17:59:33,101 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:111 - main())] INFO -> START TASK:MISSION_A1
+[2024-10-15 17:59:38,110 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:111 - main())] INFO -> START TASK:MISSION_O1
+[2024-10-15 18:01:55,707 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:103 - read_data())] ERROR -> Error reading from PLC: Modbus Error: [Connection] Failed to connect[ModbusTcpClient(192.168.31.3:502)]
+[2024-10-15 18:01:56,709 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 18:01:56,831 (/home/ubuntu/FIKA_WCS/socket_tcp/socket_tcp_interface.py:80 - reset_connect())] INFO -> PLC disconnected, closing socket connection...
+[2024-10-15 18:01:56,832 (/home/ubuntu/FIKA_WCS/socket_tcp/socket_tcp_interface.py:91 - close())] INFO -> Closed connection to 192.168.31.210:9100
+[2024-10-15 18:01:57,912 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 18:01:59,314 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 18:02:01,117 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 18:02:03,721 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 18:02:07,926 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 18:02:15,335 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 18:02:29,140 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 18:02:55,744 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 18:03:47,998 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 18:05:31,500 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 18:07:32,569 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 18:09:33,671 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 18:11:34,734 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 18:13:35,836 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 18:15:36,939 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 18:17:38,041 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 18:19:39,142 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 18:21:40,234 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 18:23:41,336 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 18:25:42,357 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 18:27:43,368 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 18:29:44,389 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 18:31:45,478 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 18:33:46,576 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 18:35:47,654 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 18:37:48,666 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 18:39:49,765 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 18:41:50,867 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 18:43:51,901 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 18:45:52,997 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 18:47:54,091 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 18:49:55,192 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 18:51:56,294 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 18:53:57,383 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 18:55:58,386 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 18:57:59,437 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 19:00:00,540 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 19:02:01,574 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 19:04:02,614 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 19:06:03,625 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 19:08:04,678 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 19:10:05,779 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 19:12:06,794 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 19:14:07,896 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 19:16:08,902 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 19:18:10,003 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 19:20:11,104 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 19:22:12,207 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 19:24:13,309 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 19:26:14,314 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 19:28:15,402 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 19:30:16,501 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 19:32:17,603 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 19:34:18,704 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 19:36:19,725 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 19:38:20,733 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 19:40:21,835 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 19:42:22,865 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 19:44:23,926 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 19:46:24,933 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 19:48:26,035 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 19:50:27,136 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 19:52:28,238 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 19:54:29,340 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 19:56:30,367 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 19:58:31,470 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 20:00:32,562 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 20:02:33,663 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 20:04:34,765 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 20:06:35,782 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 20:08:36,884 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 20:10:37,986 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 20:12:39,088 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 20:14:40,190 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 20:16:41,292 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 20:18:42,394 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 20:20:43,414 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 20:22:44,441 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 20:24:45,504 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 20:26:46,606 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 20:28:47,609 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 20:30:48,710 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 20:32:49,714 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 20:34:50,816 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 20:36:51,910 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 20:38:52,958 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 20:40:54,022 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 20:42:55,091 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 20:44:56,108 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 20:46:57,112 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 20:48:58,213 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 20:50:59,315 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 20:53:00,334 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 20:55:01,348 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 20:57:02,360 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 20:59:03,463 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 21:01:04,477 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 21:03:05,578 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 21:05:06,587 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 21:07:07,593 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 21:09:08,695 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 21:11:09,779 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 21:13:10,860 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 21:15:11,961 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 21:17:13,020 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 21:19:14,122 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 21:21:15,182 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 21:23:16,284 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 21:25:17,385 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 21:27:18,486 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 21:29:19,588 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 21:31:20,690 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 21:33:21,734 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 21:35:22,758 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 21:37:23,814 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 21:39:24,868 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 21:41:25,894 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 21:43:26,997 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 21:45:28,070 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 21:47:29,172 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 21:49:30,241 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 21:51:31,344 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 21:53:32,402 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 21:55:33,427 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 21:57:34,455 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 21:59:35,460 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 22:01:36,466 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 22:03:37,567 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 22:05:38,669 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 22:07:39,770 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 22:09:40,807 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 22:11:41,853 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 22:13:42,955 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 22:15:43,960 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 22:17:45,012 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 22:19:46,017 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 22:21:47,103 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 22:23:48,182 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 22:25:49,211 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 22:27:50,313 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 22:29:51,415 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 22:31:52,517 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 22:33:53,618 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 22:35:54,721 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 22:37:55,823 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 22:39:56,925 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 22:41:57,990 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 22:43:59,079 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 22:46:00,117 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 22:48:01,219 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 22:50:02,225 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 22:52:03,289 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 22:54:04,306 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 22:56:05,318 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 22:58:06,323 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 23:00:07,362 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 23:02:08,373 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 23:04:09,394 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 23:06:10,496 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 23:08:11,528 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 23:10:12,603 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 23:12:13,706 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 23:14:14,796 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 23:16:15,878 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 23:18:16,885 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 23:20:17,943 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 23:22:18,972 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 23:24:20,074 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 23:26:21,082 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 23:28:22,184 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 23:30:23,192 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 23:32:24,294 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 23:34:25,327 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 23:36:26,429 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 23:38:27,530 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 23:40:28,558 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 23:42:29,660 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 23:44:30,666 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 23:46:31,673 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 23:48:32,710 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 23:50:33,717 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 23:52:34,819 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 23:54:35,903 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 23:56:36,909 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-15 23:58:37,926 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 00:00:38,931 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 00:02:39,976 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 00:04:40,998 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 00:06:42,010 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 00:08:43,103 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 00:10:44,206 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 00:12:45,211 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 00:14:46,221 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 00:16:47,323 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 00:18:48,407 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 00:20:49,417 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 00:22:50,444 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 00:24:51,546 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 00:26:52,552 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 00:28:53,593 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 00:30:54,605 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 00:32:55,675 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 00:34:56,693 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 00:36:57,705 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 00:38:58,708 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 00:40:59,712 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 00:43:00,814 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 00:45:01,850 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 00:47:02,921 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 00:49:03,933 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 00:51:05,013 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 00:53:06,064 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 00:55:07,112 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 00:57:08,168 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 00:59:09,190 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 01:01:10,293 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 01:03:11,365 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 01:05:12,467 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 01:07:13,542 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 01:09:14,600 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 01:11:15,614 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 01:13:16,716 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 01:15:17,819 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 01:17:18,851 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 01:19:19,934 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 01:21:20,992 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 01:23:22,003 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 01:25:23,105 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 01:27:24,173 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 01:29:25,275 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 01:31:26,342 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 01:33:27,445 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 01:35:28,456 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 01:37:29,476 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 01:39:30,500 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 01:41:31,559 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 01:43:32,566 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 01:45:33,668 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 01:47:34,766 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 01:49:35,866 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 01:51:36,968 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 01:53:38,066 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 01:55:39,105 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 01:57:40,158 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 01:59:41,198 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 02:01:42,210 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 02:03:43,218 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 02:05:44,239 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 02:07:45,341 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 02:09:46,352 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 02:11:47,415 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 02:13:48,484 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 02:15:49,580 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 02:17:50,599 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 02:19:51,670 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 02:21:52,754 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 02:23:53,757 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 02:25:54,859 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 02:27:55,961 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 02:29:56,966 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 02:31:58,051 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 02:33:59,107 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 02:36:00,172 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 02:38:01,177 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 02:40:02,180 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 02:42:03,283 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 02:44:04,359 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 02:46:05,410 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 02:48:06,512 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 02:50:07,546 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 02:52:08,646 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 02:54:09,655 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 02:56:10,659 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 02:58:11,662 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 03:00:12,764 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 03:02:13,866 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 03:04:14,943 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 03:06:16,007 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 03:08:17,012 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 03:10:18,016 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 03:12:19,109 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 03:14:20,211 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 03:16:21,314 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 03:18:22,323 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 03:20:23,329 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 03:22:24,343 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 03:24:25,355 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 03:26:26,401 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 03:28:27,503 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 03:30:28,506 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 03:32:29,540 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 03:34:30,612 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 03:36:31,661 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 03:38:32,749 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 03:40:33,851 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 03:42:34,953 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 03:44:36,001 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 03:46:37,031 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 03:48:38,134 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 03:50:39,152 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 03:52:40,254 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 03:54:41,259 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 03:56:42,271 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 03:58:43,303 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 04:00:44,313 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 04:02:45,415 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 04:04:46,464 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 04:06:47,566 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 04:08:48,668 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 04:10:49,700 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 04:12:50,744 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 04:14:51,836 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 04:16:52,938 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 04:18:53,946 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 04:20:54,973 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 04:22:56,075 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 04:24:57,168 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 04:26:58,172 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 04:28:59,225 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 04:31:00,319 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 04:33:01,404 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 04:35:02,408 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 04:37:03,510 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 04:39:04,612 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 04:41:05,698 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 04:43:06,799 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 04:45:07,901 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 04:47:08,998 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 04:49:10,001 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 04:51:11,103 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 04:53:12,205 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 04:55:13,224 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 04:57:14,227 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 04:59:15,329 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 05:01:16,365 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 05:03:17,467 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 05:05:18,569 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 05:07:19,671 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 05:09:20,688 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 05:11:21,756 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 05:13:22,845 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 05:15:23,915 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 05:17:24,924 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 05:19:25,938 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 05:21:26,980 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 05:23:28,083 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 05:25:29,098 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 05:27:30,109 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 05:29:31,211 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 05:31:32,234 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 05:33:33,243 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 05:35:34,251 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 05:37:35,353 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 05:39:36,364 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 05:41:37,466 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 05:43:38,557 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 05:45:39,634 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 05:47:40,651 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 05:49:41,679 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 05:51:42,719 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 05:53:43,725 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 05:55:44,828 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 05:57:45,917 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 05:59:46,966 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 06:01:47,969 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 06:03:48,982 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 06:05:50,085 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 06:07:51,115 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 06:09:52,167 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 06:11:53,262 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 06:13:54,365 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 06:15:55,467 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 06:17:56,570 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 06:19:57,578 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 06:21:58,630 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 06:23:59,634 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 06:26:00,699 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 06:28:01,733 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 06:30:02,825 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 06:32:03,829 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 06:34:04,931 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 06:36:06,002 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 06:38:07,054 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 06:40:08,060 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 06:42:09,164 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 06:44:10,246 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 06:46:11,349 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 06:48:12,432 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 06:50:13,445 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 06:52:14,479 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 06:54:15,581 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 06:56:16,683 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 06:58:17,742 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 07:00:18,759 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 07:02:19,861 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 07:04:20,963 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 07:06:22,018 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 07:08:23,110 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 07:10:24,213 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 07:12:25,235 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 07:14:26,310 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 07:16:27,381 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 07:18:28,422 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 07:20:29,446 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 07:22:30,522 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 07:24:31,600 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 07:26:32,652 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 07:28:33,743 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 07:30:34,767 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 07:32:35,815 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 07:34:36,918 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 07:36:37,920 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 07:38:38,928 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 07:40:40,018 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 07:42:41,090 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 07:44:42,167 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 07:46:43,269 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 07:48:44,362 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 07:50:45,419 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 07:52:46,488 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-16 07:54:46,558 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:55 - __connect())] INFO -> Successfully connected to PLC at 192.168.31.3:502
+[2024-10-16 07:54:46,569 (/home/ubuntu/FIKA_WCS/markem_printer/printer_interface.py:27 - send_data_print_lable())] INFO -> NO DATA PRINT
+[2024-10-16 07:54:48,246 (/home/ubuntu/FIKA_WCS/socket_tcp/socket_tcp_interface.py:47 - connect())] INFO -> Connected to 192.168.31.210:9100
+[2024-10-16 08:13:54,229 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:37 - post())] ERROR -> DWS error connect: Time since last heartbeat is 51130.89 seconds
+[2024-10-16 08:16:38,067 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:237 - main())] INFO -> ELEVATOR UP READY TASK:282
+[2024-10-16 08:16:43,076 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:244 - main())] INFO -> NOTIFY AGV IN ELEVATOR UP FOR PLC:282
+[2024-10-16 08:22:01,008 (/home/ubuntu/FIKA_WCS/PLC/plc_controller.py:93 - update_status())] INFO -> Reset error DWS
+[2024-10-16 08:22:04,013 (/home/ubuntu/FIKA_WCS/datamax_printer/printer_manager.py:37 - print())] ERROR -> REPRINT function for datamax error: HTTPConnectionPool(host='192.168.31.205', port=9100): Max retries exceeded with url: /markem/print/show (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x76da07be4b50>, 'Connection to 192.168.31.205 timed out. (connect timeout=3)'))

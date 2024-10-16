@@ -370,13 +370,14 @@ class MissionHandle(MissionBase):
             self.__PLC_controller.AGV_status_is_out_lifting_down()
             Logger().info("NOTIFY AGV OUT ELEVATOR DOWN FOR PLC:"+ str(self.instance_ID))
 
-            # reset lại trạng tháo agv giữ của thiết bị thang máy đi lên
-            self.update_status_device_agv_used(DeviceConfig.STATUS_ELEVATOR_LIFTING_DOWN, AGVConfig.DONT_USE)
-
             self.performTask(
                 self.continueRobot,
                 requirement = DeviceConfig.LINE_CURTAIN_CLOSE
             )
+
+            # reset lại trạng tháo agv giữ của thiết bị thang máy đi lên
+            self.update_status_device_agv_used(DeviceConfig.STATUS_ELEVATOR_LIFTING_DOWN, AGVConfig.DONT_USE)
+
 
         # Đợi AGV hoàn thành nhiệm vụ
         self.performTask(
@@ -402,12 +403,13 @@ class MissionHandle(MissionBase):
             update_data = data_update_mision
         )
 
+        
+        if self.__dock_name == "M4":
+            self.__redis.hset(DeviceConfig.STATUS_ALL_DEVICES, DeviceConfig.STATUS_DOCK_REJECT, DeviceConfig.DOCK_EMPTY)
+
         # reset trạng thái giữ dock của agv
         self.update_status_device_agv_used(getattr(DeviceConfig, f'STATUS_DOCK_{self.__dock_name}'), AGVConfig.DONT_USE)
 
-        if self.__dock_name == "M4":
-            self.__redis.hset(DeviceConfig.STATUS_ALL_DEVICES, DeviceConfig.STATUS_DOCK_REJECT, DeviceConfig.DOCK_EMPTY)
-            
         # Xóa mision đang chạy trong group
         self.__redis.srem(
             group= AGVConfig.MISSIONS_RUNNING, 
@@ -445,7 +447,10 @@ class MissionHandle(MissionBase):
         """ 
             TOPIC: AGVConfig.ALL_AGV_DEVICE_USED
         """
-        self.__redis.hset(AGVConfig.ALL_AGV_DEVICE_USED, key, value)
+        try:
+            self.__redis.hset(AGVConfig.ALL_AGV_DEVICE_USED, key, value)
+        except Exception as e:
+            Logger().error(f"Error update status device agv used: {e}")
 
 
     def onContinueEnter(self):

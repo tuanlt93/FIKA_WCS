@@ -30,7 +30,7 @@ class PrintDatamax():
                 data_print_json = self.__redis_cache.get(MarkemConfig.DATA_PRINT_SHOW)
                 if data_print_json:
 
-                    response = requests.post(url=self.__url, data=data_print_json, headers={"Content-Type": "application/json"})
+                    response = requests.post(url=self.__url, data=data_print_json, headers={"Content-Type": "application/json"}, timeout= 3)
                 else:
                     pass
         except Exception as e:

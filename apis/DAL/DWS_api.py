@@ -28,6 +28,7 @@ class DWSHeartBeat(ApiBase):
     def post(self):
         global time_last 
         datas = self.jsonParser([], [])
+        # print(datas)
         if datas:
             self.__PLC_controller.status_DWS_connect()  
             time_now = time.time()  
@@ -64,11 +65,6 @@ class DWSResult(ApiBase):
         DWS_result = self.jsonParser(args, args)
         # print(DWS_result)
 
-        # Thùng cặp kè
-        if DWS_result["weight"] == -1:
-            self.__PLC_controller.notify_error_no_weight()
-            return ApiBase.createNotImplement()
-        
         
         # Lấy số lượng từ đếm thùng từ PLC và DWS chỉ một lần
         current_quantity_PLC = int(self.__redis_cache.hget(
@@ -84,11 +80,18 @@ class DWSResult(ApiBase):
         data_pallet_carton_input = self.__redis_cache.get_first_element(HandlePalletConfig.LIST_PALLET_RUNNING)
         data_pallet_carton_input = json.loads(data_pallet_carton_input)
 
+        # Lỗi cân không được hoặc thùng cặp kè (khi khối lượng một thùng vượt quá 170% khối lượng standard)
+        if DWS_result["weight"] == -1 or DWS_result["weight"] > (float(data_pallet_carton_input["standard_weight"]) * 1.7):
+            self.__PLC_controller.notify_error_no_weight()
+            return ApiBase.createNotImplement()
 
+        print(quantity_carton_DWS)
+        print(type(quantity_carton_DWS))
+        print(int(data_pallet_carton_input["carton_pallet_qty"]))
         # Kiểm tra điều kiện để kết thúc pallet
         if (
             (current_quantity_PLC in HandlePalletConfig.LIST_NUMBER_CARTON_START_NEW_PALLET) and 
-            (quantity_carton_DWS + 1) >= int(data_pallet_carton_input["carton_pallet_qty"])
+            (quantity_carton_DWS) >= int(data_pallet_carton_input["carton_pallet_qty"])
         ):
             # Kết thúc Pallet 
             self.__call_backend.UpdateSttPalletCarton(data_pallet_carton_input["_id"])
