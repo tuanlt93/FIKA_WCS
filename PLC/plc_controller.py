@@ -90,7 +90,7 @@ class PLCController(metaclass= Singleton):
 
         if topic == DeviceConfig.MARKEM_PRINTER_RESULTS and value == DeviceConfig.PRINTED_WRONG:
             self.__redis_cache.publisher(MarkemConfig.TOPIC_MARKEM_PRINTER_RESULTS, MarkemConfig.MESSAGE_PRINTED_WRONG)
-            Logger().info("Reset error DWS")
+            Logger().info("Error barcode don't read")
 
 
     def process_positions(self, data, data_reg_now):
@@ -115,6 +115,7 @@ class PLCController(metaclass= Singleton):
             
             if register == 24:
                 self.trigger_print(DWSConfig.TOPIC_TOPIC_ERROR_NO_WEIGHT, DWSConfig.CARTON_NO_WEIGHT)
+            
             
             if register == 36:
                 # print(36)

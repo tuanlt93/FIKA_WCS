@@ -212,7 +212,7 @@ class RegisterConfig:
         27: [DeviceConfig.STATUS_DOCK_O2, DeviceConfig.DOCK_EMPTY, DeviceConfig.DOCK_PALLET, DeviceConfig.DOCK_FULL],
         28: [DeviceConfig.STATUS_DOCK_O3, DeviceConfig.DOCK_EMPTY, DeviceConfig.DOCK_FULL],
 
-        30: [DeviceConfig.STATUS_DOCK_M1, DeviceConfig.DOCK_EMPTY, DeviceConfig.DOCK_FULL],
+        30: [DeviceConfig.STATUS_DOCK_M1, DeviceConfig.DOCK_FULL, DeviceConfig.DOCK_EMPTY,  DeviceConfig.DOCK_FULL],
         31: [DeviceConfig.STATUS_DOCK_M2, DeviceConfig.DOCK_EMPTY, DeviceConfig.DOCK_FULL],
         32: [DeviceConfig.STATUS_DOCK_M3, DeviceConfig.DOCK_EMPTY, DeviceConfig.DOCK_FULL],
         33: [DeviceConfig.STATUS_DOCK_M4, DeviceConfig.DOCK_EMPTY, DeviceConfig.DOCK_FULL],

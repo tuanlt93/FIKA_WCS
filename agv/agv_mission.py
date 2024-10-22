@@ -96,7 +96,7 @@ class MissionHandle(MissionBase):
         """Thực hiện một công việc cho đến khi thành công hoặc bị tạm dừng."""
         while not task_func(*args):
             
-            time.sleep(5)
+            time.sleep(3)
 
         if self.instance_ID:
             self.saveHistory(
