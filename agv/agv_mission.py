@@ -1,5 +1,4 @@
 from agv.agv_interface import MissionBase
-from utils.threadpool import Worker
 from config.constants import AGVConfig, DeviceConfig, MissionConfig, HandlePalletConfig
 from db_redis import redis_cache
 from PLC import PLC_controller
@@ -12,6 +11,7 @@ from database.models.mission_model import MissionModel
 import datetime
 from config import INPUT_PALLET_CONFIGS, INPUT_EMPTY_PALLET_CONFIGS, OUTPUT_PALLET_CONFIGS 
 from utils.logger import Logger
+from utils.manager_thread import WorkerManager
 
 class MissionHandle(MissionBase):
     def __init__(self, *args, **kwargs) -> None:
@@ -74,7 +74,8 @@ class MissionHandle(MissionBase):
         # background_thread = threading.Thread(target=self.main, daemon= True)
         # background_thread.start()
 
-        self.main()
+        self.__worker_manager = WorkerManager(self.main)
+
 
     def waitForCondition(self, condition):
         """Chờ đợi cho đến khi điều kiện được đáp ứng."""
@@ -106,7 +107,9 @@ class MissionHandle(MissionBase):
             )
         time.sleep(1)
 
-    @Worker.employ
+
+
+
     def main(self):
         Logger().info("START TASK:"+ str(self.__mission_name))
 
@@ -485,6 +488,7 @@ class MissionHandle(MissionBase):
 
 
     def onCancel(self):
+        self.__worker_manager.stop_worker()
         self.__cancel = True
 
     def onDone(self):

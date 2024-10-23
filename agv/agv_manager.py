@@ -89,6 +89,8 @@ class ManagerMission(metaclass= Singleton):
                 HandlePalletConfig.EMPTY_INPUT_PALLET_DATA 
             )
 
+            
+
             # print(data_pallet_input)
             if self.__handle_emergency_stop():
                 Logger().info("---EMERGENCY STOP---")
@@ -199,10 +201,17 @@ class ManagerMission(metaclass= Singleton):
         }
 
         for mission in self.__running_tasks:
-            area = self.__redis_cache.hget(topic=mission, key='area')
+            mission_info = self.__redis_cache.hgetall(topic=mission)
+            area = mission_info.get('area')
+            requirement = mission_info.get('requirement')
+
+
             if area in requirements:
-                requirement = self.__redis_cache.hget(topic=mission, key='requirement')
                 requirements[area].append(requirement)
+
+            # if area in requirements:
+            #     requirement = self.__redis_cache.hget(topic=mission, key='requirement')
+            #     requirements[area].append(requirement)
 
         self.__handle_door('A', requirements['A'], DeviceConfig.STATUS_LINE_CURTAIN_A)
         self.__handle_door('O', requirements['O'], DeviceConfig.STATUS_LINE_CURTAIN_O)

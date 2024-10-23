@@ -262,6 +262,9 @@ class PLCController(metaclass= Singleton):
     def status_DWS_connect(self):
         self.__PLC_interface.write_data(address= 22, value= [1])
 
+    def status_DWS_disconnect_scale(self):
+        self.__PLC_interface.write_data(address= 22, value= [2])
+
     def notify_error_no_weight(self):
         self.__PLC_interface.write_data(address= 29, value= [1])
         

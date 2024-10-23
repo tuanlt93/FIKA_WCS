@@ -28,6 +28,7 @@ class DWSHeartBeat(ApiBase):
     def post(self):
         global time_last 
         datas = self.jsonParser([], [])
+        # print(datas)
         if datas:
             self.__PLC_controller.status_DWS_connect()  
             time_now = time.time()  
@@ -64,31 +65,28 @@ class DWSResult(ApiBase):
         DWS_result = self.jsonParser(args, args)
         # print(DWS_result)
 
-        # Thùng cặp kè
-        if DWS_result["weight"] == -1:
-            self.__PLC_controller.notify_error_no_weight()
-            return ApiBase.createNotImplement()
-        
-        
-        # Lấy số lượng từ đếm thùng từ PLC và DWS chỉ một lần
-        current_quantity_PLC = int(self.__redis_cache.hget(
+
+
+         # Lấy số lượng từ đếm thùng từ PLC và DWS chỉ một lần
+        quantity_data = self.__redis_cache.hgetall(
             HandlePalletConfig.NUMBER_CARTON_OF_PALLET, 
-            HandlePalletConfig.QUANTITY_FROM_PLC
-        ))
-        quantity_carton_DWS = int(self.__redis_cache.hget(
-            HandlePalletConfig.NUMBER_CARTON_OF_PALLET, 
-            HandlePalletConfig.QUANTITY_FROM_DWS
-        ))
+        )
+        current_quantity_PLC = int(quantity_data[HandlePalletConfig.QUANTITY_FROM_PLC])
+        quantity_carton_DWS = int(quantity_data[HandlePalletConfig.QUANTITY_FROM_DWS])
+
+       
 
         # LẤY DỮ LIỆU PALLET ĐANG CHẠY
         data_pallet_carton_input = self.__redis_cache.get_first_element(HandlePalletConfig.LIST_PALLET_RUNNING)
         data_pallet_carton_input = json.loads(data_pallet_carton_input)
 
+       
+
 
         # Kiểm tra điều kiện để kết thúc pallet
         if (
             (current_quantity_PLC in HandlePalletConfig.LIST_NUMBER_CARTON_START_NEW_PALLET) and 
-            (quantity_carton_DWS + 1) >= int(data_pallet_carton_input["carton_pallet_qty"])
+            (quantity_carton_DWS) >= int(data_pallet_carton_input["carton_pallet_qty"])
         ):
             # Kết thúc Pallet 
             self.__call_backend.UpdateSttPalletCarton(data_pallet_carton_input["_id"])
@@ -104,20 +102,31 @@ class DWSResult(ApiBase):
             self.__redis_cache.delete(MarkemConfig.DATA_CARTON_LABLE_PRINT)
             Logger().info("Done Pallet")
 
+
+        Logger().info(f"Result DWS: {DWS_result}, number: {quantity_carton_DWS + 1}")
+
+
+         # Lỗi cân không được hoặc thùng cặp kè (khi khối lượng một thùng vượt quá 170% khối lượng standard)
+        if DWS_result["weight"] == -1 or (DWS_result["weight"] * 1000) > (int(data_pallet_carton_input["standard_weight"]) * 1.7):
+            self.__PLC_controller.notify_error_no_weight()
+            Logger().info("LOI CAN DWS HOAC 2 THUNG VAO CAN")
+            return ApiBase.createNotImplement()
+
+
         # Kiểm tra điều kiện để bắt đầu pallet
         if (quantity_carton_DWS + 1) == 1:
             self.__call_backend.startPalletCarton()
 
         check_carton_print, check_carton_backend = self.__check_range(
-            DWS_result["length"],
-            DWS_result["width"],
-            DWS_result["height"],
+            round(DWS_result["length"]),
+            round(DWS_result["width"]),
+            round(DWS_result["height"]),
             DWS_result["weight"] * 1000,
             DWS_result["status"],
-            float(data_pallet_carton_input["standard_length"]),
-            float(data_pallet_carton_input["standard_width"]),
-            float(data_pallet_carton_input["standard_height"]),
-            float(data_pallet_carton_input["standard_weight"]),
+            int(data_pallet_carton_input["standard_length"]),
+            int(data_pallet_carton_input["standard_width"]),
+            int(data_pallet_carton_input["standard_height"]),
+            int(data_pallet_carton_input["standard_weight"]),
             (quantity_carton_DWS + 1)
         )
         
@@ -145,9 +154,9 @@ class DWSResult(ApiBase):
                 check_carton_print  +";",
             "carton_pallet_id": data_pallet_carton_input["_id"],
             "dws_result": check_carton_backend,
-            "actual_length": DWS_result["length"],
-            "actual_width": DWS_result["width"],
-            "actual_height": DWS_result["height"],
+            "actual_length": round(DWS_result["length"]),
+            "actual_width": round(DWS_result["width"]),
+            "actual_height": round(DWS_result["height"]),
             "actual_weight": DWS_result["weight"] * 1000,
             "actual_item_carton": data_pallet_carton_input["standard_item_carton"],
             "link": DWS_result["link"],
@@ -162,7 +171,7 @@ class DWSResult(ApiBase):
             "vendor_batch"  : data_pallet_carton_input["vendor_batch"],
             "sap_batch"     : data_pallet_carton_input["sap_batch"],
             "expire_date"   : data_pallet_carton_input["expiry_date"],
-            "quantity"      : data_pallet_carton_input["carton_pallet_qty"],
+            "quantity"      : data_pallet_carton_input["standard_item_carton"],
             "carton_id"     : response['metaData']['carton_code'] + ";"
         }
         self.__redis_cache.append_to_list(MarkemConfig.DATA_CARTON_LABLE_PRINT, json.dumps(data_print_lable))
