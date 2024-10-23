@@ -130,12 +130,12 @@ class MonitorMission(ApiBase):
                         if self.__status_all_device[DeviceConfig.STATUS_DOCK_O3] != DeviceConfig.DOCK_EMPTY:
                             response[key].append("Dock O3 đang có pallet")
                         if self.__status_all_device[DeviceConfig.STATUS_ELEVATOR_LIFTING_UP] != DeviceConfig.ELEVATOR_LIFTING_READY:
-                            response[key].append("Trạng thái thang máy xuống đang bận")
+                            response[key].append("Trạng thái thang máy lên đang bận")
 
                         if self.__device_agv_used[DeviceConfig.STATUS_DOCK_O3] != AGVConfig.DONT_USE:
                             response[key].append("Dock O3 đang được AGV sử dụng")
                         if self.__device_agv_used[DeviceConfig.STATUS_ELEVATOR_LIFTING_UP] != AGVConfig.DONT_USE:
-                            response[key].append("Thang máy xuống AGV đang sử dụng")
+                            response[key].append("Thang máy lên AGV đang sử dụng")
 
                         if self.__data_pallet_input.get(HandlePalletConfig.EMPTY_INPUT_PALLET_DATA) is None:
                             response[key].append("Chưa có pallet trống đầu vào")

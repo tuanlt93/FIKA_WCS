@@ -29,7 +29,7 @@ class DWSHeartBeat(ApiBase):
         global time_last 
         datas = self.jsonParser([], [])
         # print(datas)
-        if datas:
+        if datas.get("VisionStatus") == "Running":
             self.__PLC_controller.status_DWS_connect()  
             time_now = time.time()  
             time_difference = time_now - time_last
@@ -37,6 +37,12 @@ class DWSHeartBeat(ApiBase):
                 Logger().error(f"DWS error connect: Time since last heartbeat is {time_difference:.2f} seconds")   
             time_last = time_now  
             return ApiBase.createResponseMessage({}, "OKE")
+        else:
+            self.__PLC_controller.status_DWS_disconnect_scale()
+            time_now = time.time()  
+            Logger().error(f"DWS error weight scale") 
+        
+
         return ApiBase.createNotImplement()
 
 
@@ -103,13 +109,13 @@ class DWSResult(ApiBase):
             Logger().info("Done Pallet")
 
 
-        Logger().info(f"Result DWS: {DWS_result}, number: {quantity_carton_DWS + 1}")
+        # Logger().info(f"Result DWS: {DWS_result}, number: {quantity_carton_DWS + 1}")
 
 
          # Lỗi cân không được hoặc thùng cặp kè (khi khối lượng một thùng vượt quá 170% khối lượng standard)
         if DWS_result["weight"] == -1 or (DWS_result["weight"] * 1000) > (int(data_pallet_carton_input["standard_weight"]) * 1.7):
             self.__PLC_controller.notify_error_no_weight()
-            Logger().info("LOI CAN DWS HOAC 2 THUNG VAO CAN")
+            Logger().info(f"LOI CAN DWS HOAC 2 THUNG VAO CAN: {DWS_result}, number: {quantity_carton_DWS + 1}")
             return ApiBase.createNotImplement()
 
 

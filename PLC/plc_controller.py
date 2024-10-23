@@ -118,7 +118,7 @@ class PLCController(metaclass= Singleton):
             
             
             if register == 36:
-                # print(36)
+                print(36)
                 self.trigger_print(MarkemConfig.TOPIC_NOTIFY_SEND_DATA_PRINT, MarkemConfig.MESSAGE_NOTIFY_PRINT)
            
             if 42 <= register <= 91:
@@ -263,6 +263,9 @@ class PLCController(metaclass= Singleton):
     # DWS
     def status_DWS_connect(self):
         self.__PLC_interface.write_data(address= 22, value= [1])
+
+    def status_DWS_disconnect_scale(self):
+        self.__PLC_interface.write_data(address= 22, value= [2])
 
     def notify_error_no_weight(self):
         self.__PLC_interface.write_data(address= 29, value= [1])

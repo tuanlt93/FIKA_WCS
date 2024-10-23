@@ -100,8 +100,9 @@ class SocketTCP:
         """
         message = "\r\n".join(message) + "\r\n"
         try:
-            self.socket_conn.sendall(message.encode())
-            time.sleep(0.02)
+            if self.socket_conn:
+                self.socket_conn.sendall(message.encode())
+                time.sleep(0.02)
 
         except socket.error as e:
             Logger().error(f"Error sending message MARKEM: {e}")

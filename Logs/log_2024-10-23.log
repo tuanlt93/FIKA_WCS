@@ -1,0 +1,441 @@
+[2024-10-23 10:23:24,915 (/home/ubuntu/FIKA_WCS/db_redis/handle_redis.py:33 - __init__())] INFO -> Connect redis successful
+[2024-10-23 10:23:24,985 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:55 - __connect())] INFO -> Successfully connected to PLC at 192.168.31.3:502
+[2024-10-23 10:23:24,986 (/home/ubuntu/FIKA_WCS/PLC/plc_controller.py:151 - __check_trigger())] INFO -> START CHECK PLC
+[2024-10-23 10:23:25,111 (/home/ubuntu/FIKA_WCS/PLC/plc_controller.py:93 - update_status())] INFO -> Error barcode don't read
+[2024-10-23 10:23:25,366 (/home/ubuntu/FIKA_WCS/apis/DAL/DAL_server.py:41 - get_token_bearer_backend())] INFO -> Get token seccessful message.
+[2024-10-23 10:23:25,391 (/home/ubuntu/FIKA_WCS/agv/agv_manager.py:17 - __init__())] INFO -> START AGV
+[2024-10-23 10:23:25,394 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:19 - __sub_request())] INFO -> START CHECK DWS
+[2024-10-23 10:23:25,396 (/home/ubuntu/FIKA_WCS/markem_printer/printer_manager.py:24 - __sub_print_request())] INFO -> START PRINT MARKEM
+[2024-10-23 10:23:25,397 (/home/ubuntu/FIKA_WCS/datamax_printer/printer_manager.py:21 - __sub_print_request())] INFO -> START REPRINT
+[2024-10-23 10:23:25,398 (/home/ubuntu/FIKA_WCS/socket_tcp/socket_tcp_interface.py:47 - connect())] INFO -> Connected to 192.168.31.210:9100
+[2024-10-23 10:23:25,399 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:19 - __init__())] INFO -> TRANFER READY
+[2024-10-23 10:23:25,400 (/home/ubuntu/FIKA_WCS/tasks/scheduler.py:13 - __run_schedule())] INFO -> SCHEDUAL START
+[2024-10-23 10:23:25,407 (/home/ubuntu/FIKA_WCS/apis/__init__.py:39 - start())] INFO -> RestAPI READY
+[2024-10-23 10:26:35,236 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 178.10161229556826, 'width': 184.2309704444403, 'length': 227.41914473226936, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 4
+[2024-10-23 10:26:38,079 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 179.4054791453505, 'width': 180.47983750179503, 'length': 223.95187880215354, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 5
+[2024-10-23 10:26:41,329 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 178.62190724492288, 'width': 180.69033012152858, 'length': 224.2730315744906, 'weight': 2.22, 'status': 'OK', 'link': ''}, number: 6
+[2024-10-23 10:26:44,647 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 179.29757262779685, 'width': 180.32220119189049, 'length': 224.06631970762112, 'weight': 2.26, 'status': 'OK', 'link': ''}, number: 7
+[2024-10-23 10:26:47,909 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 176.89654090651862, 'width': 184.82466194710858, 'length': 224.5025938134778, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 8
+[2024-10-23 10:26:50,953 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 177.5429790573058, 'width': 184.70474278444044, 'length': 228.45923080086598, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 9
+[2024-10-23 10:26:54,216 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 177.55236457254304, 'width': 185.10619121274877, 'length': 224.76824788150412, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 10
+[2024-10-23 10:26:57,622 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 178.65790009438103, 'width': 180.30399886555728, 'length': 223.59147949801726, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 11
+[2024-10-23 10:27:00,802 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 178.9484510099643, 'width': 184.38652453394036, 'length': 228.30215758932565, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 12
+[2024-10-23 10:27:04,073 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 179.89477213905863, 'width': 180.1644794184655, 'length': 223.58167042270924, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 13
+[2024-10-23 10:27:07,103 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 178.04787139101086, 'width': 184.9328716516356, 'length': 219.81192469818257, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 14
+[2024-10-23 10:27:10,152 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 176.92232559883186, 'width': 184.94310802115513, 'length': 224.7992903079671, 'weight': 2.22, 'status': 'OK', 'link': ''}, number: 15
+[2024-10-23 10:27:13,477 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 178.12947602857915, 'width': 186.07808550066693, 'length': 232.09089488989775, 'weight': 2.25, 'status': 'OK', 'link': ''}, number: 16
+[2024-10-23 10:27:16,545 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 179.46394237592824, 'width': 180.6116327325588, 'length': 224.34040093280453, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 17
+[2024-10-23 10:27:19,932 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 180.2703460713476, 'width': 184.4128877431977, 'length': 228.69464611997444, 'weight': 2.21, 'status': 'OK', 'link': ''}, number: 18
+[2024-10-23 10:27:23,247 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 178.23281602863017, 'width': 180.12425170514783, 'length': 231.834550913839, 'weight': -1, 'status': 'OK', 'link': ''}, number: 19
+[2024-10-23 10:27:23,251 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> LOI CAN DWS HOAC 2 THUNG VAO CAN
+[2024-10-23 10:27:56,118 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:27 - handle())] INFO -> Reset error no weight DWS
+[2024-10-23 10:27:58,936 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 179.87889111581148, 'width': 173.70055043758174, 'length': 229.8800861532579, 'weight': -1, 'status': 'OK', 'link': ''}, number: 19
+[2024-10-23 10:27:58,947 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> LOI CAN DWS HOAC 2 THUNG VAO CAN
+[2024-10-23 10:28:04,366 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 178.08803843258107, 'width': 184.59523498858425, 'length': 224.01185049997795, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 19
+[2024-10-23 10:28:06,174 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:27 - handle())] INFO -> Reset error no weight DWS
+[2024-10-23 10:28:07,535 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 176.83720720519682, 'width': 184.6891320580971, 'length': 224.54498483049986, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 20
+[2024-10-23 10:28:10,711 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 177.66013581289408, 'width': 187.82939056169954, 'length': 230.86280158233373, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 21
+[2024-10-23 10:28:13,827 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 178.4807447246461, 'width': 180.11858202437904, 'length': 233.16870954537038, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 22
+[2024-10-23 10:28:16,917 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 177.81857740950758, 'width': 180.1325724595492, 'length': 229.3195045702708, 'weight': 2.25, 'status': 'OK', 'link': ''}, number: 23
+[2024-10-23 10:28:20,069 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 177.14007638902254, 'width': 185.15251987511, 'length': 228.1977641627163, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 24
+[2024-10-23 10:28:23,365 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 179.54774529512312, 'width': 180.36449706764859, 'length': 219.7923877084981, 'weight': 2.22, 'status': 'OK', 'link': ''}, number: 25
+[2024-10-23 10:28:26,719 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 178.59336762692314, 'width': 176.65256986672628, 'length': 232.30666940821257, 'weight': 2.03, 'status': 'OK', 'link': ''}, number: 26
+[2024-10-23 10:28:30,205 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 178.535943923171, 'width': 179.85599588189473, 'length': 233.54726449409844, 'weight': -1, 'status': 'OK', 'link': ''}, number: 27
+[2024-10-23 10:28:30,210 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> LOI CAN DWS HOAC 2 THUNG VAO CAN
+[2024-10-23 10:28:33,301 (/home/ubuntu/FIKA_WCS/PLC/plc_controller.py:93 - update_status())] INFO -> Error barcode don't read
+[2024-10-23 10:29:51,384 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:27 - handle())] INFO -> Reset error no weight DWS
+[2024-10-23 10:29:54,779 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 177.53282876810684, 'width': 180.61142599501997, 'length': 229.14671580153663, 'weight': 2.22, 'status': 'OK', 'link': ''}, number: 27
+[2024-10-23 10:29:57,425 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 178.5268111837277, 'width': 179.14095852403977, 'length': 234.4946899484511, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 28
+[2024-10-23 10:30:00,466 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 178.75470316742405, 'width': 184.5306876849391, 'length': 228.65154665345358, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 29
+[2024-10-23 10:30:01,430 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:27 - handle())] INFO -> Reset error no weight DWS
+[2024-10-23 10:30:25,724 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 179.48642632182404, 'width': 180.43704250975273, 'length': 227.97500052252505, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 30
+[2024-10-23 10:30:44,053 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 180.14387967169793, 'width': 180.39581375154046, 'length': 224.2172994525406, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 31
+[2024-10-23 10:31:02,182 (/home/ubuntu/FIKA_WCS/PLC/plc_controller.py:93 - update_status())] INFO -> Error barcode don't read
+[2024-10-23 10:31:22,602 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 177.07526670604582, 'width': 185.41272414762815, 'length': 228.69755982422745, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 32
+[2024-10-23 10:31:26,020 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 180.18837044791286, 'width': 172.00598761226195, 'length': 228.5916156434691, 'weight': 2.22, 'status': 'OK', 'link': ''}, number: 33
+[2024-10-23 10:31:43,561 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 178.66733170176593, 'width': 184.70569585435754, 'length': 228.36318077772845, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 34
+[2024-10-23 10:31:46,645 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 178.12843513169264, 'width': 184.39249111487757, 'length': 232.83488693786651, 'weight': 2.22, 'status': 'OK', 'link': ''}, number: 35
+[2024-10-23 10:31:50,124 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 177.70842888125065, 'width': 179.75977161576893, 'length': 230.2096218717869, 'weight': 2.25, 'status': 'OK', 'link': ''}, number: 36
+[2024-10-23 10:31:53,460 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 179.4238693010915, 'width': 180.31689942291388, 'length': 228.49640172363078, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 37
+[2024-10-23 10:31:56,731 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 178.8275413519658, 'width': 187.0596128928794, 'length': 225.87599526555198, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 38
+[2024-10-23 10:32:00,015 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 179.26501343656824, 'width': 175.98229837195976, 'length': 232.86128139091144, 'weight': 2.25, 'status': 'OK', 'link': ''}, number: 39
+[2024-10-23 10:32:03,365 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 180.89353015229435, 'width': 178.96022630515094, 'length': 229.15514834416527, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 40
+[2024-10-23 10:32:06,798 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 178.72155998461824, 'width': 186.1366286079321, 'length': 225.5399123519287, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 41
+[2024-10-23 10:32:08,838 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 179.19711320730113, 'width': 176.86503469069262, 'length': 231.5381909188589, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 42
+[2024-10-23 10:32:10,161 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 178.31964557374258, 'width': 180.55595755172476, 'length': 224.6225164329408, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 43
+[2024-10-23 10:32:14,068 (/home/ubuntu/FIKA_WCS/PLC/plc_controller.py:93 - update_status())] INFO -> Error barcode don't read
+[2024-10-23 10:33:08,646 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 177.8271536446464, 'width': 188.79861021951638, 'length': 228.34067855791795, 'weight': -1, 'status': 'OK', 'link': ''}, number: 44
+[2024-10-23 10:33:08,651 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> LOI CAN DWS HOAC 2 THUNG VAO CAN
+[2024-10-23 10:33:39,401 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:27 - handle())] INFO -> Reset error no weight DWS
+[2024-10-23 10:33:42,257 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 178.3142765990636, 'width': 181.10032463066602, 'length': 232.0581604029763, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 44
+[2024-10-23 10:33:45,350 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 176.37059163341948, 'width': 185.00564483108224, 'length': 224.39139371296784, 'weight': 2.22, 'status': 'OK', 'link': ''}, number: 45
+[2024-10-23 10:33:49,444 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:27 - handle())] INFO -> Reset error no weight DWS
+[2024-10-23 10:34:39,298 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:106 - post())] INFO -> Result DWS: {'height': 178.4348967523165, 'width': 179.51590273583489, 'length': 229.4388507419854, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 46
+[2024-10-23 11:04:07,738 (/home/ubuntu/FIKA_WCS/db_redis/handle_redis.py:33 - __init__())] INFO -> Connect redis successful
+[2024-10-23 11:04:07,805 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:55 - __connect())] INFO -> Successfully connected to PLC at 192.168.31.3:502
+[2024-10-23 11:04:07,805 (/home/ubuntu/FIKA_WCS/PLC/plc_controller.py:151 - __check_trigger())] INFO -> START CHECK PLC
+[2024-10-23 11:04:08,188 (/home/ubuntu/FIKA_WCS/apis/DAL/DAL_server.py:41 - get_token_bearer_backend())] INFO -> Get token seccessful message.
+[2024-10-23 11:04:08,211 (/home/ubuntu/FIKA_WCS/agv/agv_manager.py:17 - __init__())] INFO -> START AGV
+[2024-10-23 11:04:08,214 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:19 - __sub_request())] INFO -> START CHECK DWS
+[2024-10-23 11:04:08,217 (/home/ubuntu/FIKA_WCS/markem_printer/printer_manager.py:24 - __sub_print_request())] INFO -> START PRINT MARKEM
+[2024-10-23 11:04:08,218 (/home/ubuntu/FIKA_WCS/socket_tcp/socket_tcp_interface.py:47 - connect())] INFO -> Connected to 192.168.31.210:9100
+[2024-10-23 11:04:08,219 (/home/ubuntu/FIKA_WCS/datamax_printer/printer_manager.py:21 - __sub_print_request())] INFO -> START REPRINT
+[2024-10-23 11:04:08,221 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:19 - __init__())] INFO -> TRANFER READY
+[2024-10-23 11:04:08,222 (/home/ubuntu/FIKA_WCS/tasks/scheduler.py:13 - __run_schedule())] INFO -> SCHEDUAL START
+[2024-10-23 11:04:08,229 (/home/ubuntu/FIKA_WCS/apis/__init__.py:39 - start())] INFO -> RestAPI READY
+[2024-10-23 11:17:37,140 (/home/ubuntu/FIKA_WCS/markem_printer/printer_interface.py:27 - send_data_print_lable())] INFO -> NO DATA PRINT
+[2024-10-23 11:25:03,112 (/home/ubuntu/FIKA_WCS/db_redis/handle_redis.py:33 - __init__())] INFO -> Connect redis successful
+[2024-10-23 11:25:03,181 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:55 - __connect())] INFO -> Successfully connected to PLC at 192.168.31.3:502
+[2024-10-23 11:25:03,181 (/home/ubuntu/FIKA_WCS/PLC/plc_controller.py:151 - __check_trigger())] INFO -> START CHECK PLC
+[2024-10-23 11:25:03,562 (/home/ubuntu/FIKA_WCS/apis/DAL/DAL_server.py:41 - get_token_bearer_backend())] INFO -> Get token seccessful message.
+[2024-10-23 11:25:03,587 (/home/ubuntu/FIKA_WCS/agv/agv_manager.py:17 - __init__())] INFO -> START AGV
+[2024-10-23 11:25:03,589 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:19 - __sub_request())] INFO -> START CHECK DWS
+[2024-10-23 11:25:03,592 (/home/ubuntu/FIKA_WCS/markem_printer/printer_manager.py:24 - __sub_print_request())] INFO -> START PRINT MARKEM
+[2024-10-23 11:25:03,593 (/home/ubuntu/FIKA_WCS/socket_tcp/socket_tcp_interface.py:47 - connect())] INFO -> Connected to 192.168.31.210:9100
+[2024-10-23 11:25:03,594 (/home/ubuntu/FIKA_WCS/datamax_printer/printer_manager.py:21 - __sub_print_request())] INFO -> START REPRINT
+[2024-10-23 11:25:03,595 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:19 - __init__())] INFO -> TRANFER READY
+[2024-10-23 11:25:03,597 (/home/ubuntu/FIKA_WCS/tasks/scheduler.py:13 - __run_schedule())] INFO -> SCHEDUAL START
+[2024-10-23 11:25:03,604 (/home/ubuntu/FIKA_WCS/apis/__init__.py:39 - start())] INFO -> RestAPI READY
+[2024-10-23 11:25:30,577 (/home/ubuntu/FIKA_WCS/db_redis/handle_redis.py:33 - __init__())] INFO -> Connect redis successful
+[2024-10-23 11:25:30,648 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:55 - __connect())] INFO -> Successfully connected to PLC at 192.168.31.3:502
+[2024-10-23 11:25:30,649 (/home/ubuntu/FIKA_WCS/PLC/plc_controller.py:151 - __check_trigger())] INFO -> START CHECK PLC
+[2024-10-23 11:25:31,024 (/home/ubuntu/FIKA_WCS/apis/DAL/DAL_server.py:41 - get_token_bearer_backend())] INFO -> Get token seccessful message.
+[2024-10-23 11:25:31,049 (/home/ubuntu/FIKA_WCS/agv/agv_manager.py:17 - __init__())] INFO -> START AGV
+[2024-10-23 11:25:31,052 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:19 - __sub_request())] INFO -> START CHECK DWS
+[2024-10-23 11:25:31,054 (/home/ubuntu/FIKA_WCS/markem_printer/printer_manager.py:24 - __sub_print_request())] INFO -> START PRINT MARKEM
+[2024-10-23 11:25:31,056 (/home/ubuntu/FIKA_WCS/datamax_printer/printer_manager.py:21 - __sub_print_request())] INFO -> START REPRINT
+[2024-10-23 11:25:31,057 (/home/ubuntu/FIKA_WCS/socket_tcp/socket_tcp_interface.py:47 - connect())] INFO -> Connected to 192.168.31.210:9100
+[2024-10-23 11:25:31,058 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:19 - __init__())] INFO -> TRANFER READY
+[2024-10-23 11:25:31,059 (/home/ubuntu/FIKA_WCS/tasks/scheduler.py:13 - __run_schedule())] INFO -> SCHEDUAL START
+[2024-10-23 11:25:31,066 (/home/ubuntu/FIKA_WCS/apis/__init__.py:39 - start())] INFO -> RestAPI READY
+[2024-10-23 11:26:57,031 (/home/ubuntu/FIKA_WCS/db_redis/handle_redis.py:33 - __init__())] INFO -> Connect redis successful
+[2024-10-23 11:26:57,098 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:55 - __connect())] INFO -> Successfully connected to PLC at 192.168.31.3:502
+[2024-10-23 11:26:57,102 (/home/ubuntu/FIKA_WCS/PLC/plc_controller.py:151 - __check_trigger())] INFO -> START CHECK PLC
+[2024-10-23 11:26:57,481 (/home/ubuntu/FIKA_WCS/apis/DAL/DAL_server.py:41 - get_token_bearer_backend())] INFO -> Get token seccessful message.
+[2024-10-23 11:26:57,506 (/home/ubuntu/FIKA_WCS/agv/agv_manager.py:17 - __init__())] INFO -> START AGV
+[2024-10-23 11:26:57,508 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:19 - __sub_request())] INFO -> START CHECK DWS
+[2024-10-23 11:26:57,511 (/home/ubuntu/FIKA_WCS/markem_printer/printer_manager.py:24 - __sub_print_request())] INFO -> START PRINT MARKEM
+[2024-10-23 11:26:57,512 (/home/ubuntu/FIKA_WCS/datamax_printer/printer_manager.py:21 - __sub_print_request())] INFO -> START REPRINT
+[2024-10-23 11:26:57,513 (/home/ubuntu/FIKA_WCS/socket_tcp/socket_tcp_interface.py:47 - connect())] INFO -> Connected to 192.168.31.210:9100
+[2024-10-23 11:26:57,514 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:19 - __init__())] INFO -> TRANFER READY
+[2024-10-23 11:26:57,515 (/home/ubuntu/FIKA_WCS/tasks/scheduler.py:13 - __run_schedule())] INFO -> SCHEDUAL START
+[2024-10-23 11:26:57,523 (/home/ubuntu/FIKA_WCS/apis/__init__.py:39 - start())] INFO -> RestAPI READY
+[2024-10-23 11:48:21,330 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:103 - read_data())] ERROR -> Error reading from PLC: Modbus Error: [Connection] Failed to connect[ModbusTcpClient(192.168.31.3:502)]
+[2024-10-23 11:48:22,332 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 11:48:23,534 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 11:48:23,848 (/home/ubuntu/FIKA_WCS/socket_tcp/socket_tcp_interface.py:80 - reset_connect())] INFO -> PLC disconnected, closing socket connection...
+[2024-10-23 11:48:23,849 (/home/ubuntu/FIKA_WCS/socket_tcp/socket_tcp_interface.py:91 - close())] INFO -> Closed connection to 192.168.31.210:9100
+[2024-10-23 11:48:24,937 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 11:48:26,740 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 11:48:29,344 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 11:48:33,549 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 11:48:40,958 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 11:48:54,767 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 11:49:21,395 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 11:50:13,637 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 11:51:57,117 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 11:53:58,182 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 11:55:59,187 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 11:58:00,254 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 12:00:01,341 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 12:02:02,397 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 12:04:03,459 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 12:06:04,507 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 12:08:05,606 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 12:10:06,630 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 12:12:07,656 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 12:14:08,713 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 12:16:09,815 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 12:18:10,865 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 12:20:11,968 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 12:22:13,070 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 12:24:14,172 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 12:26:15,177 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 12:28:16,188 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 12:30:17,291 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 12:32:18,338 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 12:34:19,351 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 12:36:20,359 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 12:38:21,371 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 12:40:22,473 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 12:42:23,548 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 12:44:24,572 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 12:46:25,607 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 12:48:26,690 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 12:50:27,707 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 12:52:28,710 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 12:54:29,717 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 12:56:30,819 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 12:58:31,823 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 13:00:32,830 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 13:02:33,871 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 13:04:34,974 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 13:06:36,076 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 13:08:37,150 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 13:10:38,172 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 13:12:39,274 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 13:14:40,294 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:57 - __connect())] ERROR -> Failed to connect to PLC
+[2024-10-23 13:16:40,304 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:55 - __connect())] INFO -> Successfully connected to PLC at 192.168.31.3:502
+[2024-10-23 13:16:40,314 (/home/ubuntu/FIKA_WCS/markem_printer/printer_interface.py:27 - send_data_print_lable())] INFO -> NO DATA PRINT
+[2024-10-23 13:16:44,160 (/home/ubuntu/FIKA_WCS/socket_tcp/socket_tcp_interface.py:47 - connect())] INFO -> Connected to 192.168.31.210:9100
+[2024-10-23 13:18:37,354 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:37 - post())] ERROR -> DWS error connect: Time since last heartbeat is 5499.09 seconds
+[2024-10-23 13:52:38,942 (/home/ubuntu/FIKA_WCS/markem_printer/printer_interface.py:27 - send_data_print_lable())] INFO -> NO DATA PRINT
+[2024-10-23 13:52:39,777 (/home/ubuntu/FIKA_WCS/markem_printer/printer_interface.py:27 - send_data_print_lable())] INFO -> NO DATA PRINT
+[2024-10-23 13:52:44,806 (/home/ubuntu/FIKA_WCS/PLC/plc_controller.py:93 - update_status())] INFO -> Error barcode don't read
+[2024-10-23 13:54:16,254 (/home/ubuntu/FIKA_WCS/markem_printer/printer_interface.py:27 - send_data_print_lable())] INFO -> NO DATA PRINT
+[2024-10-23 13:54:29,130 (/home/ubuntu/FIKA_WCS/markem_printer/printer_interface.py:27 - send_data_print_lable())] INFO -> NO DATA PRINT
+[2024-10-23 13:55:35,569 (/home/ubuntu/FIKA_WCS/markem_printer/printer_interface.py:27 - send_data_print_lable())] INFO -> NO DATA PRINT
+[2024-10-23 13:55:38,932 (/home/ubuntu/FIKA_WCS/markem_printer/printer_interface.py:27 - send_data_print_lable())] INFO -> NO DATA PRINT
+[2024-10-23 13:55:45,858 (/home/ubuntu/FIKA_WCS/PLC/plc_controller.py:93 - update_status())] INFO -> Error barcode don't read
+[2024-10-23 13:57:24,089 (/home/ubuntu/FIKA_WCS/markem_printer/printer_interface.py:27 - send_data_print_lable())] INFO -> NO DATA PRINT
+[2024-10-23 13:57:34,368 (/home/ubuntu/FIKA_WCS/markem_printer/printer_interface.py:27 - send_data_print_lable())] INFO -> NO DATA PRINT
+[2024-10-23 13:58:07,560 (/home/ubuntu/FIKA_WCS/markem_printer/printer_interface.py:27 - send_data_print_lable())] INFO -> NO DATA PRINT
+[2024-10-23 14:00:32,396 (/home/ubuntu/FIKA_WCS/markem_printer/printer_interface.py:27 - send_data_print_lable())] INFO -> NO DATA PRINT
+[2024-10-23 14:13:16,991 (/home/ubuntu/FIKA_WCS/markem_printer/printer_interface.py:27 - send_data_print_lable())] INFO -> NO DATA PRINT
+[2024-10-23 14:43:07,100 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:111 - main())] INFO -> START TASK:MISSION_O3
+[2024-10-23 14:44:04,766 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:237 - main())] INFO -> ELEVATOR UP READY TASK:317
+[2024-10-23 14:44:09,775 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:244 - main())] INFO -> NOTIFY AGV IN ELEVATOR UP FOR PLC:317
+[2024-10-23 14:44:36,876 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:270 - main())] INFO -> NOTIFY AGV OUT ELEVATOR UP FOR PLC:317
+[2024-10-23 14:46:17,504 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:458 - onContinueEnter())] INFO -> On continue agv enter:317
+[2024-10-23 14:46:51,580 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:462 - onContinueEgress())] INFO -> On continue agv egress:317
+[2024-10-23 14:47:13,970 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:421 - main())] INFO -> DONE MISSION:317
+[2024-10-23 14:48:37,788 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:111 - main())] INFO -> START TASK:MISSION_A1
+[2024-10-23 14:49:35,470 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:237 - main())] INFO -> ELEVATOR UP READY TASK:318
+[2024-10-23 14:49:40,481 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:244 - main())] INFO -> NOTIFY AGV IN ELEVATOR UP FOR PLC:318
+[2024-10-23 14:50:10,718 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:270 - main())] INFO -> NOTIFY AGV OUT ELEVATOR UP FOR PLC:318
+[2024-10-23 14:51:08,098 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:458 - onContinueEnter())] INFO -> On continue agv enter:318
+[2024-10-23 14:51:38,163 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:462 - onContinueEgress())] INFO -> On continue agv egress:318
+[2024-10-23 14:52:03,865 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:421 - main())] INFO -> DONE MISSION:318
+[2024-10-23 14:52:38,234 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:109 - post())] INFO -> Done Pallet
+[2024-10-23 14:52:38,234 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 179.1938624087028, 'width': 185.49097577358344, 'length': 225.69539565948946, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 1
+[2024-10-23 14:52:41,170 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.4167368191951, 'width': 184.88498279898516, 'length': 228.81985247156683, 'weight': 2.22, 'status': 'OK', 'link': ''}, number: 2
+[2024-10-23 14:54:55,098 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.13265498290355, 'width': 184.6624703921109, 'length': 225.09339917803476, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 3
+[2024-10-23 14:54:57,559 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.37193750251743, 'width': 184.94251610103382, 'length': 228.10226111545225, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 4
+[2024-10-23 14:55:51,387 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:27 - handle())] INFO -> Reset error no weight DWS
+[2024-10-23 14:56:01,434 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:27 - handle())] INFO -> Reset error no weight DWS
+[2024-10-23 14:57:51,213 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:27 - handle())] INFO -> Reset error no weight DWS
+[2024-10-23 14:58:01,262 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:27 - handle())] INFO -> Reset error no weight DWS
+[2024-10-23 14:58:22,022 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:27 - handle())] INFO -> Reset error no weight DWS
+[2024-10-23 14:58:27,052 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:27 - handle())] INFO -> Reset error no weight DWS
+[2024-10-23 14:58:48,752 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.46401170143017, 'width': 187.18694690050722, 'length': 223.75645009037925, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 5
+[2024-10-23 14:58:51,178 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 176.14312087843552, 'width': 189.59851637338812, 'length': 225.06109413498802, 'weight': 2.22, 'status': 'OK', 'link': ''}, number: 6
+[2024-10-23 15:10:11,786 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.80465709642093, 'width': 185.10484704490722, 'length': 223.82099680677428, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 7
+[2024-10-23 15:10:14,229 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 180.16782433395284, 'width': 176.29507051809458, 'length': 229.29967222960775, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 8
+[2024-10-23 15:10:16,481 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 176.9272742134498, 'width': 186.04005131504317, 'length': 226.0127269187033, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 9
+[2024-10-23 15:10:19,584 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.58091353481845, 'width': 180.26006433757706, 'length': 224.58913980881755, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 10
+[2024-10-23 15:10:22,290 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.8239773442498, 'width': 184.83676528978785, 'length': 225.85184641854877, 'weight': 2.22, 'status': 'OK', 'link': ''}, number: 11
+[2024-10-23 15:10:25,251 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.27151428222575, 'width': 184.09135099670777, 'length': 228.00513330570053, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 12
+[2024-10-23 15:10:31,011 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.16880140687252, 'width': 184.5410248296222, 'length': 227.32028569085122, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 13
+[2024-10-23 15:10:33,920 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.0384540040026, 'width': 180.8136608760031, 'length': 227.8023999499257, 'weight': -1, 'status': 'OK', 'link': ''}, number: 14
+[2024-10-23 15:10:33,936 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:118 - post())] INFO -> LOI CAN DWS HOAC 2 THUNG VAO CAN
+[2024-10-23 15:13:04,311 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:27 - handle())] INFO -> Reset error no weight DWS
+[2024-10-23 15:13:07,058 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.30236409509038, 'width': 188.61525628434762, 'length': 228.18868011440762, 'weight': -1, 'status': 'OK', 'link': ''}, number: 14
+[2024-10-23 15:13:07,064 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:118 - post())] INFO -> LOI CAN DWS HOAC 2 THUNG VAO CAN
+[2024-10-23 15:13:12,546 (/home/ubuntu/FIKA_WCS/markem_printer/printer_interface.py:27 - send_data_print_lable())] INFO -> NO DATA PRINT
+[2024-10-23 15:13:13,080 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.0736581268153, 'width': 184.6625129334721, 'length': 224.52869596013926, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 14
+[2024-10-23 15:13:14,358 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:27 - handle())] INFO -> Reset error no weight DWS
+[2024-10-23 15:13:15,185 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.19570940964726, 'width': 180.5473762055771, 'length': 233.02580690824743, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 15
+[2024-10-23 15:13:15,593 (/home/ubuntu/FIKA_WCS/PLC/plc_controller.py:93 - update_status())] INFO -> Error barcode don't read
+[2024-10-23 15:13:43,025 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.3257223997093, 'width': 185.0541267049561, 'length': 231.10096374295182, 'weight': 2.25, 'status': 'OK', 'link': ''}, number: 16
+[2024-10-23 15:13:45,540 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 179.48917138602636, 'width': 184.39295795113992, 'length': 223.5982675949635, 'weight': 2.22, 'status': 'OK', 'link': ''}, number: 17
+[2024-10-23 15:13:46,610 (/home/ubuntu/FIKA_WCS/PLC/plc_controller.py:93 - update_status())] INFO -> Error barcode don't read
+[2024-10-23 15:14:41,567 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.16100320638444, 'width': 186.35579917175366, 'length': 227.57914160160723, 'weight': 2.2, 'status': 'OK', 'link': ''}, number: 18
+[2024-10-23 15:14:43,054 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.89481286726013, 'width': 185.10983101213554, 'length': 223.73910001614524, 'weight': -1, 'status': 'OK', 'link': ''}, number: 19
+[2024-10-23 15:14:43,061 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:118 - post())] INFO -> LOI CAN DWS HOAC 2 THUNG VAO CAN
+[2024-10-23 15:14:44,179 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.84572101352592, 'width': 180.10632886874856, 'length': 231.82627030239647, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 19
+[2024-10-23 15:15:25,541 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:27 - handle())] INFO -> Reset error no weight DWS
+[2024-10-23 15:15:29,144 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.56139106678702, 'width': 188.38874019657072, 'length': 229.3092469419533, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 20
+[2024-10-23 15:15:32,063 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 176.62144037903653, 'width': 180.90010339120204, 'length': 224.37336740928652, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 21
+[2024-10-23 15:15:35,464 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 179.98899642505282, 'width': 179.42196431093086, 'length': 226.9881099290903, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 22
+[2024-10-23 15:15:35,593 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:27 - handle())] INFO -> Reset error no weight DWS
+[2024-10-23 15:15:38,372 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 179.07522415404546, 'width': 176.65941290240153, 'length': 230.52056075709422, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 23
+[2024-10-23 15:15:41,728 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.60768311543305, 'width': 184.4949245982107, 'length': 227.71361736301236, 'weight': 2.22, 'status': 'OK', 'link': ''}, number: 24
+[2024-10-23 15:15:47,968 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.7611361382299, 'width': 186.06684477493573, 'length': 225.36050807927447, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 25
+[2024-10-23 15:15:50,866 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 179.24864834068757, 'width': 175.05377200315877, 'length': 225.26466899793863, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 26
+[2024-10-23 15:15:54,414 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 179.64900079632673, 'width': 177.75686700084657, 'length': 231.01264214432845, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 27
+[2024-10-23 15:15:57,965 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.6367686158981, 'width': 184.68515254838792, 'length': 233.55755982222843, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 28
+[2024-10-23 15:16:00,864 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 179.67658116280285, 'width': 184.5198382484383, 'length': 227.96414009999336, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 29
+[2024-10-23 15:16:04,196 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 179.08218408917384, 'width': 180.2442482118667, 'length': 223.59737406087058, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 30
+[2024-10-23 15:16:07,580 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.64515592899244, 'width': 180.5187935107519, 'length': 228.4342584768587, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 31
+[2024-10-23 15:16:10,718 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.78458956030454, 'width': 170.25979219056146, 'length': 233.82441637075152, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 32
+[2024-10-23 15:16:13,857 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.6795873535044, 'width': 181.66405863641737, 'length': 229.84271277903164, 'weight': 2.21, 'status': 'OK', 'link': ''}, number: 33
+[2024-10-23 15:16:16,978 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.73485895929022, 'width': 178.45210256923448, 'length': 231.22978817280472, 'weight': 2.22, 'status': 'OK', 'link': ''}, number: 34
+[2024-10-23 15:16:19,883 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.7547708751291, 'width': 184.90498233097497, 'length': 224.57368412676394, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 35
+[2024-10-23 15:16:27,328 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 179.64822662068067, 'width': 180.2460753109171, 'length': 223.67993989155627, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 36
+[2024-10-23 15:16:30,071 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.1653666333297, 'width': 185.8313285959909, 'length': 229.44286171474886, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 37
+[2024-10-23 15:16:33,442 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 176.48909774009425, 'width': 185.4419312771211, 'length': 228.68809692689243, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 38
+[2024-10-23 15:16:36,334 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 175.52297099485514, 'width': 185.07493570010757, 'length': 229.0710579642729, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 39
+[2024-10-23 15:16:39,925 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 179.81969249467176, 'width': 184.11236367276248, 'length': 219.3332951039343, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 40
+[2024-10-23 15:16:42,815 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.05014222446894, 'width': 178.64915662153754, 'length': 230.01676373505387, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 41
+[2024-10-23 15:16:46,150 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.51108699553146, 'width': 184.4786655294752, 'length': 229.00454625883037, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 42
+[2024-10-23 15:16:49,282 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.93413395603207, 'width': 180.45839614582795, 'length': 224.29433171671565, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 43
+[2024-10-23 15:16:52,697 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.27950644491753, 'width': 180.54418049454222, 'length': 224.58527233990048, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 44
+[2024-10-23 15:16:55,675 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 179.03155639788338, 'width': 180.6954877922533, 'length': 228.7344287731682, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 45
+[2024-10-23 15:16:58,700 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 179.00739382440372, 'width': 176.6200368653217, 'length': 231.65857089017936, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 46
+[2024-10-23 15:17:02,122 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.92123796768928, 'width': 184.22341325377369, 'length': 227.865215001074, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 47
+[2024-10-23 15:17:05,091 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.05403825453635, 'width': 175.1288636838361, 'length': 225.29425552732425, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 48
+[2024-10-23 15:17:08,273 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 179.42627149461313, 'width': 184.81523718059134, 'length': 224.76939746471524, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 49
+[2024-10-23 15:17:11,693 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.70623024931075, 'width': 184.8061776043315, 'length': 228.40467110979657, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 50
+[2024-10-23 15:17:14,591 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.22595906597772, 'width': 179.4024799744187, 'length': 225.47150744794368, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 51
+[2024-10-23 15:17:18,148 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.43360544613768, 'width': 179.5125031118881, 'length': 229.83780250681872, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 52
+[2024-10-23 15:17:29,918 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 179.4357535489024, 'width': 184.35233841648744, 'length': 219.94501380310737, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 53
+[2024-10-23 15:17:33,257 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 176.59125062995187, 'width': 185.0718060629103, 'length': 227.8749273703924, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 54
+[2024-10-23 15:17:40,369 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.34689998592808, 'width': 184.8356228080479, 'length': 224.61433813111114, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 55
+[2024-10-23 15:17:43,554 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.4089981101698, 'width': 184.54122467233054, 'length': 228.82623142710017, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 56
+[2024-10-23 15:17:46,788 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.4030130197303, 'width': 185.41150771236983, 'length': 227.06594798382133, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 57
+[2024-10-23 15:17:50,395 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.78919561257717, 'width': 184.64643385246785, 'length': 224.6369136785937, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 58
+[2024-10-23 15:17:53,309 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.80869979919353, 'width': 180.21888738398206, 'length': 223.98821598061716, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 59
+[2024-10-23 15:17:56,938 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 179.20391463623716, 'width': 180.18039427396678, 'length': 227.99746696986267, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 60
+[2024-10-23 15:18:00,042 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.56516329450577, 'width': 184.58450388382482, 'length': 223.85181211158056, 'weight': 2.22, 'status': 'OK', 'link': ''}, number: 61
+[2024-10-23 15:18:03,211 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.8729943110595, 'width': 179.28078008097316, 'length': 229.5417351282434, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 62
+[2024-10-23 15:18:06,235 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.95092494342458, 'width': 173.8897268127627, 'length': 229.95959757485582, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 63
+[2024-10-23 15:18:09,204 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.49284351037707, 'width': 180.56397724624898, 'length': 224.5260403807523, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 64
+[2024-10-23 15:18:12,359 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 182.43199763570692, 'width': 173.38363261548847, 'length': 229.14008107733196, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 65
+[2024-10-23 15:18:15,568 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.52785862124642, 'width': 180.56077785223638, 'length': 224.1673358833341, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 66
+[2024-10-23 15:18:18,719 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 176.81901214533147, 'width': 184.89647033503587, 'length': 224.64999216854713, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 67
+[2024-10-23 15:18:22,156 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.38764514317594, 'width': 184.10836572167833, 'length': 227.38965989204468, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 68
+[2024-10-23 15:18:25,051 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.97091940102524, 'width': 184.8815407168517, 'length': 228.98666279825335, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 69
+[2024-10-23 15:18:28,383 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.07150495182003, 'width': 185.4291413365881, 'length': 224.40354768035073, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 70
+[2024-10-23 15:18:31,688 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 180.14678624494795, 'width': 174.04846271820207, 'length': 229.38002622541913, 'weight': 2.22, 'status': 'OK', 'link': ''}, number: 71
+[2024-10-23 15:18:34,811 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.0555569730834, 'width': 185.256177424682, 'length': 225.27436405594446, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 72
+[2024-10-23 15:18:37,969 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 179.06527405433718, 'width': 184.96224557361762, 'length': 223.85492371958284, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 73
+[2024-10-23 15:18:41,093 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 179.55268174709144, 'width': 183.2664786614843, 'length': 226.8384663152999, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 74
+[2024-10-23 15:18:44,237 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.30849208014422, 'width': 185.3468842026753, 'length': 226.6916012242442, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 75
+[2024-10-23 15:18:47,363 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.94686262335804, 'width': 184.37593694941927, 'length': 223.75790500334097, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 76
+[2024-10-23 15:20:19,121 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:27 - handle())] INFO -> Reset error no weight DWS
+[2024-10-23 15:20:24,147 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:27 - handle())] INFO -> Reset error no weight DWS
+[2024-10-23 15:20:38,559 (/home/ubuntu/FIKA_WCS/apis/api_base.py:244 - inner())] ERROR -> An error occurred: the JSON object must be str, bytes or bytearray, not NoneType
+Traceback (most recent call last):
+  File "/home/ubuntu/FIKA_WCS/apis/api_base.py", line 229, in inner
+    return func(cls)
+  File "/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py", line 102, in post
+    data_pallet_carton_input = json.loads(data_pallet_carton_input)
+  File "/usr/lib/python3.10/json/__init__.py", line 339, in loads
+    raise TypeError(f'the JSON object must be str, bytes or bytearray, '
+TypeError: the JSON object must be str, bytes or bytearray, not NoneType
+
+[2024-10-23 15:21:10,080 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:27 - handle())] INFO -> Reset error no weight DWS
+[2024-10-23 15:21:15,109 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:27 - handle())] INFO -> Reset error no weight DWS
+[2024-10-23 15:38:50,195 (/home/ubuntu/FIKA_WCS/db_redis/handle_redis.py:33 - __init__())] INFO -> Connect redis successful
+[2024-10-23 15:38:50,262 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:55 - __connect())] INFO -> Successfully connected to PLC at 192.168.31.3:502
+[2024-10-23 15:38:50,263 (/home/ubuntu/FIKA_WCS/PLC/plc_controller.py:151 - __check_trigger())] INFO -> START CHECK PLC
+[2024-10-23 15:38:50,641 (/home/ubuntu/FIKA_WCS/apis/DAL/DAL_server.py:41 - get_token_bearer_backend())] INFO -> Get token seccessful message.
+[2024-10-23 15:38:50,665 (/home/ubuntu/FIKA_WCS/agv/agv_manager.py:17 - __init__())] INFO -> START AGV
+[2024-10-23 15:38:50,667 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:19 - __sub_request())] INFO -> START CHECK DWS
+[2024-10-23 15:38:50,670 (/home/ubuntu/FIKA_WCS/markem_printer/printer_manager.py:24 - __sub_print_request())] INFO -> START PRINT MARKEM
+[2024-10-23 15:38:50,671 (/home/ubuntu/FIKA_WCS/socket_tcp/socket_tcp_interface.py:47 - connect())] INFO -> Connected to 192.168.31.210:9100
+[2024-10-23 15:38:50,672 (/home/ubuntu/FIKA_WCS/datamax_printer/printer_manager.py:21 - __sub_print_request())] INFO -> START REPRINT
+[2024-10-23 15:38:50,673 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:19 - __init__())] INFO -> TRANFER READY
+[2024-10-23 15:38:50,675 (/home/ubuntu/FIKA_WCS/tasks/scheduler.py:13 - __run_schedule())] INFO -> SCHEDUAL START
+[2024-10-23 15:38:50,682 (/home/ubuntu/FIKA_WCS/apis/__init__.py:39 - start())] INFO -> RestAPI READY
+[2024-10-23 15:40:24,778 (/home/ubuntu/FIKA_WCS/db_redis/handle_redis.py:33 - __init__())] INFO -> Connect redis successful
+[2024-10-23 15:40:24,844 (/home/ubuntu/FIKA_WCS/PLC/plc_interface.py:55 - __connect())] INFO -> Successfully connected to PLC at 192.168.31.3:502
+[2024-10-23 15:40:24,844 (/home/ubuntu/FIKA_WCS/PLC/plc_controller.py:151 - __check_trigger())] INFO -> START CHECK PLC
+[2024-10-23 15:40:25,224 (/home/ubuntu/FIKA_WCS/apis/DAL/DAL_server.py:41 - get_token_bearer_backend())] INFO -> Get token seccessful message.
+[2024-10-23 15:40:25,249 (/home/ubuntu/FIKA_WCS/agv/agv_manager.py:17 - __init__())] INFO -> START AGV
+[2024-10-23 15:40:25,252 (/home/ubuntu/FIKA_WCS/DWS/handle_dws.py:19 - __sub_request())] INFO -> START CHECK DWS
+[2024-10-23 15:40:25,254 (/home/ubuntu/FIKA_WCS/markem_printer/printer_manager.py:24 - __sub_print_request())] INFO -> START PRINT MARKEM
+[2024-10-23 15:40:25,255 (/home/ubuntu/FIKA_WCS/socket_tcp/socket_tcp_interface.py:47 - connect())] INFO -> Connected to 192.168.31.210:9100
+[2024-10-23 15:40:25,256 (/home/ubuntu/FIKA_WCS/datamax_printer/printer_manager.py:21 - __sub_print_request())] INFO -> START REPRINT
+[2024-10-23 15:40:25,257 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:19 - __init__())] INFO -> TRANFER READY
+[2024-10-23 15:40:25,259 (/home/ubuntu/FIKA_WCS/tasks/scheduler.py:13 - __run_schedule())] INFO -> SCHEDUAL START
+[2024-10-23 15:40:25,266 (/home/ubuntu/FIKA_WCS/apis/__init__.py:39 - start())] INFO -> RestAPI READY
+[2024-10-23 15:42:53,545 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:111 - main())] INFO -> START TASK:MISSION_A1
+[2024-10-23 15:44:09,605 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:237 - main())] INFO -> ELEVATOR UP READY TASK:319
+[2024-10-23 15:44:14,615 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:244 - main())] INFO -> NOTIFY AGV IN ELEVATOR UP FOR PLC:319
+[2024-10-23 15:44:41,763 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:270 - main())] INFO -> NOTIFY AGV OUT ELEVATOR UP FOR PLC:319
+[2024-10-23 15:45:59,929 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:458 - onContinueEnter())] INFO -> On continue agv enter:319
+[2024-10-23 15:46:29,994 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:462 - onContinueEgress())] INFO -> On continue agv egress:319
+[2024-10-23 15:46:52,574 (/home/ubuntu/FIKA_WCS/agv/agv_mission.py:421 - main())] INFO -> DONE MISSION:319
+[2024-10-23 15:47:27,677 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.68397238165602, 'width': 184.59615440336154, 'length': 224.67489728931446, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 1
+[2024-10-23 15:47:30,296 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 179.16288478285074, 'width': 185.1338232930359, 'length': 223.4172621242257, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 2
+[2024-10-23 15:47:35,624 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.16204213769316, 'width': 180.66756136979683, 'length': 224.86717818751578, 'weight': 2.25, 'status': 'OK', 'link': ''}, number: 3
+[2024-10-23 15:47:39,319 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.27674149754841, 'width': 184.70942925713632, 'length': 224.41044664181618, 'weight': 2.25, 'status': 'OK', 'link': ''}, number: 4
+[2024-10-23 15:47:42,541 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.22057548984557, 'width': 180.51660865121266, 'length': 228.45910414794895, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 5
+[2024-10-23 15:47:46,200 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.42206468568997, 'width': 180.42774615027753, 'length': 224.0199591773603, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 6
+[2024-10-23 15:47:49,434 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.1236302150297, 'width': 185.9736422639705, 'length': 224.83489466012432, 'weight': 2.25, 'status': 'OK', 'link': ''}, number: 7
+[2024-10-23 15:47:52,747 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.8641725701598, 'width': 180.61761470358823, 'length': 224.35746663987598, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 8
+[2024-10-23 15:47:55,992 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.66071734505778, 'width': 184.66389243290547, 'length': 224.2596467719076, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 9
+[2024-10-23 15:47:59,434 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 176.99513782218904, 'width': 180.60693138077238, 'length': 223.952875606748, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 10
+[2024-10-23 15:48:02,904 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.31126172136757, 'width': 184.3548503401012, 'length': 223.9497290744061, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 11
+[2024-10-23 15:48:06,363 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.16950085282267, 'width': 184.6982694322953, 'length': 228.1876017624347, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 12
+[2024-10-23 15:48:09,506 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.02250364651388, 'width': 180.66157777731814, 'length': 224.44237646404014, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 13
+[2024-10-23 15:48:12,899 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.28757080784283, 'width': 180.9485784870734, 'length': 234.01164411611938, 'weight': 2.22, 'status': 'OK', 'link': ''}, number: 14
+[2024-10-23 15:48:16,211 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.34186753728795, 'width': 175.2545146011094, 'length': 229.91192742142724, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 15
+[2024-10-23 15:48:19,314 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.69487345545616, 'width': 183.26330824360264, 'length': 227.9165157094922, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 16
+[2024-10-23 15:48:22,378 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.43897314696443, 'width': 184.5239909642919, 'length': 232.784871266391, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 17
+[2024-10-23 15:48:25,576 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 179.6139789647084, 'width': 184.45207905718146, 'length': 219.38713310257862, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 18
+[2024-10-23 15:48:29,056 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.2419191220089, 'width': 180.57145048906733, 'length': 223.573744664584, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 19
+[2024-10-23 15:48:32,268 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.1100334846368, 'width': 187.8058497467379, 'length': 231.3642863032349, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 20
+[2024-10-23 15:48:35,704 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 179.11908146014446, 'width': 180.4769846908873, 'length': 223.61449672855977, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 21
+[2024-10-23 15:48:39,142 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.3458985486465, 'width': 180.2753497400571, 'length': 228.05741910914372, 'weight': 2.25, 'status': 'OK', 'link': ''}, number: 22
+[2024-10-23 15:48:42,542 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.4568108355756, 'width': 180.55531838751472, 'length': 223.72005946446617, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 23
+[2024-10-23 15:48:46,052 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.53746180546116, 'width': 180.0269853516645, 'length': 231.4694365987204, 'weight': 2.22, 'status': 'OK', 'link': ''}, number: 24
+[2024-10-23 15:48:49,237 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 176.9900360685879, 'width': 184.82421836659265, 'length': 224.15429627113645, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 25
+[2024-10-23 15:48:52,704 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.98370422645382, 'width': 184.89147614962445, 'length': 224.2712888557092, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 26
+[2024-10-23 15:48:56,131 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.24302443744756, 'width': 185.22656637112078, 'length': 224.53594930255883, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 27
+[2024-10-23 15:48:59,347 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.6151953817888, 'width': 184.69591565000778, 'length': 228.55918281543677, 'weight': 2.25, 'status': 'OK', 'link': ''}, number: 28
+[2024-10-23 15:49:02,775 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.99566957328122, 'width': 176.20797894406715, 'length': 230.25654353627039, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 29
+[2024-10-23 15:49:05,718 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.72297554600755, 'width': 180.0753232352219, 'length': 219.69061931882956, 'weight': 2.25, 'status': 'OK', 'link': ''}, number: 30
+[2024-10-23 15:49:09,104 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 179.45369118726308, 'width': 178.22672678087673, 'length': 231.41132787140833, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 31
+[2024-10-23 15:49:12,096 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 179.36942586782908, 'width': 184.4118933383723, 'length': 224.11605834905353, 'weight': 2.25, 'status': 'OK', 'link': ''}, number: 32
+[2024-10-23 15:49:15,532 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 179.7130581447894, 'width': 180.38102826036186, 'length': 223.95603956926064, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 33
+[2024-10-23 15:49:19,006 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 176.60532630035533, 'width': 185.06914512387345, 'length': 224.0087762986755, 'weight': 2.25, 'status': 'OK', 'link': ''}, number: 34
+[2024-10-23 15:49:22,224 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.29327507623918, 'width': 185.21014503264507, 'length': 224.47658233666658, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 35
+[2024-10-23 15:49:25,619 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.47030459386377, 'width': 184.1739003898583, 'length': 228.596799778374, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 36
+[2024-10-23 15:49:29,321 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.84654805377158, 'width': 184.89822784802746, 'length': 223.78814929429038, 'weight': 2.2, 'status': 'OK', 'link': ''}, number: 37
+[2024-10-23 15:49:32,534 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.05024864351776, 'width': 180.56751114191292, 'length': 228.7678646665966, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 38
+[2024-10-23 15:49:35,728 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.81161938394524, 'width': 184.6782002763726, 'length': 228.93866093097864, 'weight': 2.22, 'status': 'OK', 'link': ''}, number: 39
+[2024-10-23 15:49:38,975 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.97085654685338, 'width': 180.48984822822115, 'length': 232.92015753716834, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 40
+[2024-10-23 15:49:42,010 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.93689004994437, 'width': 180.5125413595054, 'length': 218.74898385044708, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 41
+[2024-10-23 15:49:45,487 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 176.49826415385095, 'width': 184.64332915632298, 'length': 220.39797408659126, 'weight': 2.22, 'status': 'OK', 'link': ''}, number: 42
+[2024-10-23 15:49:49,114 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.94710146629473, 'width': 180.59128848299503, 'length': 225.01783805727973, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 43
+[2024-10-23 15:49:52,134 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.98860682312602, 'width': 180.71633231434532, 'length': 224.43100908746152, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 44
+[2024-10-23 15:49:55,554 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 176.97800038585055, 'width': 184.7836766985393, 'length': 225.1132198401233, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 45
+[2024-10-23 15:49:58,870 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.90535675286839, 'width': 180.67497899688345, 'length': 219.8515669025441, 'weight': 2.25, 'status': 'OK', 'link': ''}, number: 46
+[2024-10-23 15:50:02,328 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.576831001585, 'width': 180.60520159655707, 'length': 224.79288824300284, 'weight': 2.25, 'status': 'OK', 'link': ''}, number: 47
+[2024-10-23 15:50:05,755 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 179.0846837365718, 'width': 184.64994479405442, 'length': 228.60384834037234, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 48
+[2024-10-23 15:50:09,048 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.65568059293142, 'width': 184.33540844450414, 'length': 223.7398549787543, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 49
+[2024-10-23 15:50:11,997 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.45245646946887, 'width': 180.45074129699782, 'length': 228.9707094441459, 'weight': 2.25, 'status': 'OK', 'link': ''}, number: 50
+[2024-10-23 15:50:15,308 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.30770195629225, 'width': 188.00058728975227, 'length': 225.88722465421353, 'weight': 2.22, 'status': 'OK', 'link': ''}, number: 51
+[2024-10-23 15:50:18,405 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.99584251673528, 'width': 179.58457427657532, 'length': 233.26177160186455, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 52
+[2024-10-23 15:50:21,500 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 179.115510540744, 'width': 174.14033868178177, 'length': 231.54496455971116, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 53
+[2024-10-23 15:50:24,599 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.80226692850556, 'width': 186.1648023357513, 'length': 227.63589552594368, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 54
+[2024-10-23 15:50:27,850 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.3578633578912, 'width': 180.54466558322792, 'length': 219.79680850435085, 'weight': 2.25, 'status': 'OK', 'link': ''}, number: 55
+[2024-10-23 15:50:38,928 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.62846460826145, 'width': 184.58117881934294, 'length': 224.67645233651285, 'weight': 2.25, 'status': 'OK', 'link': ''}, number: 56
+[2024-10-23 15:50:44,477 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 179.14148098784273, 'width': 175.86539048498193, 'length': 230.5427748510367, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 57
+[2024-10-23 15:50:47,568 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.1147926101104, 'width': 185.15704992935846, 'length': 227.7888092234955, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 58
+[2024-10-23 15:50:50,952 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 176.91042186895817, 'width': 180.83302563567483, 'length': 228.49612738193912, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 59
+[2024-10-23 15:50:54,189 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.7493800983863, 'width': 180.56383265997624, 'length': 224.59300549523482, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 60
+[2024-10-23 15:50:57,497 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 176.80334677329856, 'width': 184.73495766308594, 'length': 229.13884040754414, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 61
+[2024-10-23 15:51:00,725 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 179.02939411385074, 'width': 184.78168503219928, 'length': 228.94699259160177, 'weight': 2.22, 'status': 'OK', 'link': ''}, number: 62
+[2024-10-23 15:51:04,131 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 176.80159555846356, 'width': 184.70853854801624, 'length': 224.2126349123529, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 63
+[2024-10-23 15:51:07,388 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.87471279893995, 'width': 185.08381872337173, 'length': 228.1475215665336, 'weight': 2.22, 'status': 'OK', 'link': ''}, number: 64
+[2024-10-23 15:51:10,402 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.10340553117004, 'width': 184.90791413890042, 'length': 224.50593628919222, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 65
+[2024-10-23 15:51:13,827 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 179.08024703386636, 'width': 176.17776447328274, 'length': 229.6422972431431, 'weight': 2.22, 'status': 'OK', 'link': ''}, number: 66
+[2024-10-23 15:51:17,139 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 177.82351871628478, 'width': 180.60846052175992, 'length': 228.83183425933782, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 67
+[2024-10-23 15:51:20,380 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.58817434934247, 'width': 180.9473589292998, 'length': 231.33181000730144, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 68
+[2024-10-23 15:51:24,053 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.37966040841255, 'width': 184.42265546850064, 'length': 223.58116194346044, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 69
+[2024-10-23 15:51:27,386 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 179.08902423911266, 'width': 180.46210952408128, 'length': 219.51194613166768, 'weight': 2.25, 'status': 'OK', 'link': ''}, number: 70
+[2024-10-23 15:51:30,676 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 178.29858197723112, 'width': 180.64867089062116, 'length': 224.21495192950448, 'weight': 2.23, 'status': 'OK', 'link': ''}, number: 71
+[2024-10-23 15:51:33,969 (/home/ubuntu/FIKA_WCS/apis/DAL/DWS_api.py:112 - post())] INFO -> Result DWS: {'height': 179.48912420762133, 'width': 180.49071607226213, 'length': 224.07395373285516, 'weight': 2.24, 'status': 'OK', 'link': ''}, number: 72
+[2024-10-23 15:53:57,331 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:35 - __handle_tranfer())] INFO -> Qrcode: 21200278,2201008,20241023,3,72,25,1;, Result tranfer: OK
+[2024-10-23 15:54:56,224 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:35 - __handle_tranfer())] INFO -> Qrcode: 21200278,2201008,20241023,3,72,1,1;, Result tranfer: OK
+[2024-10-23 16:00:11,838 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:35 - __handle_tranfer())] INFO -> Qrcode: 21200278,2201008,20241023,3,72,25,1;, Result tranfer: OK
+[2024-10-23 16:11:21,467 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:35 - __handle_tranfer())] INFO -> Qrcode: 21200278,2201008,20241023,3,72,1,1;, Result tranfer: OK
+[2024-10-23 16:12:48,171 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:35 - __handle_tranfer())] INFO -> Qrcode: 21200278,2201008,20241023,3,72,25,1;, Result tranfer: OK
+[2024-10-23 16:21:34,610 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:35 - __handle_tranfer())] INFO -> Qrcode: 21200278,2201008,20241023,3,72,1,1;, Result tranfer: OK
+[2024-10-23 16:34:15,300 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:35 - __handle_tranfer())] INFO -> Qrcode: 21200278,2201008,20241023,3,72,25,1;, Result tranfer: OK
+[2024-10-23 16:37:48,332 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:35 - __handle_tranfer())] INFO -> Qrcode: 21200278,2201008,20241023,3,72,1,1;, Result tranfer: OK
+[2024-10-23 16:39:13,674 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:35 - __handle_tranfer())] INFO -> Qrcode: 21200278,2201008,20241023,3,72,25,1;, Result tranfer: OK
+[2024-10-23 16:40:20,910 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:35 - __handle_tranfer())] INFO -> Qrcode: 21200278,2201008,20241023,3,72,1,1;, Result tranfer: OK
+[2024-10-23 16:41:13,935 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:35 - __handle_tranfer())] INFO -> Qrcode: 21200278,2201008,20241023,3,72,25,1;, Result tranfer: OK
+[2024-10-23 16:42:04,764 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:35 - __handle_tranfer())] INFO -> Qrcode: 21200278,2201008,20241023,3,72,1,1;, Result tranfer: OK
+[2024-10-23 16:42:57,526 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:35 - __handle_tranfer())] INFO -> Qrcode: 21200278,2201008,20241023,3,72,25,1;, Result tranfer: OK
+[2024-10-23 16:45:36,352 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:35 - __handle_tranfer())] INFO -> Qrcode: 21200278,2201008,20241023,3,72,1,1;, Result tranfer: OK
+[2024-10-23 16:46:17,180 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:35 - __handle_tranfer())] INFO -> Qrcode: 21200278,2201008,20241023,3,72,25,1;, Result tranfer: OK
+[2024-10-23 16:47:05,860 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:35 - __handle_tranfer())] INFO -> Qrcode: 21200278,2201008,20241023,3,72,1,1;, Result tranfer: OK
+[2024-10-23 16:48:30,343 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:35 - __handle_tranfer())] INFO -> Qrcode: 21200278,2201008,20241023,3,72,25,1;, Result tranfer: OK
+[2024-10-23 16:48:44,235 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:35 - __handle_tranfer())] INFO -> Qrcode: 21200278,2201008,20241023,3,72,1,1;, Result tranfer: OK
+[2024-10-23 16:49:51,833 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:35 - __handle_tranfer())] INFO -> Qrcode: 21200278,2201008,20241023,3,72,25,1;, Result tranfer: OK
+[2024-10-23 16:50:09,052 (/home/ubuntu/FIKA_WCS/tranfer/control_tranfer.py:35 - __handle_tranfer())] INFO -> Qrcode: 21200278,2201008,20241023,3,72,1,1;, Result tranfer: OK
