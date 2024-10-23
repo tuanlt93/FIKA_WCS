@@ -71,8 +71,6 @@ class DWSResult(ApiBase):
         DWS_result = self.jsonParser(args, args)
         # print(DWS_result)
 
-
-
          # Lấy số lượng từ đếm thùng từ PLC và DWS chỉ một lần
         quantity_data = self.__redis_cache.hgetall(
             HandlePalletConfig.NUMBER_CARTON_OF_PALLET, 
@@ -80,14 +78,9 @@ class DWSResult(ApiBase):
         current_quantity_PLC = int(quantity_data[HandlePalletConfig.QUANTITY_FROM_PLC])
         quantity_carton_DWS = int(quantity_data[HandlePalletConfig.QUANTITY_FROM_DWS])
 
-       
-
         # LẤY DỮ LIỆU PALLET ĐANG CHẠY
         data_pallet_carton_input = self.__redis_cache.get_first_element(HandlePalletConfig.LIST_PALLET_RUNNING)
         data_pallet_carton_input = json.loads(data_pallet_carton_input)
-
-       
-
 
         # Kiểm tra điều kiện để kết thúc pallet
         if (
@@ -107,10 +100,7 @@ class DWSResult(ApiBase):
             # Xóa data in pallet cũ
             self.__redis_cache.delete(MarkemConfig.DATA_CARTON_LABLE_PRINT)
             Logger().info("Done Pallet")
-
-
         # Logger().info(f"Result DWS: {DWS_result}, number: {quantity_carton_DWS + 1}")
-
 
          # Lỗi cân không được hoặc thùng cặp kè (khi khối lượng một thùng vượt quá 170% khối lượng standard)
         if DWS_result["weight"] == -1 or (DWS_result["weight"] * 1000) > (int(data_pallet_carton_input["standard_weight"]) * 1.7):
@@ -118,12 +108,12 @@ class DWSResult(ApiBase):
             Logger().info(f"LOI CAN DWS HOAC 2 THUNG VAO CAN: {DWS_result}, number: {quantity_carton_DWS + 1}")
             return ApiBase.createNotImplement()
 
-
         # Kiểm tra điều kiện để bắt đầu pallet
         if (quantity_carton_DWS + 1) == 1:
             self.__call_backend.startPalletCarton()
 
-        check_carton_print, check_carton_backend = self.__check_range(
+        # Carton lỗi kí tự cuối là 1, carton OK kí tự cuối là 0
+        last_character_for_lable, error_carton = self.__check_range(
             round(DWS_result["length"]),
             round(DWS_result["width"]),
             round(DWS_result["height"]),
@@ -135,7 +125,6 @@ class DWSResult(ApiBase):
             int(data_pallet_carton_input["standard_weight"]),
             (quantity_carton_DWS + 1)
         )
-        
 
         """
             Tao moi 1 luong chay qc carton
@@ -157,9 +146,9 @@ class DWSResult(ApiBase):
         data_creat_carton = {
             "carton_code": data_pallet_carton_input["carton_pallet_code"] + "," +
                 str(quantity_carton_DWS + 1) + "," +
-                check_carton_print  +";",
+                last_character_for_lable  +";",
             "carton_pallet_id": data_pallet_carton_input["_id"],
-            "dws_result": check_carton_backend,
+            "dws_result": error_carton,
             "actual_length": round(DWS_result["length"]),
             "actual_width": round(DWS_result["width"]),
             "actual_height": round(DWS_result["height"]),

@@ -206,3 +206,26 @@ class MonitorMission(ApiBase):
         return response
 
 
+class CancelMission(ApiBase):
+    """
+        datas = {'mission_cancel': 'MISSION_M4'}
+    """
+    urls = ("/cancel/mission/agv",)
+
+    def __init__(self) -> None:
+        self.__redis_cache = redis_cache
+        
+        super().__init__()
+
+    @ApiBase.exception_error
+    def post(self):
+
+        datas = self.jsonParser([], [])
+        mission_cancel = datas.get('mission_cancel')
+        self.__redis_cache.hset(
+            topic = mission_cancel,
+            key = AGVConfig.REQUIREMENT_CANCEL,
+            value = AGVConfig.REQUIREMENT_CANCEL
+        )
+        
+        return ApiBase.createResponseMessage({}, "OKE")

@@ -116,11 +116,9 @@ class PLCController(metaclass= Singleton):
             if register == 24:
                 self.trigger_print(DWSConfig.TOPIC_TOPIC_ERROR_NO_WEIGHT, DWSConfig.CARTON_NO_WEIGHT)
             
-            
             if register == 36:
-                print(36)
                 self.trigger_print(MarkemConfig.TOPIC_NOTIFY_SEND_DATA_PRINT, MarkemConfig.MESSAGE_NOTIFY_PRINT)
-           
+            
             if 42 <= register <= 91:
                 
                 qrcode_plc_read.extend([chr(int(data_reg_now[i])) for i in range(42, 92)])
@@ -227,19 +225,23 @@ class PLCController(metaclass= Singleton):
         elif area == "O":
             self.__PLC_interface.write_data(address= 14, value= [1])
 
-
     def reset_request_open_line_curtain(self, area: str):
         if area == "A":
             self.__PLC_interface.write_data(address= 10, value= [0])
         elif area == "O":
             self.__PLC_interface.write_data(address= 13, value= [0])
 
-
     def reset_request_close_line_curtain(self, area: str):
         if area == "A":
             self.__PLC_interface.write_data(address= 11, value= [0])
         elif area == "O":
             self.__PLC_interface.write_data(address= 14, value= [0])
+    
+    def reset_all_request_line_curtain(self, area: str):
+        if area == "A":
+            self.__PLC_interface.write_data(address= 10, value= [0, 0])
+        elif area == "O":
+            self.__PLC_interface.write_data(address= 13, value= [0, 0])
 
 
     # Tranfer

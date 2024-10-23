@@ -39,6 +39,10 @@ class RedisCache(metaclass= Singleton):
 
 
     def set(self, key: str, value):
+        """
+        Args:
+            value: is converting to string
+        """
         if value is None: value = "Null"
         else: value = str(value)
         return self.redis_conn.set(key, value)
@@ -46,10 +50,14 @@ class RedisCache(metaclass= Singleton):
     def delete(self, key):
         return self.redis_conn.delete(key)
     
-    def get(self, key: str):
+    def get(self, key: str) -> str:
         return self.redis_conn.get(key)
     
     def hset(self, topic: str, key: str, value):
+        """
+        Args:
+            value: is converting to string
+        """
         if value is None: value = "Null"
         else: value = str(value)
         return self.redis_conn.hset(topic, key, value)

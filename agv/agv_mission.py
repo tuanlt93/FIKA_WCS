@@ -1,5 +1,5 @@
 from agv.agv_interface import MissionBase
-from utils.threadpool import Worker
+# from utils.threadpool import Worker
 from config.constants import AGVConfig, DeviceConfig, MissionConfig, HandlePalletConfig
 from db_redis import redis_cache
 from PLC import PLC_controller
@@ -12,6 +12,7 @@ from database.models.mission_model import MissionModel
 import datetime
 from config import INPUT_PALLET_CONFIGS, INPUT_EMPTY_PALLET_CONFIGS, OUTPUT_PALLET_CONFIGS 
 from utils.logger import Logger
+from utils.manager_thread import WorkerManager
 
 class MissionHandle(MissionBase):
     def __init__(self, *args, **kwargs) -> None:
@@ -71,10 +72,8 @@ class MissionHandle(MissionBase):
         self.__number_fc_passed: int = 0
         
         self.__dock_name = self.__mission_name.replace("MISSION_", "")
-        # background_thread = threading.Thread(target=self.main, daemon= True)
-        # background_thread.start()
 
-        self.main()
+        self.__worker_manager = WorkerManager(self.main)
 
     def waitForCondition(self, condition):
         """Chờ đợi cho đến khi điều kiện được đáp ứng."""
@@ -85,7 +84,7 @@ class MissionHandle(MissionBase):
         def decorator(func):
             def wrapper(*args, **kwargs):
                 number_function_passed = self.__redis.get("number_function_passed")
-                if number_function_passed >= threshold:
+                if int(number_function_passed) >= threshold:
                     print(f"Skipping {func.__name__} due to threshold")
                     return
                 return func(*args, **kwargs)
@@ -106,7 +105,6 @@ class MissionHandle(MissionBase):
             )
         time.sleep(1)
 
-    @Worker.employ
     def main(self):
         Logger().info("START TASK:"+ str(self.__mission_name))
 
@@ -375,7 +373,7 @@ class MissionHandle(MissionBase):
                 requirement = DeviceConfig.LINE_CURTAIN_CLOSE
             )
 
-            # reset lại trạng tháo agv giữ của thiết bị thang máy đi lên
+            # reset lại trạng tháo agv giữ của thiết bị thang máy đi xuống
             self.update_status_device_agv_used(DeviceConfig.STATUS_ELEVATOR_LIFTING_DOWN, AGVConfig.DONT_USE)
 
 
@@ -470,7 +468,50 @@ class MissionHandle(MissionBase):
 
 
     def onCancel(self):
+        mission_info = self.__redis.hgetall(topic = self.__mission_name)
+        requirement = mission_info.get('area')
+        if requirement == AGVConfig.AGV_INSIDE:
+            if self.__workflow_type == "PALLET_INPUT":
+                # Thông báo đã đi ra dock thang máy đi lên
+                self.__PLC_controller.AGV_status_is_out_lifting_up()
+
+                # reset lại trạng tháo agv giữ của thiết bị thang máy đi lên
+                self.update_status_device_agv_used(DeviceConfig.STATUS_ELEVATOR_LIFTING_UP, AGVConfig.DONT_USE)
+
+            elif self.__workflow_type == "PALLET_OUTPUT":
+                # Thông báo đã đi ra dock thang máy đi xuống
+                self.__PLC_controller.AGV_status_is_out_lifting_down()
+
+                # reset lại trạng tháo agv giữ của thiết bị thang máy đi xuống
+                self.update_status_device_agv_used(DeviceConfig.STATUS_ELEVATOR_LIFTING_DOWN, AGVConfig.DONT_USE)
+
+
+        # Update misison vào database
+        data_update_mision = {
+            "robot_code"    : self.robot_ID,
+            "current_state" : MissionConfig.CANCEL,
+            "updatedAt"     : datetime.datetime.now(datetime.timezone.utc),
+        }
+        self.__db_connection.update_mission_history(
+            mission_id = self.__id,
+            update_data = data_update_mision
+        )
+
+        # reset trạng thái đèn
+        self.__PLC_controller.reset_status_light_button(self.__mission_name)
+
+        # reset trạng thái giữ dock của agv
+        self.update_status_device_agv_used(getattr(DeviceConfig, f'STATUS_DOCK_{self.__dock_name}'), AGVConfig.DONT_USE)
+
+        # Xóa mision đang chạy trong group
+        self.__redis.srem(
+            group= AGVConfig.MISSIONS_RUNNING, 
+            topic= self.__mission_name
+        )
+        
         self.__cancel = True
+        self.__worker_manager.stop_worker()
+        
 
     def onDone(self):
         self.__done = True

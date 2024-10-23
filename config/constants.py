@@ -19,9 +19,12 @@ class AGVConfig:
     USED                    = "USED"
     DONT_USE                = "DONT_USE"
 
+    REQUIREMENT_CANCEL      = "REQUIREMENT_CANCEL"
+
 class MissionConfig:
     COMPLETE    = "Complete"
     PROCESSING  = "processing"
+    CANCEL      = "cancel"
 
 class STATUS_PALLET_CARTON:
     PENDING = 'pending'

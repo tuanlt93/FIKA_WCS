@@ -28,7 +28,8 @@ class PrintDatamax():
         try:
             if message == MarkemConfig.MESSAGE_PRINTED_WRONG:
                 data_print_json = self.__redis_cache.get(MarkemConfig.DATA_PRINT_SHOW)
-                if data_print_json:
+
+                if data_print_json and data_print_json != "Null":  # "Null" due to redis set value None is "Null" string 
                     data_print_show = json.loads(data_print_json)
                     requests.post(url = self.__url, json = data_print_show)
                 else:

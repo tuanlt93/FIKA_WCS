@@ -1,22 +1,22 @@
 # app
 
-import agv
+# import agv
 import PLC
 import DWS
-import markem_printer
+# import markem_printer
 import datamax_printer
 import tranfer
-import tasks
+# import tasks
 import time
-from apis import FlaskApp
+# from apis import FlaskApp
 
 
-def main():
-    app = FlaskApp()
-    app.start()
+# def main():
+#     app = FlaskApp()
+#     app.start()
 
 if __name__ == "__main__":
-    main()
+    # main()
     try:
         while True:
             time.sleep(2)

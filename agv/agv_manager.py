@@ -95,7 +95,7 @@ class ManagerMission(metaclass= Singleton):
                 sleep(TIME.MANAGER_AGV_SAMPLING_TIME)
                 continue
 
-            self.__handle_door_requirements()
+            self.__handle_manager_requirements()
             self.__handle_output_pallet()
             
             if input_pallet_data:
@@ -195,17 +195,27 @@ class ManagerMission(metaclass= Singleton):
         except Exception as e:
             Logger().error("HANDLE OUTPUT PALLET ERROR:" + str(e))
 
-    def __handle_door_requirements(self):
+    def __handle_manager_requirements(self):
         requirements = {
             'A': [],
             'O': []
         }
 
         for mission in self.__running_tasks:
-            area = self.__redis_cache.hget(topic=mission, key='area')
+            mission_info = self.__redis_cache.hgetall(topic = mission)
+            area = mission_info.get('area')
+            requirement = mission_info.get('requirement')
+            requirement_cancel = mission_info.get(AGVConfig.REQUIREMENT_CANCEL)
+            
+            if requirement_cancel == AGVConfig.REQUIREMENT_CANCEL:
+                self.__rcs[mission].onCancel()
+                self.__PLC_controller.reset_all_request_line_curtain(area)
+                self.__rcs.pop(mission)
+                break
+
             if area in requirements:
-                requirement = self.__redis_cache.hget(topic=mission, key='requirement')
                 requirements[area].append(requirement)
+
         # print(requirements)
         self.__handle_door('A', requirements['A'], DeviceConfig.STATUS_LINE_CURTAIN_A)
         self.__handle_door('O', requirements['O'], DeviceConfig.STATUS_LINE_CURTAIN_O)
